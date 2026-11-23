@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Convertisseurs statiques pour débutant – L3 pro BIM</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="in">
+  <span class="brand">Convertisseurs statiques</span>
+  <a href="#carte">La carte</a>
+  <a href="#lexique">Lexique</a>
+  <a href="#diode">1 · Diode</a>
+  <a href="#pd2">2 · Pont mono</a>
+  <a href="#pd3">3 · Pont tri</a>
+  <a href="#thy">4 · Thyristor</a>
+  <a href="#pcom">5 · Pont commandé</a>
+  <a href="#hac">6 · Hacheur</a>
+  <a href="#ond">7 · Onduleur</a>
+  <a href="#grad">8 · Gradateur</a>
+  <a href="#bilan">Bilan</a>
+</div></nav>
+
+<main>
+
+<section id="intro">
+  <div class="kicker">L3 pro BIM · Génie électrique · Version pour débutant</div>
+  <h1>Les convertisseurs statiques, depuis zéro</h1>
+  <p class="lead">Ce cours part de ce que tu sais déjà : le <b>monophasé</b> (230 V, 50 Hz) et le <b>triphasé</b> (3 phases décalées de 120°, 400 V entre phases). Tout le reste est expliqué avec des images, des animations et des mots simples. Chaque abréviation et chaque symbole est défini dans le <a href="#lexique">lexique</a>.</p>
+  <div class="box blue"><b class="t">Comment travailler</b>
+    Pour chaque partie : lis l’idée, regarde l’animation en suivant les points « Regarde », puis fais le petit QCM. Utilise le bouton Pause et le curseur « Temps » pour arrêter l’animation où tu veux. Dans l’ordre, chaque partie s’appuie sur la précédente.</div>
+</section>
+
+<section id="carte">
+  <h2>La carte : à quoi servent ces appareils ?</h2>
+  <div class="card">
+    <p>Le réseau de distribution est en <b>alternatif</b> (la tension change de sens 50 fois par seconde). Beaucoup d’appareils veulent autre chose : du <b>continu</b> (la tension garde toujours le même sens), ou un alternatif d’une autre forme. Un <b>convertisseur statique</b> est un boîtier qui change la forme de l’électricité. « Statique » veut dire sans pièce qui bouge : il utilise des interrupteurs électroniques (diodes, thyristors, transistors).</p>
+    <div class="scroll"><table>
+      <tr><th>Convertisseur</th><th>Il transforme…</th><th>Où on le trouve dans le bâtiment</th></tr>
+      <tr><td><b>Redresseur</b> (parties 2, 3, 5)</td><td>alternatif → continu</td><td>chargeur de batterie (éclairage de sécurité, centrale incendie), alimentation d’automates et de LED, borne de recharge de véhicule électrique</td></tr>
+      <tr><td><b>Hacheur</b> (partie 6)</td><td>continu → continu (autre tension)</td><td>alimentation de LED, panneaux photovoltaïques, chargeurs</td></tr>
+      <tr><td><b>Onduleur</b> (partie 7)</td><td>continu → alternatif</td><td>onduleur photovoltaïque, onduleur de secours (alimentation sans coupure), variateur de vitesse de pompes et de ventilateurs</td></tr>
+      <tr><td><b>Gradateur</b> (partie 8)</td><td>alternatif → alternatif (moins de tension)</td><td>variateur d’éclairage, régulation d’un chauffage électrique</td></tr>
+    </table></div>
+    <h3>Les trois composants-interrupteurs que tu vas rencontrer</h3>
+    <div class="grid3">
+      <div class="mini"><h4>La diode</h4><span class="tag">partie 1</span><p>Un clapet anti-retour : le courant passe dans un sens et pas dans l’autre. On ne la commande pas.</p></div>
+      <div class="mini"><h4>Le thyristor</h4><span class="tag">partie 4</span><p>Une diode qu’on peut « armer » : il faut une impulsion pour qu’il commence à conduire.</p></div>
+      <div class="mini"><h4>Le transistor</h4><span class="tag">parties 6 et 7</span><p>Un vrai interrupteur : on décide quand le fermer et quand l’ouvrir. Dans les schémas on le dessine comme un interrupteur « S ».</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="lexique">
+  <h2>Lexique : toutes les abréviations et symboles</h2>
+  <div class="card">
+    <div class="scroll"><table>
+      <tr><th style="width:24%">Terme</th><th>Ce que ça veut dire</th></tr>
+      <tr><td>alternatif / continu</td><td>Alternatif : la tension change de sens (le secteur). Continu : elle garde le même sens (une pile, une batterie).</td></tr>
+      <tr><td>charge</td><td>L’appareil qui consomme l’énergie : lampe, moteur, résistance chauffante. Dans les animations, c’est le plus souvent une lampe.</td></tr>
+      <tr><td><b>v</b>, <b>u</b>, <b>i</b></td><td><b>v</b> : tension de la source (la prise). <b>u</b> : tension reçue par la charge. <b>i</b> : courant dans la charge.</td></tr>
+      <tr><td>V̂ (« V chapeau »)</td><td>La valeur maximale (crête) de la sinusoïde. Pour 230 V efficaces : 230 × √2 ≈ <b>325 V</b>.</td></tr>
+      <tr><td>valeur efficace</td><td>Les « 230 V » du secteur. C’est la valeur continue qui chaufferait autant qu’une tension alternative.</td></tr>
+      <tr><td>⟨u⟩ (moyenne)</td><td>La valeur moyenne de u. C’est ce qu’indiquerait un voltmètre réglé en continu.</td></tr>
+      <tr><td>T, f</td><td>T : la période (20 ms pour le secteur). f : la fréquence (50 Hz = 50 périodes par seconde).</td></tr>
+      <tr><td>θ (« thêta »)</td><td>Un angle qui repère l’instant dans la période : <b>360° = une période = 20 ms</b>. Donc 180° = 10 ms (une demi-période) et 90° = 5 ms.</td></tr>
+      <tr><td>α (« alpha »)</td><td>Dans les parties 4, 5 et 8 : le retard (en degrés) avant d’amorcer un thyristor. Dans la partie 6 : le rapport cyclique (la fraction du temps où l’interrupteur est fermé, entre 0 et 1).</td></tr>
+      <tr><td>A, K, G</td><td>A : anode. K : cathode. G : gâchette (la commande du thyristor).</td></tr>
+      <tr><td>D, T, S</td><td>D : une diode. T : un thyristor. S : un interrupteur commandé (transistor).</td></tr>
+      <tr><td>passante / bloquée</td><td>Un composant passant laisse passer le courant (interrupteur fermé). Bloqué : il le refuse (interrupteur ouvert).</td></tr>
+      <tr><td>pont</td><td>Un montage de plusieurs diodes (ou thyristors) en carré ou en rond-point. Ton cours l’appelle PD2 (pont monophasé à diodes) et PD3 (pont triphasé à diodes). Ici on dit simplement « pont monophasé » et « pont triphasé ».</td></tr>
+      <tr><td>commutation</td><td>Le moment où le courant passe d’un composant à un autre.</td></tr>
+      <tr><td>inductance, bobine</td><td>Un fil enroulé qui s’oppose aux variations rapides du courant (il le « freine »). Un moteur en contient.</td></tr>
+      <tr><td>MLI</td><td>Modulation de largeur d’impulsion : découper la tension en créneaux de largeur variable pour imiter une sinusoïde.</td></tr>
+      <tr><td>harmonique</td><td>Une « sinusoïde parasite » à une fréquence multiple de 50 Hz, qui s’ajoute à la bonne et déforme l’onde.</td></tr>
+    </table></div>
+  </div>
+</section>
+
+<!-- ============ 1 ============ -->
+<section id="diode">
+  <h2><span class="n">1</span>La diode : un clapet anti-retour</h2>
+  <div class="card">
+    <p><b>L’idée en une phrase :</b> la diode laisse passer le courant dans un seul sens, comme un clapet dans un tuyau d’eau.</p>
+    <svg class="symb" viewBox="0 0 520 150" role="img" aria-label="Symbole de la diode : anode à gauche, cathode côté barre à droite">
+      <line x1="20" y1="60" x2="190" y2="60" stroke="#1c2230" stroke-width="3"/>
+      <polygon points="190,22 190,98 270,60" fill="#e8f0fd" stroke="#1c2230" stroke-width="3"/>
+      <line x1="270" y1="20" x2="270" y2="100" stroke="#1c2230" stroke-width="7"/>
+      <line x1="270" y1="60" x2="500" y2="60" stroke="#1c2230" stroke-width="3"/>
+      <text x="75" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#2f6fd6">A = anode</text>
+      <text x="75" y="85" text-anchor="middle" font-size="13" fill="#5c6577">entrée du courant</text>
+      <text x="420" y="40" text-anchor="middle" font-size="16" font-weight="700" fill="#2f6fd6">K = cathode</text>
+      <text x="420" y="85" text-anchor="middle" font-size="13" fill="#5c6577">sortie du courant</text>
+      <line x1="120" y1="125" x2="400" y2="125" stroke="#1d9a52" stroke-width="3"/>
+      <polygon points="400,118 414,125 400,132" fill="#1d9a52"/>
+      <text x="260" y="145" text-anchor="middle" font-size="13" fill="#1d9a52" font-weight="700">sens dans lequel le courant peut passer</text>
+    </svg>
+    <ul>
+      <li><b>Le triangle est une flèche</b> : il pointe dans le sens où le courant a le droit de passer. La <b>barre</b> est le mur contre lequel il butte.</li>
+      <li><b>Anode (A)</b> = côté plat du triangle = l’entrée. <b>Cathode (K)</b> = côté de la barre = la sortie. Astuce : la cathode, c’est le côté de la <b>b</b>arre, et on la note K comme dans « Kathode ».</li>
+    </ul>
+    <div class="box green"><b class="t">Les deux seules règles</b>
+      <b>Si A est plus « haut » (plus positif) que K</b> : la diode est <b>passante</b>. Elle se comporte comme un fil.<br>
+      <b>Si K est plus haut que A</b> : la diode est <b>bloquée</b>. Elle se comporte comme un interrupteur ouvert.<br>
+      Personne ne la commande : c’est la tension qui décide toute seule.</div>
+    <h3>Essaie</h3>
+    <div data-sim="diode"></div>
+    <ol class="watch">
+      <li>Garde « Sans diode » : le courant de la lampe va et vient, c’est l’alternatif de la prise. Regarde la courbe verte : elle suit la courbe bleue.</li>
+      <li>Passe à « Avec une diode » : pendant la demi-période négative, la diode devient rouge (bloquée) et la lampe ne reçoit rien. Il ne reste que les bosses positives.</li>
+      <li>Passe à « Diode retournée » : on inverse A et K. Ce sont maintenant les bosses négatives qui passent.</li>
+    </ol>
+    <div class="box"><b class="t">À retenir</b>Une diode seule « jette » la moitié de l’énergie. Pour récupérer les deux moitiés, il faut la partie suivante.</div>
+    <h3>QCM</h3><div data-qcm="diode"></div>
+  </div>
+</section>
+
+<!-- ============ 2 ============ -->
+<section id="pd2">
+  <h2><span class="n">2</span>Le pont de 4 diodes (monophasé)</h2>
+  <div class="card">
+    <p><b>L’idée :</b> avec une seule diode on perd la moitié du courant. Avec <b>4 diodes en pont</b>, on retourne la demi-période négative pour qu’elle devienne positive aussi. On appelle ça le <b>redressement</b> : on transforme l’alternatif en un courant qui ne change plus de sens.</p>
+    <p><b>L’image du rond-point :</b> la lampe est au centre. Quelle que soit la route d’où arrive le courant (borne A ou borne B), le rond-point le fait toujours tourner dans le même sens autour de la lampe.</p>
+    <h3>Comment lire le schéma</h3>
+    <ul>
+      <li>Le rail du haut est la borne <b>+</b> de la lampe, celui du bas est la borne <b>−</b>. Le courant traverse toujours la lampe de haut en bas.</li>
+      <li><b>D1 et D2</b> (en haut) ont leur cathode K reliée au rail +. On dit qu’elles sont à « cathodes communes ». <b>D3 et D4</b> (en bas) ont leur anode reliée au rail −, ce sont les « anodes communes ».</li>
+      <li><b>Dans le groupe du haut</b>, la diode qui conduit est celle dont l’anode est la plus haute. <b>Dans le groupe du bas</b>, c’est celle dont la cathode est la plus basse.</li>
+    </ul>
+    <div data-sim="pd2"></div>
+    <ol class="watch">
+      <li>Quand le point 1 est plus haut que le point 2 (demi-période +) : <b>D1 et D4</b> s’allument. Suis les points verts : point 1 → D1 → lampe → D4 → point 2.</li>
+      <li>Quand le point 2 devient le plus haut (demi-période −) : <b>D2 et D3</b> prennent le relais. Les points traversent la lampe <b>toujours vers le bas</b>.</li>
+      <li>Compte les bosses de la tension verte : il y en a <b>2 par période</b>, donc 100 par seconde. On dit que la fréquence est de 100 Hz.</li>
+    </ol>
+    <div class="box"><b class="t">À retenir</b>
+      Tension reçue : <span class="f">u = |v|</span> (la valeur absolue de v : on remonte les parties négatives).<br>
+      Valeur moyenne : <span class="f">⟨u⟩ = 2 × V̂ / π ≈ 207 V</span> pour le 230 V, soit environ 0,9 × 230 V.<br>
+      Une diode bloquée doit supporter jusqu’à <span class="f">V̂ = 325 V</span> en sens inverse.</div>
+    <h3>QCM</h3><div data-qcm="pd2"></div>
+  </div>
+</section>
+
+<!-- ============ 3 ============ -->
+<section id="pd3">
+  <h2><span class="n">3</span>Le pont de 6 diodes (triphasé)</h2>
+  <div class="card">
+    <p><b>L’idée :</b> c’est le même rond-point, mais avec <b>3 phases</b> au lieu de 2 bornes. Il y a une diode en haut et une diode en bas pour chaque phase, soit 6 diodes.</p>
+    <p><b>La règle est la même que pour le pont monophasé :</b> en haut, c’est la phase la plus haute qui gagne. En bas, c’est la phase la plus basse. La lampe reçoit la <b>différence</b> entre ces deux phases (une tension composée, comme les 400 V mesurés entre deux phases).</p>
+    <div data-sim="pd3"></div>
+    <ol class="watch">
+      <li>Regarde la courbe des 3 phases (bleu, vert d’eau, violet) : à chaque instant, une phase est au plus haut et une autre au plus bas.</li>
+      <li>Suis les diodes allumées : quand la courbe de la phase 1 passe au sommet, <b>D1</b> conduit. Puis c’est D2, puis D3, chacune à son tour.</li>
+      <li>Regarde la tension u (vert) : elle ne retombe jamais à zéro. Elle reste entre 487 V et 563 V, donc <b>presque du continu</b>.</li>
+    </ol>
+    <div class="box"><b class="t">À retenir</b>
+      Deux diodes conduisent en même temps (une en haut, une en bas).<br>
+      Chaque diode conduit <b>120°</b> par période (un tiers du temps).<br>
+      u a <b>6 bosses par période</b> (300 Hz) et une valeur moyenne <span class="f">⟨u⟩ ≈ 1,35 × 400 V ≈ 540 V</span>.<br>
+      Une diode bloquée supporte au maximum <span class="f">400 V × √2 ≈ 565 V</span>.</div>
+    <h3>QCM</h3><div data-qcm="pd3"></div>
+  </div>
+</section>
+
+<!-- ============ 4 ============ -->
+<section id="thy">
+  <h2><span class="n">4</span>Le thyristor : une diode qu’on « arme »</h2>
+  <div class="card">
+    <p><b>L’idée :</b> avec une diode, le courant passe dès que la tension est dans le bon sens. Avec un <b>thyristor</b>, on ajoute une troisième patte, la <b>gâchette (G)</b>. Même si la tension est dans le bon sens, le courant ne passe que quand on envoie une petite impulsion sur G.</p>
+    <p><b>L’image de la porte à verrou :</b> la diode est une porte battante qui s’ouvre dès qu’on pousse dans le bon sens. Le thyristor est la même porte avec un verrou : il faut d’abord tirer le verrou (l’impulsion), ensuite elle reste ouverte toute seule.</p>
+    <div class="box green"><b class="t">Les règles du thyristor</b>
+      <b>Il s’amorce (devient passant)</b> seulement si A est plus haut que K <b>et</b> qu’on envoie une impulsion sur G.<br>
+      <b>Une fois amorcé</b>, il reste passant même sans impulsion, jusqu’à ce que son courant retombe à zéro.<br>
+      <b>L’angle α</b> mesure le retard entre le moment où il pourrait conduire (A passe plus haut que K) et celui où on envoie l’impulsion.</div>
+    <div data-sim="thy"></div>
+    <ol class="watch">
+      <li>Mets α = 0° : le thyristor se comporte comme une diode.</li>
+      <li>Mets α = 90° : l’impulsion arrive au sommet de la sinusoïde, la lampe est éteinte avant et allumée après.</li>
+      <li>Augmente α encore : la lampe s’éteint de plus en plus. <b>En choisissant α, on règle l’énergie transmise.</b> C’est l’intérêt du thyristor.</li>
+    </ol>
+    <div class="box"><b class="t">À retenir</b>Le thyristor se bloque tout seul quand son courant s’annule. Dans la demi-période suivante, il faudra une nouvelle impulsion pour l’amorcer à nouveau.</div>
+    <h3>QCM</h3><div data-qcm="thy"></div>
+  </div>
+</section>
+
+<!-- ============ 5 ============ -->
+<section id="pcom">
+  <h2><span class="n">5</span>Le pont commandé : un redresseur réglable</h2>
+  <div class="card">
+    <p><b>L’idée :</b> on prend le pont de 4 diodes (partie 2) et on remplace les deux diodes du haut par deux <b>thyristors</b> T1 et T2. Ce montage s’appelle un <b>pont mixte</b> (2 thyristors + 2 diodes). On redresse comme avant, mais on décide à quel angle α chaque demi-période commence.</p>
+    <div data-sim="pcom"></div>
+    <ol class="watch">
+      <li>Mets α = 0° : tu retrouves exactement le pont de diodes de la partie 2. La lampe est à 100 %.</li>
+      <li>Augmente α : T1 attend son impulsion avant de s’allumer. La partie gauche des bosses disparaît, et la valeur moyenne ⟨u⟩ (trait pointillé vert) baisse.</li>
+      <li>Regarde les deux impulsions par période : une pour T1 (demi-période +), une pour T2 (demi-période −).</li>
+    </ol>
+    <div class="box"><b class="t">À retenir</b>
+      <span class="f">⟨u⟩ = V̂ × (1 + cos α) / π</span> : α = 0° donne 207 V (comme le pont de diodes), α = 60° donne 155 V, α proche de 180° donne presque 0 V.<br>
+      On règle donc la tension continue de sortie avec l’angle α. C’est ce qu’on utilise pour piloter des moteurs à courant continu ou régler un chargeur.</div>
+    <details class="more"><summary>Pour aller plus loin (à regarder plus tard)</summary><div>
+      <p>Ici la charge est une lampe : le courant s’annule à chaque fin de demi-période. Avec un moteur (très inductif), le courant ne s’annule plus et les courbes changent : il apparaît des phases de « roue libre » et, avec un pont à 4 thyristors, un fonctionnement où le montage renvoie de l’énergie au réseau (« onduleur assisté »). Quand tu seras à l’aise avec cette partie, on pourra ajouter ces cas.</p></div></details>
+    <h3>QCM</h3><div data-qcm="pcom"></div>
+  </div>
+</section>
+
+<!-- ============ 6 ============ -->
+<section id="hac">
+  <h2><span class="n">6</span>Le hacheur : changer une tension continue</h2>
+  <div class="card">
+    <p><b>L’idée :</b> on a une source continue (batterie, 200 V) et on veut alimenter un moteur avec moins de tension. Au lieu de « freiner » la tension, on <b>ouvre et ferme très vite</b> un interrupteur S. Le moteur reçoit la tension de la source pendant une partie du temps, puis zéro le reste du temps. En moyenne, il reçoit moins.</p>
+    <p><b>L’image de l’interrupteur de la lampe :</b> si tu allumes et éteins ta lampe mille fois par seconde, tu la vois à moitié allumée. C’est la moyenne que tu perçois.</p>
+    <div class="box green"><b class="t">Le rapport cyclique α</b>
+      C’est la fraction de la période pendant laquelle S est fermé (de 0 à 1). <span class="f">⟨u⟩ = α × tension de la source</span>. Avec α = 0,25 sur une source de 200 V, la moyenne est 50 V.</div>
+    <h3>Pourquoi une bobine et une diode ?</h3>
+    <p>Un moteur contient une <b>bobine</b>. Une bobine déteste qu’on coupe son courant d’un coup : quand S s’ouvre, elle veut continuer à faire circuler le courant. Si on ne lui offre aucun chemin, il se produit une énorme surtension qui détruit S. La <b>diode de roue libre</b> lui offre un chemin : le courant « tourne en rond » dans le moteur et baisse doucement jusqu’à la prochaine fermeture de S.</p>
+    <div data-sim="hac"></div>
+    <ol class="watch">
+      <li>Choisis « Charge simple » : le courant suit exactement la tension en créneau.</li>
+      <li>Repasse sur « Moteur (avec bobine) » : le courant monte et descend en pente douce. Quand S s’ouvre, les points orange passent dans la diode.</li>
+      <li>Change le rapport cyclique : la moyenne ⟨u⟩ suit (le trait pointillé vert monte avec α).</li>
+      <li>Passe de 1 kHz à 4 kHz : le courant ondule beaucoup moins, mais l’interrupteur travaille 4 fois plus (donc chauffe plus dans la vraie vie).</li>
+    </ol>
+    <div class="box"><b class="t">À retenir</b>Hacheur = continu → continu. La tension moyenne se règle avec α. Une bobine lisse le courant, une diode de roue libre le protège, et une fréquence plus haute réduit encore l’ondulation.</div>
+    <h3>QCM</h3><div data-qcm="hac"></div>
+  </div>
+</section>
+
+<!-- ============ 7 ============ -->
+<section id="ond">
+  <h2><span class="n">7</span>L’onduleur : fabriquer de l’alternatif</h2>
+  <div class="card">
+    <p><b>L’idée :</b> on part d’une source continue (une batterie de 48 V) et on veut alimenter un moteur en alternatif. Il suffit d’<b>inverser régulièrement le sens de la tension</b>. On le fait avec 4 interrupteurs disposés en « H » autour du moteur.</p>
+    <div class="box green"><b class="t">Le montage en H</b>
+      <b>S1 et S4 fermés</b> : le moteur est branché dans un sens (+48 V).<br>
+      <b>S2 et S3 fermés</b> : le moteur est branché dans l’autre sens (−48 V).<br>
+      <b>Jamais S1 et S3 ensemble</b> (ni S2 et S4) : ils sont sur le même bras et créeraient un court-circuit de la batterie.</div>
+    <div data-sim="ond"></div>
+    <ol class="watch">
+      <li>Avec le « créneau simple » : la tension passe de +48 V à −48 V toutes les 10 ms. C’est de l’alternatif à 50 Hz, mais carré. La sinusoïde grise montre ce qu’on aimerait obtenir.</li>
+      <li>Passe au « découpage fin (MLI) » : les interrupteurs travaillent très vite. Les créneaux sont larges quand la sinusoïde grise est haute, étroits quand elle est basse.</li>
+      <li>Regarde le courant (bleu) : avec le découpage fin, la bobine du moteur le lisse et il ressemble à une vraie sinusoïde.</li>
+      <li>Bouge le curseur « Amplitude » : on règle la tension du moteur en changeant la largeur des créneaux, sans changer la batterie.</li>
+    </ol>
+    <div class="box"><b class="t">À retenir</b>Onduleur = continu → alternatif. Un onduleur de variateur de vitesse règle <b>à la fois la tension et la fréquence</b> pour piloter un moteur alternatif : c’est le cœur d’un variateur de pompe ou de ventilateur.</div>
+    <h3>QCM</h3><div data-qcm="ond"></div>
+  </div>
+</section>
+
+<!-- ============ 8 ============ -->
+<section id="grad">
+  <h2><span class="n">8</span>Le gradateur : régler une puissance alternative</h2>
+  <div class="card">
+    <p><b>L’idée :</b> c’est le variateur de lumière de ta maison. On part du secteur (alternatif) et on ressort en alternatif, mais avec une partie de chaque sinusoïde « rognée ». La lampe reçoit moins d’énergie.</p>
+    <p><b>Le montage :</b> deux thyristors montés <b>tête-bêche</b> (en sens opposés) entre la prise et la lampe. T1 laisse passer l’alternance positive, T2 l’alternance négative. Comme dans la partie 4, on retarde l’amorçage de α.</p>
+    <div data-sim="grad"></div>
+    <ol class="watch">
+      <li>α = 0° : la lampe reçoit toute la sinusoïde, elle brille à 100 %.</li>
+      <li>α = 90° : la lampe ne reçoit que la seconde moitié de chaque demi-période, elle brille à 50 %.</li>
+      <li>α = 150° : presque rien ne passe, la lampe est quasi éteinte.</li>
+    </ol>
+    <div class="box"><b class="t">À retenir</b>
+      Gradateur = alternatif → alternatif (fréquence inchangée, tension efficace plus faible). La relation entre α et la puissance n’est pas linéaire : α = 90° donne 50 %, pas 100 − 90/180.<br>
+      Pour le chauffage électrique, on utilise aussi une autre commande : laisser passer quelques périodes entières puis tout couper (« trains d’ondes »), car le chauffage est lent et personne ne voit de clignotement.</div>
+    <h3>QCM</h3><div data-qcm="grad"></div>
+  </div>
+</section>
+
+<!-- ============ Bilan ============ -->
+<section id="bilan">
+  <h2>Bilan</h2>
+  <div class="card">
+    <div class="scroll"><table>
+      <tr><th>Convertisseur</th><th>Entrée → sortie</th><th>Composants</th><th>Ce qu’on règle</th></tr>
+      <tr><td>Redresseur à diodes</td><td>alternatif → continu</td><td>diodes</td><td>rien (sortie fixe, ≈ 0,9 × 230 V en monophasé, ≈ 1,35 × 400 V en triphasé)</td></tr>
+      <tr><td>Redresseur commandé</td><td>alternatif → continu</td><td>thyristors (+ diodes)</td><td>l’angle α</td></tr>
+      <tr><td>Hacheur</td><td>continu → continu</td><td>interrupteur commandé + diode</td><td>le rapport cyclique α</td></tr>
+      <tr><td>Onduleur</td><td>continu → alternatif</td><td>4 interrupteurs commandés (+ diodes)</td><td>tension et fréquence (via la commande)</td></tr>
+      <tr><td>Gradateur</td><td>alternatif → alternatif</td><td>2 thyristors tête-bêche</td><td>l’angle α</td></tr>
+    </table></div>
+    <h3>Mini-test final</h3><div data-qcm="final"></div>
+    <div class="box blue"><b class="t">Suite possible</b>Quand ces bases sont acquises, tu peux repasser sur les fiches détaillées du dossier <code>convertisseurs-statiques</code> : elles reprennent les mêmes montages avec les formules complètes, les charges inductives et les exercices.</div>
+  </div>
+</section>
+
+<footer>Cours rédigé pour la L3 pro BIM – Génie électrique. Valeurs : réseau 230 V / 50 Hz (V̂ = 325 V), triphasé 400 V.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
