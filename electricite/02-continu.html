@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Régime continu : associations de résistances – Électricité – L3 pro BIM</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">Électricité</a><a href="01-bases.html">1 · Bases</a><a href="02-continu.html" class="cur">2 · Continu</a><a href="03-alternatif.html">3 · Alternatif</a><a href="04-puissances.html">4 · Puissances</a><a href="05-compensation.html">5 · Compensation</a><a href="06-regimes-neutre.html">6 · Régimes de neutre</a><a href="07-cables.html">7 · Câbles</a><a href="formulaire.html">Formulaire</a><a href="../index.html" style="margin-left:auto">⌂ Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">Électricité · Chapitre 2</div>
+  <h1>Régime continu : lois des circuits et associations de résistances</h1>
+  <p class="lead">En continu, la tension et le courant ne changent pas dans le temps. C’est le terrain d’entraînement idéal : si tu maîtrises les nœuds, les mailles et les résistances équivalentes, tu sais résoudre n’importe quel circuit simple.</p>
+  <div class="toc"><a href="#lois">Nœuds et mailles</a><a href="#assoc">Série et parallèle</a><a href="#diviseurs">Diviseurs</a><a href="#exo">Ton exercice complet</a><a href="#qcm">QCM</a></div>
+</section>
+
+<section id="lois">
+  <h2><span class="n">1</span>Les deux lois de base <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <div class="grid3">
+      <div class="mini"><h4>Loi des nœuds</h4><span class="tag">les courants</span>
+        <p>Un nœud est un point où se rejoignent plusieurs fils. <b>Ce qui entre = ce qui sort</b> :</p>
+        <div class="formula" style="font-size:1.05em">I<sub>1</sub> = I<sub>2</sub> + I<sub>3</sub></div></div>
+      <div class="mini"><h4>Loi des mailles</h4><span class="tag">les tensions</span>
+        <p>Dans une boucle fermée, la <b>somme des tensions</b> (en tenant compte des sens) est <b>nulle</b>. En série :</p>
+        <div class="formula" style="font-size:1.05em">U = U<sub>1</sub> + U<sub>2</sub></div></div>
+      <div class="mini"><h4>Loi d’Ohm</h4><span class="tag">chaque résistance</span>
+        <p>Pour chaque résistance : <b>U = R × I</b>. C’est le lien entre les deux lois ci-contre.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="assoc">
+  <h2><span class="n">2</span>Résistance équivalente <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <div class="grid3">
+      <div class="mini"><h4>En série</h4><span class="tag">même courant</span>
+        <div class="formula" style="font-size:1.05em">R<sub>eq</sub> = R<sub>1</sub> + R<sub>2</sub> + …</div>
+        <p>La résistance équivalente est <b>plus grande</b> que chacune.</p></div>
+      <div class="mini"><h4>En parallèle</h4><span class="tag">même tension</span>
+        <div class="formula" style="font-size:1.05em"><span class="frac"><span>1</span><span>R<sub>eq</sub></span></span> = <span class="frac"><span>1</span><span>R<sub>1</sub></span></span> + <span class="frac"><span>1</span><span>R<sub>2</sub></span></span> + …</div>
+        <p>La résistance équivalente est <b>plus petite</b> que la plus petite.</p></div>
+      <div class="mini"><h4>Raccourcis <span class="src a" title="Ajouté pour compléter">complété</span></h4><span class="tag">gain de temps</span>
+        <p>Deux résistances en parallèle : <span class="f">R<sub>1</sub>R<sub>2</sub> / (R<sub>1</sub> + R<sub>2</sub>)</span>.</p>
+        <p><b>n</b> résistances identiques R en parallèle : <span class="f">R / n</span>.</p>
+        <p>En parallèle, les <b>conductances s’additionnent</b> : G<sub>eq</sub> = G<sub>1</sub> + G<sub>2</sub> + …</p></div>
+    </div>
+    <div class="box blue"><b class="t">Méthode pour un circuit compliqué <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      On <b>simplifie de l’intérieur vers l’extérieur</b> : on repère les groupes série ou parallèle les plus éloignés de la source, on les remplace par leur équivalent, et on recommence jusqu’à n’avoir qu’une seule résistance. Ensuite on <b>remonte</b> : courant total, puis tensions et courants de chaque branche.</div>
+  </div>
+</section>
+
+<section id="diviseurs">
+  <h2><span class="n">3</span>Diviseurs de tension et de courant <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <div class="grid3">
+      <div class="mini"><h4>Diviseur de tension</h4><span class="tag">2 résistances en série</span>
+        <div class="formula" style="font-size:1.05em">U<sub>2</sub> = U × <span class="frac"><span>R<sub>2</sub></span><span>R<sub>1</sub> + R<sub>2</sub></span></span></div>
+        <p>La plus grosse résistance « prend » la plus grosse part de la tension.</p></div>
+      <div class="mini"><h4>Diviseur de courant</h4><span class="tag">2 résistances en parallèle</span>
+        <div class="formula" style="font-size:1.05em">I<sub>1</sub> = I × <span class="frac"><span>R<sub>2</sub></span><span>R<sub>1</sub> + R<sub>2</sub></span></span></div>
+        <p>Le courant préfère la branche la moins résistante.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="exo">
+  <h2><span class="n">4</span>Ton exercice complet <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="ex">
+    <p>Un circuit alimenté en <b>U<sub>alim</sub> = 60 V</b>. On cherche la résistance équivalente, la conductance équivalente, puis tous les courants et toutes les tensions.</p>
+    <figure class="wide"><svg viewBox="0 0 640 285" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="13" role="img" aria-label="Circuit de l’exercice : R1 en série avec R2 parallèle à R3 en série avec le parallèle de R4, R5 et la branche R6-R7-R8"><line x1="50" y1="60" x2="50" y2="130" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="50" y1="170" x2="50" y2="250" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><circle cx="50" cy="150" r="20" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="50" y="155" fill="#1c2230" font-size="12" text-anchor="middle" font-weight="700">60 V</text><text x="50" y="188" fill="#5c6577" font-size="12" text-anchor="middle">U<tspan font-size="10" dy="3">alim</tspan></text><line x1="50" y1="60" x2="110" y2="60" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="110.0" y="53" width="40" height="14" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="130" y="48" fill="#1c2230" font-size="13" text-anchor="middle" font-weight="700">R1 = 15 Ω</text><line x1="150" y1="60" x2="190" y2="60" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="190" y1="60" x2="190" y2="110" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="183" y="132.0" width="14" height="36" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="204" y="154" fill="#1c2230" font-size="13" text-anchor="start" font-weight="700">R2 = 30 Ω</text><line x1="190" y1="190" x2="190" y2="250" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><circle cx="190" cy="60" r="3.5" fill="#1c2230"/><circle cx="190" cy="250" r="3.5" fill="#1c2230"/><line x1="190" y1="60" x2="235" y2="60" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="235.0" y="53" width="40" height="14" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="255" y="48" fill="#1c2230" font-size="13" text-anchor="middle" font-weight="700">R3 = 10 Ω</text><line x1="275" y1="60" x2="330" y2="60" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><circle cx="330" cy="60" r="3.5" fill="#1c2230"/><line x1="330" y1="60" x2="330" y2="110" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="323" y="132.0" width="14" height="36" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="344" y="154" fill="#1c2230" font-size="13" text-anchor="start" font-weight="700">R4 = 40 Ω</text><line x1="330" y1="190" x2="330" y2="250" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><circle cx="330" cy="250" r="3.5" fill="#1c2230"/><line x1="330" y1="60" x2="420" y2="60" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><circle cx="420" cy="60" r="3.5" fill="#1c2230"/><line x1="420" y1="60" x2="420" y2="110" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="413" y="132.0" width="14" height="36" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="434" y="154" fill="#1c2230" font-size="13" text-anchor="start" font-weight="700">R5 = 80 Ω</text><line x1="420" y1="190" x2="420" y2="250" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><circle cx="420" cy="250" r="3.5" fill="#1c2230"/><line x1="420" y1="60" x2="520" y2="60" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="520" y1="60" x2="520" y2="82" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="513" y="85.0" width="14" height="30" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="534" y="104" fill="#1c2230" font-size="13" text-anchor="start" font-weight="700">R6 = 20 Ω</text><line x1="520" y1="115" x2="520" y2="125" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="513" y="127.0" width="14" height="30" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="534" y="146" fill="#1c2230" font-size="13" text-anchor="start" font-weight="700">R7 = 20 Ω</text><line x1="520" y1="157" x2="520" y2="167" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="513" y="169.0" width="14" height="30" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="534" y="188" fill="#1c2230" font-size="13" text-anchor="start" font-weight="700">R8 = 40 Ω</text><line x1="520" y1="199" x2="520" y2="250" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><circle cx="520" cy="250" r="3.5" fill="#1c2230"/><line x1="50" y1="250" x2="520" y2="250" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><text x="190" y="40" fill="#5c6577" font-size="12" text-anchor="middle">A</text><text x="330" y="40" fill="#5c6577" font-size="12" text-anchor="middle">B</text><text x="255" y="100" fill="#5c6577" font-size="11" text-anchor="middle">R3 en série</text><text x="255" y="114" fill="#5c6577" font-size="11" text-anchor="middle">avec le bloc B</text></svg><figcaption>Schéma redessiné à partir de tes calculs (R<sub>1</sub> = 15, R<sub>2</sub> = 30, R<sub>3</sub> = 10, R<sub>4</sub> = 40, R<sub>5</sub> = 80, R<sub>6</sub> = 20, R<sub>7</sub> = 20, R<sub>8</sub> = 40, en ohms). Compare-le avec ton énoncé : les valeurs sont retrouvées à partir de tes calculs, pas recopiées du sujet.</figcaption></figure>
+
+    <h3>① Résistance équivalente (de l’intérieur vers l’extérieur)</h3>
+    <ol class="steps">
+      <li><b>R<sub>6</sub>, R<sub>7</sub>, R<sub>8</sub> en série</b> : R<sub>eq1</sub> = 20 + 20 + 40 = <b>80 Ω</b></li>
+      <li><b>R<sub>4</sub>, R<sub>5</sub> et R<sub>eq1</sub> en parallèle</b> : <span class="frac"><span>1</span><span>R<sub>eq2</sub></span></span> = <span class="frac"><span>1</span><span>40</span></span> + <span class="frac"><span>1</span><span>80</span></span> + <span class="frac"><span>1</span><span>80</span></span> = <span class="frac"><span>4</span><span>80</span></span> = <span class="frac"><span>1</span><span>20</span></span> → R<sub>eq2</sub> = <b>20 Ω</b></li>
+      <li><b>R<sub>3</sub> en série avec R<sub>eq2</sub></b> : R<sub>eq3</sub> = 10 + 20 = <b>30 Ω</b></li>
+      <li><b>R<sub>2</sub> en parallèle avec R<sub>eq3</sub></b> : <span class="frac"><span>1</span><span>R<sub>eq4</sub></span></span> = <span class="frac"><span>1</span><span>30</span></span> + <span class="frac"><span>1</span><span>30</span></span> = <span class="frac"><span>2</span><span>30</span></span> = <span class="frac"><span>1</span><span>15</span></span> → R<sub>eq4</sub> = <b>15 Ω</b></li>
+      <li><b>R<sub>1</sub> en série avec R<sub>eq4</sub></b> : R<sub>eq total</sub> = 15 + 15 = <b>30 Ω</b></li>
+    </ol>
+    <h3>② Conductance équivalente</h3>
+    <div class="formula">G<sub>eq</sub> = <span class="frac"><span>1</span><span>R<sub>eq</sub></span></span> = <span class="frac"><span>1</span><span>30</span></span> ≈ <b>0,033 S</b></div>
+    <h3>③ Courant total et tensions</h3>
+    <ol class="steps">
+      <li><b>I<sub>1</sub></b> = U<sub>alim</sub> / R<sub>eq total</sub> = 60 / 30 = <b>2 A</b></li>
+      <li><b>U<sub>1</sub></b> = R<sub>1</sub> × I<sub>1</sub> = 15 × 2 = <b>30 V</b></li>
+      <li>Loi des mailles : U<sub>alim</sub> − U<sub>1</sub> − U<sub>2</sub> = 0 → <b>U<sub>2</sub></b> = 60 − 30 = <b>30 V</b></li>
+      <li><b>I<sub>2</sub></b> = U<sub>2</sub> / R<sub>2</sub> = 30 / 30 = <b>1 A</b></li>
+      <li>Loi des nœuds : I<sub>1</sub> = I<sub>2</sub> + I<sub>3</sub> → <b>I<sub>3</sub></b> = 2 − 1 = <b>1 A</b></li>
+      <li><b>U<sub>3</sub></b> = R<sub>3</sub> × I<sub>3</sub> = 10 × 1 = <b>10 V</b></li>
+      <li>Maille : U<sub>2</sub> − U<sub>3</sub> − U<sub>4</sub> = 0 → <b>U<sub>4</sub></b> = 30 − 10 = <b>20 V</b> ; et U<sub>4</sub> = U<sub>5</sub> = 20 V (R<sub>4</sub> et R<sub>5</sub> sont en parallèle)</li>
+      <li><b>I<sub>4</sub></b> = U<sub>4</sub> / R<sub>4</sub> = 20 / 40 = <b>0,5 A</b> ; <b>I<sub>5</sub></b> = U<sub>5</sub> / R<sub>5</sub> = 20 / 80 = <b>0,25 A</b></li>
+    </ol>
+    <div class="sol"><span class="t">Vérification <span class="src a" title="Ajouté pour compléter">complété</span></span>
+      La branche R<sub>6</sub>-R<sub>7</sub>-R<sub>8</sub> (80 Ω sous 20 V) prend 0,25 A. On retrouve bien le courant I<sub>3</sub> : 0,5 + 0,25 + 0,25 = <b>1 A</b> ✔.<br>
+      <b>Bilan de puissance</b> : la source fournit 60 × 2 = 120 W ; les résistances dissipent R×I² : 60 + 30 + 10 + 10 + 5 + 5 = <b>120 W</b> ✔.</div>
+  </div>
+  <div class="calc" data-calc="res">
+    <h4>Refais l’exercice avec d’autres valeurs</h4>
+    <p class="small" style="margin:0 0 8px">Modifie U<sub>alim</sub> ou les résistances (même schéma que ci-dessus) et compare avec ta méthode à la main.</p>
+    <div class="in">
+      <div><label>U alim (V)</label><input type="number" step="any" value="60" data-k="U"></div>
+      <div><label>R1 (Ω)</label><input type="number" step="any" value="15" data-k="R1"></div>
+      <div><label>R2 (Ω)</label><input type="number" step="any" value="30" data-k="R2"></div>
+      <div><label>R3 (Ω)</label><input type="number" step="any" value="10" data-k="R3"></div>
+      <div><label>R4 (Ω)</label><input type="number" step="any" value="40" data-k="R4"></div>
+      <div><label>R5 (Ω)</label><input type="number" step="any" value="80" data-k="R5"></div>
+      <div><label>R6 (Ω)</label><input type="number" step="any" value="20" data-k="R6"></div>
+      <div><label>R7 (Ω)</label><input type="number" step="any" value="20" data-k="R7"></div>
+      <div><label>R8 (Ω)</label><input type="number" step="any" value="40" data-k="R8"></div>
+    </div>
+    <div class="out" data-k="out"></div>
+  </div>
+</section>
+
+<section id="qcm">
+  <h2><span class="n">5</span>QCM du chapitre 2</h2>
+  <div class="card"><div data-qcm="c2"></div></div>
+</section>
+
+<div class="pn"><a href="01-bases.html">← 1 · Bases</a><a href="03-alternatif.html">3 · Alternatif →</a></div>
+<footer>Cours d’électricité · LP Ingénierie électrique, intégrateur BIM et smart building · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

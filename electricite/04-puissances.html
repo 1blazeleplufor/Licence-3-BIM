@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Les puissances P, Q, S et le facteur de puissance – Électricité – L3 pro BIM</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">Électricité</a><a href="01-bases.html">1 · Bases</a><a href="02-continu.html">2 · Continu</a><a href="03-alternatif.html">3 · Alternatif</a><a href="04-puissances.html" class="cur">4 · Puissances</a><a href="05-compensation.html">5 · Compensation</a><a href="06-regimes-neutre.html">6 · Régimes de neutre</a><a href="07-cables.html">7 · Câbles</a><a href="formulaire.html">Formulaire</a><a href="../index.html" style="margin-left:auto">⌂ Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">Électricité · Chapitre 4</div>
+  <h1>Les puissances : P, Q, S et le facteur de puissance</h1>
+  <p class="lead">En alternatif, il y a trois puissances. La puissance <b>active P</b> fait le travail, la <b>réactive Q</b> entretient les champs magnétiques des bobines, et la <b>apparente S</b> est celle que le réseau doit transporter. Le triangle des puissances les relie.</p>
+  <div class="toc"><a href="#trois">P, Q, S</a><a href="#triangle">Triangle</a><a href="#regles">Additionner</a><a href="#rendement">Rendement</a><a href="#ex1">Exercice 1</a><a href="#ex2">Exercice 2</a><a href="#calc">Calculateurs</a><a href="#qcm">QCM</a></div>
+</section>
+
+<section id="trois">
+  <h2><span class="n">1</span>Les trois puissances <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <div class="scroll"><table>
+      <tr><th>Puissance</th><th>Unité</th><th>Monophasé</th><th>Triphasé</th></tr>
+      <tr><td><b>Active P</b> : puissance utile consommée</td><td>watt (W)</td><td class="f">P = U × I × cos φ</td><td class="f">P = √3 × U × I × cos φ</td></tr>
+      <tr><td><b>Réactive Q</b> : puissance échangée avec les bobines et condensateurs</td><td>var</td><td class="f">Q = U × I × sin φ = P × tan φ</td><td class="f">Q = √3 × U × I × sin φ = P × tan φ</td></tr>
+      <tr><td><b>Apparente S</b> : puissance qu’il faut fournir</td><td>VA</td><td class="f">S = U × I</td><td class="f">S = √3 × U × I</td></tr>
+    </table></div>
+    <div class="formula">S = √(P² + Q²) <small>et facteur de puissance : k = cos φ = <span class="frac"><span>P</span><span>S</span></span></small></div>
+    <p>Le <b>facteur de puissance</b> est le rapport entre la puissance active et la puissance apparente. Il n’a pas d’unité et se situe <b>entre 0 et 1</b>. Plus il est proche de 1, plus le récepteur utilise bien le courant qu’il demande.</p>
+    <div class="box blue"><b class="t">Pour retrouver I <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></b>
+      Monophasé : I = P / (U × cos φ). Triphasé : I = P / (√3 × U × cos φ). On part toujours de la puissance <b>active</b> et on divise par cos φ.</div>
+  </div>
+</section>
+
+<section id="triangle">
+  <h2><span class="n">2</span>Le triangle des puissances <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <figure class="wide"><svg viewBox="0 0 640 250" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="13" role="img" aria-label="Triangle des puissances"><polyline points="80,210 420,210 420,70 80,210" fill="#f4f7fd" stroke="#1c2230" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><text x="250" y="232" fill="#1d9a52" font-size="14" text-anchor="middle" font-weight="700">P (W), puissance active</text><text x="432" y="145" fill="#d43f3f" font-size="14" text-anchor="start" font-weight="700">Q (var)</text><text x="432" y="162" fill="#d43f3f" font-size="12" text-anchor="start">puissance réactive</text><text x="220" y="124" fill="#2f6fd6" font-size="14" text-anchor="middle" font-weight="700">S (VA)</text><text x="215" y="140" fill="#2f6fd6" font-size="12" text-anchor="middle">puissance apparente</text><path d="M 130 210 A 50 50 0 0 0 125 190" fill="none" stroke="#7a4cc2" stroke-width="2"/><text x="150" y="200" fill="#7a4cc2" font-size="16" text-anchor="middle" font-weight="700" font-style="italic">φ</text><rect x="408" y="198" width="12" height="12" fill="none" stroke="#1c2230" stroke-width="1.5"/><text x="250" y="40" fill="#1c2230" font-size="13" text-anchor="middle" font-weight="700">S² = P² + Q²     cos φ = P / S     sin φ = Q / S     tan φ = Q / P</text></svg></figure>
+    <p>Le triangle des puissances est un triangle rectangle : P est le côté adjacent à φ, Q le côté opposé, S l’hypoténuse. Les relations se retrouvent avec <b>SOH CAH TOA</b> :</p>
+    <div class="scroll"><table>
+      <tr><th>SOH</th><th>CAH</th><th>TOA</th></tr>
+      <tr><td class="f">sin φ = opposé / hypoténuse = Q / S</td><td class="f">cos φ = adjacent / hypoténuse = P / S</td><td class="f">tan φ = opposé / adjacent = Q / P</td></tr>
+    </table></div>
+    <div class="box orange"><b class="t">À ne jamais oublier <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></b>
+      <b>Les puissances apparentes ne s’additionnent jamais</b>, et les cos φ non plus. On additionne les <b>P</b> d’un côté, les <b>Q</b> de l’autre, puis on recalcule S et cos φ (voir ci-dessous).</div>
+  </div>
+</section>
+
+<section id="regles">
+  <h2><span class="n">3</span>Plusieurs récepteurs : le bilan de puissances <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <ol class="steps">
+      <li>Pour chaque récepteur, calculer <b>P</b> et <b>Q</b> (Q = P × tan φ).</li>
+      <li>Additionner : <b>ΣP</b> et <b>ΣQ</b>.</li>
+      <li>Calculer <b>S = √(ΣP² + ΣQ²)</b>.</li>
+      <li>En déduire <b>cos φ total = ΣP / S</b> et <b>I = S / U</b> (monophasé) ou <b>I = S / (√3 × U)</b> (triphasé).</li>
+    </ol>
+    <p>Pour trouver φ à partir de cos φ : <span class="f">tan φ = tan(cos⁻¹(cos φ))</span>. Exemple : cos φ = 0,7 → φ = 45,6° → tan φ = 1,02.</p>
+  </div>
+</section>
+
+<section id="rendement">
+  <h2><span class="n">4</span>Puissance absorbée et rendement <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>Un moteur reçoit de l’énergie électrique (puissance <b>absorbée</b> P<sub>a</sub>) et fournit de l’énergie mécanique (puissance <b>utile</b> P<sub>u</sub>). Une partie est perdue en chaleur. Le <b>rendement η</b> (êta) mesure ce qui reste :</p>
+    <div class="formula">η = <span class="frac"><span>P<sub>u</sub></span><span>P<sub>a</sub></span></span> &nbsp;&nbsp;⇔&nbsp;&nbsp; P<sub>a</sub> = <span class="frac"><span>P<sub>u</sub></span><span>η</span></span></div>
+    <div class="sol"><span class="t">Exemple de ton cours : moteur de 8 kW utiles, rendement 0,8, alimenté en 230 V, 52 A</span>
+      <b>P<sub>a</sub></b> = 8 / 0,8 = <b>10 kW</b>.<br>
+      <b>cos φ</b> = P<sub>a</sub> / (U × I) = 10 000 / (230 × 52) = <b>0,84</b> (0,836 exactement).<br>
+      φ = cos⁻¹(0,84) = 32,9° = <b>0,57 rad</b> ; <b>tan φ</b> = tan(32,9°) = <b>0,646</b>.<br>
+      <b>Q</b> = P<sub>a</sub> × tan φ = 10 × 0,646 ≈ <b>6,5 kvar</b> (tu avais trouvé 6,4 kvar avec une tan arrondie).</div>
+    <div class="box red"><b class="t">À corriger dans tes notes <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span></b>
+      En marge, tu as noté « tan(0,84) = 0,64 ». Attention à la notation : 0,84 est le <b>cos φ</b>, pas l’angle. La bonne écriture est <b>tan(cos⁻¹ 0,84) = 0,646</b>. (Et tan(0,84) en radians donnerait 1,12, tout autre chose.) Le résultat 0,64 que tu utilises est bon, c’est l’écriture qui est fausse.</div>
+  </div>
+</section>
+
+<section id="ex1">
+  <h2><span class="n">5</span>Exercice 1 : lampes et moteurs, bilan complet <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="ex">
+    <p><b>Données :</b> U = 240 V, f = 50 Hz. 30 lampes de 100 W (cos φ = 1) et 2 moteurs de 1,9 kW utiles, rendement 0,95, cos φ = 0,7.</p>
+    <h3>① Les lampes</h3>
+    <p>P = 30 × 100 = <b>3 000 W</b> ; Q = P × tan φ = 3 000 × 0 = <b>0</b> ; I = P / (U × cos φ) = 3 000 / 240 = <b>12,5 A</b>.</p>
+    <h3>② Les moteurs</h3>
+    <p>P<sub>a</sub> (un moteur) = 1,9 / 0,95 = 2 kW ; pour deux moteurs : P = 2 × 2 = <b>4 000 W</b>.<br>
+    cos φ = 0,7 → tan φ = tan(cos⁻¹ 0,7) = <b>1,02</b> ; Q = 4 000 × 1,02 = <b>4 080 var</b>.<br>
+    I = 4 000 / (240 × 0,7) = <b>23,8 A</b>.</p>
+    <h3>③ L’ensemble</h3>
+    <div class="scroll"><table>
+      <tr><th></th><th class="r">P (kW)</th><th class="r">Q (kvar)</th></tr>
+      <tr><td>Lampes</td><td class="r">3</td><td class="r">0</td></tr>
+      <tr><td>Moteurs</td><td class="r">4</td><td class="r">4,08</td></tr>
+      <tr><th>Total</th><th class="r">7</th><th class="r">4,08</th></tr>
+    </table></div>
+    <p>S = √(7² + 4,08²) = <b>8,10 kVA</b> ; cos φ = P / S = 7 / 8,10 = <b>0,86</b> ; tan φ = Q / P = 4,08 / 7 = <b>0,58</b> ; I = S / U = 8 100 / 240 = <b>33,8 A</b>.</p>
+    <div class="sol"><span class="t">Ce qu’il faut remarquer <span class="src a" title="Ajouté pour compléter">complété</span></span>
+      12,5 A + 23,8 A = 36,3 A, mais le courant total est <b>33,8 A</b> : <b>les courants ne s’additionnent pas simplement</b> quand les récepteurs n’ont pas le même cos φ. C’est pour cela qu’on additionne les puissances P et Q, jamais S, jamais cos φ (tu l’as noté : « on n’additionne pas les cos φ, cos φ total = P/S »).</div>
+  </div>
+</section>
+
+<section id="ex2">
+  <h2><span class="n">6</span>Exercice 2 : installation triphasée de 50 kW <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="ex">
+    <p><b>Données :</b> alimentation triphasée 380 V, 50 Hz ; récepteur de <b>50 kW</b> avec <b>cos φ = 0,7</b> (donc tan φ = 1,02).</p>
+    <ol class="steps">
+      <li><b>Puissance réactive</b> : Q = P × tan φ = 50 000 × 1,02 = <b>51 000 var</b> (51 kvar).</li>
+      <li><b>Courant consommé</b> : I = P / (√3 × U × cos φ) = 50 000 / (1,732 × 380 × 0,7) = <b>108,5 A</b>.</li>
+      <li><b>Pénalités ?</b> Le fournisseur facture l’énergie réactive quand <b>cos φ &lt; 0,93</b>, c’est-à-dire <b>tan φ &gt; 0,4</b>. Ici 1,02 &gt; 0,4 : <b>oui</b>, des pénalités sont possibles.</li>
+    </ol>
+    <p>La suite de l’exercice (condensateur pour corriger le cos φ) est au <a href="05-compensation.html#ex2">chapitre 5</a>.</p>
+    <div class="sol"><span class="t">Pour aller plus loin <span class="src a" title="Ajouté pour compléter">complété</span></span>
+      Puissance apparente : S = P / cos φ = 50 / 0,7 = <b>71,4 kVA</b>. On vérifie : I = S / (√3 × U) = 71 400 / (1,732 × 380) = 108,5 A ✔.</div>
+  </div>
+</section>
+
+<section id="calc">
+  <h2><span class="n">7</span>Calculateurs <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="calc" data-calc="puiss">
+    <h4>Puissances d’un récepteur</h4>
+    <div class="in">
+      <div><label>Réseau</label><select data-k="mode"><option value="mono">monophasé</option><option value="tri">triphasé</option></select></div>
+      <div><label>U (V)</label><input type="number" step="any" value="230" data-k="U"></div>
+      <div><label>P (kW)</label><input type="number" step="any" value="10" data-k="P"></div>
+      <div><label>cos φ</label><input type="number" step="0.01" min="0.01" max="1" value="0.84" data-k="cos"></div>
+    </div>
+    <div class="out" data-k="out"></div>
+  </div>
+  <div class="calc" data-calc="bilan">
+    <h4>Bilan de plusieurs récepteurs (additionne P et Q, pas S)</h4>
+    <div class="scroll"><table>
+      <thead><tr><th>Récepteur</th><th>P (kW)</th><th>cos φ</th><th class="r">Q (kvar)</th></tr></thead>
+      <tbody data-k="rows"></tbody>
+    </table></div>
+    <p style="margin:8px 0"><button type="button" data-k="add">+ ajouter une ligne</button></p>
+    <div class="in" style="max-width:340px"><div><label>U (V) pour le courant</label><input type="number" step="any" value="240" data-k="U"></div><div><label>Réseau</label><select data-k="mode"><option value="mono">monophasé</option><option value="tri">triphasé</option></select></div></div>
+    <div class="out" data-k="out"></div>
+  </div>
+</section>
+
+<section id="qcm">
+  <h2><span class="n">8</span>QCM du chapitre 4</h2>
+  <div class="card"><div data-qcm="c4"></div></div>
+</section>
+
+<div class="pn"><a href="03-alternatif.html">← 3 · Alternatif</a><a href="05-compensation.html">5 · Compensation →</a></div>
+<footer>Cours d’électricité · LP Ingénierie électrique, intégrateur BIM et smart building · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

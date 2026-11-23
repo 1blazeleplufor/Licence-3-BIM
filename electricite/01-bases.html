@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Les bases : tension, courant, loi d’Ohm, danger – Électricité – L3 pro BIM</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">Électricité</a><a href="01-bases.html" class="cur">1 · Bases</a><a href="02-continu.html">2 · Continu</a><a href="03-alternatif.html">3 · Alternatif</a><a href="04-puissances.html">4 · Puissances</a><a href="05-compensation.html">5 · Compensation</a><a href="06-regimes-neutre.html">6 · Régimes de neutre</a><a href="07-cables.html">7 · Câbles</a><a href="formulaire.html">Formulaire</a><a href="../index.html" style="margin-left:auto">⌂ Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">Électricité · Chapitre 1</div>
+  <h1>Les bases : tension, courant, loi d’Ohm et danger du courant</h1>
+  <p class="lead">Tout le reste du cours repose sur ces quelques idées : ce qu’est un dipôle, ce que mesurent la tension et le courant, la loi d’Ohm, et pourquoi 30 mA et 50 V sont les deux chiffres à connaître pour la sécurité des personnes.</p>
+  <div class="keys"><span><span class="src n">tes notes</span> vient de tes cours</span><span><span class="src a">complété</span> ajouté pour compléter</span><span><span class="src c">à corriger</span> imprécision corrigée</span></div>
+  <div class="toc"><a href="#dipole">Le dipôle</a><a href="#ohm">Loi d’Ohm</a><a href="#resistance">Résistance d’un fil</a><a href="#danger">Danger du courant</a><a href="#unites">Unités</a><a href="#qcm">QCM</a></div>
+</section>
+
+<section id="dipole">
+  <h2><span class="n">1</span>Le dipôle, la tension et le courant <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>Un <b>dipôle</b> est un composant à <b>deux bornes physiques distinctes</b>, A et B (une résistance, une lampe, un moteur, un câble…).</p>
+    <ul>
+      <li>Il existe une <b>tension U<sub>AB</sub></b> entre A et B si le potentiel électrique de A est différent de celui de B : <b>U<sub>AB</sub> = V<sub>A</sub> − V<sub>B</sub></b>. La tension se mesure en <b>volts (V)</b>.</li>
+      <li>Il existe un <b>courant I<sub>AB</sub></b> dans le dipôle s’il y a un <b>mouvement de charges électriques</b> entre A et B. Le courant se mesure en <b>ampères (A)</b>.</li>
+    </ul>
+    <figure><svg viewBox="0 0 440 150" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="13" role="img" aria-label="Dipôle AB avec la tension U_AB et le courant I_AB en convention récepteur"><line x1="60" y1="90" x2="160" y2="90" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="160" y="76" width="120" height="28" fill="#fff" stroke="#1c2230" stroke-width="2"/><line x1="280" y1="90" x2="380" y2="90" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><text x="220" y="95" fill="#1c2230" font-size="13" text-anchor="middle">dipôle</text><circle cx="60" cy="90" r="5" fill="#fff" stroke="#1c2230" stroke-width="2"/><circle cx="380" cy="90" r="5" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="60" y="116" fill="#1c2230" font-size="13" text-anchor="middle">A</text><text x="380" y="116" fill="#1c2230" font-size="13" text-anchor="middle">B</text><text x="60" y="134" fill="#5c6577" font-size="13" text-anchor="middle">V<tspan font-size="10" dy="3">A</tspan></text><text x="380" y="134" fill="#5c6577" font-size="13" text-anchor="middle">V<tspan font-size="10" dy="3">B</tspan></text><line x1="90" y1="70" x2="130" y2="70" stroke="#2f6fd6" stroke-width="2" stroke-linecap="round"/><polygon points="130,70 122.8,73.5 122.8,66.5" fill="#2f6fd6"/><text x="110" y="58" fill="#2f6fd6" font-size="14" text-anchor="middle" font-weight="700">I<tspan font-size="10" dy="3">AB</tspan></text><line x1="370" y1="40" x2="70" y2="40" stroke="#d43f3f" stroke-width="2" stroke-linecap="round"/><polygon points="70,40 77.2,36.5 77.2,43.5" fill="#d43f3f"/><text x="220" y="30" fill="#d43f3f" font-size="14" text-anchor="middle" font-weight="700">U<tspan font-size="10" dy="3">AB</tspan> = V<tspan font-size="10" dy="3">A</tspan> − V<tspan font-size="10" dy="3">B</tspan></text></svg><figcaption>Convention récepteur : la flèche de la tension et la flèche du courant sont de sens opposés.</figcaption></figure>
+    <div class="box blue"><b class="t">Image pour retenir <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      La tension est comme la <b>différence de hauteur</b> entre deux réservoirs ; le courant est comme le <b>débit d’eau</b> qui coule dans le tuyau entre les deux. Pas de différence de hauteur : pas de débit.</div>
+  </div>
+</section>
+
+<section id="ohm">
+  <h2><span class="n">2</span>La loi d’Ohm <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <div class="formula">U = R × I <small>U en volts, R en ohms (Ω), I en ampères</small></div>
+    <p>On l’utilise sous trois formes selon l’inconnue :</p>
+    <table>
+      <tr><th>Je cherche…</th><th>Formule</th><th>Exemple</th></tr>
+      <tr><td>la tension U</td><td class="f">U = R × I</td><td>10 Ω traversés par 2 A : U = 20 V</td></tr>
+      <tr><td>le courant I</td><td class="f">I = <span class="frac"><span>U</span><span>R</span></span></td><td>230 V sur 46 Ω : I = 5 A</td></tr>
+      <tr><td>la résistance R</td><td class="f">R = <span class="frac"><span>U</span><span>I</span></span></td><td>12 V et 0,5 A : R = 24 Ω</td></tr>
+    </table>
+    <p>En <b>alternatif</b>, la résistance est remplacée par l’<b>impédance Z</b> (aussi en ohms) : <span class="f"><b>U = Z × I</b></span>. Z tient compte des bobines et des condensateurs en plus de la résistance.</p>
+    <p>La <b>conductance</b> est l’inverse de la résistance : <span class="f">G = 1 / R</span>, en <b>siemens (S)</b>. Une résistance de 30 Ω a une conductance de 1/30 ≈ 0,033 S. <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></p>
+    <div class="box orange"><b class="t">À ne pas confondre <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      <b>Série</b> : même courant partout, les tensions s’additionnent. <b>Parallèle</b> : même tension partout, les courants s’additionnent. (Détail au chapitre 2.)</div>
+  </div>
+  <div class="calc" data-calc="ohm">
+    <h4>Calculatrice de loi d’Ohm</h4>
+    <p class="small" style="margin:0 0 8px">Remplis deux cases sur trois, la troisième se calcule.</p>
+    <div class="in">
+      <div><label>Tension U (V)</label><input type="number" step="any" data-k="u"></div>
+      <div><label>Résistance R (Ω)</label><input type="number" step="any" data-k="r"></div>
+      <div><label>Courant I (A)</label><input type="number" step="any" data-k="i"></div>
+    </div>
+    <div class="note" data-k="msg">Entre deux valeurs.</div>
+  </div>
+</section>
+
+<section id="resistance">
+  <h2><span class="n">3</span>Résistance d’un fil (ou d’un câble) <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <div class="formula">R = ρ × <span class="frac"><span>L</span><span>S</span></span> <small>ρ en Ω·mm²/m · L en mètres · S en mm²</small></div>
+    <p><b>ρ</b> (rhô) est la <b>résistivité</b> du métal. Pour le cuivre, ton cours prend <b>ρ = 0,0225 Ω·mm²/m</b>. Plus le fil est long, plus il résiste ; plus sa section est grosse, moins il résiste.</p>
+    <div class="sol"><span class="t">Exemple : 40 m de cuivre en 35 mm²</span>
+      R = 0,0225 × 40 / 35 = <b>0,0257 Ω</b>. C’est la valeur utilisée dans le calcul du courant de défaut en régime TN (chapitre 6).</div>
+    <div class="box blue"><b class="t">Pourquoi c’est important <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      Cette résistance fait chuter la tension le long d’un câble (chapitre 7) et limite le courant de défaut dans une boucle de terre (chapitre 6).</div>
+  </div>
+</section>
+
+<section id="danger">
+  <h2><span class="n">4</span>Danger du courant électrique <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>Le corps humain se comporte comme une résistance <b>R<sub>h</sub></b>. Avec le seuil de <b>30 mA</b> (réglage des interrupteurs différentiels « haute sensibilité »), ton cours retient <b>R<sub>h</sub> ≈ 1 666 Ω</b>. La tension qui provoque ce courant est donc :</p>
+    <div class="formula">U<sub>L</sub> = I<sub>Δn</sub> × R<sub>h</sub> = 0,03 × 1 666 ≈ 50 V</div>
+    <p><b>Au-delà de 50 V, on dépasse environ 30 mA</b> dans le corps : c’est pour cela que <b>50 V</b> est la <b>tension limite de sécurité</b> en milieu sec (U<sub>L</sub>). <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></p>
+    <div class="box orange"><b class="t">Autres valeurs de U<sub>L</sub> <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      50 V en local sec ; <b>25 V</b> en milieu humide ; <b>12 V</b> en milieu immergé. Plus la peau est mouillée, plus R<sub>h</sub> est faible, donc plus la limite descend.</div>
+    <h3>Les effets du courant <span class="src a" title="Ajouté pour compléter">complété</span></h3>
+    <div class="scroll"><table>
+      <tr><th>Courant traversant le corps</th><th>Effet (ordres de grandeur)</th></tr>
+      <tr><td>≈ 0,5 mA</td><td>seuil de perception : picotement</td></tr>
+      <tr><td>≈ 10 mA</td><td>contraction des muscles : on ne peut plus lâcher le fil</td></tr>
+      <tr><td>≈ 30 mA</td><td>difficulté à respirer : <b>seuil de sécurité retenu pour les différentiels</b></td></tr>
+      <tr><td>&gt; 75 mA environ</td><td>risque de fibrillation du cœur (arrêt de la circulation du sang)</td></tr>
+    </table></div>
+    <p class="small">Ce sont des ordres de grandeur : le danger dépend aussi de la durée du passage du courant et du trajet dans le corps.</p>
+    <div class="sol"><span class="t">Lien avec la suite</span>
+      Toute la protection des personnes (régimes de neutre, chapitre 6) revient à une question : <b>en cas de défaut, la tension de contact U<sub>c</sub> sur une carcasse reste-t-elle inférieure à 50 V, ou la coupure est-elle assez rapide ?</b></div>
+  </div>
+</section>
+
+<section id="unites">
+  <h2><span class="n">5</span>Grandeurs et unités à connaître <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Grandeur</th><th>Symbole</th><th>Unité</th></tr>
+    <tr><td>Tension</td><td class="f">U (ou V)</td><td>volt (V)</td></tr>
+    <tr><td>Courant</td><td class="f">I</td><td>ampère (A)</td></tr>
+    <tr><td>Résistance / impédance</td><td class="f">R / Z</td><td>ohm (Ω)</td></tr>
+    <tr><td>Conductance</td><td class="f">G</td><td>siemens (S)</td></tr>
+    <tr><td>Puissance active</td><td class="f">P</td><td>watt (W)</td></tr>
+    <tr><td>Puissance réactive</td><td class="f">Q</td><td>volt-ampère réactif (var)</td></tr>
+    <tr><td>Puissance apparente</td><td class="f">S</td><td>volt-ampère (VA)</td></tr>
+    <tr><td>Fréquence</td><td class="f">f</td><td>hertz (Hz)</td></tr>
+    <tr><td>Période</td><td class="f">T</td><td>seconde (s)</td></tr>
+    <tr><td>Pulsation</td><td class="f">ω</td><td>radian par seconde (rad/s)</td></tr>
+    <tr><td>Capacité</td><td class="f">C</td><td>farad (F), souvent en µF</td></tr>
+  </table></div>
+  <div class="box red"><b class="t">À corriger dans tes notes <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span></b>
+    Tu as écrit « VA = Volt Ampère réactif ». Il y a deux unités : <b>VA = volt-ampère</b> (puissance apparente S) et <b>var = volt-ampère réactif</b> (puissance réactive Q).</div></div>
+</section>
+
+<section id="qcm">
+  <h2><span class="n">6</span>QCM du chapitre 1</h2>
+  <div class="card"><div data-qcm="c1"></div></div>
+</section>
+
+<div class="pn"><a href="index.html">← Sommaire</a><a href="02-continu.html">2 · Continu →</a></div>
+<footer>Cours d’électricité · LP Ingénierie électrique, intégrateur BIM et smart building · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

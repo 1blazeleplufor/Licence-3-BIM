@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Relever le facteur de puissance – Électricité – L3 pro BIM</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">Électricité</a><a href="01-bases.html">1 · Bases</a><a href="02-continu.html">2 · Continu</a><a href="03-alternatif.html">3 · Alternatif</a><a href="04-puissances.html">4 · Puissances</a><a href="05-compensation.html" class="cur">5 · Compensation</a><a href="06-regimes-neutre.html">6 · Régimes de neutre</a><a href="07-cables.html">7 · Câbles</a><a href="formulaire.html">Formulaire</a><a href="../index.html" style="margin-left:auto">⌂ Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">Électricité · Chapitre 5</div>
+  <h1>Relever le facteur de puissance : la compensation</h1>
+  <p class="lead">Un moteur a un mauvais cos φ : il demande plus de courant que nécessaire. On ajoute des <b>condensateurs</b> qui fournissent la puissance réactive à sa place. Résultat : moins de courant dans les câbles, et plus de pénalités du fournisseur d’énergie.</p>
+  <div class="toc"><a href="#pourquoi">Pourquoi</a><a href="#principe">Principe</a><a href="#formules">Formules</a><a href="#ex1">Exercice 1</a><a href="#ex2">Exercice 2</a><a href="#ou">Où installer</a><a href="#calc">Calculateur</a><a href="#qcm">QCM</a></div>
+</section>
+
+<section id="pourquoi">
+  <h2><span class="n">1</span>Pourquoi relever le cos φ ? <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <p>À puissance active P donnée, un cos φ faible oblige à faire circuler <b>plus de courant</b> (I = P / (U × cos φ)). Conséquences :</p>
+    <ul>
+      <li>des <b>pertes</b> plus grandes dans les câbles (chaleur) ;</li>
+      <li>une <b>chute de tension</b> plus importante ;</li>
+      <li>des <b>câbles, transformateurs et protections plus gros</b> (donc plus chers) ;</li>
+      <li>des <b>pénalités</b> du fournisseur : il facture l’énergie réactive quand <b>cos φ &lt; 0,93</b>, c’est-à-dire <b>tan φ &gt; 0,4</b>. <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="principe">
+  <h2><span class="n">2</span>Le principe <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <p>On branche en <b>parallèle</b> sur l’installation une batterie de condensateurs. Un condensateur fournit de la puissance réactive (exactement l’inverse d’une bobine) : il apporte <b>Q<sub>c</sub></b>, et le réseau n’a plus à fournir que <b>Q′ = Q − Q<sub>c</sub></b>. La puissance active P ne change pas.</p>
+    <figure class="wide"><svg viewBox="0 0 640 262" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="13" role="img" aria-label="Triangle des puissances avant et après compensation"><polyline points="70,220 400,220 400,40 70,220" fill="#fdf6f6" stroke="#1c2230" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/><line x1="70" y1="220" x2="400" y2="140" stroke="#1d9a52" stroke-width="2.5" stroke-linecap="round"/><line x1="400" y1="140" x2="400" y2="40" stroke="#7a4cc2" stroke-width="5" stroke-linecap="round"/><text x="235" y="242" fill="#1d9a52" font-size="13" text-anchor="middle" font-weight="700">P (inchangée)</text><text x="412" y="100" fill="#7a4cc2" font-size="14" text-anchor="start" font-weight="700">Qc</text><text x="412" y="116" fill="#7a4cc2" font-size="11" text-anchor="start">fournie par</text><text x="412" y="130" fill="#7a4cc2" font-size="11" text-anchor="start">les condensateurs</text><text x="412" y="185" fill="#1d9a52" font-size="13" text-anchor="start" font-weight="700">Q′ = Q − Qc</text><text x="170" y="108" fill="#d43f3f" font-size="13" text-anchor="middle" font-weight="700">S (avant)</text><text x="300" y="187" fill="#1d9a52" font-size="13" text-anchor="middle" font-weight="700">S′ (après)</text><text x="118" y="212" fill="#d43f3f" font-size="14" text-anchor="middle" font-weight="700" font-style="italic">φ</text><text x="150" y="212" fill="#1d9a52" font-size="14" text-anchor="middle" font-weight="700" font-style="italic">φ′</text></svg><figcaption>Le triangle se « redresse » : Q diminue, P reste la même, S diminue, φ diminue donc cos φ augmente.</figcaption></figure>
+  </div>
+</section>
+
+<section id="formules">
+  <h2><span class="n">3</span>Les formules <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <ol class="steps">
+      <li><b>Q avant</b> : Q = P × tan φ<sub>1</sub> (φ<sub>1</sub> : situation de départ).</li>
+      <li><b>Q après</b> (cos φ visé) : Q′ = P × tan φ<sub>2</sub>.</li>
+      <li><b>Puissance des condensateurs</b> : Q<sub>c</sub> = Q − Q′, soit directement
+        <div class="formula" style="margin-top:6px">Q<sub>c</sub> = P × (tan φ<sub>1</sub> − tan φ<sub>2</sub>)</div></li>
+      <li><b>Valeur du condensateur</b> (monophasé, ou une branche en triangle) :
+        <div class="formula" style="margin-top:6px">Q<sub>c</sub> = C × ω × U² &nbsp;&nbsp;⇒&nbsp;&nbsp; C = <span class="frac"><span>Q<sub>c</sub></span><span>ω × U²</span></span></div></li>
+    </ol>
+    <div class="box red"><b class="t">À corriger dans tes notes <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span></b>
+      Tu as noté « Q<sub>c</sub> = U² × C ». Il manque la <b>pulsation ω</b> : la bonne formule est <b>Q<sub>c</sub> = C × ω × U²</b>, avec ω = 2π f = 314 rad/s à 50 Hz. Sans ω, l’unité ne tombe pas juste.<br>
+      Sur ton calcul rapide Q<sub>c</sub> = P(tan φ<sub>1</sub> − tan φ<sub>2</sub>), vérifie bien que P vaut <b>7 000 W</b> (et non 1 000) : 7 000 × (0,583 − 0,395) ≈ <b>1 313 var</b>, ce que tu avais trouvé dans le calcul barré.</div>
+    <h3>Condensateurs en triphasé <span class="src a" title="Ajouté pour compléter">complété</span></h3>
+    <table>
+      <tr><th>Couplage</th><th>Puissance fournie</th><th>Capacité de chaque condensateur</th></tr>
+      <tr><td>Triangle (Δ)</td><td class="f">Q<sub>c</sub> = 3 × C × ω × U²</td><td class="f">C = Q<sub>c</sub> / (3 ω U²)</td></tr>
+      <tr><td>Étoile (Y)</td><td class="f">Q<sub>c</sub> = C × ω × U²</td><td class="f">C = Q<sub>c</sub> / (ω U²)</td></tr>
+    </table>
+    <p class="small">U est la tension composée (entre phases). En triangle, chaque condensateur est 3 fois plus petit : c’est le couplage le plus utilisé.</p>
+  </div>
+</section>
+
+<section id="ex1">
+  <h2><span class="n">4</span>Exercice 1 : relever le cos φ à 0,93 <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="ex">
+    <p><b>Données :</b> installation monophasée 240 V, 50 Hz, de l’exercice du chapitre 4 : P = 7 kW, Q = 4,08 kvar, cos φ = 0,86. Quel condensateur installer pour relever le cos φ à <b>0,93</b> ?</p>
+    <ol class="steps">
+      <li><b>tan φ visé</b> : tan(cos⁻¹ 0,93) = <b>0,395</b>. Donc <b>Q′</b> = 7 000 × 0,395 = <b>2 767 var</b>.</li>
+      <li><b>Q<sub>c</sub></b> = Q − Q′ = 4 080 − 2 767 = <b>1 313 var</b> (≈ 1,3 kvar).</li>
+      <li><b>Capacité</b> : C = Q<sub>c</sub> / (ω U²) = 1 313 / (314,16 × 240²) ≈ <b>72,6 µF</b>.</li>
+    </ol>
+    <div class="sol"><span class="t">Effet sur le courant <span class="src a" title="Ajouté pour compléter">complété</span></span>
+      Avant : I = S / U = 33,8 A. Après : I′ = P / (U × cos φ′) = 7 000 / (240 × 0,93) = <b>31,4 A</b>. Les condensateurs soulagent l’installation de 2,4 A, sans changer la puissance utile.</div>
+  </div>
+</section>
+
+<section id="ex2">
+  <h2><span class="n">5</span>Exercice 2 : installation triphasée de 50 kW <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="ex">
+    <p><b>Données :</b> 380 V triphasé, P = 50 kW, cos φ = 0,7 (tan φ = 1,02), Q = 51 kvar, I = 108,5 A (chapitre 4). On compense jusqu’à <b>tan φ′ = 0,75</b> (cos φ′ = 0,8).</p>
+    <ol class="steps">
+      <li><b>Q après</b> : Q′ = P × tan φ′ = 50 000 × 0,75 = <b>37 500 var</b>.</li>
+      <li><b>Le condensateur compense</b> : Q<sub>c</sub> = 51 000 − 37 500 = <b>13 500 var</b>.</li>
+      <li><b>Courant après compensation</b> : I′ = P / (√3 × U × cos φ′) = 50 000 / (1,732 × 380 × 0,8) = <b>95 A</b> (au lieu de 108,5 A).</li>
+      <li><b>Pénalités encore possibles ?</b> tan φ′ = 0,75 &gt; 0,4 : <b>oui</b>, on est encore au-dessus du seuil de facturation.</li>
+    </ol>
+    <div class="sol"><span class="t">Pour supprimer les pénalités <span class="src a" title="Ajouté pour compléter">complété</span></span>
+      Il faut descendre à <b>tan φ′ ≤ 0,4</b>. Q<sub>c</sub> = 50 × (1,02 − 0,4) = <b>31 kvar</b>. On obtient alors cos φ′ = 0,93 et I′ = 50 000 / (1,732 × 380 × 0,93) ≈ <b>82 A</b>.<br>
+      <b>Capacité par condensateur (13,5 kvar)</b> : en triangle, C = 13 500 / (3 × 314,16 × 380²) ≈ <b>99 µF</b> par branche ; en étoile, ≈ <b>298 µF</b> par branche.</div>
+  </div>
+</section>
+
+<section id="ou">
+  <h2><span class="n">6</span>Où installer les condensateurs ? <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Emplacement</th><th>Principe</th><th>Avantage / limite</th></tr>
+    <tr><td><b>Globale</b> (au tableau général)</td><td>une seule batterie pour tout le site</td><td>simple et économique, mais les câbles en aval restent chargés du réactif</td></tr>
+    <tr><td><b>Par secteur</b> (tableau divisionnaire)</td><td>une batterie par atelier ou zone</td><td>bon compromis pour les grosses installations</td></tr>
+    <tr><td><b>Locale</b> (aux bornes d’un gros moteur)</td><td>un condensateur par récepteur</td><td>soulage aussi les câbles de ce récepteur ; à éviter pour les moteurs qui démarrent souvent</td></tr>
+  </table></div>
+  <p class="small">Sur un site dont la charge varie, on utilise une batterie à <b>gradins automatiques</b> : un régulateur enclenche plus ou moins de condensateurs pour tenir le cos φ visé.</p></div>
+</section>
+
+<section id="calc">
+  <h2><span class="n">7</span>Calculateur de compensation <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="calc" data-calc="comp">
+    <h4>Quelle batterie de condensateurs ?</h4>
+    <div class="in">
+      <div><label>Réseau</label><select data-k="mode"><option value="mono">monophasé</option><option value="tri" selected>triphasé</option></select></div>
+      <div><label>U (V)</label><input type="number" step="any" value="380" data-k="U"></div>
+      <div><label>f (Hz)</label><input type="number" step="any" value="50" data-k="f"></div>
+      <div><label>P (kW)</label><input type="number" step="any" value="50" data-k="P"></div>
+      <div><label>cos φ actuel</label><input type="number" step="0.01" min="0.05" max="1" value="0.7" data-k="c1"></div>
+      <div><label>cos φ visé</label><input type="number" step="0.01" min="0.05" max="1" value="0.93" data-k="c2"></div>
+    </div>
+    <div class="out" data-k="out"></div>
+    <div class="note" data-k="msg"></div>
+  </div>
+</section>
+
+<section id="qcm">
+  <h2><span class="n">8</span>QCM du chapitre 5</h2>
+  <div class="card"><div data-qcm="c5"></div></div>
+</section>
+
+<div class="pn"><a href="04-puissances.html">← 4 · Puissances</a><a href="06-regimes-neutre.html">6 · Régimes de neutre →</a></div>
+<footer>Cours d’électricité · LP Ingénierie électrique, intégrateur BIM et smart building · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

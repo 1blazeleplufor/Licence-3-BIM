@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Formulaire, corrections et quiz final – Électricité – L3 pro BIM</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">Électricité</a><a href="01-bases.html">1 · Bases</a><a href="02-continu.html">2 · Continu</a><a href="03-alternatif.html">3 · Alternatif</a><a href="04-puissances.html">4 · Puissances</a><a href="05-compensation.html">5 · Compensation</a><a href="06-regimes-neutre.html">6 · Régimes de neutre</a><a href="07-cables.html">7 · Câbles</a><a href="formulaire.html" class="cur">Formulaire</a><a href="../index.html" style="margin-left:auto">⌂ Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">Électricité · Révision</div>
+  <h1>Formulaire, corrections et quiz final</h1>
+  <p class="lead">Toutes les formules du cours sur une page, puis les corrections relevées dans tes notes.</p>
+</section>
+<section id="formules">
+  <h2><span class="n">1</span>Formules <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Thème</th><th>Formule</th></tr>
+    <tr><td>Ohm</td><td>U = R × I</td></tr>
+    <tr><td>Résistances</td><td>Série : R = R₁ + R₂ · Parallèle : R = <span class="frac"><span>R₁ × R₂</span><span>R₁ + R₂</span></span></td></tr>
+    <tr><td>Sinusoïde</td><td>U<sub>eff</sub> = U<sub>max</sub> / √2 · T = 1/f</td></tr>
+    <tr><td>Triphasé</td><td>U = √3 × V (400 V = √3 × 230 V)</td></tr>
+    <tr><td>Puissances</td><td>S² = P² + Q² · cos φ = P/S · tan φ = Q/P · mono : P = U I cos φ · tri : P = √3 U I cos φ</td></tr>
+    <tr><td>Compensation</td><td>Q<sub>c</sub> = P (tan φ₁ − tan φ₂) · Δ : Q<sub>c</sub> = 3 C ω U² · Y : Q<sub>c</sub> = C ω U²</td></tr>
+    <tr><td>Pénalité réactif</td><td>tan φ &gt; 0,4 (cos φ &lt; 0,93)</td></tr>
+    <tr><td>Câbles</td><td>I<sub>B</sub> ≤ I<sub>n</sub> ≤ I<sub>z</sub> · I′<sub>z</sub> = I<sub>n</sub>/K · K = K₁K₂K₃</td></tr>
+    <tr><td>Chute de tension</td><td>Tri : ΔU = √3 ρ L I<sub>B</sub> cos φ / S · Mono : 2 ρ L I<sub>B</sub> cos φ / S</td></tr>
+  </table></div></div>
+</section>
+<section id="corrections">
+  <h2><span class="n">2</span>Corrections relevées <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span></h2>
+  <div class="box red"><b class="t">I<sub>B</sub> du moteur 10 kW</b>Ta note donne 36 A ; le bon résultat est <b>18,6 A</b> (parenthèses oubliées à la calculatrice). Voir chapitre 7.</div>
+  <div class="box orange"><b class="t">Autres points</b>La définition de « N » en TN (masses reliées au <b>neutre</b>) ; les coefficients K₂ et K₃ à vérifier dans ton tableau 2024.</div>
+</section>
+<section id="qcm">
+  <h2><span class="n">3</span>Quiz final</h2>
+  <div class="card"><div data-qcm="all"></div></div>
+</section>
+
+<div class="pn"><a href="07-cables.html">← 7 · Câbles</a><a href="index.html">Sommaire ↑</a></div>
+<footer>Cours d’électricité · LP Ingénierie électrique, intégrateur BIM et smart building · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

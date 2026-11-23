@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Distribution BT : choisir un câble (NF C 15-100) – Électricité – L3 pro BIM</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">Électricité</a><a href="01-bases.html">1 · Bases</a><a href="02-continu.html">2 · Continu</a><a href="03-alternatif.html">3 · Alternatif</a><a href="04-puissances.html">4 · Puissances</a><a href="05-compensation.html">5 · Compensation</a><a href="06-regimes-neutre.html">6 · Régimes de neutre</a><a href="07-cables.html" class="cur">7 · Câbles</a><a href="formulaire.html">Formulaire</a><a href="../index.html" style="margin-left:auto">⌂ Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">Électricité · Chapitre 7</div>
+  <h1>Distribution BT : choisir la section d’un câble (NF C 15-100)</h1>
+  <p class="lead">Un câble trop petit chauffe, un câble trop gros coûte cher. La méthode : calculer le courant d’emploi, choisir la protection, appliquer des coefficients de correction selon les conditions de pose, puis lire la section dans un tableau et vérifier la chute de tension.</p>
+  <div class="box orange"><b class="t">À lire avant <span class="src a" title="Ajouté pour compléter">complété</span></b>
+    Les coefficients (températures, groupement, neutre chargé) et les tableaux dépendent de l’édition de la norme (ton exercice cite la version août 2024). Les valeurs ci-dessous sont celles que j’ai pu recouper ; <b>compare-les avec les tableaux distribués par ton enseignant</b> avant de rendre un devoir.</div>
+  <div class="toc"><a href="#demarche">Démarche</a><a href="#ib">Courant d’emploi</a><a href="#k">Coefficients</a><a href="#table">Tableau</a><a href="#exo">Ton exercice</a><a href="#chute">Chute de tension</a><a href="#calc">Calculateur</a><a href="#qcm">QCM</a></div>
+</section>
+
+<section id="demarche">
+  <h2><span class="n">1</span>La démarche en 6 étapes <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <ol class="steps">
+      <li><b>I<sub>B</sub></b> : courant d’emploi (ce que la charge consomme réellement).</li>
+      <li><b>I<sub>n</sub></b> : calibre de la protection (disjoncteur), avec <b>I<sub>B</sub> ≤ I<sub>n</sub> ≤ I<sub>z</sub></b>. Calibres normalisés : 10, 16, 20, 25, 32, 40, 50, 63, 80, 100, 125, 160 A…</li>
+      <li><b>Mode de pose</b> → lettre de référence (B, C, E, F…). Ici : <b>câbles sur chemin de câbles perforé</b> → <b>E</b> (câble multiconducteur) ou <b>F</b> (monoconducteurs).</li>
+      <li><b>Coefficient K</b> = K<sub>1</sub> × K<sub>2</sub> × K<sub>3</sub> (température, groupement, neutre chargé).</li>
+      <li><b>Courant fictif I′<sub>z</sub> = I<sub>n</sub> / K</b>, puis lecture dans le tableau de la <b>plus petite section dont I<sub>z</sub> ≥ I′<sub>z</sub></b>.</li>
+      <li><b>Vérifications</b> : chute de tension, et tenue au court-circuit.</li>
+    </ol>
+  </div>
+</section>
+
+<section id="ib">
+  <h2><span class="n">2</span>Le courant d’emploi I<sub>B</sub> <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <div class="formula">P<sub>a</sub> = <span class="frac"><span>P<sub>u</sub></span><span>η</span></span> &nbsp;&nbsp;·&nbsp;&nbsp; I<sub>B</sub> = <span class="frac"><span>P<sub>a</sub></span><span>√3 × U × cos φ</span></span></div>
+    <p>On part de la puissance <b>utile</b> du moteur, on remonte à la puissance absorbée avec le rendement, puis on calcule le courant triphasé.</p>
+  </div>
+</section>
+
+<section id="k">
+  <h2><span class="n">3</span>Les coefficients de correction <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <div class="grid3">
+      <div class="mini"><h4>K<sub>1</sub> : température</h4><span class="tag">référence : 30 °C dans l’air</span>
+        <table><tr><th>θ ambiante</th><th>PVC</th><th>PR</th></tr>
+        <tr><td>20 °C</td><td>1,12</td><td>1,08</td></tr><tr><td>25 °C</td><td>1,06</td><td>1,04</td></tr><tr><td>30 °C</td><td>1,00</td><td>1,00</td></tr><tr><td>35 °C</td><td>0,94</td><td>0,96</td></tr><tr><td>40 °C</td><td>0,87</td><td>0,91</td></tr></table>
+        <p class="small">PR = polyéthylène réticulé (supporte plus de chaleur que le PVC).</p></div>
+      <div class="mini"><h4>K<sub>2</sub> : groupement</h4><span class="tag">câbles jointifs sur tablette perforée</span>
+        <table><tr><th>circuits</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>9</th></tr><tr><td>K<sub>2</sub></td><td>1</td><td>0,88</td><td>0,82</td><td>0,77</td><td>0,75</td><td>0,73</td><td>0,72</td></tr></table>
+        <p class="small">Plus il y a de câbles côte à côte, moins ils se refroidissent.</p></div>
+      <div class="mini"><h4>K<sub>3</sub> : neutre chargé</h4><span class="tag">0,84</span>
+        <p>Quand le neutre transporte du courant (charges non linéaires, harmoniques de rang 3, variateurs…), il chauffe comme un conducteur de plus : on applique <b>0,84</b> avec le tableau 3 conducteurs chargés.</p></div>
+    </div>
+    <div class="box red"><b class="t">Valeurs à confirmer <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      K<sub>1</sub> (de 20 à 40 °C) est recoupé sur la table de référence des constructeurs. K<sub>2</sub> (tablettes perforées) et K<sub>3</sub> = 0,84 viennent de l’édition précédente de la norme : l’édition 2024 peut reformater les tableaux. Pour une température intermédiaire comme <b>21 °C</b>, on prend la valeur de la colonne supérieure (<b>25 °C</b>), qui est la plus prudente.</div>
+  </div>
+</section>
+
+<section id="table">
+  <h2><span class="n">4</span>Courants admissibles I<sub>z</sub> (cuivre, câbles multiconducteurs, méthode E) <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Section (mm²)</th><th class="r">PVC 2</th><th class="r">PR 2</th><th class="r">PVC 3</th><th class="r">PR 3</th></tr>
+    <tr><td>1,5</td><td class="r">22</td><td class="r">26</td><td class="r">18,5</td><td class="r">23</td></tr>
+    <tr><td>2,5</td><td class="r">30</td><td class="r">36</td><td class="r">25</td><td class="r">32</td></tr>
+    <tr><td>4</td><td class="r">40</td><td class="r">49</td><td class="r">34</td><td class="r">42</td></tr>
+    <tr><td>6</td><td class="r">51</td><td class="r">63</td><td class="r">43</td><td class="r">54</td></tr>
+    <tr><td>10</td><td class="r">70</td><td class="r">86</td><td class="r">60</td><td class="r">75</td></tr>
+    <tr><td>16</td><td class="r">94</td><td class="r">115</td><td class="r">80</td><td class="r">100</td></tr>
+    <tr><td>25</td><td class="r">119</td><td class="r">149</td><td class="r">101</td><td class="r">127</td></tr>
+    <tr><td>35</td><td class="r">148</td><td class="r">185</td><td class="r">126</td><td class="r">158</td></tr>
+    <tr><td>50</td><td class="r">180</td><td class="r">225</td><td class="r">153</td><td class="r">192</td></tr>
+    <tr><td>70</td><td class="r">232</td><td class="r">289</td><td class="r">196</td><td class="r">246</td></tr>
+    <tr><td>95</td><td class="r">282</td><td class="r">352</td><td class="r">238</td><td class="r">298</td></tr>
+    <tr><td>120</td><td class="r">328</td><td class="r">410</td><td class="r">276</td><td class="r">346</td></tr>
+    <tr><td>150</td><td class="r">379</td><td class="r">473</td><td class="r">319</td><td class="r">399</td></tr>
+  </table></div>
+  <p class="small">« PVC » ou « PR » : isolant. « 2 » ou « 3 » : nombre de conducteurs chargés (2 = monophasé, 3 = triphasé). Valeurs lues dans le tableau de ton exercice (méthodes de référence E ou F).</p></div>
+</section>
+
+<section id="exo">
+  <h2><span class="n">5</span>Ton exercice : alimentation d’un moteur de 10 kW par variateur <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="ex">
+    <p><b>Données :</b> poste privé 3 × 400 V, régime TN. Câble cuivre PR sur <b>chemin de câbles perforé</b>, longueur 15 m ; température ambiante <b>21 °C</b>, <b>9 câbles jointifs</b>, <b>neutre chargé</b>. Récepteur : moteur de 10 kW (variateur VEV), cos φ = 0,81, η = 96 %.</p>
+    <h3>① Courant d’emploi</h3>
+    <p>P<sub>a</sub> = P<sub>u</sub> / η = 10 / 0,96 = <b>10,42 kW</b>.<br>
+    I<sub>B</sub> = P<sub>a</sub> / (√3 × U × cos φ) = 10 420 / (1,732 × 400 × 0,81) = <b>18,6 A</b>.</p>
+    <div class="box red"><b class="t">À corriger dans tes notes <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span></b>
+      Tu as trouvé <b>36 A</b>. C’est une erreur de calculatrice : en tapant « 10,41 × 1000 / 400 √3 × 0,81 » sans parenthèses, la machine divise par 400 puis <b>multiplie</b> par √3 et par 0,81, ce qui donne 36,5. Il faut taper <b>10 417 / (√3 × 400 × 0,81)</b> = <b>18,6 A</b>. Toute la suite du calcul dépend de ce chiffre. (Et 10 / 0,96 = 10,42, pas 10,41.)</div>
+    <h3>② Protection</h3>
+    <p>I<sub>B</sub> = 18,6 A → calibre normalisé <b>I<sub>n</sub> = 20 A</b>.</p>
+    <h3>③ Mode de pose et coefficients</h3>
+    <ul>
+      <li>Chemin de câbles perforé, câble multiconducteur → méthode <b>E</b>.</li>
+      <li><b>K<sub>1</sub></b> (PR, 21 °C → colonne 25 °C) = <b>1,04</b></li>
+      <li><b>K<sub>2</sub></b> (9 circuits jointifs, tablette perforée) = <b>0,72</b></li>
+      <li><b>K<sub>3</sub></b> (neutre chargé) = <b>0,84</b></li>
+    </ul>
+    <p>K = 1,04 × 0,72 × 0,84 = <b>0,629</b>.</p>
+    <h3>④ Section</h3>
+    <p>I′<sub>z</sub> = I<sub>n</sub> / K = 20 / 0,629 = <b>31,8 A</b>. Dans la colonne <b>PR 3</b> : 1,5 mm² → 23 A (trop petit) ; <b>2,5 mm² → 32 A ≥ 31,8 A ✔</b>.</p>
+    <div class="sol"><span class="t">Résultat</span>
+      Section retenue : <b>2,5 mm²</b> cuivre PR. Vérification : I<sub>z</sub> réel = 32 × 0,629 = 20,1 A ≥ I<sub>n</sub> = 20 A ✔ (très juste).<br>
+      Avec K<sub>1</sub> = 1,08 (20 °C) on trouverait I′<sub>z</sub> = 30,6 A, donc la même section. En pratique, avec une marge si faible, un installateur passerait à <b>4 mm²</b>.</div>
+    <h3>⑤ Chute de tension (triphasé, poste privé)</h3>
+    <p>ΔU = √3 × ρ × L × I<sub>B</sub> × cos φ / S = 1,732 × 0,0225 × 15 × 18,6 × 0,81 / 2,5 ≈ <b>3,5 V</b>, soit <b>0,9 %</b> de 400 V : très largement acceptable (limite 6 à 8 %).</p>
+  </div>
+</section>
+
+<section id="chute">
+  <h2><span class="n">6</span>Chute de tension <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <div class="formula">Triphasé : ΔU = √3 × ρ × <span class="frac"><span>L × I<sub>B</sub> × cos φ</span><span>S</span></span> &nbsp;·&nbsp; Monophasé : ΔU = 2 × ρ × <span class="frac"><span>L × I<sub>B</sub> × cos φ</span><span>S</span></span> <small>ΔU en volts ; ΔU % = ΔU / U × 100</small></div>
+    <table>
+      <tr><th>Alimentation de l’installation</th><th>Éclairage</th><th>Autres usages</th></tr>
+      <tr><td>Réseau BT public</td><td>3 %</td><td>5 %</td></tr>
+      <tr><td>Poste privé HTA/BT (ton exercice)</td><td>6 %</td><td>8 %</td></tr>
+    </table>
+    <p>Les chutes de tension de <b>tous les tronçons en série</b> s’additionnent (ici les câbles de 240 mm² sur 4 m, de 95 mm² sur 30 m, puis celui de 15 m) : le total doit rester sous la limite.</p>
+    <div class="box blue"><b class="t">Rappel pour la suite <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      Les câbles amont de ton schéma (PEN 240 mm², 4 m, cos φ = 0,8 ; PEN 95 mm², 30 m, cos φ = 0,9) se traitent avec la même formule dès qu’on connaît le courant qui les traverse.</div>
+  </div>
+</section>
+
+<section id="calc">
+  <h2><span class="n">7</span>Calculateur de section <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="calc" data-calc="cable">
+    <h4>Dimensionner un câble triphasé en méthode E</h4>
+    <div class="in">
+      <div><label>P utile (kW)</label><input type="number" step="any" value="10" data-k="Pu"></div>
+      <div><label>Rendement η</label><input type="number" step="0.01" value="0.96" data-k="eta"></div>
+      <div><label>cos φ</label><input type="number" step="0.01" value="0.81" data-k="cos"></div>
+      <div><label>U (V)</label><input type="number" step="any" value="400" data-k="U"></div>
+      <div><label>Longueur (m)</label><input type="number" step="any" value="15" data-k="L"></div>
+      <div><label>Isolant</label><select data-k="iso"><option value="PR">PR</option><option value="PVC">PVC</option></select></div>
+      <div><label>Température ambiante</label><select data-k="T"><option>20</option><option selected>25</option><option>30</option><option>35</option><option>40</option></select></div>
+      <div><label>Circuits jointifs</label><select data-k="N"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option selected>9</option></select></div>
+      <div><label>Neutre chargé</label><select data-k="neutre"><option value="1" selected>oui (×0,84)</option><option value="0">non</option></select></div>
+    </div>
+    <div class="out" data-k="out"></div>
+    <div class="note" data-k="msg"></div>
+  </div>
+</section>
+
+<section id="qcm">
+  <h2><span class="n">8</span>QCM du chapitre 7</h2>
+  <div class="card"><div data-qcm="c7"></div></div>
+</section>
+
+<div class="pn"><a href="06-regimes-neutre.html">← 6 · Régimes de neutre</a><a href="formulaire.html">Formulaire →</a></div>
+<footer>Cours d’électricité · LP Ingénierie électrique, intégrateur BIM et smart building · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
