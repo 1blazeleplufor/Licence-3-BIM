@@ -166,4 +166,4 @@ function initCalc() {
     if (root.dataset.calc !== 'bilan') root.addEventListener('input', () => fn(root));
   });
 }
-document.addEventListener('DOMContentLoaded', () => { initQcm(); initCalc(); });
+document.addEventListener('DOMContentLoaded', () => { initQcm(); initCalc(); const c = document.querySelector('nav a.cur'); if (c) c.parentElement.scrollLeft = c.offsetLeft - 60; });

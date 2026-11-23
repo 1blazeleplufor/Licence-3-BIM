@@ -143,4 +143,4 @@ const CALC = {
 function initCalc() {
   $$('[data-calc]').forEach(r => { const fn = CALC[r.dataset.calc]; if (!fn) return; fn(r); r.addEventListener('input', () => fn(r)); });
 }
-document.addEventListener('DOMContentLoaded', () => { initQcm(); initCalc(); });
+document.addEventListener('DOMContentLoaded', () => { initQcm(); initCalc(); const c = document.querySelector('nav a.cur'); if (c) c.parentElement.scrollLeft = c.offsetLeft - 60; });
