@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C2 · Principes de base de la CEM – L3 pro BIM</title>
+<link rel="stylesheet" href="../electricite/style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">QEE & CEM</a><a href="c0-fourier.html">C0 · Fourier</a><a href="c1-qee.html">C1 · QEE</a><a href="c1-surtensions.html">Surtensions</a><a href="td-variateur.html">TD variateur</a><a href="c2-cem.html" class="cur">C2 · CEM</a><a href="c2-couplages.html">Couplages</a><a href="c2-protection.html">Protection</a><a href="formulaire.html">Formulaire</a><a href="../index.html">Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">US2.2 · C2</div>
+  <h1>Principes de base de la compatibilité électromagnétique (CEM)</h1>
+  <p class="lead">Un variateur qui fait grésiller la radio, une alarme qui se déclenche quand on démarre une pompe : ce sont des problèmes de CEM. Il y a toujours un <b>bourreau</b> (la source), un <b>chemin</b> (le couplage) et une <b>victime</b>.</p>
+  <div class="toc"><a href="#def">Définition</a><a href="#ce">Marquage CE</a><a href="#termes">Terminologie</a><a href="#transmission">Transmission</a><a href="#mcmd">Mode commun / différentiel</a><a href="#parasites">Éléments parasites</a><a href="#lc">L et C en BF/HF</a><a href="#bfhf">BF et HF</a><a href="#exos">Exercices</a><a href="#qcm">QCM</a></div>
+</section>
+
+<section id="def">
+  <h2><span class="n">1</span>C’est quoi la CEM ? <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>La CEM est la capacité d’un équipement à <b>fonctionner de manière satisfaisante dans son environnement électromagnétique</b>, <b>sans lui-même apporter de perturbations</b> nuisibles pour ce voisinage.</p>
+    <p>La <b>réciprocité</b> est essentielle :</p>
+    <ul>
+      <li>l’équipement ne doit pas se comporter en <b>bourreau</b> (source perturbatrice) → limiter ses <b>émissions</b> ;</li>
+      <li>il ne doit pas subir son environnement et devenir <b>victime</b> (perturbé) → avoir une <b>immunité</b> suffisante <span class="src a" title="Ajouté pour compléter">complété</span>.</li>
+    </ul>
+    <p>Exemples de ta fiche : un variateur qui alimente un moteur perturbe un automate voisin par son câble ; une voiture perturbe une radio (et inversement).</p>
+    <div class="formula">Source (bourreau) → couplage (chemin) → victime <small>on agit sur l’un des trois maillons <span class="src a" title="Ajouté pour compléter">complété</span></small></div>
+  </div>
+</section>
+
+<section id="ce">
+  <h2><span class="n">2</span>Le marquage CE <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>Le logo <b>CE</b> indique le respect des normes (directives) européennes, notamment en matière de sécurité. Ce n’est <b>pas</b> l’abréviation de « compatibilité électromagnétique ». En revanche, depuis le <b>1ᵉʳ janvier 1996</b>, le marquage CE inclut la CEM parmi ses exigences.</p>
+    <p>Les automobiles modernes, avec le <b>multiplexage</b> (beaucoup de calculateurs reliés par des bus), sont aussi sujettes à des dysfonctionnements : elles peuvent devenir victimes.</p>
+    <p class="small">Le texte européen actuel est la directive CEM <b>2014/30/UE</b> <span class="src a" title="Ajouté pour compléter">complété</span>.</p>
+  </div>
+</section>
+
+<section id="termes">
+  <h2><span class="n">3</span>Terminologie : trois façons de transmettre une perturbation <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="grid3">
+    <div class="mini"><h4>Rayonnement</h4><p>Propagation de perturbations électromagnétiques <b>dans l’air</b>. Transmission par :</p><ul><li>champ électrique (E),</li><li>champ magnétique (B),</li><li>champ électromagnétique (E, B).</li></ul></div>
+    <div class="mini"><h4>Conduction</h4><p>Circulation du courant dans les <b>milieux conducteurs</b>. Transmission par :</p><ul><li>les câbles,</li><li>les tuyaux (climatisation, eau…),</li><li>les composants électriques et électroniques.</li></ul></div>
+    <div class="mini"><h4>Ionisation (électrostatique)</h4><p>Conséquence de la mise en contact d’un matériau chargé, ou amorçage par ionisation d’isolants. Ionisation par :</p><ul><li>la chaleur (détecteur de flamme, poste à souder…),</li><li>l’humidité (comme la foudre).</li></ul></div>
+  </div>
+</section>
+
+<section id="transmission">
+  <h2><span class="n">4</span>Moyens de transmission d’une perturbation <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <h3>4.1 Par conduction (mode résistif)</h3>
+    <p>C’est le seul qui utilise un <b>conducteur</b>, via une partie commune (en général la masse). Il peut transmettre une <b>composante continue</b>, contrairement aux autres. Les perturbations conduites passent par :</p>
+    <ul>
+      <li>les lignes d’alimentation internes ou le réseau de distribution,</li>
+      <li>les câbles de contrôle,</li>
+      <li>les câbles de transmission de données, les bus,</li>
+      <li>les câbles de masse (PE, PEN…),</li>
+      <li>la terre,</li>
+      <li>les capacités parasites.</li>
+    </ul>
+    <h3>4.2 Par rayonnement</h3>
+    <p>La perturbation passe entre des appareils <b>sans aucune interconnexion</b>. Selon sa nature, le couplage est <b>inductif</b> (champ magnétique) ou <b>capacitif</b> (champ électrique).</p>
+    <div class="box blue"><b class="t">À retenir <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></b>
+      L’air a un comportement plutôt <b>capacitif</b> : il oppose moins de résistance à la propagation des perturbations à <b>haute fréquence</b>.</div>
+  </div>
+</section>
+
+<section id="mcmd">
+  <h2><span class="n">5</span>Mode commun et mode différentiel <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <figure><svg viewBox="0 0 460 220" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="13" role="img" ><text x="40" y="40" fill="#1c2230" font-size="13" text-anchor="middle">Ph</text><text x="40" y="120" fill="#1c2230" font-size="13" text-anchor="middle">N</text><line x1="55" y1="36" x2="300" y2="36" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="55" y1="116" x2="300" y2="116" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="300" y="20" width="110" height="112" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="355" y="80" fill="#1c2230" font-size="12" text-anchor="middle">récepteur</text><line x1="110" y1="50" x2="230" y2="50" stroke="#d43f3f" stroke-width="2" stroke-linecap="round"/><polygon points="230,50 222.8,53.5 222.8,46.5" fill="#d43f3f"/><line x1="230" y1="102" x2="110" y2="102" stroke="#d43f3f" stroke-width="2" stroke-linecap="round"/><polygon points="110,102 117.2,98.5 117.2,105.5" fill="#d43f3f"/><text x="170" y="78" fill="#d43f3f" font-size="11.5" text-anchor="middle">mode différentiel : aller Ph, retour N</text><line x1="355" y1="132" x2="355" y2="160" stroke="#2f6fd6" stroke-width="1.5" stroke-dasharray="4 3" stroke-linecap="round"/><line x1="343" y1="162" x2="367" y2="162" stroke="#2f6fd6" stroke-width="2.5" stroke-linecap="round"/><line x1="343" y1="170" x2="367" y2="170" stroke="#2f6fd6" stroke-width="2.5" stroke-linecap="round"/><line x1="355" y1="170" x2="355" y2="190" stroke="#2f6fd6" stroke-width="1.5" stroke-dasharray="4 3" stroke-linecap="round"/><text x="372" y="170" fill="#2f6fd6" font-size="12" text-anchor="start">Cp</text><line x1="40" y1="195" x2="440" y2="195" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><text x="240" y="213" fill="#5c6577" font-size="11.5" text-anchor="middle">terre / masse</text><line x1="330" y1="185" x2="120" y2="185" stroke="#2f6fd6" stroke-width="2" stroke-linecap="round"/><polygon points="120,185 127.2,181.5 127.2,188.5" fill="#2f6fd6"/><text x="220" y="178" fill="#2f6fd6" font-size="11.5" text-anchor="middle">mode commun : retour par la terre via Cp</text></svg></figure>
+    <ul>
+      <li><b>Mode différentiel (MD)</b> : la perturbation emprunte le <b>conducteur naturel</b> : elle va par la phase et revient par le neutre, comme le courant utile.</li>
+      <li><b>Mode commun (MC)</b> : malgré l’isolation, il reste des <b>capacités parasites C<sub>p</sub></b> entre les conducteurs et la masse. En HF, une partie des parasites <b>retourne par la terre</b> : la perturbation circule dans le même sens sur tous les conducteurs.</li>
+    </ul>
+    <div class="box teal"><b class="t">Pourquoi c’est important <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      Le mode commun est le plus gênant : il forme de grandes boucles (conducteurs + terre) qui rayonnent et captent. On le combat avec des selfs de mode commun (tores de ferrite) et un bon maillage des masses. Le mode différentiel se traite avec des condensateurs entre phase et neutre (condensateurs X).</div>
+  </div>
+</section>
+
+<section id="parasites">
+  <h2><span class="n">6</span>Les éléments parasites d’un câble <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>Selon la fréquence, la résistance, l’inductance et la capacité d’un simple câble deviennent des <b>éléments parasites</b>. Ordres de grandeur pour un câble :</p>
+    <div class="scroll"><table>
+      <tr><th>Élément</th><th>Estimation</th></tr>
+      <tr><td>Résistance</td><td>R (mΩ) = 17 × <span class="frac"><span>L (m)</span><span>S (mm²)</span></span> <span class="small">(17 vient de ρ<sub>cuivre</sub> = 0,017 Ω·mm²/m)</span></td></tr>
+      <tr><td>Inductance</td><td>L ≈ <b>1 µH par mètre</b></td></tr>
+      <tr><td>Capacité</td><td>de l’ordre du <b>pF</b> ; ex. capacité de fuite d’un câble coaxial BNC : <b>100 pF</b> (environ, par mètre <span class="src a" title="Ajouté pour compléter">complété</span>)</td></tr>
+    </table></div>
+    <div class="box red"><b class="t">Petite coquille dans la fiche <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span></b>
+      L’unité est écrite « S (mmx²) » : c’est <b>S en mm²</b>.</div>
+    <p><b>Conséquence</b> <span class="src a" title="Ajouté pour compléter">complété</span> : à 50 Hz, 1 µH ne pèse rien (0,3 mΩ). À 100 MHz, le même mètre de fil présente <b>628 Ω</b> ! Un « bon » fil de terre long devient presque un circuit ouvert en haute fréquence. D’où l’intérêt des liaisons de masse courtes et larges (tresses, maillage).</p>
+  </div>
+</section>
+
+<section id="lc">
+  <h2><span class="n">7</span>Comportement des éléments passifs pour le filtrage CEM <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <div class="scroll"><table>
+      <tr><th>Élément</th><th>Impédance</th><th>BF (f → 0)</th><th>HF (f → ∞)</th></tr>
+      <tr><td><b>Inductance L</b> (bobine)</td><td>|Z| = Lω</td><td>0 : court-circuit</td><td>∞ : circuit ouvert</td></tr>
+      <tr><td><b>Condensateur C</b></td><td>|Z| = 1/(Cω)</td><td>∞ : circuit ouvert</td><td>0 : court-circuit</td></tr>
+    </table></div>
+    <div class="box red"><b class="t">Dans tes notes <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span></b>
+      En marge du tableau tu as écrit « inductance » à côté de L (juste) et « impédance » à côté de C. C est un <b>condensateur</b> (une <b>capacité</b>). L’impédance, c’est la grandeur |Z| qu’on calcule pour les deux.</div>
+    <h3>Exemple de filtrage</h3>
+    <figure><svg viewBox="0 0 480 195" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="13" role="img" ><circle cx="50" cy="90" r="16" fill="none" stroke="#1c2230" stroke-width="2"/><text x="50" y="95" fill="#1c2230" font-size="14" text-anchor="middle">⎍</text><text x="50" y="172" fill="#d43f3f" font-size="11.5" text-anchor="middle">perturbation HF</text><line x1="50" y1="74" x2="50" y2="40" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="50" y1="106" x2="50" y2="150" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="50" y1="40" x2="130" y2="40" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="130" y="31" width="44" height="18" fill="#fff" stroke="#1c2230" stroke-width="2"/><text x="152" y="25" fill="#1c2230" font-size="11.5" text-anchor="middle">R (ligne)</text><line x1="174" y1="40" x2="380" y2="40" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="50" y1="150" x2="380" y2="150" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="230" y="28" width="60" height="135" fill="none" stroke="#2f6fd6" stroke-width="1.5" stroke-dasharray="5 4"/><text x="260" y="182" fill="#2f6fd6" font-size="12" text-anchor="middle" font-weight="700">filtre : la HF passe par C</text><line x1="260" y1="40" x2="260" y2="91" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="248" y1="91" x2="272" y2="91" stroke="#1c2230" stroke-width="2.5" stroke-linecap="round"/><line x1="248" y1="99" x2="272" y2="99" stroke="#1c2230" stroke-width="2.5" stroke-linecap="round"/><line x1="260" y1="99" x2="260" y2="150" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="380" y1="40" x2="380" y2="70" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="368" y="70" width="24" height="50" fill="#fff" stroke="#1c2230" stroke-width="2"/><line x1="380" y1="120" x2="380" y2="150" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><text x="400" y="99" fill="#1c2230" font-size="12" text-anchor="start">victime</text><line x1="245" y1="70" x2="245" y2="125" stroke="#1d9a52" stroke-width="2" stroke-linecap="round"/><polygon points="245,125 241.5,117.8 248.5,117.8" fill="#1d9a52"/></svg></figure>
+    <p>Un condensateur placé en parallèle juste avant la victime laisse passer le 50 Hz utile (il est presque ouvert en BF) mais <b>court-circuite la perturbation HF</b> (il est presque un fil en HF). En ajoutant une bobine en série, on bloque en plus la HF sur la ligne : c’est un filtre LC passe-bas <span class="src a" title="Ajouté pour compléter">complété</span>.</p>
+  </div>
+</section>
+
+<section id="bfhf">
+  <h2><span class="n">8</span>Répartition des perturbations : BF et HF <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <p class="small">Ce chapitre (5. Répartition et origine des perturbations) n’apparaît qu’au bord d’une photo. Voici l’essentiel, complété.</p>
+    <div class="grid2">
+      <div class="mini"><h4>Basse fréquence « BF »</h4><p>Jusqu’à environ 1 MHz. Surtout <b>conduites</b> par les câbles. Phénomènes souvent <b>longs</b> (ms à secondes) et <b>énergétiques</b> : harmoniques, creux, surtensions de manœuvre.</p></div>
+      <div class="mini"><h4>Haute fréquence « HF »</h4><p>Au-delà. Surtout <b>rayonnées</b>. Phénomènes très <b>brefs</b> (ns à µs), peu énergétiques mais très gênants pour l’électronique : commutations de variateurs, décharges électrostatiques, émetteurs radio.</p></div>
+    </div>
+    <div class="formula">Énergie d’une perturbation : W (J) = U (V) × I (A) × t (s) <small>une perturbation BF longue transporte beaucoup plus d’énergie qu’une impulsion HF</small></div>
+  </div>
+</section>
+
+<section id="exos">
+  <h2><span class="n">9</span>Exercices <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="ex">
+    <h3>Exercice 1 : résistance d’un câble</h3>
+    <p>Un câble cuivre de 25 m, section 1,5 mm². Quelle résistance (aller simple) ?</p>
+    <div class="sol"><span class="t">Correction</span>R = 17 × 25 / 1,5 = <b>283 mΩ</b> (0,28 Ω).</div>
+  </div>
+  <div class="ex">
+    <h3>Exercice 2 : inductance d’une liaison de masse</h3>
+    <p>Une liaison de masse de 2 m (fil, ≈ 1 µH/m). Calcule son impédance à 50 Hz puis à 30 MHz.</p>
+    <div class="sol"><span class="t">Correction</span>
+      L = 2 µH. À 50 Hz : 2·10⁻⁶ × 2π × 50 = <b>0,6 mΩ</b>. À 30 MHz : 2·10⁻⁶ × 2π × 30·10⁶ = <b>377 Ω</b>. En HF, cette « masse » ne relie plus rien.</div>
+  </div>
+  <div class="ex">
+    <h3>Exercice 3 : condensateur de filtrage</h3>
+    <p>Un condensateur de 100 nF. Calcule son impédance à 50 Hz et à 10 MHz. Laisse-t-il passer le 50 Hz ?</p>
+    <div class="sol"><span class="t">Correction</span>
+      50 Hz : 1/(100·10⁻⁹ × 314) = <b>31,8 kΩ</b> (quasi ouvert, il ne gêne pas le 50 Hz). 10 MHz : 1/(100·10⁻⁹ × 6,28·10⁷) = <b>0,16 Ω</b> (quasi court-circuit : la HF est dérivée).</div>
+  </div>
+  <div class="calc" data-calc="parasite">
+    <h4>Éléments parasites d’un câble</h4>
+    <div class="in">
+      <div><label>Longueur (m)</label><input type="number" step="any" value="2" data-k="L"></div>
+      <div><label>Section (mm²)</label><input type="number" step="any" value="1.5" data-k="S"></div>
+      <div><label>Fréquence (Hz)</label><input type="number" step="any" value="30000000" data-k="f"></div>
+    </div>
+    <div class="out" data-k="out"></div>
+  </div>
+</section>
+
+<section id="qcm">
+  <h2><span class="n">10</span>QCM</h2>
+  <div class="card"><div data-qcm="q4"></div></div>
+</section>
+
+<div class="pn"><a href="td-variateur.html">← TD variateur</a><a href="c2-couplages.html">Couplages →</a></div>
+<footer>US2.2 Qualité de l’énergie électrique & compatibilité électromagnétique · LP ieBIM · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

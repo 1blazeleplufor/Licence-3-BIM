@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C2 · Protection CEM, filtres et normes – L3 pro BIM</title>
+<link rel="stylesheet" href="../electricite/style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">QEE & CEM</a><a href="c0-fourier.html">C0 · Fourier</a><a href="c1-qee.html">C1 · QEE</a><a href="c1-surtensions.html">Surtensions</a><a href="td-variateur.html">TD variateur</a><a href="c2-cem.html">C2 · CEM</a><a href="c2-couplages.html">Couplages</a><a href="c2-protection.html" class="cur">Protection</a><a href="formulaire.html">Formulaire</a><a href="../index.html">Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">US2.2 · C2 (fin)</div>
+  <h1>Se protéger : principes CEM, filtres, règles de l’art et normes</h1>
+  <p class="lead">Pour chaque type de couplage, il y a une parade. Ensuite, la norme fixe un gabarit : l’appareil ne doit pas émettre au-dessus.</p>
+  <div class="toc"><a href="#principes">Principes</a><a href="#filtres">Filtres blindés</a><a href="#regles">Règles de l’art</a><a href="#bf">Normes BF</a><a href="#hf">Normes HF</a><a href="#db">dBµV</a><a href="#exos">Exercices</a><a href="#qcm">QCM</a></div>
+</section>
+
+<section id="principes">
+  <h2><span class="n">1</span>Principes de protection CEM <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Couplage</th><th>Solutions</th></tr>
+    <tr><td><b>Résistif</b> (impédance commune)</td><td>Réduire l’impédance du plan de masse en <b>multipliant les liaisons</b> et en réalisant un <b>maillage</b>. Sauf cas très particuliers, <b>ne plus câbler les masses en étoile</b>.</td></tr>
+    <tr><td><b>Inductif</b></td><td>Utiliser des <b>câbles torsadés</b>. Selon la fréquence : proximité d’une masse ferromagnétique en BF (50 Hz…) ou blindage.</td></tr>
+    <tr><td><b>Capacitif</b></td><td><b>L’éloignement</b>, du fait de sa limite à λ/2π : <b>30 cm</b> est la valeur plébiscitée.<br><b>L’écran</b>, quand la provenance est unique, fixe et repérée dans l’espace ; sinon un écran sur 360°.<br><b>Court-circuiter le condensateur</b> (la capacité parasite) quand c’est possible.</td></tr>
+  </table></div>
+  <div class="box teal"><b class="t">Pourquoi le maillage plutôt que l’étoile ? <span class="src a" title="Ajouté pour compléter">complété</span></b>
+    En étoile, chaque masse rejoint la terre par un long fil : en HF ce fil est une inductance de centaines d’ohms (voir <a href="c2-cem.html#parasites">éléments parasites</a>). Un maillage offre des milliers de chemins courts en parallèle : l’impédance reste faible à toutes les fréquences.</div></div>
+</section>
+
+<section id="filtres">
+  <h2><span class="n">2</span>Les filtres blindés <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>Le filtre reçoit directement l’alimentation. Idéalement, il est monté dans une <b>boîte blindée</b> : les parasites du réseau <b>n’entrent pas</b>, et les parasites générés dans la boîte <b>ne sortent pas</b>.</p>
+    <p>Ta fiche montre un filtre secteur avec interrupteur et porte-fusible intégrés, un filtre non blindé à souder sur circuit imprimé et un filtre avec prise intégrée.</p>
+    <div class="box blue"><b class="t">À retenir <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></b>Le blindage des filtres secteur est <b>magnétique</b>.</div>
+    <p class="small">Montage <span class="src a" title="Ajouté pour compléter">complété</span> : le boîtier du filtre doit être vissé sur une masse métallique nue (contact sur toute la surface), avec les câbles d’entrée et de sortie bien séparés, sinon la HF « saute » par-dessus le filtre.</p>
+  </div>
+</section>
+
+<section id="regles">
+  <h2><span class="n">3</span>Respect des règles de l’art <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>Le respect de ces règles réduit fortement les contraintes et les coûts liés aux problèmes CEM les plus courants. Le point clé : le <b>choix des constituants</b>.</p>
+    <div class="grid2">
+      <div class="mini"><h4>Phénomènes basse fréquence « BF »</h4><ul><li>Systèmes de protection</li><li>Filtrage</li><li>Longueur des câbles</li></ul><p><b>→ Prépondérance des systèmes de protection</b></p></div>
+      <div class="mini"><h4>Phénomènes haute fréquence « HF »</h4><ul><li><b>Équipotentialité</b> des masses (maillage)</li><li>Routage soigneux des câbles</li><li>Choix des câbles</li><li>Connexions soignées et adaptées à la HF</li><li>Blindage des câbles</li><li>Goulottes et chemins de câbles</li><li>Longueur des câbles</li></ul><p><b>→ Prépondérance de l’installation</b></p></div>
+    </div>
+    <div class="box orange"><b class="t">Traduction pour le chantier <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      Chemins de câbles métalliques reliés entre eux et à la masse ; câbles de puissance et câbles courants faibles dans des compartiments séparés (30 cm ou cloison métallique) ; croisements à 90° ; blindage des câbles moteur repris sur 360° par presse-étoupe CEM ; liaisons de masse courtes et larges (tresses plutôt que fils).</div>
+  </div>
+</section>
+
+<section id="bf">
+  <h2><span class="n">4</span>Normes : les basses fréquences <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <p class="small">La partie 7.1 de ton cours n’était pas photographiée : voici les normes principales.</p>
+    <ul>
+      <li><b>CEI/EN 61000-3-2</b> : limites des courants harmoniques émis par les appareils ≤ 16 A par phase.</li>
+      <li><b>CEI/EN 61000-3-12</b> : même chose de 16 à 75 A par phase.</li>
+      <li><b>CEI/EN 61000-3-3</b> : limites de fluctuations de tension et de flicker produites par les appareils.</li>
+      <li><b>EN 50160</b> : ce que le réseau public garantit (voir <a href="c1-qee.html#norme">C1</a>).</li>
+      <li><b>CEI/EN 61000-4-x</b> : essais d’immunité (décharges électrostatiques, salves, ondes de choc, champs rayonnés…).</li>
+    </ul>
+  </div>
+</section>
+
+<section id="hf">
+  <h2><span class="n">5</span>Normes : les hautes fréquences <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>La norme définit un <b>gabarit</b> : l’amplitude des perturbations émises ne doit pas le dépasser. L’amplitude s’exprime en <b>dBµV</b>. Il existe deux catégories :</p>
+    <ul>
+      <li><b>Classe A</b> : niveau d’émission des appareils destinés au secteur <b>industriel</b>.</li>
+      <li><b>Classe B</b> : la plus sévère, réservée au secteur <b>domestique et hospitalier</b>.</li>
+    </ul>
+    <figure><svg viewBox="0 0 520 245" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="13" role="img" ><line x1="55" y1="190.0" x2="500" y2="190.0" stroke="#e3e6ec" stroke-width="1" stroke-linecap="round"/><text x="49" y="194.0" fill="#5c6577" font-size="11" text-anchor="end">40</text><line x1="55" y1="161.66666666666666" x2="500" y2="161.66666666666666" stroke="#e3e6ec" stroke-width="1" stroke-linecap="round"/><text x="49" y="165.66666666666666" fill="#5c6577" font-size="11" text-anchor="end">50</text><line x1="55" y1="133.33333333333334" x2="500" y2="133.33333333333334" stroke="#e3e6ec" stroke-width="1" stroke-linecap="round"/><text x="49" y="137.33333333333334" fill="#5c6577" font-size="11" text-anchor="end">60</text><line x1="55" y1="105.0" x2="500" y2="105.0" stroke="#e3e6ec" stroke-width="1" stroke-linecap="round"/><text x="49" y="109.0" fill="#5c6577" font-size="11" text-anchor="end">70</text><line x1="55" y1="76.66666666666667" x2="500" y2="76.66666666666667" stroke="#e3e6ec" stroke-width="1" stroke-linecap="round"/><text x="49" y="80.66666666666667" fill="#5c6577" font-size="11" text-anchor="end">80</text><line x1="55" y1="48.333333333333314" x2="500" y2="48.333333333333314" stroke="#e3e6ec" stroke-width="1" stroke-linecap="round"/><text x="49" y="52.333333333333314" fill="#5c6577" font-size="11" text-anchor="end">90</text><line x1="55" y1="20.0" x2="500" y2="20.0" stroke="#e3e6ec" stroke-width="1" stroke-linecap="round"/><text x="49" y="24.0" fill="#5c6577" font-size="11" text-anchor="end">100</text><line x1="55.0" y1="190" x2="55.0" y2="20" stroke="#e3e6ec" stroke-width="1" stroke-linecap="round"/><text x="55.0" y="205" fill="#5c6577" font-size="11" text-anchor="middle">0,1</text><line x1="203.33333333333331" y1="190" x2="203.33333333333331" y2="20" stroke="#e3e6ec" stroke-width="1" stroke-linecap="round"/><text x="203.33333333333331" y="205" fill="#5c6577" font-size="11" text-anchor="middle">1</text><line x1="351.66666666666663" y1="190" x2="351.66666666666663" y2="20" stroke="#e3e6ec" stroke-width="1" stroke-linecap="round"/><text x="351.66666666666663" y="205" fill="#5c6577" font-size="11" text-anchor="middle">10</text><line x1="500.0" y1="190" x2="500.0" y2="20" stroke="#e3e6ec" stroke-width="1" stroke-linecap="round"/><text x="500.0" y="205" fill="#5c6577" font-size="11" text-anchor="middle">100</text><polyline points="81.12020342659272,79.5 158.6805506431761,79.5 158.6805506431761,96.49999999999999 422.4396527834166,96.49999999999999" fill="none" stroke="#2f6fd6" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><polyline points="81.12020342659272,116.33333333333333 158.6805506431761,144.66666666666666 307.0138839765094,144.66666666666666 307.0138839765094,133.33333333333334 422.4396527834166,133.33333333333334" fill="none" stroke="#d43f3f" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/><text x="247.98611602349055" y="88.0" fill="#2f6fd6" font-size="12" text-anchor="middle" font-weight="700">Classe A (industriel)</text><text x="215.07855149706435" y="160.25" fill="#d43f3f" font-size="12" text-anchor="middle" font-weight="700">Classe B (domestique, hospitalier)</text><text x="277.5" y="222" fill="#5c6577" font-size="11.5" text-anchor="middle">fréquence (MHz, échelle log)</text><text x="55" y="12" fill="#5c6577" font-size="11.5" text-anchor="start">niveau (dBµV)</text></svg><figcaption>Gabarits de perturbations conduites (figure 6 de ta fiche).</figcaption></figure>
+    <div class="scroll"><table>
+      <tr><th>Fréquences (MHz)</th><th class="r">Classe A (dBµV)</th><th class="r">Classe B (dBµV)</th></tr>
+      <tr><td>0,15 – 0,5</td><td class="r">79</td><td class="r">66 → 56</td></tr>
+      <tr><td>0,5 – 5</td><td class="r">73</td><td class="r">56</td></tr>
+      <tr><td>5 – 30</td><td class="r">73</td><td class="r">60</td></tr>
+    </table></div>
+    <p>La mesure de l’amplitude des perturbations émises se fait avec un <b>RSIL</b> (Réseau Stabilisateur d’Impédance de Ligne).</p>
+    <div class="box teal"><b class="t">Compléments <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      Le RSIL s’intercale entre le réseau et l’appareil testé : il présente une impédance connue et identique dans tous les laboratoires, et il empêche les parasites du réseau de fausser la mesure. Ta fiche cite la <b>CISPR 16</b> : elle décrit les appareils et méthodes de mesure ; les limites par famille de produits sont dans les normes produits (CISPR 11 pour l’industriel, CISPR 32 pour le multimédia…). Entre 66 et 56 dBµV, la limite classe B décroît linéairement avec le log de la fréquence.</div>
+  </div>
+</section>
+
+<section id="db">
+  <h2><span class="n">6</span>Comprendre le dBµV <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <div class="formula">N (dBµV) = 20 · log<sub>10</sub><span class="frac"><span>U</span><span>1 µV</span></span> &nbsp;⇔&nbsp; U (µV) = 10<sup>N/20</sup></div>
+    <ul>
+      <li>0 dBµV = 1 µV ; 20 dBµV = 10 µV ; 60 dBµV = 1 mV ; 120 dBµV = 1 V.</li>
+      <li>+6 dB ≈ tension ×2 ; +20 dB = tension ×10.</li>
+    </ul>
+    <div class="calc" data-calc="dbuv">
+      <h4>Convertisseur dBµV ↔ tension</h4>
+      <div class="in"><div><label>Niveau (dBµV)</label><input type="number" step="any" value="79" data-k="db"></div><div><label>ou tension (mV)</label><input type="number" step="any" value="" data-k="mv"></div></div>
+      <div class="out" data-k="out"></div>
+    </div>
+  </div>
+</section>
+
+<section id="exos">
+  <h2><span class="n">7</span>Exercices <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="ex">
+    <h3>Exercice 1 : lire le gabarit</h3>
+    <p>Un luminaire LED pour une chambre d’hôpital émet 62 dBµV à 2 MHz. Est-il conforme ? Et un variateur industriel avec la même mesure ?</p>
+    <div class="sol"><span class="t">Correction</span>Hôpital → <b>classe B</b> : limite 56 dBµV à 2 MHz → 62 &gt; 56, <b>non conforme</b> (6 dB de trop, soit une tension deux fois trop grande). Industriel → <b>classe A</b> : limite 73 dBµV → <b>conforme</b>.</div>
+  </div>
+  <div class="ex">
+    <h3>Exercice 2 : conversions</h3>
+    <p>Convertis en tension : 79 dBµV, 56 dBµV.</p>
+    <div class="sol"><span class="t">Correction</span>10<sup>79/20</sup> = 8 913 µV ≈ <b>8,9 mV</b> ; 10<sup>56/20</sup> = 631 µV ≈ <b>0,63 mV</b>. La classe B est environ 14 fois plus sévère en tension que la classe A sur cette plage.</div>
+  </div>
+  <div class="ex">
+    <h3>Exercice 3 : étoile ou maillage ?</h3>
+    <p>Dans un local technique, chaque baie est reliée à la barrette de terre par un fil vert-jaune de 8 m. Quel problème en HF, et que proposer ?</p>
+    <div class="sol"><span class="t">Correction</span>Câblage <b>en étoile</b> avec de longues liaisons : environ 8 µH chacune, soit des centaines d’ohms à quelques MHz. Les baies ne sont plus équipotentielles en HF. Solution : <b>mailler</b> (relier les baies entre elles et au chemin de câbles par des tresses courtes), garder le PE pour la sécurité.</div>
+  </div>
+</section>
+
+<section id="qcm">
+  <h2><span class="n">8</span>QCM</h2>
+  <div class="card"><div data-qcm="q6"></div></div>
+</section>
+
+<div class="pn"><a href="c2-couplages.html">← Couplages</a><a href="formulaire.html">Formulaire →</a></div>
+<footer>US2.2 Qualité de l’énergie électrique & compatibilité électromagnétique · LP ieBIM · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

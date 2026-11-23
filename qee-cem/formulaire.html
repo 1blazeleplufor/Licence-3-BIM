@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Formulaire, normes et quiz final – L3 pro BIM</title>
+<link rel="stylesheet" href="../electricite/style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">QEE & CEM</a><a href="c0-fourier.html">C0 · Fourier</a><a href="c1-qee.html">C1 · QEE</a><a href="c1-surtensions.html">Surtensions</a><a href="td-variateur.html">TD variateur</a><a href="c2-cem.html">C2 · CEM</a><a href="c2-couplages.html">Couplages</a><a href="c2-protection.html">Protection</a><a href="formulaire.html" class="cur">Formulaire</a><a href="../index.html">Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">US2.2 · Révision</div>
+  <h1>Formulaire, normes et quiz final</h1>
+  <p class="lead">Toutes les formules de QEE et CEM sur une page, la liste des normes à citer, les corrections relevées dans tes documents, puis un quiz qui mélange tout.</p>
+</section>
+<section id="formules">
+  <h2><span class="n">1</span>Formules</h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Thème</th><th>Formule</th></tr>
+    <tr><td>Fourier</td><td>v(t) = V<sub>0</sub> + Σ a<sub>n</sub> cos(nω<sub>0</sub>t) + Σ b<sub>n</sub> sin(nω<sub>0</sub>t) · d<sub>n</sub> = √(a<sub>n</sub>² + b<sub>n</sub>²)</td></tr>
+    <tr><td>Parité</td><td>pair → b<sub>n</sub> = 0 · impair → a<sub>n</sub> = 0 · carré symétrique → rangs impairs seulement, d<sub>n</sub> = 4E/(nπ)</td></tr>
+    <tr><td>THD</td><td>THD = √(I<sub>2</sub>² + I<sub>3</sub>² + …) / I<sub>1</sub> · I = I<sub>1</sub>√(1 + THD²)</td></tr>
+    <tr><td>Facteur de crête</td><td>F<sub>c</sub> = I<sub>max</sub> / I<sub>eff</sub> (√2 pour une sinusoïde)</td></tr>
+    <tr><td>Puissances (tension sinusoïdale)</td><td>P = VI<sub>1</sub>cos φ<sub>1</sub> · Q = VI<sub>1</sub>sin φ<sub>1</sub> · S = VI · S² = P² + Q² + D² · λ = P/S = cos φ<sub>1</sub>/√(1 + THD²)</td></tr>
+    <tr><td>Neutre</td><td>I<sub>N</sub> ≈ 3 × I<sub>3</sub> (rangs multiples de 3 additionnés)</td></tr>
+    <tr><td>Déséquilibre</td><td>U<sub>−</sub>/U<sub>+</sub> &lt; 2 % · approché : ΔU<sub>i</sub> = (V<sub>i</sub> − V<sub>moy</sub>)/V<sub>i</sub></td></tr>
+    <tr><td>Impédances</td><td>Z<sub>L</sub> = Lω · Z<sub>C</sub> = 1/(Cω) · ω = 2πf · résonance f<sub>0</sub> = 1/(2π√(LC))</td></tr>
+    <tr><td>Câble parasite</td><td>R (mΩ) = 17 L/S · L ≈ 1 µH/m · C ≈ quelques pF (coax ≈ 100 pF)</td></tr>
+    <tr><td>Couplages</td><td>champ à fil : I = k dE/dt · champ à boucle : E = S dB/dt</td></tr>
+    <tr><td>Couplage capacitif (TD2)</td><td>V<sub>2</sub>/V<sub>1</sub> = jωR<sub>2</sub>C<sub>12</sub> / (1 + jωR<sub>2</sub>(C<sub>2</sub> + C<sub>12</sub>))</td></tr>
+    <tr><td>Coaxial (TD2)</td><td>I<sub>2</sub>/I<sub>1</sub> = jL<sub>2</sub>ω / (R<sub>2</sub> + jL<sub>2</sub>ω) → 0 en BF, → 1 en HF</td></tr>
+    <tr><td>Distance</td><td>λ = c/f (c = 3·10⁸ m/s) · sans écran, dépasser λ/2π (30 cm ≈ 160 MHz)</td></tr>
+    <tr><td>dBµV</td><td>N = 20 log(U / 1 µV) · U = 10<sup>N/20</sup> µV</td></tr>
+    <tr><td>Énergie</td><td>W = U × I × t</td></tr>
+  </table></div></div>
+</section>
+<section id="normes">
+  <h2><span class="n">2</span>Normes à citer <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Texte</th><th>Sujet</th></tr>
+    <tr><td>NF EN 50160</td><td>Caractéristiques de la tension fournie par le réseau public (THD<sub>u</sub> ≤ 8 %, déséquilibre ≤ 2 %, ±10 %…)</td></tr>
+    <tr><td>CEI/EN 61000-3-2 et -3-12</td><td>Limites d’émission de courants harmoniques des appareils (≤ 16 A, 16–75 A)</td></tr>
+    <tr><td>CEI/EN 61000-3-3</td><td>Fluctuations de tension et flicker produits par les appareils</td></tr>
+    <tr><td>CEI/EN 61000-4-x</td><td>Essais d’immunité</td></tr>
+    <tr><td>CISPR 16 (mesure), CISPR 11 / 32 (limites)</td><td>Perturbations HF, classes A et B, mesure au RSIL</td></tr>
+    <tr><td>Directive 2014/30/UE</td><td>Directive CEM, intégrée au marquage CE (CEM obligatoire depuis 1996)</td></tr>
+    <tr><td>NF C 15-100 (série 2024) + guide UTE C 15-443</td><td>Installations BT : parafoudres (zones AQ1/AQ2), neutre chargé</td></tr>
+  </table></div></div>
+</section>
+<section id="corrections">
+  <h2><span class="n">3</span>Corrections relevées dans tes documents <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span></h2>
+  <div class="box red"><b class="t">Fiches et notes</b><ul>
+    <li>Signal carré : v<sub>5</sub> à v<sub>11</sub> écrits avec « π·50 » au lieu de « 2π·50 » (<a href="c0-fourier.html#exemple">C0</a>).</li>
+    <li>Tableau de tenue aux chocs : « 230/440 » → <b>230/400 V</b> (<a href="c1-surtensions.html#tenue">surtensions</a>).</li>
+    <li>Éléments parasites : « S (mmx²) » → S en mm² (<a href="c2-cem.html#parasites">C2</a>).</li>
+    <li>Tes notes : « impédance » à côté de C → c’est un <b>condensateur</b> (<a href="c2-cem.html#lc">C2</a>).</li>
+    <li>TD2 : garde le « j » dans les calculs complexes ; « P = U × I » seulement en continu ou sur une résistance (<a href="c2-couplages.html#td2-1">TD2</a>).</li>
+    <li>Normes et réglementation : 119 × 0,80 = <b>95,2 A</b>, pas 99 A (<a href="../normes-reglementation/index.html#etape2">projet</a>).</li>
+  </ul></div>
+</section>
+<section id="qcm">
+  <h2><span class="n">4</span>Quiz final</h2>
+  <div class="card"><div data-qcm="all"></div></div>
+</section>
+
+<div class="pn"><a href="c2-protection.html">← Protection</a><a href="index.html">Sommaire ↑</a></div>
+<footer>US2.2 Qualité de l’énergie électrique & compatibilité électromagnétique · LP ieBIM · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

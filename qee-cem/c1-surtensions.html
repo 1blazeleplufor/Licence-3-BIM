@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C1 · Surtensions, foudre et parafoudres – L3 pro BIM</title>
+<link rel="stylesheet" href="../electricite/style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">QEE & CEM</a><a href="c0-fourier.html">C0 · Fourier</a><a href="c1-qee.html">C1 · QEE</a><a href="c1-surtensions.html" class="cur">Surtensions</a><a href="td-variateur.html">TD variateur</a><a href="c2-cem.html">C2 · CEM</a><a href="c2-couplages.html">Couplages</a><a href="c2-protection.html">Protection</a><a href="formulaire.html">Formulaire</a><a href="../index.html">Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">US2.2 · C1 (suite)</div>
+  <h1>Surtensions, foudre et parafoudres</h1>
+  <p class="lead">Une surtension, c’est une tension qui dépasse sa valeur normale, parfois pendant quelques microsecondes seulement, mais avec assez d’énergie pour détruire l’électronique. On distingue trois origines et deux niveaux de protection.</p>
+  <div class="toc"><a href="#natures">3 natures</a><a href="#protections">Paratonnerre / parafoudre</a><a href="#composants">Composants</a><a href="#keraunique">Niveau kéraunique</a><a href="#primaire">Primaire / secondaire</a><a href="#tenue">Tenue aux chocs</a><a href="#tt">Raccordement TT</a><a href="#nfc">Obligations</a><a href="#exos">Exercices</a><a href="#qcm">QCM</a></div>
+</section>
+
+<section id="natures">
+  <h2><span class="n">1</span>Les trois natures de surtensions <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="grid3">
+    <div class="mini"><h4>Temporaire</h4><p>Provoquée côté HT lors d’un défaut (rebouclage par la prise de terre), par une <b>surcompensation</b> d’énergie réactive en période de faible charge, ou par la <b>rupture du conducteur neutre</b>.</p><p class="small">Durée : de quelques périodes à plusieurs heures, à 50 Hz <span class="src a" title="Ajouté pour compléter">complété</span>.</p></div>
+    <div class="mini"><h4>De manœuvre</h4><p>Ouverture rapide d’un appareillage de protection, ouverture d’un circuit <b>capacitif</b>, commutation d’un convertisseur statique.</p><p class="small">Durée : de la µs à quelques ms, fréquence élevée <span class="src a" title="Ajouté pour compléter">complété</span>.</p></div>
+    <div class="mini"><h4>Atmosphérique</h4><p>La <b>foudre</b>, par impact direct sur le bâtiment ou la ligne, ou par impact proche (montée du potentiel de la terre, induction dans les câbles).</p><p class="small">Quelques dizaines de µs, mais plusieurs kV et kA <span class="src a" title="Ajouté pour compléter">complété</span>.</p></div>
+  </div>
+  <div class="box red"><b class="t">Rupture du neutre : le cas dangereux <span class="src a" title="Ajouté pour compléter">complété</span></b>
+    Si le neutre d’un réseau triphasé se coupe, les récepteurs monophasés se retrouvent en série entre deux phases (400 V). La phase la moins chargée peut monter vers 400 V et griller tout ce qui y est branché.</div>
+</section>
+
+<section id="protections">
+  <h2><span class="n">2</span>Paratonnerre et parafoudre : ne pas confondre <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="grid2">
+    <div class="mini"><h4>Paratonnerre</h4><p>Il permet l’<b>écoulement de la foudre à la terre</b>. Il protège le bâtiment.</p>
+      <p>Sur le schéma de ta fiche : pointe en toiture → <b>descente en feuillard de cuivre</b> le long de la façade → <b>joint de contrôle</b> (pour mesurer la terre) → <b>prise de terre en patte d’oie</b>.</p></div>
+    <div class="mini"><h4>Parafoudre</h4><p>C’est un <b>limiteur de surtension</b> installé dans le tableau. Il protège les équipements contre les effets de l’écoulement de la foudre à la terre : il dévie la surtension vers la terre avant qu’elle n’atteigne les appareils.</p></div>
+  </div>
+</section>
+
+<section id="composants">
+  <h2><span class="n">3</span>Les trois types de composants de protection <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Composant</th><th>Principe</th><th>Points forts et faibles <span class="src a" title="Ajouté pour compléter">complété</span></th></tr>
+    <tr><td><b>Éclateur</b></td><td>Deux électrodes séparées par un gaz ou de l’air : un arc s’amorce au-delà d’une certaine tension (limiteur de surtension)</td><td>Supporte de très forts courants, mais lent, et il faut éteindre l’arc ensuite. De moins en moins utilisé en BT</td></tr>
+    <tr><td><b>Diode Zener</b> (diode TVS)</td><td>Conduit brutalement au-delà de sa tension de seuil</td><td><b>Temps de réponse très court</b>, tension de seuil précise, mais faible énergie : protection fine de l’électronique</td></tr>
+    <tr><td><b>Varistance</b> (oxyde de zinc)</td><td>Résistance qui chute fortement quand la tension augmente</td><td>Bon compromis rapidité/énergie : c’est le cœur de la plupart des parafoudres BT. S’use à chaque choc (d’où le voyant de fin de vie)</td></tr>
+  </table></div></div>
+</section>
+
+<section id="keraunique">
+  <h2><span class="n">4</span>Le niveau kéraunique <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>Le <b>niveau kéraunique N<sub>k</sub></b> est le nombre de jours par an où l’on entend le tonnerre en un lieu. La carte de ta fiche (moyenne sur 5 ans) classe la France en 4 niveaux : <b>&lt; 10</b>, <b>10 à 19</b>, <b>20 à 29</b>, <b>≥ 30</b>. L’ouest (Bretagne, Normandie) est peu exposé (10 à 18) ; le sud-est et les Pyrénées le sont beaucoup (≥ 30).</p>
+    <p>Ta fiche : <b>les zones en bleu doivent être systématiquement protégées par des limiteurs de surtension</b>.</p>
+    <div class="box blue"><b class="t">Ce qui a changé dans la norme <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      La NF C 15-100 parle maintenant aussi de <b>densité de foudroiement N<sub>g</sub></b> (impacts par km² et par an, environ N<sub>k</sub>/10). Zone <b>AQ1</b> : N<sub>g</sub> ≤ 2,5 (N<sub>k</sub> ≤ 25). Zone <b>AQ2</b> : N<sub>g</sub> &gt; 2,5 (N<sub>k</sub> &gt; 25).</div>
+  </div>
+</section>
+
+<section id="primaire">
+  <h2><span class="n">5</span>Surtensions atmosphériques : protection primaire et secondaire <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="grid2">
+    <div class="mini"><h4>Protection primaire</h4><p>Elle protège le <b>bâtiment et sa structure</b> contre les impacts directs : paratonnerres, cages maillées (Faraday), câbles de garde / fil tendu.</p></div>
+    <div class="mini"><h4>Protection secondaire</h4><p>Elle protège les <b>équipements</b> contre les surtensions qui suivent le coup de foudre. Des parafoudres (de moins en moins des éclateurs) sont installés sur les points des réseaux BT particulièrement exposés.</p></div>
+  </div>
+  <div class="card">
+    <p><b>Figure 9 de ta fiche (utilisation des parafoudres)</b> : un parafoudre entre chaque conducteur actif (Ph, N) et le PE, plus un entre Ph et N, placés en parallèle juste avant l’équipement à protéger.</p>
+    <ul>
+      <li>Parafoudres <b>Ph–PE et N–PE</b> : protection en <b>mode commun</b> (surtension entre les conducteurs et la terre).</li>
+      <li>Parafoudre <b>Ph–N</b> : protection en <b>mode différentiel</b> (surtension entre phase et neutre) <span class="src a" title="Ajouté pour compléter">complété</span>.</li>
+    </ul>
+    <p>Ta fiche note aussi : <b>tenue d’un parafoudre : 1,5 U<sub>n</sub> en BT</b>. Autrement dit, le parafoudre doit supporter en permanence une tension au moins égale à 1,5 fois la tension nominale sans conduire (sa tension U<sub>c</sub>). Vérifie la valeur exacte demandée selon le schéma de liaison à la terre dans le guide UTE C 15-443 <span class="src a" title="Ajouté pour compléter">complété</span>.</p>
+  </div>
+</section>
+
+<section id="tenue">
+  <h2><span class="n">6</span>Tension assignée de tenue aux chocs (kV) <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Tension nominale (réseau triphasé)</th><th class="r">Tenue très élevée<br><span class="small">compteur, télémesure</span></th><th class="r">Tenue élevée<br><span class="small">disjoncteur, interrupteur, matériel industriel</span></th><th class="r">Tenue normale<br><span class="small">électroménager, outil portatif</span></th><th class="r">Tenue réduite<br><span class="small">matériel électronique</span></th></tr>
+    <tr><td>230/400 V</td><td class="r">6</td><td class="r">4</td><td class="r">2,5</td><td class="r">1,5</td></tr>
+    <tr><td>400/690 V</td><td class="r">8</td><td class="r">6</td><td class="r">4</td><td class="r">2,5</td></tr>
+    <tr><td>1 000 V</td><td class="r">12 <span class="src a" title="Ajouté pour compléter">complété</span></td><td class="r">8 <span class="src a" title="Ajouté pour compléter">complété</span></td><td class="r">6 <span class="src a" title="Ajouté pour compléter">complété</span></td><td class="r">4 <span class="src a" title="Ajouté pour compléter">complété</span></td></tr>
+  </table></div>
+  <div class="box red"><b class="t">À corriger <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span></b>
+    Ta fiche indique « 230/440 » : c’est <b>230/400 V</b> (le réseau français : 230 V entre phase et neutre, 400 V entre phases). La ligne 1 000 V était vide sur ta photo, je l’ai complétée avec les valeurs habituelles (catégories IV, III, II, I).</div>
+  <p><b>À retenir</b> : le parafoudre doit ramener la surtension en dessous de la tenue du matériel le plus fragile. Pour de l’électronique sur un réseau 230/400 V, il faut un niveau de protection U<sub>p</sub> inférieur à <b>1,5 kV</b> <span class="src a" title="Ajouté pour compléter">complété</span>.</p></div>
+</section>
+
+<section id="tt">
+  <h2><span class="n">7</span>Exemple de raccordement en monophasé, schéma TT <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <ol class="steps">
+      <li>Le réseau arrive du transformateur (L1 et N), le neutre BT est relié à sa <b>propre prise de terre</b> (côté distributeur).</li>
+      <li>Dans le tableau : le <b>DDR</b> (dispositif différentiel), puis le <b>disjoncteur de déconnexion</b> du parafoudre, puis le <b>parafoudre</b> (deux modules, Ph–PE et N–PE, plus le module Ph–N).</li>
+      <li>Le parafoudre est relié au <b>PE</b>, qui rejoint la <b>borne principale de terre</b>.</li>
+      <li>La borne principale de terre est reliée à la <b>boucle à fond de fouille</b> : la prise de terre des masses d’utilisation.</li>
+      <li>L’<b>équipement à protéger</b> est alimenté après le parafoudre.</li>
+    </ol>
+    <div class="box teal"><b class="t">Pourquoi un disjoncteur de déconnexion ? <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      En fin de vie, une varistance peut rester en court-circuit. Le disjoncteur (ou fusible) dédié isole alors le parafoudre sans couper toute l’installation. Règle pratique : câbles de raccordement du parafoudre les plus courts possible (moins de 50 cm au total), sinon leur inductance ajoute de la surtension.</div>
+  </div>
+</section>
+
+<section id="nfc">
+  <h2><span class="n">8</span>Quand le parafoudre est-il obligatoire ? (NF C 15-100) <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <div class="scroll"><table>
+      <tr><th>Situation</th><th>Zone AQ1 (N<sub>g</sub> ≤ 2,5)</th><th>Zone AQ2 (N<sub>g</sub> &gt; 2,5)</th></tr>
+      <tr><td>Bâtiment équipé d’un paratonnerre</td><td>Obligatoire (type 1)</td><td>Obligatoire (type 1)</td></tr>
+      <tr><td>Alimentation par une ligne en tout ou partie aérienne</td><td>Non obligatoire</td><td>Obligatoire</td></tr>
+      <tr><td>Autres cas</td><td colspan="2">Selon une analyse de risque (guide UTE C 15-443), recommandé si la continuité de service est importante</td></tr>
+    </table></div>
+    <ul>
+      <li><b>Type 1</b> : en tête d’installation, écoule un courant de foudre direct (onde 10/350 µs). Indispensable avec un paratonnerre.</li>
+      <li><b>Type 2</b> : protection générale du tableau (onde 8/20 µs). Le cas courant.</li>
+      <li><b>Type 3</b> : protection fine au plus près d’un appareil sensible, en complément d’un type 2.</li>
+    </ul>
+    <p class="small">La série NF C 15-100 a été révisée en 2024. Depuis août 2025, un parafoudre principal est aussi exigé pour certains établissements (santé, services publics, patrimoine). Une installation alimentée par un réseau de communication cuivre doit avoir aussi un parafoudre sur ce réseau quand il y en a un sur la puissance. Vérifie le cas exact dans ta version de la norme.</p>
+  </div>
+</section>
+
+<section id="exos">
+  <h2><span class="n">9</span>Exercices <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="ex">
+    <h3>Exercice 1 : choisir le bon niveau de protection</h3>
+    <p>Dans un tableau 230/400 V, on veut protéger une centrale de détection incendie (électronique) et un disjoncteur général. Quel niveau de protection U<sub>p</sub> maximal le parafoudre doit-il garantir pour chacun ?</p>
+    <div class="sol"><span class="t">Correction</span>
+      Disjoncteur : catégorie « tenue élevée » → <b>4 kV</b>. Centrale électronique : « tenue réduite » → <b>1,5 kV</b>. C’est le matériel le plus fragile qui impose : U<sub>p</sub> &lt; 1,5 kV (en pratique, type 2 au tableau + type 3 au plus près de la centrale).</div>
+  </div>
+  <div class="ex">
+    <h3>Exercice 2 : obligatoire ou pas ?</h3>
+    <p>Un pavillon dans la Drôme (N<sub>k</sub> ≈ 30), alimenté par une ligne aérienne, sans paratonnerre. Parafoudre obligatoire ?</p>
+    <div class="sol"><span class="t">Correction</span>
+      N<sub>k</sub> &gt; 25 → zone <b>AQ2</b>, et ligne aérienne → <b>oui, obligatoire</b> (un type 2 suffit, pas de paratonnerre donc pas de type 1).</div>
+  </div>
+  <div class="ex">
+    <h3>Exercice 3 : rupture du neutre</h3>
+    <p>Pourquoi une rupture du neutre est-elle classée en « surtension temporaire » et pas en surtension de manœuvre ?</p>
+    <div class="sol"><span class="t">Correction</span>
+      Parce qu’elle dure tant que le neutre n’est pas réparé (à 50 Hz, des minutes ou des heures), alors qu’une surtension de manœuvre est un phénomène transitoire très bref, lié à l’ouverture ou la fermeture d’un appareil.</div>
+  </div>
+</section>
+
+<section id="qcm">
+  <h2><span class="n">10</span>QCM</h2>
+  <div class="card"><div data-qcm="q2"></div></div>
+</section>
+
+<div class="pn"><a href="c1-qee.html">← C1 · QEE</a><a href="td-variateur.html">TD variateur →</a></div>
+<footer>US2.2 Qualité de l’énergie électrique & compatibilité électromagnétique · LP ieBIM · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

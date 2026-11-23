@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C2 · Les couplages et le TD2 – L3 pro BIM</title>
+<link rel="stylesheet" href="../electricite/style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">QEE & CEM</a><a href="c0-fourier.html">C0 · Fourier</a><a href="c1-qee.html">C1 · QEE</a><a href="c1-surtensions.html">Surtensions</a><a href="td-variateur.html">TD variateur</a><a href="c2-cem.html">C2 · CEM</a><a href="c2-couplages.html" class="cur">Couplages</a><a href="c2-protection.html">Protection</a><a href="formulaire.html">Formulaire</a><a href="../index.html">Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">US2.2 · C2 (suite)</div>
+  <h1>Les couplages : comment la perturbation passe du bourreau à la victime</h1>
+  <p class="lead">Le couplage est le chemin de la perturbation. Il y en a quatre : par impédance commune, capacitif (champ électrique), inductif (champ magnétique) et par rayonnement (onde électromagnétique). Chacun a ses remèdes.</p>
+  <div class="toc"><a href="#synthese">Synthèse</a><a href="#inductif">Inductif</a><a href="#principes">Champ à fil / à boucle</a><a href="#distance">Distance</a><a href="#resume">Résumé</a><a href="#td2-1">TD2 exo 1</a><a href="#td2-2">TD2 exo 2</a><a href="#exos">Exercices</a><a href="#qcm">QCM</a></div>
+</section>
+
+<section id="synthese">
+  <h2><span class="n">1</span>Synthèse des mécanismes de couplage (modes de propagation) <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Type de couplage</th><th>Commentaire</th><th>Exemple <span class="src a" title="Ajouté pour compléter">complété</span></th></tr>
+    <tr><td><b>Impédance commune</b></td><td>Élément physique présentant une impédance, partagé par deux circuits (Z<sub>com</sub>)</td><td>Deux appareils qui reviennent par le même fil de masse : le courant de l’un crée une tension dans l’autre</td></tr>
+    <tr><td><b>Électrique</b></td><td>Capacitif ou rayonnement E (champ E à fil)</td><td>Câble de commande posé contre un câble de puissance découpé</td></tr>
+    <tr><td><b>Magnétique</b></td><td>Inductif ou rayonnement H (champ H à boucle, comme un transformateur)</td><td>Boucle de câblage près d’un câble de forte intensité</td></tr>
+    <tr><td><b>Électromagnétique</b></td><td>Rayonnement (onde plane), d’antenne à antenne</td><td>Talkie-walkie à côté d’un automate</td></tr>
+  </table></div></div>
+</section>
+
+<section id="inductif">
+  <h2><span class="n">2</span>Le couplage inductif <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>Un courant I circulant dans un conducteur crée un <b>champ magnétique</b> qui rayonne autour de lui. Pour que ce soit gênant, le courant doit être élevé : il est surtout produit par les circuits de <b>puissance</b> (forts courants, &gt; 10 A).</p>
+    <p>Toute <b>boucle</b> formée par un conducteur, de surface S, baignée dans un champ magnétique variable, voit apparaître une tension U alternative à ses bornes.</p>
+    <ul>
+      <li>Le couplage inductif se transmet <b>loin</b> (c’est le principe des ondes radio, TNT, GSM…).</li>
+      <li>Il est <b>sensible aux boucles</b> (pense au transformateur).</li>
+      <li>La <b>fréquence augmente son effet</b>.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="principes">
+  <h2><span class="n">3</span>Rappel de quelques principes <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="grid2">
+    <div class="mini"><h4>Couplage champ à fil</h4>
+      <p>Un fil éclairé par un <b>champ électrique</b> se comporte comme une <b>antenne</b> : il est parcouru par un courant</p>
+      <div class="formula">I = k · <span class="frac"><span>dE</span><span>dt</span></span></div>
+      <p><b>Remède</b> : blinder les câbles, avec un blindage relié au 0 V ; le courant se dissipe dans le plan de masse.</p></div>
+    <div class="mini"><h4>Couplage champ à boucle</h4>
+      <p>Une boucle éclairée par un <b>champ magnétique</b> voit apparaître une force électromotrice (fem) :</p>
+      <div class="formula">E = S · <span class="frac"><span>dB</span><span>dt</span></span></div>
+      <p><b>Remède</b> : réduire la surface de la boucle, améliorer le câblage, <b>torsader les fils</b>.</p></div>
+  </div>
+  <div class="box teal"><b class="t">Précision <span class="src a" title="Ajouté pour compléter">complété</span></b>
+    La formule E = S·dB/dt est la loi de <b>Faraday</b> ; Lenz ajoute le signe (la fem s’oppose à la variation du flux). On parle souvent de « loi de Faraday-Lenz ». Pourquoi le torsadage marche : chaque torsade inverse le sens de la petite boucle, les fem induites se compensent deux à deux.</div>
+</section>
+
+<section id="distance">
+  <h2><span class="n">4</span>L’effet de la distance <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <figure><svg viewBox="0 0 520 200" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="13" role="img" ><line x1="50" y1="170" x2="510" y2="170" stroke="#1c2230" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="170" x2="50" y2="15" stroke="#d43f3f" stroke-width="3" stroke-linecap="round"/><polyline points="50,30.0 53,41.50009861603505 56,52.05553817365201 59,61.74391633235331 62,70.63645660352243 65,78.79853194565221 68,86.29014534959629 71,93.16637094683631 74,99.47775888354514 77,105.27070693685252 80,110.587801605227 83,115.46813118047935 86,119.9475731029163 89,124.0590577121188 92,127.8328103322917 95,131.296573471861 98,134.47581077080432 101,137.39389419502174 104,140.07227585389404 107,142.53064570413486 110,144.78707629928667 113,146.85815564897788 116,148.75910916464707 119,150.50391158821134 122,152.10538972651494 125,153.5753167468049 128,154.92449872643977 131,156.16285409309765 134,157.29948653948225 137,158.34275194855536 140,159.30031982129248 143,160.1792296585437 146,160.98594271148784 149,161.72638948111984 152,162.40601331596116 155,163.02981042849905 158,163.60236662453275 161,164.1278910154407 164,164.61024696120168 167,165.05298047164635 170,165.45934627472863 173,165.8323317434564 176,166.17467885737904 179,166.48890436008008 182,166.77731826086156 185,167.04204081663434 188,167.28501811885513 191,167.50803640009738 194,167.71273516542917 197,167.90061924513313 200,168.07306985737296 203,168.2313547621331 206,168.37663758107774 209,168.50998635184325 212,168.6323813796507 215,168.74472244395884 218,168.8478354131372 221,168.94247831578596 224,169.02934691333635 227,169.1090798148977 230,169.18226317195266 233,169.24943498741342 236,169.31108907071695 239,169.36767866803422 242,169.41961979428157 245,169.4672942914284 248,169.51105263558483 251,169.551216513505 254,169.58808118744744 257,169.62191766577712 260,169.65297469526672 263,169.68148058974307 266,169.70764490852218 269,169.73165999697144 272,169.7537024005247 275,169.77393416254512 278,169.7925040155769 281,169.8095484747433 284,169.8251928413292 287,169.83955212392564 290,169.85273188390843 293,169.86482901146593 296,169.87593243788143 299,169.8861237893058 302,169.89547798682727 305,169.90406379724894 308,169.9119443386238 311,169.9191775442633 314,169.92581658863017 317,169.9319102782475 320,169.93750341049673 323,169.94263710294283 326,169.94734909560754 329,169.9516740284128 332,169.955643695834 335,169.9592872806351 338,169.96263156840382 341,169.96570114446442 344,169.96851857461496 347,169.97110457101854 350,169.9734781444674 353,169.97565674413957 356,169.9776563858755 359,169.97949176991744 362,169.98117638897736 365,169.98272262742788 368,169.98414185234506 371,169.9854444970729 374,169.9866401379234 377,169.9877375645761 380,169.988744844695 383,169.98966938323747 386,169.99051797689128 389,169.99129686404007 392,169.9920117706244 395,169.99266795223573 398,169.9932702327525 401,169.99382303980258 404,169.9943304373127 407,169.99479615538422 410,169.9952236177147 413,169.99561596676688 416,169.99597608687057 419,169.99630662542637 422,169.99661001236797 425,169.99688847802565 428,169.99714406952245 431,169.9973786658234 434,169.99759399154865 437,169.99779162965194 440,169.99797303305755 443,169.99813953534132 446,169.99829236053452 449,169.99843263212205 452,169.99856138130178 455,169.99867955456534 458,169.99878802065618 461,169.998887576956 464,169.9989789553468 467,169.99906282759108 470,169.99913981027052 473,169.9992104693185 476,169.99927532418064 479,169.9993348516334 482,169.9993894892892 485,169.99943963881333 488,169.99948566887696 491,169.99952791786723 494,169.99956669637496 497,169.99960228947793" fill="none" stroke="#1d9a52" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><polyline points="50,170.0 53,157.71787911824973 56,146.63377044400897 59,136.66003236005463 62,127.71472235864312 65,119.72124960544897 68,112.60804783709142 71,106.30826743528795 74,100.75948558516066 77,95.90343348616885 80,91.68573964174391 83,88.05568830813867 86,84.96599223444758 89,82.37257887436637 92,80.23438929619579 95,78.51318906099843 98,77.1733903798271 101,76.18188489969114 104,75.50788650453214 107,75.12278355206382 110,75.0 113,76.66176483220184 116,78.29446163958744 119,79.89859888764502 122,81.47467614765158 125,83.02318425225275 128,84.54460544832122 131,86.03941354714135 134,87.50807407196665 137,88.95104440299617 140,90.36877391981501 143,91.76170414134306 146,93.1302688633359 149,94.4748942934803 152,95.79599918412684 155,97.09399496270046 158,98.36928585983009 161,99.6222690352368 164,100.85333470142002 167,102.06286624518013 170,103.25124034701543 173,104.41882709843041 176,105.56599011719226 179,106.69308666057117 182,107.80046773659973 185,108.88847821338626 188,109.95745692651607 191,111.00773678457375 194,112.03964487281995 197,113.05350255505445 200,114.04962557369743 203,115.0283241481201 206,115.9899030712554 209,116.93466180451856 212,117.8628945710675 215,118.77489044743169 218,119.67093345353848 221,120.55130264116434 224,121.41627218083912 227,122.26611144723014 230,123.10108510303263 233,123.9214531813927 236,124.72747116688878 239,125.51939007509623 242,126.29745653076037 245,127.06191284460199 248,127.81299708877944 251,128.55094317103064 254,129.27598090751817 257,129.98833609440032 260,130.68823057814984 263,131.3758823246431 266,132.0515054870403 269,132.71531047247862 272,133.3675040075986 275,134.00828920292435 278,134.6378656161176 281,135.2564293141253 284,135.86417293424012 287,136.46128574409278 290,137.04795370059523 293,137.62435950785246 296,138.19068267406152 299,138.74709956741515 302,139.2937834710275 305,139.8309046368993 308,140.35863033893872 311,140.877124925055 314,141.3865498683408 317,141.88706381735923 320,142.3788226455513 323,142.86197949977904 326,143.33668484801944 329,143.80308652622446 332,144.26132978436084 335,144.71155733164494 338,145.15390938098625 341,145.58852369265338 344,146.01553561717628 347,146.43507813749812 350,146.8472819103896 353,147.25227530713903 356,147.65018445353067 359,148.04113326912352 362,148.4252435058433 365,148.80263478589916 368,149.1734246390374 371,149.5377285391432 374,149.8956599402023 377,150.24733031163387 380,150.59284917300468 383,150.93232412813666 386,151.26586089861758 389,151.5935633567255 392,151.91553355777756 395,152.2318717719125 398,152.54267651531765 401,152.8480445809094 404,153.14807106847718 407,153.4428494143 410,153.73247142024513 413,154.0170272823575 416,154.2966056189493 419,154.57129349819797 422,154.84117646526175 425,155.1063385689205 428,155.3668623877509 431,155.6228290558436 434,155.87431828807047 437,156.12140840491006 440,156.3641763568386 443,156.60269774829453 446,156.83704686122363 449,157.06729667821244 452,157.29351890521716 455,157.5157839938945 458,157.73416116354247 461,157.948718422657 464,158.15952259011164 467,158.36663931596672 470,158.57013310191456 473,158.77006732136707 476,158.96650423919175 479,159.1595050311029 482,159.34912980271315 485,159.5354376082521 488,159.71848646895722 491,159.8983333911435 494,160.0750343839564 497,160.24864447681483" fill="none" stroke="#2f6fd6" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><text x="120" y="55" fill="#1d9a52" font-size="13" text-anchor="middle" font-weight="700">CAPACITIF</text><text x="310" y="110" fill="#2f6fd6" font-size="13" text-anchor="middle" font-weight="700">INDUCTIF</text><text x="50" y="12" fill="#d43f3f" font-size="12" text-anchor="start">perturbateur</text><text x="505" y="188" fill="#5c6577" font-size="12" text-anchor="end">distance →</text><line x1="170" y1="170" x2="170" y2="30" stroke="#df8516" stroke-width="1.5" stroke-dasharray="5 4" stroke-linecap="round"/><text x="174" y="40" fill="#df8516" font-size="12" text-anchor="start">λ/2π (≈ 30 cm)</text></svg></figure>
+    <p>Dans tous les cas, <b>augmenter la distance</b> entre bourreau(x) et victime(s) réduit la transmission. Le couplage <b>capacitif</b> décroît très vite avec la distance, le couplage <b>inductif</b> plus lentement.</p>
+    <p>Sans écran, il faut dépasser <b>λ/2π</b> pour ne pas subir le couplage capacitif, le plus violent à haute fréquence. λ est la longueur d’onde : <b>λ = c / f</b>, avec c = 3·10⁸ m/s <span class="src a" title="Ajouté pour compléter">complété</span>.</p>
+    <div class="box blue"><b class="t">D’où vient la règle des 30 cm ? <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      λ/2π = 30 cm correspond à λ = 1,88 m, donc f = 3·10⁸ / 1,88 ≈ <b>160 MHz</b>. Séparer de 30 cm protège donc contre le couplage capacitif jusqu’à environ 160 MHz, ce qui couvre la plupart des perturbations d’un bâtiment.</div>
+  </div>
+  <div class="calc" data-calc="lambda">
+    <h4>Longueur d’onde et distance λ/2π</h4>
+    <div class="in"><div><label>Fréquence (MHz)</label><input type="number" step="any" value="160" data-k="f"></div></div>
+    <div class="out" data-k="out"></div>
+  </div>
+</section>
+
+<section id="resume">
+  <h2><span class="n">5</span>Résumé des couplages <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Depuis la source…</th><th>Couplage</th><th>Modèle valable</th></tr>
+    <tr><td rowspan="3">par le <b>champ</b> (E et H)</td><td>capacitif</td><td>BF</td></tr>
+    <tr><td>inductif</td><td>BF</td></tr>
+    <tr><td>par rayonnement</td><td>HF</td></tr>
+    <tr><td>par <b>conduction</b></td><td>par conduction</td><td>HF et BF</td></tr>
+  </table></div>
+  <p>Tous aboutissent au même résultat : des <b>courants et tensions induits</b> dans la victime.</p></div>
+</section>
+
+<section id="td2-1">
+  <h2><span class="n">6</span>TD2 · Exercice 1 : couplage capacitif entre deux conducteurs <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="ex">
+    <p>Le conducteur 1 (source de perturbations) est alimenté par une tension sinusoïdale V<sub>1</sub> de fréquence f. Le conducteur 2 (victime) alimente une charge R<sub>2</sub>. Entre eux : la capacité de couplage <b>C<sub>12</sub></b> ; entre chacun et la masse : <b>C<sub>1</sub></b> et <b>C<sub>2</sub></b>.</p>
+    <h3>1 et 2 · Capacités et schéma équivalent</h3>
+    <figure><svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="13" role="img" ><circle cx="50" cy="100" r="16" fill="none" stroke="#1c2230" stroke-width="2"/><text x="50" y="105" fill="#1c2230" font-size="16" text-anchor="middle">~</text><line x1="50" y1="84" x2="50" y2="40" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="50" y1="116" x2="50" y2="165" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="50" y1="40" x2="250" y2="40" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="50" y1="165" x2="430" y2="165" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><text x="22" y="104" fill="#1c2230" font-size="13" text-anchor="end">V₁</text><line x1="130" y1="40" x2="130" y2="96" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="118" y1="96" x2="142" y2="96" stroke="#1c2230" stroke-width="2.5" stroke-linecap="round"/><line x1="118" y1="104" x2="142" y2="104" stroke="#1c2230" stroke-width="2.5" stroke-linecap="round"/><line x1="130" y1="104" x2="130" y2="165" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><text x="150" y="105" fill="#1c2230" font-size="13" text-anchor="start">C₁</text><line x1="230" y1="40" x2="246" y2="40" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="246" y1="28" x2="246" y2="52" stroke="#1c2230" stroke-width="2.5" stroke-linecap="round"/><line x1="254" y1="28" x2="254" y2="52" stroke="#1c2230" stroke-width="2.5" stroke-linecap="round"/><line x1="254" y1="40" x2="430" y2="40" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><text x="250" y="25" fill="#d43f3f" font-size="13" text-anchor="middle" font-weight="700">C₁₂</text><line x1="190" y1="40" x2="222" y2="40" stroke="#d43f3f" stroke-width="2" stroke-linecap="round"/><polygon points="222,40 214.8,43.5 214.8,36.5" fill="#d43f3f"/><text x="205" y="32" fill="#d43f3f" font-size="12" text-anchor="middle">I₁₂</text><line x1="320" y1="40" x2="320" y2="80" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><rect x="310" y="80" width="20" height="44" fill="#fff" stroke="#1c2230" stroke-width="2"/><line x1="320" y1="124" x2="320" y2="165" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><text x="340" y="106" fill="#1c2230" font-size="13" text-anchor="start">R₂</text><line x1="430" y1="40" x2="430" y2="96" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><line x1="418" y1="96" x2="442" y2="96" stroke="#1c2230" stroke-width="2.5" stroke-linecap="round"/><line x1="418" y1="104" x2="442" y2="104" stroke="#1c2230" stroke-width="2.5" stroke-linecap="round"/><line x1="430" y1="104" x2="430" y2="165" stroke="#1c2230" stroke-width="2" stroke-linecap="round"/><text x="450" y="105" fill="#1c2230" font-size="13" text-anchor="start">C₂</text><line x1="290" y1="150" x2="290" y2="58" stroke="#1d9a52" stroke-width="2" stroke-linecap="round"/><polygon points="290,58 293.5,65.2 286.5,65.2" fill="#1d9a52"/><text x="282" y="108" fill="#1d9a52" font-size="13" text-anchor="end" font-weight="700">V₂</text><text x="240" y="190" fill="#5c6577" font-size="11.5" text-anchor="middle">bourreau → C₁₂ → victime (R₂ // C₂ vers la masse)</text></svg></figure>
+    <p>C<sub>1</sub> est directement aux bornes de la source : elle ne change pas V<sub>2</sub>. Côté victime, R<sub>2</sub> et C<sub>2</sub> sont en parallèle.</p>
+    <h3>3 · Expression de V<sub>2</sub> (ta démarche <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span>)</h3>
+    <p>Loi des nœuds : I<sub>12</sub> = I<sub>R2</sub> + I<sub>C2</sub>, avec</p>
+    <div class="formula">I<sub>12</sub> = jC<sub>12</sub>ω(V<sub>1</sub> − V<sub>2</sub>) &nbsp;·&nbsp; I<sub>R2</sub> = <span class="frac"><span>V<sub>2</sub></span><span>R<sub>2</sub></span></span> &nbsp;·&nbsp; I<sub>C2</sub> = jC<sub>2</sub>ωV<sub>2</sub></div>
+    <p>jC<sub>12</sub>ωV<sub>1</sub> = V<sub>2</sub> (1/R<sub>2</sub> + jC<sub>2</sub>ω + jC<sub>12</sub>ω), puis on multiplie haut et bas par R<sub>2</sub> :</p>
+    <div class="formula"><span class="frac"><span>V<sub>2</sub></span><span>V<sub>1</sub></span></span> = <span class="frac"><span>jωR<sub>2</sub>C<sub>12</sub></span><span>1 + jωR<sub>2</sub>(C<sub>2</sub> + C<sub>12</sub>)</span></span></div>
+    <p>Ton résultat est <b>juste</b> ✔.</p>
+    <div class="box orange"><b class="t">Rigueur d’écriture <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span></b>
+      Dans tes notes, une ligne écrit I<sub>12</sub> = C<sub>12</sub>ω(V<sub>1</sub> − V<sub>2</sub>) sans le « j », puis le j réapparaît. Sans j, c’est une relation entre <b>modules</b> ; avec j, entre <b>grandeurs complexes</b>. Garde toujours le j quand tu additionnes des courants : sinon tu oublies le déphasage de 90° du condensateur. Même remarque pour « P = U × I » dans tes formules à connaître : c’est vrai en continu ou sur une résistance ; en alternatif, P = U·I·cos φ.</div>
+    <h3>4 · Basses et hautes fréquences <span class="src a" title="Ajouté pour compléter">complété</span></h3>
+    <ul>
+      <li><b>BF</b> (ωR<sub>2</sub>(C<sub>2</sub> + C<sub>12</sub>) ≪ 1) : V<sub>2</sub> ≈ jωR<sub>2</sub>C<sub>12</sub>·V<sub>1</sub>. La perturbation est faible et <b>proportionnelle à la fréquence</b>.</li>
+      <li><b>HF</b> (ωR<sub>2</sub>(C<sub>2</sub> + C<sub>12</sub>) ≫ 1) : V<sub>2</sub> ≈ <span class="frac"><span>C<sub>12</sub></span><span>C<sub>12</sub> + C<sub>2</sub></span></span>·V<sub>1</sub>. Diviseur capacitif : la perturbation devient <b>maximale</b> et ne dépend plus de la fréquence.</li>
+      <li>Transition à f<sub>c</sub> = 1 / (2πR<sub>2</sub>(C<sub>2</sub> + C<sub>12</sub>)).</li>
+    </ul>
+    <div class="sol"><span class="t">Conclusion</span>
+      Le couplage capacitif est surtout un problème <b>HF</b>. Pour le réduire : diminuer C<sub>12</sub> (éloigner les câbles, écran relié à la masse), augmenter C<sub>2</sub> (câble victime proche de la masse) et préférer une victime de faible impédance R<sub>2</sub>.</div>
+    <h3>Application numérique <span class="src a" title="Ajouté pour compléter">complété</span></h3>
+    <p>C<sub>12</sub> = 50 pF, C<sub>2</sub> = 150 pF, R<sub>2</sub> = 1 kΩ. f<sub>c</sub> = 1/(2π × 1 000 × 200·10⁻¹²) ≈ <b>800 kHz</b>. À 50 Hz sous 230 V : V<sub>2</sub> ≈ 314 × 1 000 × 50·10⁻¹² × 230 ≈ <b>3,6 mV</b> (négligeable). Une perturbation de 10 V à 10 MHz donne |V<sub>2</sub>| ≈ 10 × 0,25 = <b>2,5 V</b> : de quoi faire basculer une entrée d’automate.</p>
+  </div>
+  <div class="calc" data-calc="cpl">
+    <h4>Couplage capacitif : |V₂ / V₁|</h4>
+    <div class="in">
+      <div><label>C₁₂ (pF)</label><input type="number" step="any" value="50" data-k="C12"></div>
+      <div><label>C₂ (pF)</label><input type="number" step="any" value="150" data-k="C2"></div>
+      <div><label>R₂ (Ω)</label><input type="number" step="any" value="1000" data-k="R2"></div>
+      <div><label>f (Hz)</label><input type="number" step="any" value="10000000" data-k="f"></div>
+      <div><label>V₁ (V)</label><input type="number" step="any" value="10" data-k="V1"></div>
+    </div>
+    <div class="out" data-k="out"></div>
+  </div>
+</section>
+
+<section id="td2-2">
+  <h2><span class="n">7</span>TD2 · Exercice 2 : câble coaxial blindé <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="ex">
+    <p>Un câble coaxial alimente une résistance R depuis une source v(t). L’âme se comporte comme (R<sub>1</sub>, L<sub>1</sub>, M) et le blindage comme (R<sub>2</sub>, L<sub>2</sub>, M), M étant l’inductance mutuelle. Les deux extrémités du blindage sont reliées à un plan de masse de résistance R<sub>3</sub>. <span class="small">(Énoncé <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span>, correction complétée.)</span></p>
+    <h3>1 · Schéma équivalent</h3>
+    <p>Le courant I<sub>1</sub> part par l’âme et doit revenir à la source. Il a deux chemins de retour <b>en parallèle</b> : le <b>blindage</b> (R<sub>2</sub>, L<sub>2</sub>, courant I<sub>2</sub>) et le <b>plan de masse</b> (R<sub>3</sub>, courant I<sub>1</sub> − I<sub>2</sub>). L’âme et le blindage sont couplés par M.</p>
+    <h3>2 · Tension induite dans le blindage</h3>
+    <div class="formula">E<sub>2</sub> = jMω · I<sub>1</sub></div>
+    <h3>3 · Rapport des courants</h3>
+    <p>Les deux chemins de retour sont sous la même tension : (R<sub>2</sub> + jL<sub>2</sub>ω)·I<sub>2</sub> − jMω·I<sub>1</sub> = R<sub>3</sub>·(I<sub>1</sub> − I<sub>2</sub>). Si le plan de masse est très conducteur (R<sub>3</sub> ≈ 0) et que, dans un coaxial, M = L<sub>2</sub> (tout le flux du blindage entoure l’âme) :</p>
+    <div class="formula"><span class="frac"><span>I<sub>2</sub></span><span>I<sub>1</sub></span></span> = <span class="frac"><span>jL<sub>2</sub>ω</span><span>R<sub>2</sub> + jL<sub>2</sub>ω</span></span></div>
+    <h3>4 · BF, HF et conclusion</h3>
+    <ul>
+      <li><b>BF</b> (ω ≪ R<sub>2</sub>/L<sub>2</sub>) : I<sub>2</sub>/I<sub>1</sub> ≈ jωL<sub>2</sub>/R<sub>2</sub> → 0. Le courant revient par le <b>plan de masse</b> : grande boucle, le câble rayonne et capte.</li>
+      <li><b>HF</b> (ω ≫ R<sub>2</sub>/L<sub>2</sub>) : I<sub>2</sub>/I<sub>1</sub> → 1. Tout le courant revient par le <b>blindage</b>, au plus près de l’âme : les champs s’annulent, le blindage est efficace.</li>
+      <li>Fréquence de coupure : f<sub>c</sub> = R<sub>2</sub> / (2πL<sub>2</sub>), en général quelques kHz.</li>
+    </ul>
+    <div class="sol"><span class="t">Conclusion</span>
+      Un blindage relié aux <b>deux extrémités</b> protège bien en <b>HF</b>, mais pas contre les champs magnétiques <b>BF</b> (50 Hz) : là, il faut torsader, réduire les boucles ou utiliser un blindage magnétique (acier).</div>
+  </div>
+</section>
+
+<section id="exos">
+  <h2><span class="n">8</span>Exercices <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="ex">
+    <h3>Exercice 1 : quelle distance ?</h3>
+    <p>Un variateur émet surtout autour de 30 MHz. Quelle distance minimale sans écran pour sortir du couplage capacitif ?</p>
+    <div class="sol"><span class="t">Correction</span>λ = 3·10⁸ / 30·10⁶ = 10 m ; λ/2π = <b>1,6 m</b>. Trop pour un chemin de câbles : on sépare les câbles de 30 cm <b>et</b> on blinde le câble moteur.</div>
+  </div>
+  <div class="ex">
+    <h3>Exercice 2 : fem dans une boucle</h3>
+    <p>Une boucle de câblage de 0,5 m² est traversée par un champ qui varie de 2 mT en 1 ms. Quelle fem ?</p>
+    <div class="sol"><span class="t">Correction</span>E = S × dB/dt = 0,5 × (2·10⁻³ / 10⁻³) = <b>1 V</b>. En divisant la surface par 100 (fils aller et retour plaqués ou torsadés), on tombe à 10 mV.</div>
+  </div>
+</section>
+
+<section id="qcm">
+  <h2><span class="n">9</span>QCM</h2>
+  <div class="card"><div data-qcm="q5"></div></div>
+</section>
+
+<div class="pn"><a href="c2-cem.html">← C2 · CEM</a><a href="c2-protection.html">Protection →</a></div>
+<footer>US2.2 Qualité de l’énergie électrique & compatibilité électromagnétique · LP ieBIM · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>C1 · La qualité de l’énergie électrique – L3 pro BIM</title>
+<link rel="stylesheet" href="../electricite/style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">QEE & CEM</a><a href="c0-fourier.html">C0 · Fourier</a><a href="c1-qee.html" class="cur">C1 · QEE</a><a href="c1-surtensions.html">Surtensions</a><a href="td-variateur.html">TD variateur</a><a href="c2-cem.html">C2 · CEM</a><a href="c2-couplages.html">Couplages</a><a href="c2-protection.html">Protection</a><a href="formulaire.html">Formulaire</a><a href="../index.html">Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">US2.2 · C1</div>
+  <h1>La qualité de l’énergie électrique (QEE)</h1>
+  <p class="lead">Le réseau doit fournir une tension sinusoïdale, à 50 Hz, d’amplitude stable et identique sur les trois phases. Tout écart est une <b>perturbation</b> : creux, coupure, flicker, surtension, déséquilibre, harmoniques. Ce chapitre les passe en revue avec leurs causes, leurs effets et leurs remèdes.</p>
+  <div class="toc"><a href="#carte">Carte mentale</a><a href="#creux">Creux et coupures</a><a href="#flicker">Flicker</a><a href="#surt">Surtensions</a><a href="#deseq">Déséquilibre</a><a href="#harmo">Harmoniques</a><a href="#resume">Résumé</a><a href="#solutions">Solutions</a><a href="#norme">EN 50160</a><a href="#exos">Exercices</a><a href="#qcm">QCM</a></div>
+</section>
+
+<section id="carte">
+  <h2><span class="n">1</span>Les 5 thèmes de la QEE <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>La carte mentale de ton cours relie la qualité de l’énergie à cinq sujets. Chacun renvoie à une partie du site :</p>
+    <div class="cards">
+      <a class="ch" href="c0-fourier.html"><b>Présence d’harmoniques</b><span>C0 Fourier, TD variateur</span></a>
+      <a class="ch" href="#flicker"><b>Influence sur l’éclairage</b><span>flicker, papillotement</span></a>
+      <a class="ch" href="../electricite/04-puissances.html"><b>Présence de puissance réactive</b><span>Électricité ch. 4</span></a>
+      <a class="ch" href="../electricite/05-compensation.html"><b>Tarification, facturation</b><span>pénalité si tan φ &gt; 0,4</span></a>
+      <a class="ch" href="../electricite/04-puissances.html#bilan"><b>Bilan de puissance</b><span>additionner P et Q</span></a>
+    </div>
+  </div>
+</section>
+
+<section id="creux">
+  <h2><span class="n">2</span>Creux de tension et coupures <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <p class="small">Cette partie (2.1) n’était pas sur tes photos : je l’ai complétée. Seule la dernière phrase (séparer les circuits de commande) vient de ta fiche.</p>
+    <ul>
+      <li><b>Creux de tension</b> : la tension tombe brusquement sous <b>90 %</b> de sa valeur (sans descendre sous 5 %), pendant <b>10 ms à 1 min</b>, puis revient.</li>
+      <li><b>Coupure brève</b> : tension quasi nulle (&lt; 5 %) pendant <b>3 min au plus</b> (souvent moins d’une seconde : réenclenchement automatique du réseau).</li>
+      <li><b>Coupure longue</b> : plus de 3 minutes.</li>
+    </ul>
+    <p><b>Origines</b> : court-circuit sur le réseau ou chez un voisin, démarrage de gros moteurs, mise sous tension de transformateurs, déclenchements, maintenance.</p>
+    <p><b>Conséquences</b> : arrêt du procédé, pertes ou erreurs de données, ouverture des contacteurs, verrouillage des variateurs, ralentissement ou décrochage des moteurs, extinction des lampes à décharge.</p>
+    <div class="box blue"><b class="t">Remède de ta fiche <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></b>
+      Il peut être judicieux de <b>séparer l’alimentation des circuits de contrôle ou de commande</b> (plus sensibles) de celle des circuits de puissance (moins sensibles). L’alimentation des circuits de contrôle est alors renforcée (batteries, condensateurs…).</div>
+  </div>
+</section>
+
+<section id="flicker">
+  <h2><span class="n">3</span>Le phénomène de flicker (papillotement) <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>Le flicker peut être vu comme un <b>creux de tension faible (moins de 10 %)</b> et <b>lent (f &lt; 25 Hz)</b> qui se répète : l’amplitude de la sinusoïde « respire ».</p>
+    <ul>
+      <li><b>Cause</b> : variation lente de charges connectées au réseau (gradateur à train d’ondes) ou charges industrielles rapidement variables (machine à souder, four à arc, laminoirs).</li>
+      <li><b>Effet</b> : scintillement des sources d’éclairage. La gêne physiologique (fatigue visuelle et nerveuse) dépend de l’amplitude des fluctuations.</li>
+      <li><b>Mesure</b> <span class="src a" title="Ajouté pour compléter">complété</span> : indices P<sub>st</sub> (courte durée, 10 min) et P<sub>lt</sub> (longue durée, 2 h). Au-delà de 1, la gêne est jugée inacceptable.</li>
+    </ul>
+    <div class="box teal"><b class="t">Lien avec les interharmoniques <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></b>
+      Les charges fluctuantes (fours à arc, machines à souder) et les convertisseurs de fréquence produisent aussi des <b>interharmoniques</b> (fréquences qui ne sont pas des multiples de 50 Hz). Ils provoquent du flicker et perturbent les signaux de tarification (175 Hz).</div>
+  </div>
+</section>
+
+<section id="surt">
+  <h2><span class="n">4</span>Les surtensions <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>Elles sont de trois natures : <b>temporaires</b>, <b>de manœuvre</b> et <b>d’origine atmosphérique</b> (la foudre). Tout le détail, avec les parafoudres et la carte des niveaux kérauniques, est sur la page suivante.</p>
+    <p><a href="c1-surtensions.html">→ Surtensions, foudre et parafoudres</a></p>
+  </div>
+</section>
+
+<section id="deseq">
+  <h2><span class="n">5</span>Déséquilibre de tension <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p>Un système triphasé est <b>déséquilibré</b> quand les trois tensions n’ont pas la même amplitude et/ou ne sont pas déphasées de 120°.</p>
+    <p>Pour le quantifier, on décompose le réseau en une <b>composante directe</b> (U<sub>+</sub> ou U<sub>d</sub>, le « bon » système) et une <b>composante inverse</b> (U<sub>−</sub> ou U<sub>i</sub>, qui tourne à l’envers). Les normes européennes et mondiales limitent :</p>
+    <div class="formula"><span class="frac"><span>U<sub>−</sub></span><span>U<sub>+</sub></span></span> (%) &lt; 2 %</div>
+    <p><b>Formule approchée</b> de ta fiche :</p>
+    <div class="formula">ΔU<sub>i</sub> = <span class="frac"><span>V<sub>i</sub> − V<sub>moy</sub></span><span>V<sub>i</sub></span></span> &nbsp; avec &nbsp; V<sub>moy</sub> = <span class="frac"><span>V<sub>1</sub> + V<sub>2</sub> + V<sub>3</sub></span><span>3</span></span></div>
+    <h3>Exemple de la fiche : V<sub>1</sub> = 210 V, V<sub>2</sub> = V<sub>3</sub> = 230 V <span class="src a" title="Ajouté pour compléter">complété</span></h3>
+    <p>V<sub>moy</sub> = (210 + 230 + 230) / 3 = <b>223,3 V</b>.<br>
+    ΔU<sub>1</sub> = (210 − 223,3) / 210 = <b>−6,3 %</b> ; ΔU<sub>2</sub> = ΔU<sub>3</sub> = (230 − 223,3) / 230 = <b>+2,9 %</b>.<br>
+    Le plus grand écart (6,3 %) dépasse largement 2 % : <b>le réseau est trop déséquilibré</b>.</p>
+    <div class="box orange"><b class="t">Pour aller plus loin <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      Beaucoup de documents (Schneider) divisent par V<sub>moy</sub> au lieu de V<sub>i</sub> : on trouve alors 6,0 %. Le calcul exact par les composantes symétriques donne U<sub>−</sub> = 6,7 V et U<sub>+</sub> = 223,3 V, soit <b>3,0 %</b>. La formule approchée est donc pessimiste, mais la conclusion reste la même : &gt; 2 %, non conforme. Le calculateur ci-dessous donne les deux.</div>
+    <p><b>Origine</b> : charges monophasées de forte puissance mal réparties. <b>Conséquences</b> : la composante inverse crée dans les moteurs asynchrones un <b>couple inverse</b> (vibrations) et un <b>échauffement</b>. <b>Solutions</b> : équilibrer les charges entre phases, compensateur électronique shunt, régulateur dynamique de tension, augmenter la P<sub>cc</sub>.</p>
+  </div>
+  <div class="calc" data-calc="deseq">
+    <h4>Calculateur de déséquilibre</h4>
+    <div class="in">
+      <div><label>V₁ (V)</label><input type="number" step="any" value="210" data-k="V1"></div>
+      <div><label>V₂ (V)</label><input type="number" step="any" value="230" data-k="V2"></div>
+      <div><label>V₃ (V)</label><input type="number" step="any" value="230" data-k="V3"></div>
+    </div>
+    <div class="out" data-k="out"></div>
+    <div class="note" data-k="msg"></div>
+  </div>
+</section>
+
+<section id="harmo">
+  <h2><span class="n">6</span>Les harmoniques dans la QEE <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <p><b>Origines</b> : charges non linéaires (variateurs de vitesse, fours à arc, machines à souder, lampes à décharge, tubes fluorescents, alimentations électroniques…).</p>
+    <p><b>Conséquences</b> : surcharges (du conducteur de neutre, des sources), déclenchements intempestifs, vieillissement accéléré, dégradation du rendement énergétique, perte de productivité.</p>
+    <div class="box red"><b class="t">Le piège du neutre <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      Les harmoniques de rang 3 (et multiples de 3) des trois phases sont <b>en phase entre eux</b> : au lieu de s’annuler dans le neutre, ils <b>s’additionnent</b>. I<sub>N</sub> ≈ 3 × I<sub>3</sub>. Avec beaucoup d’informatique ou de LED, le neutre peut porter plus de courant que les phases. C’est pour ça que la NF C 15-100 impose le coefficient « neutre chargé » (voir <a href="../electricite/07-cables.html">électricité ch. 7</a>).</div>
+    <p>Calcul du THD, spectre et puissance déformante : voir <a href="c0-fourier.html#thd">C0</a> et le <a href="td-variateur.html">TD variateur</a>.</p>
+  </div>
+</section>
+
+<section id="resume">
+  <h2><span class="n">7</span>Résumé : quelle perturbation vient d’où ? <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Origine</th><th>Creux</th><th>Surtensions</th><th>Harmoniques</th><th>Déséquilibres</th><th>Fluctuations</th></tr>
+    <tr><th colspan="6" style="text-align:left">Réseau</th></tr>
+    <tr><td>Défaut d’isolement, rupture du neutre</td><td>○</td><td></td><td></td><td>○</td><td></td></tr>
+    <tr><td>Manœuvres et ferrorésonance</td><td></td><td>○</td><td></td><td></td><td></td></tr>
+    <tr><td>Foudre</td><td></td><td>○</td><td></td><td></td><td></td></tr>
+    <tr><th colspan="6" style="text-align:left">Équipements</th></tr>
+    <tr><td>Moteur asynchrone</td><td>○</td><td></td><td></td><td></td><td></td></tr>
+    <tr><td>Moteur synchrone</td><td>○</td><td></td><td>●</td><td>●</td><td>●</td></tr>
+    <tr><td>Machine à souder</td><td>○</td><td></td><td>●</td><td>●</td><td>●</td></tr>
+    <tr><td>Four à arc</td><td>○</td><td></td><td>●</td><td></td><td></td></tr>
+    <tr><td>Convertisseur</td><td></td><td>●</td><td>●</td><td></td><td></td></tr>
+    <tr><td>Charges informatiques</td><td></td><td>●</td><td>●</td><td></td><td></td></tr>
+    <tr><td>Éclairage</td><td></td><td>●</td><td>●</td><td></td><td>○</td></tr>
+    <tr><td>Onduleur</td><td></td><td>●</td><td>●</td><td></td><td></td></tr>
+    <tr><td>Batterie de condensateurs</td><td>○</td><td>●</td><td>●</td><td></td><td></td></tr>
+  </table></div>
+  <p class="small">○ phénomène occasionnel · ● phénomène fréquent. J’ai relu les cases sur ta photo, qui est un peu de biais : en cas de doute, ta feuille fait foi. Pour la batterie de condensateurs, ce n’est pas elle qui crée les harmoniques : elle peut entrer en <b>résonance</b> avec le réseau et les amplifier <span class="src a" title="Ajouté pour compléter">complété</span>.</p></div>
+</section>
+
+<section id="solutions">
+  <h2><span class="n">8</span>Les solutions pour améliorer la QEE <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Perturbation</th><th>Origines</th><th>Conséquences</th><th>Solutions</th></tr>
+    <tr><td><b>Variations et fluctuations de tension</b></td><td>Variations importantes de charges (machines à souder, fours à arc…)</td><td>Fluctuation de la luminosité des lampes (flicker)</td><td>Compensateur électromécanique d’énergie réactive, compensateur automatique en temps réel, compensateur électronique série, régleur en charge</td></tr>
+    <tr><td><b>Creux de tension</b></td><td>Court-circuit, commutation de charges de forte puissance (démarrage moteur…)</td><td rowspan="2">Perturbation ou arrêt du procédé : pertes de données, données erronées, ouverture de contacteurs, verrouillage de variateurs, ralentissement ou décrochage de moteurs, extinction de lampes à décharge</td><td>ASI, compensateur automatique en temps réel, régulateur électronique dynamique de tension, démarreur progressif, compensateur électronique série. Augmenter la P<sub>cc</sub>. Modifier la sélectivité des protections</td></tr>
+    <tr><td><b>Coupures</b></td><td>Court-circuit, surcharges, maintenance, déclenchement intempestif</td><td>ASI, permutation mécanique ou statique de sources, groupe à temps zéro, disjoncteur shunt, téléconduite</td></tr>
+    <tr><td><b>Harmoniques</b></td><td>Charges non linéaires (variateurs, fours à arc, machines à souder, lampes à décharge, tubes fluorescents…)</td><td>Surcharges (neutre, sources), déclenchements intempestifs, vieillissement accéléré, baisse de rendement, perte de productivité</td><td>Self anti-harmonique, filtre passif, actif ou hybride, inductance de ligne. Augmenter la P<sub>cc</sub>. Confiner les charges polluantes. Déclasser les équipements</td></tr>
+    <tr><td><b>Interharmoniques</b></td><td>Charges fluctuantes (fours à arc, machines à souder…), convertisseurs de fréquence</td><td>Perturbation des signaux de tarification, flicker</td><td>Réactance série</td></tr>
+    <tr><td><b>Surtensions transitoires</b></td><td>Manœuvre d’appareillages et de condensateurs, foudre</td><td>Verrouillage de variateurs, déclenchements intempestifs, destruction d’appareillage, incendies, pertes d’exploitation</td><td>Parafoudre, parasurtenseur, enclenchement synchronisé, résistance de préinsertion, self de choc, compensateur automatique statique</td></tr>
+    <tr><td><b>Déséquilibres de tension</b></td><td>Charges déséquilibrées (monophasées de forte puissance…)</td><td>Couples moteurs inverses (vibrations), surchauffe des machines asynchrones</td><td>Équilibrer les charges. Compensateur électronique shunt, régulateur dynamique de tension. Augmenter la P<sub>cc</sub></td></tr>
+  </table></div>
+  <div class="box blue"><b class="t">Vocabulaire <span class="src a" title="Ajouté pour compléter">complété</span></b>
+    <b>ASI</b> : alimentation sans interruption (onduleur avec batteries). <b>P<sub>cc</sub></b> : puissance de court-circuit du réseau ; plus elle est grande, plus le réseau est « raide » et moins il se laisse déformer. <b>Régleur en charge</b> : change le rapport du transformateur sans couper.</div></div>
+</section>
+
+<section id="norme">
+  <h2><span class="n">9</span>Ce que garantit le réseau : la norme EN 50160 <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <p>La NF EN 50160 fixe les caractéristiques de la tension fournie par les réseaux publics. Valeurs principales en basse tension :</p>
+    <div class="scroll"><table>
+      <tr><th>Grandeur</th><th>Valeur garantie</th></tr>
+      <tr><td>Fréquence</td><td>50 Hz ± 1 % pendant 99,5 % de l’année</td></tr>
+      <tr><td>Amplitude</td><td>230 V ± 10 % (95 % des moyennes 10 min sur une semaine)</td></tr>
+      <tr><td>Flicker</td><td>P<sub>lt</sub> ≤ 1 pendant 95 % du temps</td></tr>
+      <tr><td>Déséquilibre</td><td>U<sub>−</sub>/U<sub>+</sub> ≤ 2 % (95 % des moyennes 10 min)</td></tr>
+      <tr><td>Harmoniques</td><td>THD<sub>u</sub> ≤ 8 % (jusqu’au rang 40)</td></tr>
+      <tr><td>Creux, coupures</td><td>Valeurs indicatives seulement (de quelques dizaines à un millier de creux par an)</td></tr>
+    </table></div>
+    <p class="small">Valeurs de l’édition en vigueur à ma connaissance ; vérifie-les dans le document du cours si ton enseignant en donne d’autres.</p>
+  </div>
+</section>
+
+<section id="exos">
+  <h2><span class="n">10</span>Exercices <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="ex">
+    <h3>Exercice 1 : diagnostic</h3>
+    <p>Dans un atelier, les lampes scintillent à chaque fois que le poste à souder fonctionne. De quelle perturbation s’agit-il, et que proposes-tu ?</p>
+    <div class="sol"><span class="t">Correction</span>
+      Fluctuations de tension → <b>flicker</b>, causé par la variation rapide de la charge du poste à souder. Solutions : alimenter le poste par un départ séparé (ou depuis un transformateur dédié), augmenter la P<sub>cc</sub>, compensateur automatique en temps réel.</div>
+  </div>
+  <div class="ex">
+    <h3>Exercice 2 : déséquilibre</h3>
+    <p>V<sub>1</sub> = 228 V, V<sub>2</sub> = 232 V, V<sub>3</sub> = 226 V. Le réseau respecte-t-il la limite de 2 % ?</p>
+    <div class="sol"><span class="t">Correction</span>
+      V<sub>moy</sub> = 686 / 3 = 228,7 V. Écarts : (228 − 228,7)/228 = −0,3 % ; (232 − 228,7)/232 = +1,4 % ; (226 − 228,7)/226 = −1,2 %. Le plus grand vaut <b>1,4 % &lt; 2 %</b> : conforme.</div>
+  </div>
+  <div class="ex">
+    <h3>Exercice 3 : neutre surchargé</h3>
+    <p>Un plateau de bureaux triphasé : par phase, I<sub>1</sub> = 30 A et I<sub>3</sub> = 18 A. Quel courant circule dans le neutre (charges équilibrées) ?</p>
+    <div class="sol"><span class="t">Correction</span>
+      Les fondamentaux s’annulent dans le neutre, les rangs 3 s’additionnent : I<sub>N</sub> = 3 × 18 = <b>54 A</b>. Le courant de phase vaut √(30² + 18²) = 35 A. Le neutre porte donc plus que les phases : il faut le dimensionner en conséquence.</div>
+  </div>
+</section>
+
+<section id="qcm">
+  <h2><span class="n">11</span>QCM</h2>
+  <div class="card"><div data-qcm="q1"></div></div>
+</section>
+
+<div class="pn"><a href="c0-fourier.html">← C0 · Fourier</a><a href="c1-surtensions.html">Surtensions →</a></div>
+<footer>US2.2 Qualité de l’énergie électrique & compatibilité électromagnétique · LP ieBIM · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TD ED6 · Harmoniques d’un variateur de vitesse – L3 pro BIM</title>
+<link rel="stylesheet" href="../electricite/style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">QEE & CEM</a><a href="c0-fourier.html">C0 · Fourier</a><a href="c1-qee.html">C1 · QEE</a><a href="c1-surtensions.html">Surtensions</a><a href="td-variateur.html" class="cur">TD variateur</a><a href="c2-cem.html">C2 · CEM</a><a href="c2-couplages.html">Couplages</a><a href="c2-protection.html">Protection</a><a href="formulaire.html">Formulaire</a><a href="../index.html">Tous les cours</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">US2.2 · TD ED6</div>
+  <h1>Conséquences de l’utilisation d’un variateur de vitesse</h1>
+  <p class="lead">Un variateur alimente un moteur asynchrone depuis le réseau triphasé 230/400 V, 50 Hz. Son pont redresseur absorbe un courant très déformé. On mesure avec un analyseur <b>monophasé</b> (tension simple v<sub>a</sub>(t) et courant de ligne i<sub>a</sub>(t)) et on chiffre la pollution harmonique.</p>
+  <div class="toc"><a href="#ecrans">Relevés</a><a href="#courants">Questions 1 à 5</a><a href="#filtre">Question 6 : filtre LC</a><a href="#puissances">Questions 7 à 10</a><a href="#retenir">À retenir</a><a href="#calc">Calculateurs</a><a href="#qcm">QCM</a></div>
+</section>
+
+<section id="ecrans">
+  <h2><span class="n">1</span>Les relevés de l’analyseur <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Écran</th><th>Ce qu’on lit</th></tr>
+    <tr><td>1 · Volt/Amp/Hertz</td><td>V = <b>231,6 V</b>, facteur de crête 1,4 · f = 50,0 Hz · I = <b>196,1 A</b>, facteur de crête <b>3,0</b> (courant en « pics »)</td></tr>
+    <tr><td>2 · Puissance (1 phase)</td><td><b>31,7 kW · 45,1 kVA · 32,0 kVAR</b> · PF = <b>0,70</b> · cos φ = <b>0,99</b></td></tr>
+    <tr><td>3 · Harmoniques</td><td>THD = <b>98,0 %f</b> · I = 195,6 A · curseur sur le rang 1 : 50,03 Hz, <b>139,9 A</b>, 100 %f, 0°</td></tr>
+  </table></div>
+  <figure><svg viewBox="0 0 520 230" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,sans-serif" font-size="13" role="img" ><line x1="50" y1="170" x2="510" y2="170" stroke="#1c2230" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="170" x2="50" y2="20" stroke="#1c2230" stroke-width="1.5" stroke-linecap="round"/><line x1="50" y1="100.0" x2="510" y2="100.0" stroke="#d9dde5" stroke-width="1" stroke-dasharray="3 3" stroke-linecap="round"/><text x="44" y="104.0" fill="#5c6577" font-size="11" text-anchor="end">50</text><line x1="50" y1="30.0" x2="510" y2="30.0" stroke="#d9dde5" stroke-width="1" stroke-dasharray="3 3" stroke-linecap="round"/><text x="44" y="34.0" fill="#5c6577" font-size="11" text-anchor="end">100</text><rect x="61.3" y="30.0" width="12" height="140.0" fill="#1d9a52"/><text x="67.3076923076923" y="185" fill="#1c2230" font-size="11" text-anchor="middle">1</text><text x="67.3076923076923" y="26.0" fill="#1c2230" font-size="10.5" text-anchor="middle">100</text><rect x="95.9" y="153.2" width="12" height="16.8" fill="#2f6fd6"/><text x="101.92307692307692" y="185" fill="#1c2230" font-size="11" text-anchor="middle">3</text><text x="101.92307692307692" y="149.2" fill="#1c2230" font-size="10.5" text-anchor="middle">12</text><rect x="130.5" y="72.0" width="12" height="98.0" fill="#2f6fd6"/><text x="136.53846153846155" y="185" fill="#1c2230" font-size="11" text-anchor="middle">5</text><text x="136.53846153846155" y="68.0" fill="#1c2230" font-size="10.5" text-anchor="middle">70</text><rect x="165.2" y="86.0" width="12" height="84.0" fill="#2f6fd6"/><text x="171.15384615384613" y="185" fill="#1c2230" font-size="11" text-anchor="middle">7</text><text x="171.15384615384613" y="82.0" fill="#1c2230" font-size="10.5" text-anchor="middle">60</text><rect x="199.8" y="156.0" width="12" height="14.0" fill="#2f6fd6"/><text x="205.76923076923077" y="185" fill="#1c2230" font-size="11" text-anchor="middle">9</text><text x="205.76923076923077" y="152.0" fill="#1c2230" font-size="10.5" text-anchor="middle">10</text><rect x="234.4" y="128.0" width="12" height="42.0" fill="#2f6fd6"/><text x="240.38461538461536" y="185" fill="#1c2230" font-size="11" text-anchor="middle">11</text><text x="240.38461538461536" y="124.0" fill="#1c2230" font-size="10.5" text-anchor="middle">30</text><rect x="269.0" y="142.0" width="12" height="28.0" fill="#2f6fd6"/><text x="275.0" y="185" fill="#1c2230" font-size="11" text-anchor="middle">13</text><text x="275.0" y="138.0" fill="#1c2230" font-size="10.5" text-anchor="middle">20</text><rect x="303.6" y="164.4" width="12" height="5.6" fill="#2f6fd6"/><text x="309.6153846153846" y="185" fill="#1c2230" font-size="11" text-anchor="middle">15</text><rect x="338.2" y="163.0" width="12" height="7.0" fill="#2f6fd6"/><text x="344.2307692307692" y="185" fill="#1c2230" font-size="11" text-anchor="middle">17</text><rect x="372.8" y="164.4" width="12" height="5.6" fill="#2f6fd6"/><text x="378.8461538461538" y="185" fill="#1c2230" font-size="11" text-anchor="middle">19</text><rect x="442.1" y="165.8" width="12" height="4.2" fill="#2f6fd6"/><text x="448.07692307692304" y="185" fill="#1c2230" font-size="11" text-anchor="middle">23</text><rect x="476.7" y="165.8" width="12" height="4.2" fill="#2f6fd6"/><text x="482.6923076923077" y="185" fill="#1c2230" font-size="11" text-anchor="middle">25</text><text x="508" y="202" fill="#5c6577" font-size="11.5" text-anchor="end">rang n (fréquence n × 50 Hz)</text><text x="54" y="14" fill="#5c6577" font-size="11.5" text-anchor="start">% du fondamental</text></svg><figcaption>Spectre de l’écran 3, relu sur ta photo (valeurs approximatives).</figcaption></figure>
+  <div class="box orange"><b class="t">Attention à l’écran 2 <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></b>
+    Sur cet analyseur, l’indication en kVAR contient <b>les deux puissances Q et D</b> (réactive et déformante). Ce n’est pas la puissance réactive « classique ».</div>
+</section>
+
+<section id="courants">
+  <h2><span class="n">2</span>Analyse des courants absorbés (questions 1 à 5) <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="ex">
+    <h3>Q1 · Valeur efficace et valeur maximale</h3>
+    <p>Écran 1 : <b>I = 196,1 A</b>. Le facteur de crête vaut 3,0, donc I<sub>max</sub> = 3,0 × 196,1 ≈ <b>588 A</b>. Pour une sinusoïde on aurait 1,41 × 196 = 277 A : les pics sont deux fois plus hauts.</p>
+    <h3>Q2 · Fondamental</h3>
+    <p>Écran 3, curseur sur le rang 1 : <b>I<sub>1</sub> = 139,9 A</b> à 50 Hz.</p>
+    <h3>Q3 · Les quatre harmoniques les plus polluants</h3>
+    <div class="scroll"><table>
+      <tr><th>Rang</th><th class="r">Fréquence</th><th class="r">Lecture (%f)</th><th class="r">Valeur efficace</th></tr>
+      <tr><td>5</td><td class="r">250 Hz</td><td class="r">≈ 70 %</td><td class="r">≈ 98 A</td></tr>
+      <tr><td>7</td><td class="r">350 Hz</td><td class="r">≈ 60 %</td><td class="r">≈ 84 A</td></tr>
+      <tr><td>11</td><td class="r">550 Hz</td><td class="r">≈ 30 %</td><td class="r">≈ 42 A</td></tr>
+      <tr><td>13</td><td class="r">650 Hz</td><td class="r">≈ 20 %</td><td class="r">≈ 28 A</td></tr>
+    </table></div>
+    <p class="small">Valeur efficace = % × I<sub>1</sub> (ex. 0,70 × 139,9 = 98 A). Les lectures sur un écran sont approximatives : ±5 % est acceptable. Ce sont bien les rangs 6k ± 1 d’un pont redresseur triphasé.</p>
+    <h3>Q4 · THD de ces quatre rangs</h3>
+    <p>THD<sub>i</sub> ≈ √(0,70² + 0,60² + 0,30² + 0,20²) = √(0,49 + 0,36 + 0,09 + 0,04) = √0,98 ≈ <b>99 %</b>.</p>
+    <p>L’appareil annonce <b>98 %</b> : les quatre rangs 5, 7, 11, 13 expliquent presque toute la pollution. Vérification avec la valeur efficace : I<sub>1</sub> × √(1 + 0,98²) = 139,9 × 1,40 = <b>195,9 A</b> ≈ 195,6 A lu ✔.</p>
+    <h3>Q5 · Une solution</h3>
+    <p>Placer une <b>inductance de ligne</b> (self anti-harmonique) en amont du variateur, ou un <b>filtre passif accordé</b> (question 6), un <b>filtre actif</b>, ou choisir un variateur à redresseur « propre » (12 pulses, front-end actif).</p>
+  </div>
+</section>
+
+<section id="filtre">
+  <h2><span class="n">3</span>Question 6 : le dipôle LC série (C = 730 µF, L = 0,55 mH) <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="ex">
+    <h3>a · Impédance à 50 Hz</h3>
+    <p>ω = 2π × 50 = 314,2 rad/s.<br>
+    X<sub>L</sub> = Lω = 0,55·10⁻³ × 314,2 = <b>0,173 Ω</b><br>
+    X<sub>C</sub> = 1/(Cω) = 1 / (730·10⁻⁶ × 314,2) = <b>4,36 Ω</b><br>
+    En série : Z = |X<sub>L</sub> − X<sub>C</sub>| = <b>4,19 Ω</b>, de nature <b>capacitive</b> (X<sub>C</sub> &gt; X<sub>L</sub>).</p>
+    <h3>b · Rôle et énergie à 50 Hz</h3>
+    <p>À 50 Hz le dipôle se comporte comme un condensateur : il <b>fournit de la puissance réactive</b> (compensation).<br>
+    Q = V² / Z = 231,6² / 4,19 ≈ <b>12,8 kvar par phase</b> (≈ 38 kvar pour les trois phases).</p>
+    <h3>c · Fréquence de résonance</h3>
+    <p>f<sub>0</sub> = 1 / (2π√(LC)) = 1 / (2π √(0,55·10⁻³ × 730·10⁻⁶)) = <b>≈ 251 Hz</b>, soit le <b>rang 5</b>.</p>
+    <h3>d · Conclusion</h3>
+    <p>À 250 Hz, l’impédance du dipôle est quasi nulle : le courant harmonique de rang 5 passe par le filtre au lieu de remonter vers le réseau. C’est un <b>filtre passif accordé sur le rang 5</b>, qui piège l’harmonique le plus important. En plus, à 50 Hz, il <b>compense l’énergie réactive</b>. Deux rôles pour un seul équipement.</p>
+    <div class="box orange"><b class="t">Remarque <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      Ici cos φ<sub>1</sub> vaut déjà 0,99 : les 12,8 kvar fournis risquent de rendre l’installation capacitive. En pratique, on accorde souvent le filtre un peu en dessous du rang (vers 4,7 × 50 Hz) et on dimensionne sa partie capacitive selon le besoin réel.</div>
+  </div>
+</section>
+
+<section id="puissances">
+  <h2><span class="n">4</span>Conséquences sur les puissances (questions 7 à 10) <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card">
+    <div class="formula">P = V·I<sub>1</sub>·cos φ<sub>1</sub> · Q = V·I<sub>1</sub>·sin φ<sub>1</sub> · S = V·I · D = √(S² − P² − Q²) · f<sub>p</sub> = λ = P/S</div>
+    <p class="small">Valables quand la tension est sinusoïdale (c’est le cas ici, écran 1) : seul le fondamental du courant produit de la puissance active et réactive ; les harmoniques ne produisent que de la puissance <b>déformante D</b>.</p>
+  </div>
+  <div class="ex">
+    <h3>Q7 · Facteur de déplacement</h3>
+    <p>Écran 2 : <b>cos φ<sub>1</sub> = 0,99</b>, soit φ<sub>1</sub> ≈ 8°. Le fondamental de i<sub>a</sub>(t) est une sinusoïde de 139,9 A efficaces (198 A crête), presque en phase avec v<sub>a</sub>(t), très légèrement en retard.</p>
+    <h3>Q8 · Vérification de P, Q et S</h3>
+    <p>P = 231,6 × 139,9 × 0,99 = <b>32,1 kW</b> (écran : 31,7 kW ✔)<br>
+    sin φ<sub>1</sub> = √(1 − 0,99²) = 0,141 → Q = 231,6 × 139,9 × 0,141 = <b>4,6 kvar</b><br>
+    S = 231,6 × 196,1 = <b>45,4 kVA</b> (écran : 45,1 kVA ✔)<br>
+    L’écran affiche 32,0 « kVAR » : c’est √(S² − P²) = √(45,1² − 31,7²) = 32,1. Il regroupe bien Q et D.</p>
+    <h3>Q9 · Puissance déformante</h3>
+    <p>D = √(S² − P² − Q²) = √(45,1² − 31,7² − 4,6²) = √(2 034 − 1 005 − 21) ≈ <b>31,7 kVAD</b>.<br>
+    Presque toute la « puissance non active » vient des harmoniques, pas du déphasage.</p>
+    <h3>Q10 · Facteur de puissance</h3>
+    <p>f<sub>p</sub> = P / S = 31,7 / 45,1 = <b>0,70</b> ✔ (affiché 0,70).<br>
+    Autre calcul : f<sub>p</sub> = cos φ<sub>1</sub> / √(1 + THD²) = 0,99 / 1,40 = 0,71 ✔.</p>
+    <div class="sol"><span class="t">Commentaire</span>
+      Le cos φ est excellent (0,99) mais le facteur de puissance est mauvais (0,70). Ce n’est pas du réactif : ce sont les <b>harmoniques</b>. Une batterie de condensateurs ne servirait à rien (et risquerait d’entrer en résonance) ; il faut <b>filtrer</b>. Le réseau doit fournir 45 kVA pour 32 kW utiles : câbles et transformateur sont chargés pour rien.</div>
+  </div>
+</section>
+
+<section id="retenir">
+  <h2><span class="n">5</span>À retenir <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="box blue"><b class="t">cos φ ≠ facteur de puissance</b>
+    <b>cos φ<sub>1</sub></b> (facteur de déplacement) : déphasage du fondamental seul. <b>λ = P/S</b> (facteur de puissance) : tient compte aussi des harmoniques. Ils sont égaux seulement si le courant est sinusoïdal. Relation : <b>λ = cos φ<sub>1</sub> / √(1 + THD<sub>i</sub>²)</b> (tension sinusoïdale). Et <b>S² = P² + Q² + D²</b>.</div>
+</section>
+
+<section id="calc">
+  <h2><span class="n">6</span>Calculateurs <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="calc" data-calc="lc">
+    <h4>Dipôle LC série : impédance, résonance, puissance réactive</h4>
+    <div class="in">
+      <div><label>L (mH)</label><input type="number" step="any" value="0.55" data-k="L"></div>
+      <div><label>C (µF)</label><input type="number" step="any" value="730" data-k="C"></div>
+      <div><label>f (Hz)</label><input type="number" step="any" value="50" data-k="f"></div>
+      <div><label>V (V)</label><input type="number" step="any" value="231.6" data-k="V"></div>
+    </div>
+    <div class="out" data-k="out"></div>
+    <div class="note" data-k="msg"></div>
+  </div>
+  <div class="calc" data-calc="pqsd">
+    <h4>Puissances avec harmoniques (tension sinusoïdale)</h4>
+    <div class="in">
+      <div><label>V (V)</label><input type="number" step="any" value="231.6" data-k="V"></div>
+      <div><label>I efficace total (A)</label><input type="number" step="any" value="196.1" data-k="I"></div>
+      <div><label>I₁ fondamental (A)</label><input type="number" step="any" value="139.9" data-k="I1"></div>
+      <div><label>cos φ₁</label><input type="number" step="0.01" value="0.99" data-k="cos"></div>
+    </div>
+    <div class="out" data-k="out"></div>
+  </div>
+</section>
+
+<section id="qcm">
+  <h2><span class="n">7</span>QCM</h2>
+  <div class="card"><div data-qcm="q3"></div></div>
+</section>
+
+<div class="pn"><a href="c1-surtensions.html">← Surtensions</a><a href="c2-cem.html">C2 · CEM →</a></div>
+<footer>US2.2 Qualité de l’énergie électrique & compatibilité électromagnétique · LP ieBIM · Faculté des Métiers de l’Essonne / CNAM<br>Les étiquettes <b>tes notes</b>, <b>complété</b> et <b>à corriger</b> disent d’où vient chaque information.</footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

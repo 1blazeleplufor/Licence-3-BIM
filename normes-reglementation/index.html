@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Normes et réglementation – L3 pro BIM</title>
+<link rel="stylesheet" href="../electricite/style.css">
+</head>
+<body>
+<nav><div class="in"><a class="brand" href="index.html">Normes et réglementation</a><a href="../index.html">Tous les cours</a><a href="../qee-cem/index.html">QEE & CEM</a><a href="../electricite/07-cables.html">Câbles (élec. ch. 7)</a></div></nav>
+<main>
+<section id="intro">
+  <div class="kicker">Normes et réglementation</div>
+  <h1>Projet : dimensionner un branchement en appliquant la norme</h1>
+  <p class="lead">Le principe du cours : partir de la demande d’un client, traduire ses besoins en grandeurs électriques, puis chercher dans la norme chaque valeur qui justifie un choix (avec la page et le paragraphe). Voici ton plan de rapport, ta démarche corrigée et une méthode pour ne rien oublier.</p>
+  <div class="box blue"><b class="t">Légende</b><span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span> tes notes · <span class="src a" title="Ajouté pour compléter">complété</span> complété · <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span> à corriger</div>
+  <div class="toc"><a href="#plan">Plan du rapport</a><a href="#termes">Unités et termes</a><a href="#contraintes">Contraintes</a><a href="#tableau">Tableau de la norme</a><a href="#etape1">Étape 1</a><a href="#etape2">Étape 2</a><a href="#etape3">Étape 3</a><a href="#calc">Calculateur</a><a href="#qcm">QCM</a></div>
+</section>
+
+<section id="plan">
+  <h2><span class="n">1</span>Plan du rapport <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <ol class="steps">
+      <li><b>Contexte du projet</b> (noté sur 3 points) : la <b>demande du client</b>, les <b>unités et termes à expliquer</b>, les <b>contraintes liées aux travaux</b>.</li>
+      <li><b>Exploitation de la norme</b> : un tableau qui regroupe les informations tirées des normes (voir le modèle plus bas).</li>
+      <li><b>Solutions techniques</b> : étape 1 courant d’emploi, étape 2 section minimale par l’échauffement, étape 3 chute de tension.</li>
+    </ol>
+    <p class="small">Ta note « Suite page suivante → » : le reste du barème n’était pas sur la photo. Envoie-la si tu veux que je complète le plan.</p>
+  </div>
+</section>
+
+<section id="termes">
+  <h2><span class="n">2</span>Unités et termes à expliquer <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Terme</th><th>Explication <span class="src a" title="Ajouté pour compléter">complété</span></th></tr>
+    <tr><td>ml</td><td>mètre linéaire : longueur de câble ou de tranchée</td></tr>
+    <tr><td>kVA</td><td>kilovoltampère : puissance <b>apparente</b> S (ce que le réseau doit pouvoir fournir) ; 12 kVA = 12 000 VA</td></tr>
+    <tr><td>V</td><td>volt : 230 V entre phase et neutre (U<sub>0</sub>), 400 V entre phases</td></tr>
+    <tr><td>A</td><td>ampère : courant (I<sub>B</sub> courant d’emploi, I<sub>A</sub> courant assigné de l’appareil de protection)</td></tr>
+    <tr><td>mm²</td><td>section d’une âme de câble</td></tr>
+    <tr><td>Ω/km</td><td>résistance <b>linéique</b> d’un câble : résistance d’un kilomètre de conducteur (ex. alu 35 mm² ≈ 0,87 Ω/km à 20 °C)</td></tr>
+    <tr><td>%</td><td>ici, la chute de tension rapportée à la tension nominale : ΔU % = ΔU / U × 100</td></tr>
+    <tr><td>CS</td><td>terme de ton dossier à définir avec sa source (12 kVA est la puissance demandée par le client)</td></tr>
+    <tr><td>HTA / BT</td><td>HTA : haute tension A, de 1 à 50 kV (réseau de distribution 20 kV) ; BT : basse tension, jusqu’à 1 000 V en alternatif (230/400 V). Le poste HTA/BT abaisse l’une vers l’autre</td></tr>
+    <tr><td>PL</td><td>point de livraison : là où le réseau public s’arrête et l’installation du client commence</td></tr>
+    <tr><td>AGCP</td><td>appareil général de commande et de protection, en tête de l’installation du client (son calibre I<sub>A</sub> limite la puissance)</td></tr>
+  </table></div></div>
+</section>
+
+<section id="contraintes">
+  <h2><span class="n">3</span>Contraintes liées aux travaux <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="card">
+    <ul>
+      <li><b>Travaux sur le domaine public</b> : autorisation de voirie, déclarations DT/DICT avant de creuser <span class="src a" title="Ajouté pour compléter">complété</span>.</li>
+      <li><b>Milieu urbain</b> : réseaux existants (gaz, eau, télécom), circulation, horaires de chantier <span class="src a" title="Ajouté pour compléter">complété</span>.</li>
+      <li><b>Profondeur de pose</b> : imposée par la norme ou le guide du distributeur, avec grillage avertisseur au-dessus du fourreau <span class="src a" title="Ajouté pour compléter">complété</span>.</li>
+      <li><b>Émergences</b> : coffrets et bornes qui sortent du sol ou sont posés en façade (accessibilité, emprise sur le trottoir) <span class="src a" title="Ajouté pour compléter">complété</span>.</li>
+      <li><b>Usage</b> : point de livraison pour la <b>RATP</b>.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="tableau">
+  <h2><span class="n">4</span>Modèle de tableau « exploitation de la norme » <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="card"><div class="scroll"><table>
+    <tr><th>Étape</th><th>Information cherchée</th><th>Source (norme, page, §, tableau)</th><th>Valeur retenue</th></tr>
+    <tr><td>1</td><td>Calibre de protection pour 12 kVA mono</td><td>NF p. 39, § 5.5.3.2</td><td>I<sub>A</sub> = 60 A</td></tr>
+    <tr><td>2</td><td>Section mini pour un AGCP 60 A</td><td>NF p. 33, tableau 5</td><td>25 mm² alu</td></tr>
+    <tr><td>2</td><td>Section mini de la liaison au réseau</td><td>SQ p. 6, § 2.3</td><td>35 mm² alu, 4 conducteurs</td></tr>
+    <tr><td>2</td><td>Courant admissible du 35 mm²</td><td>NF p. 42, tableau 13</td><td>119 A</td></tr>
+    <tr><td>2</td><td>Facteur de correction (seul en fourreau)</td><td>NF p. 41, tableau 12</td><td>0,80</td></tr>
+    <tr><td>3</td><td>Formule et limite de chute de tension</td><td>NF p. 34–35</td><td>u = b·ρ<sub>1</sub>·L·I/S ; limite : à recopier</td></tr>
+  </table></div>
+  <p class="small">Les références viennent de tes notes. « NF » est la norme de ton dossier, et « SQ » un second document de référence : écris leurs titres complets dans le rapport.</p></div>
+</section>
+
+<section id="etape1">
+  <h2><span class="n">5</span>Étape 1 : courant d’emploi I<sub>B</sub> <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="ex">
+    <p>En monophasé, pour 12 kVA :</p>
+    <div class="formula">I<sub>B</sub> = <span class="frac"><span>S</span><span>U<sub>0</sub></span></span> = <span class="frac"><span>12 000</span><span>230</span></span> = <b>52,2 A</b></div>
+    <p>On retient le calibre normalisé supérieur : <b>I<sub>A</sub> = 60 A</b> (NF p. 39, § 5.5.3.2). Ta note dit « à développer dans le rapport » : explique pourquoi on prend le calibre juste au-dessus (I<sub>B</sub> ≤ I<sub>A</sub>, sinon la protection déclencherait en fonctionnement normal) <span class="src a" title="Ajouté pour compléter">complété</span>.</p>
+  </div>
+</section>
+
+<section id="etape2">
+  <h2><span class="n">6</span>Étape 2 : section minimale par l’échauffement <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="ex">
+    <ul>
+      <li>Tableau 5 (NF p. 33) : pour un AGCP de 60 A, il faut au minimum <b>25 mm² en aluminium</b>.</li>
+      <li>La liaison au réseau est au minimum en <b>35 mm² alu avec 4 conducteurs</b> (SQ p. 6, § 2.3).</li>
+      <li>On retient donc <b>35 mm² alu</b> (la plus contraignante des deux règles).</li>
+      <li>Vérification de la capacité : d’après le tableau 13 (NF p. 42), le 35 mm² supporte <b>119 A</b>. Il est posé seul en fourreau : on applique le facteur <b>0,80</b> du tableau 12 (NF p. 41).</li>
+    </ul>
+    <div class="formula">I<sub>z</sub> = 119 × 0,80 = <b>95,2 A ≥ 60 A</b> ✔ le câble ne chauffe pas</div>
+    <div class="box red"><b class="t">À corriger <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span></b>
+      Tu as écrit 119 × 0,80 = <b>99 A</b>. Le bon résultat est <b>95,2 A</b>. La conclusion ne change pas (95,2 A ≥ 60 A).</div>
+    <div class="box orange"><b class="t">Le « ? » à côté de 0,80</b>
+      Vérifie dans le tableau 12 que 0,80 correspond bien à <b>un seul câble</b> en fourreau enterré, et pas à un groupement. Selon les tableaux, le facteur « un circuit seul en conduit enterré » peut valoir 0,8 ; plusieurs circuits côte à côte donnent des valeurs plus faibles <span class="src a" title="Ajouté pour compléter">complété</span>.</div>
+  </div>
+</section>
+
+<section id="etape3">
+  <h2><span class="n">7</span>Étape 3 : chute de tension <span class="src n" title="Présent dans tes notes ou tes fiches">tes notes</span></h2>
+  <div class="ex">
+    <div class="formula">u = b × ρ<sub>1</sub> × <span class="frac"><span>L</span><span>S</span></span> × I <small>NF p. 34 (p. 35)</small></div>
+    <ul>
+      <li><b>u</b> : chute de tension, en V</li>
+      <li><b>b</b> : coefficient du type de circuit (2 en monophasé : aller + retour ; 1 en triphasé <span class="src a" title="Ajouté pour compléter">complété</span>)</li>
+      <li><b>ρ<sub>1</sub></b> : résistivité du conducteur, en Ω·mm²/m (0,037 pour l’aluminium dans ta norme)</li>
+      <li><b>L</b> : longueur du câble, en m</li>
+      <li><b>I</b> : courant, en A</li>
+      <li><b>S</b> : section, en mm²</li>
+    </ul>
+    <div class="box red"><b class="t">Formule incomplète dans tes notes <span class="src c" title="Erreur ou imprécision dans les notes, corrigée ici">à corriger</span></b>
+      L’encadré dit « u = b × ρ<sub>1</sub> × L » : il manque <b>× I / S</b>. Ton application numérique, elle, est correcte. La formule complète de la norme ajoute un terme de réactance (λ·L·sin φ), négligeable ici et nul avec cos φ = 1.</div>
+    <p>Ton calcul, avec L = 172 m et I = 60 A :</p>
+    <div class="formula">u = <span class="frac"><span>2 × 0,037 × 172 × 60</span><span>35</span></span> = <b>21,8 V</b> &nbsp;soit&nbsp; 21,8 / 230 = <b>9,5 %</b></div>
+    <div class="box orange"><b class="t">Deux points à vérifier pour ton rapport <span class="src a" title="Ajouté pour compléter">complété</span></b>
+      <b>1.</b> Tu as pris I = I<sub>A</sub> = 60 A (le calibre). Si la norme demande le courant d’emploi, avec I<sub>B</sub> = 52,2 A on trouve u = 19,0 V, soit 8,3 %. Recopie bien quel courant la norme impose.<br>
+      <b>2.</b> Compare ce pourcentage à la <b>limite</b> donnée p. 34–35. Ça paraît beaucoup : si la limite est dépassée, il faut augmenter la section (en 50 mm² alu on descend à 15,3 V, soit 6,6 %, avec 60 A) ou rapprocher le point de raccordement. Le calculateur ci-dessous te permet de tester.</div>
+  </div>
+</section>
+
+<section id="calc">
+  <h2><span class="n">8</span>Calculateur de chute de tension <span class="src a" title="Ajouté pour compléter">complété</span></h2>
+  <div class="calc" data-calc="chute">
+    <h4>u = b × ρ₁ × L × I / S</h4>
+    <div class="in">
+      <div><label>Circuit</label><select data-k="b"><option value="2">monophasé (b = 2)</option><option value="1">triphasé (b = 1)</option></select></div>
+      <div><label>ρ₁ (Ω·mm²/m)</label><input type="number" step="any" value="0.037" data-k="rho"></div>
+      <div><label>L (m)</label><input type="number" step="any" value="172" data-k="L"></div>
+      <div><label>I (A)</label><input type="number" step="any" value="60" data-k="I"></div>
+      <div><label>S (mm²)</label><input type="number" step="any" value="35" data-k="S"></div>
+      <div><label>U de référence (V)</label><input type="number" step="any" value="230" data-k="U"></div>
+      <div><label>Limite (%)</label><input type="number" step="any" value="" placeholder="ta norme" data-k="lim"></div>
+    </div>
+    <div class="out" data-k="out"></div>
+    <div class="note" data-k="msg"></div>
+  </div>
+</section>
+
+<section id="qcm">
+  <h2><span class="n">9</span>QCM</h2>
+  <div class="card"><div data-qcm="nr"></div></div>
+</section>
+
+
+<footer>Normes et réglementation · LP ieBIM · Faculté des Métiers de l’Essonne / CNAM</footer>
+</main>
+<script src="../qee-cem/app.js"></script>
+</body>
+</html>
