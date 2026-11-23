@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Convertisseurs statiques – Fiches de cours et TD animés (BTS Électrotechnique) (Copy)</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<nav><div class="in">
+  <span class="brand">Convertisseurs statiques</span>
+  <a href="#accueil">Accueil</a>
+  <a href="#redresseur">1 · Redresseurs à diodes</a>
+  <a href="#commande">2 · Redresseurs commandés</a>
+  <a href="#hacheur">3 · Hacheur</a>
+  <a href="#onduleur">4 · Onduleur</a>
+  <a href="#gradateur">5 · Gradateur</a>
+  <a href="#bilan">Bilan</a>
+  <span class="sp"></span>
+  <a class="timer" id="timer" href="#accueil" title="Chronomètre de la séance">⏱ Séance non démarrée</a>
+  <label title="Réservé au formateur"><input type="checkbox" id="showcorr"> Formateur : corrigés</label>
+</div></nav>
+
+<!-- ======================= ACCUEIL ======================= -->
+<section class="fiche" id="accueil">
+  <header>
+    <div class="kicker">BTS Électrotechnique · Conversion d'énergie</div>
+    <h1>Convertisseurs statiques : fiches de cours et TD en autonomie</h1>
+    <p class="lead">Un convertisseur statique adapte une source d'énergie électrique à un récepteur, sans pièce en mouvement. Il utilise des semi-conducteurs de puissance (diodes, thyristors, transistors) qui fonctionnent comme des interrupteurs. Chaque fiche se travaille seul, du début à la fin, avec une animation pas à pas et des exercices qui se vérifient automatiquement.</p>
+  </header>
+
+  <div class="card seance">
+    <h2>Déroulé de la séance · 3 h</h2>
+    <div class="seance-grid">
+      <table class="plan">
+        <tr><th>Horaire</th><th>Activité</th><th>Durée</th></tr>
+        <tr><td>0:00 → 0:05</td><td>Accueil : lire ce déroulé et « Comment travailler seul », démarrer le chronomètre</td><td>5 min</td></tr>
+        <tr><td>0:05 → 0:35</td><td><a href="#redresseur">Fiche 1 · Redresseurs à diodes</a></td><td>30 min</td></tr>
+        <tr><td>0:35 → 1:10</td><td><a href="#commande">Fiche 2 · Redresseurs commandés</a></td><td>35 min</td></tr>
+        <tr class="pause"><td>1:10 → 1:20</td><td>Pause</td><td>10 min</td></tr>
+        <tr><td>1:20 → 1:50</td><td><a href="#hacheur">Fiche 3 · Hacheur</a></td><td>30 min</td></tr>
+        <tr><td>1:50 → 2:25</td><td><a href="#onduleur">Fiche 4 · Onduleur</a></td><td>35 min</td></tr>
+        <tr><td>2:25 → 2:50</td><td><a href="#gradateur">Fiche 5 · Gradateur</a></td><td>25 min</td></tr>
+        <tr><td>2:50 → 3:00</td><td><a href="#bilan">Bilan de séance</a> : tableau de synthèse et questions pour le formateur</td><td>10 min</td></tr>
+      </table>
+      <div>
+        <p>Dans chaque fiche, seules les parties marquées <span class="tag must">obligatoire</span> sont à faire pendant la séance : l'essentiel, le pas à pas, un exercice et le QCM. Les parties <span class="tag opt">pour aller plus loin</span> se font si l'on est en avance, ou à la maison.</p>
+        <p>Le chronomètre (dans la barre en haut de la page) indique l'activité prévue et prévient en cas de retard. <b>Si je suis en retard</b> : terminer le QCM de la fiche en cours, puis passer à la fiche suivante.</p>
+        <div class="timer-btns"><button type="button" id="t-start" class="play">▶ Démarrer la séance</button><button type="button" id="t-reset" class="st-btn">Remettre à zéro</button></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Les quatre familles de convertisseurs</h2>
+    <div class="home-grid">
+      <a href="#redresseur"><span class="io">Alternatif → Continu</span><b>1 · Redresseurs à diodes</b><span>Ponts PD2 et PD3 non commandés : tension continue de valeur moyenne fixe.</span></a>
+      <a href="#commande"><span class="io">Alternatif → Continu réglable</span><b>2 · Redresseurs commandés</b><span>Thyristor, pont mixte et pont tout thyristors : on règle ⟨u⟩ avec l'angle α.</span></a>
+      <a href="#hacheur"><span class="io">Continu → Continu</span><b>3 · Hacheur série</b><span>Découpage d'une tension continue : ⟨u⟩ = αV, roue libre, ondulation du courant.</span></a>
+      <a href="#onduleur"><span class="io">Continu → Alternatif</span><b>4 · Onduleur autonome</b><span>Pont à 4 interrupteurs : commandes symétrique, décalée et MLI, harmoniques.</span></a>
+      <a href="#gradateur"><span class="io">Alternatif → Alternatif</span><b>5 · Gradateur</b><span>Thyristors tête-bêche : commande par la phase ou par trains d'ondes.</span></a>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>Comment travailler seul</h2>
+      <ol class="method">
+        <li><b>Suivre l'ordre des fiches</b> : 1 → 5. La fiche 2 réutilise la fiche 1, la fiche 5 réutilise le thyristor de la fiche 2.</li>
+        <li><b>Suivre le parcours</b> en haut de chaque fiche : faire d'abord les parties obligatoires, cocher chaque étape terminée. La progression s'affiche ci-contre.</li>
+        <li><b>Faire le pas à pas</b> de l'animation avant les exercices : il explique chaque phase du fonctionnement.</li>
+        <li><b>Chercher avant de regarder</b> : pour chaque exercice, utiliser d'abord le « coup de pouce », puis vérifier ses résultats numériques avec le bouton « Vérifier ». Ouvrir le corrigé détaillé en dernier.</li>
+        <li><b>Valider la fiche</b> avec le QCM final. En dessous de 4/5 : relire la partie « Fonctionnement détaillé » (5 min maximum), puis passer à la suite pour respecter l'horaire.</li>
+        <li>Noter sur sa feuille les questions qui restent bloquantes pour en parler avec le formateur.</li>
+      </ol>
+      <div class="box">Les résultats se saisissent avec une virgule ou un point (21,6 ou 21.6). Une petite erreur d'arrondi est acceptée.</div>
+    </div>
+    <div class="card">
+      <h2>Ma progression</h2>
+      <div id="progress"></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h2>Lexique</h2>
+      <table>
+        <tr><td><b>Valeur moyenne ⟨u⟩</b></td><td>Composante continue d'une tension. Se mesure au multimètre en position DC (=).</td></tr>
+        <tr><td><b>Valeur efficace U</b></td><td>Valeur qui produit le même échauffement qu'une tension continue. Se mesure avec un appareil TRMS en position AC+DC.</td></tr>
+        <tr><td><b>V et V̂</b></td><td>Valeur efficace et valeur maximale d'une tension sinusoïdale : V̂ = V√2.</td></tr>
+        <tr><td><b>Commutation</b></td><td>Passage du courant d'un interrupteur à un autre.</td></tr>
+        <tr><td><b>Commutation naturelle</b></td><td>Blocage d'un composant provoqué par le circuit lui-même (annulation du courant), sans commande.</td></tr>
+        <tr><td><b>Roue libre</b></td><td>Phase où le courant d'une charge inductive circule sans passer par la source : u = 0.</td></tr>
+        <tr><td><b>Angle α (ou θ)</b></td><td>Retard à l'amorçage d'un thyristor, compté à partir du passage par zéro de la tension.</td></tr>
+        <tr><td><b>Rapport cyclique α</b></td><td>Fraction de la période pendant laquelle un interrupteur est fermé (hacheur, train d'ondes).</td></tr>
+        <tr><td><b>Harmonique</b></td><td>Composante sinusoïdale de fréquence multiple du fondamental (rang 3 = 150 Hz pour 50 Hz).</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h2>Où retrouve-t-on ces convertisseurs ?</h2>
+      <table>
+        <tr><th>Application</th><th>Convertisseurs associés</th></tr>
+        <tr><td>Production photovoltaïque</td><td>Hacheur (recherche du point de puissance maximale) puis onduleur vers le réseau</td></tr>
+        <tr><td>Variateur de vitesse pour moteur asynchrone</td><td>Redresseur PD3 + bus continu filtré + onduleur MLI triphasé</td></tr>
+        <tr><td>Éolienne</td><td>Redresseur (côté génératrice) + bus continu + onduleur (côté réseau)</td></tr>
+        <tr><td>Alimentation sans interruption (ASI)</td><td>Redresseur-chargeur, batterie, onduleur ; contacteur statique à thyristors</td></tr>
+        <tr><td>Véhicule électrique, trottinette</td><td>Hacheur ou onduleur pour le moteur, redresseur dans le chargeur</td></tr>
+        <tr><td>Éclairage, démarreur progressif, chauffage</td><td>Gradateur</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= FICHE 1 : REDRESSEURS À DIODES ======================= -->
+<section class="fiche" id="redresseur">
+  <header>
+    <div class="kicker">Fiche 1 · Conversion alternatif → continu</div>
+    <h1>Redresseurs à diodes (non commandés)</h1>
+    <p class="lead">Un redresseur alimente un récepteur à courant continu à partir d'une source alternative. Avec des diodes, la valeur moyenne de la tension obtenue est fixe : elle dépend seulement de la tension du réseau.</p>
+  </header>
+
+  <div class="card parcours">
+    <div>
+      <h2>Mon parcours · 30 min <span class="slot">0:05 → 0:35</span></h2>
+      <p class="must-lead"><b>Obligatoire</b> pendant la séance :</p>
+      <ul class="todo" data-key="f1">
+        <li><label><input type="checkbox"> A · Lire l'essentiel <span class="mins">5 min</span></label></li><li><label><input type="checkbox"> C · Faire les 9 étapes du pas à pas (PD2 puis PD3) <span class="mins">10 min</span></label></li><li><label><input type="checkbox"> E · Exercice 2 : dimensionner un pont PD2 <span class="mins">8 min</span></label></li><li><label><input type="checkbox"> F · QCM d'auto-évaluation (viser 4/5) <span class="mins">5 min</span></label></li>
+      </ul>
+      <p class="must-lead"><b>Pour aller plus loin</b> (si j'ai terminé en avance, ou à la maison) :</p>
+      <ul class="optlist"><li>B · Fonctionnement détaillé : à relire si une étape du pas à pas bloque</li><li>D · Exemples d'utilisation</li><li>E · Exercices 1, 3 et 4</li></ul>
+    </div>
+    <div>
+      <h2>À la fin de la fiche, je sais…</h2>
+      <ul class="obj">
+        <li>dire si une diode est passante ou bloquée dans un montage ;</li>
+        <li>trouver les diodes passantes d'un pont PD2 et d'un pont PD3 à chaque instant ;</li>
+        <li>tracer u(t) et v<sub>D</sub>(t) ;</li>
+        <li>calculer ⟨u⟩, ⟨i<sub>D</sub>⟩ et V<sub>Dmax</sub> pour choisir une diode.</li>
+      </ul>
+      <p style="font-size:13px;color:var(--muted)">Temps alloué dans la séance de 3 h : 30 min (0:05 → 0:35).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">A</span>L'essentiel <span class="tag must">obligatoire · 5 min</span></h2>
+    <div class="grid2">
+      <div>
+        <h3>La diode : un interrupteur non commandé</h3>
+        <ul>
+          <li>Dipôle unidirectionnel : le courant ne passe que de l'anode A vers la cathode K.</li>
+          <li><b>Passante</b> quand v<sub>AK</sub> tend à devenir positive : interrupteur fermé, v<sub>AK</sub> ≈ 0 (diode parfaite).</li>
+          <li><b>Bloquée</b> quand v<sub>AK</sub> &lt; 0 : interrupteur ouvert, i = 0.</li>
+        </ul>
+        <h3>Pont de Graëtz monophasé (PD2)</h3>
+        <p>4 diodes : D1 et D2 à cathodes communes, D3 et D4 à anodes communes. Pendant l'alternance positive D1 et D4 conduisent, pendant l'alternance négative D2 et D3 : u = |v|.</p>
+        <h3>Pont de Graëtz triphasé (PD3)</h3>
+        <p>6 diodes : D1, D2, D3 à cathodes communes et D'1, D'2, D'3 à anodes communes. u = v<sub>max</sub> − v<sub>min</sub> suit l'enveloppe des tensions composées.</p>
+      </div>
+      <div>
+        <table class="formulas">
+          <tr><th>Grandeur (charge résistive)</th><th>PD2 monophasé</th><th>PD3 triphasé</th></tr>
+          <tr><td>Période de u</td><td>T/2 (100 Hz)</td><td>T/6 (300 Hz)</td></tr>
+          <tr><td>Valeur moyenne ⟨u⟩</td><td class="f">2V̂/π ≈ 0,9 V</td><td class="f">3√3·V̂/π ≈ 1,35 U</td></tr>
+          <tr><td>Durée de conduction d'une diode</td><td>T/2</td><td>T/3</td></tr>
+          <tr><td>Courant moyen dans une diode</td><td class="f">⟨i⟩/2</td><td class="f">⟨i⟩/3</td></tr>
+          <tr><td>Tension inverse maximale d'une diode</td><td class="f">V̂ = V√2</td><td class="f">Û = U√2</td></tr>
+        </table>
+        <p style="font-size:13px;color:var(--muted)">V : tension simple efficace, U = V√3 : tension composée efficace. Pour le PD3, V̂ est la valeur maximale d'une tension simple.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">B</span>Fonctionnement détaillé <span class="tag help">à consulter si besoin</span></h2>
+    <div class="grid2">
+      <div>
+        <h3>La règle des groupes (à retenir absolument)</h3>
+        <ul>
+          <li>Dans un groupe de diodes à <b>cathodes communes</b>, une seule diode conduit : celle dont l'<b>anode</b> est reliée au potentiel <b>le plus élevé</b>. Les autres ont une tension v<sub>AK</sub> négative.</li>
+          <li>Dans un groupe à <b>anodes communes</b>, conduit celle dont la <b>cathode</b> est reliée au potentiel <b>le plus bas</b>.</li>
+          <li>Conséquence : u = (potentiel le plus haut) − (potentiel le plus bas).</li>
+        </ul>
+        <h3>Méthode pour analyser un pont</h3>
+        <ol class="method">
+          <li>Repérer les groupes à cathodes communes et à anodes communes.</li>
+          <li>Pour un intervalle de temps, chercher la tension d'entrée la plus haute et la plus basse.</li>
+          <li>En déduire les deux diodes passantes (une par groupe).</li>
+          <li>Remplacer les diodes passantes par des fils, les diodes bloquées par des interrupteurs ouverts.</li>
+          <li>Écrire la loi des mailles pour obtenir u, puis la tension aux bornes d'une diode bloquée.</li>
+        </ol>
+      </div>
+      <div>
+        <h3>Les phases du pont PD2 (v = V̂ sin ωt)</h3>
+        <table class="phases">
+          <tr><th>Intervalle</th><th>Diodes passantes</th><th>Chemin du courant</th><th>u</th><th>v<sub>D1</sub></th></tr>
+          <tr><td>0 → T/2 (v &gt; 0)</td><td>D1, D4</td><td>A → D1 → R → D4 → B</td><td>v</td><td>0</td></tr>
+          <tr><td>T/2 → T (v &lt; 0)</td><td>D2, D3</td><td>B → D2 → R → D3 → A</td><td>−v</td><td>v</td></tr>
+        </table>
+        <p>Loi des mailles pendant la 1<sup>re</sup> alternance : v − v<sub>D1</sub> − u − v<sub>D4</sub> = 0 avec v<sub>D1</sub> = v<sub>D4</sub> = 0, donc u = v. Le courant traverse toujours R dans le même sens : c'est le redressement.</p>
+        <h3>Erreurs fréquentes</h3>
+        <ul class="pitfall">
+          <li>Croire que les 4 diodes conduisent en même temps : il n'y a jamais plus d'une diode passante par groupe.</li>
+          <li>Oublier que la tension inverse maximale d'une diode du PD3 est <b>Û = U√2</b> (tension composée), pas V̂.</li>
+          <li>Confondre ⟨u⟩ (multimètre en DC) et U (multimètre TRMS en AC+DC).</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card anim">
+    <h2><span class="n">C</span>Animation pas à pas <span class="tag must">obligatoire · 10 min</span></h2>
+    <div class="stepper" id="f1-step"></div>
+    <div class="controls">
+      <button class="play" id="f1-play">⏸ Pause</button>
+      <label class="ctl">Instant <input type="range" id="f1-scrub" min="0" max="1000" value="0"></label>
+      <div class="ctl">Vitesse <div class="seg" id="f1-speed"><button data-v="0.5">×0,5</button><button data-v="1" class="on">×1</button><button data-v="2">×2</button></div></div>
+      <div class="ctl">Montage <div class="seg" id="f1-mode"><button data-v="pd2" class="on">PD2 monophasé</button><button data-v="pd3">PD3 triphasé</button></div></div>
+    </div>
+    <div class="stage">
+      <svg class="sch" id="f1-sch" viewBox="0 0 470 300"></svg>
+      <div class="live">
+        <span class="badge" id="f1-badge"></span>
+        <div class="vals" id="f1-vals"></div>
+        <div class="msg" id="f1-msg"></div>
+      </div>
+    </div>
+    <canvas class="scope" id="f1-scope"></canvas>
+    <div class="legend" id="f1-legend"></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">D</span>Exemples d'utilisation <span class="tag opt">pour aller plus loin</span></h2>
+    <div class="examples">
+      <div class="exm"><span class="where">Atelier, tableau électrique</span><h4>Alimentation 24 V d'automate</h4><p>Le 230 V est abaissé par un transformateur, redressé par un pont PD2, puis filtré par un condensateur et régulé.</p><span class="chain">230 V ~ → transformateur → PD2 → condensateur → 24 V =</span><p>Pourquoi le PD2 : faible puissance (quelques dizaines de watts), alimentation monophasée.</p></div>
+      <div class="exm"><span class="where">Industrie</span><h4>Bus continu d'un variateur de vitesse</h4><p>Tous les variateurs pour moteurs asynchrones commencent par un pont PD3 à diodes suivi de condensateurs : le « bus continu » vaut environ 540 à 565 V sur un réseau 400 V.</p><span class="chain">3 × 400 V → PD3 → bus DC ≈ 560 V → onduleur</span><p>Pourquoi le PD3 : puissance de plusieurs kW, prélèvement équilibré sur les 3 phases, tension peu ondulée.</p></div>
+      <div class="exm"><span class="where">Maintenance, logistique</span><h4>Chargeur de batteries</h4><p>Un chargeur simple de batterie 24 V (transpalette, portail) utilise un transformateur et un pont de diodes. Le courant de charge est limité par la résistance interne ou un hacheur.</p><p>Point de vigilance : la batterie est une f.é.m., la diode ne conduit que lorsque |v| dépasse la tension de la batterie.</p></div>
+      <div class="exm"><span class="where">Industrie lourde</span><h4>Électrolyse, galvanoplastie</h4><p>Les cuves d'électrolyse (chromage, production d'aluminium) demandent des milliers d'ampères en continu. On utilise des ponts PD3 (ou des montages à 12 diodes) avec des diodes de très fort calibre refroidies à l'eau.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">E</span>TD</h2>
+    <p class="must-lead">Pendant la séance, faire <b>l'exercice 2</b> (obligatoire). Les autres exercices sont pour aller plus loin.</p>
+    <div class="ex">
+      <h3>Exercice 1 – Observer le pont PD2<span class="tag obs">observation</span><span class="tag opt">pour aller plus loin</span></h3>
+      <p>Sélectionner « PD2 monophasé ». Avancer image par image avec le curseur « Instant ».</p>
+      <ol class="q">
+        <li>Quelles diodes conduisent pendant l'alternance positive de v ? pendant l'alternance négative ?</li>
+        <li>Quel est le sens du courant dans la résistance pendant chaque alternance ? Conclure.</li>
+        <li>Relever la période de u(t). En déduire sa fréquence pour un réseau à 50 Hz. <span class="chk" data-a="100" data-u="Hz"></span></li>
+        <li>Quelle tension supporte la diode D1 quand elle est bloquée ? Quelle est sa valeur maximale (en valeur absolue) dans l'animation ? <span class="chk" data-a="33.9" data-u="V"></span></li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Utiliser la règle des groupes : pendant l'alternance positive, le point A est le plus haut. Pour la question 4, faire le pas à pas jusqu'à l'étape « alternance négative » et lire v<sub>D1</sub> à T = 15 ms.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>Alternance positive : D1 et D4. Alternance négative : D2 et D3.</li>
+          <li>Le courant traverse R toujours dans le même sens (de la borne + vers la borne −) : le courant dans la charge est unidirectionnel, c'est le redressement.</li>
+          <li>u(t) se répète toutes les T/2 = 10 ms : fréquence <b>100 Hz</b>.</li>
+          <li>Quand D1 est bloquée, v<sub>D1</sub> = v &lt; 0. Valeur maximale de la tension inverse : V̂ = 24√2 ≈ <b>33,9 V</b>.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 2 – Dimensionner un pont PD2<span class="tag calc">calcul</span><span class="tag must">obligatoire · 8 min</span></h3>
+      <p>Un transformateur 230 V / 24 V – 50 Hz alimente un pont PD2 qui débite sur une résistance R = 12 Ω. Les diodes sont parfaites.</p>
+      <ol class="q">
+        <li>Calculer la valeur maximale V̂ de la tension secondaire. <span class="chk" data-a="33.94" data-u="V"></span></li>
+        <li>Calculer ⟨u⟩. <span class="chk" data-a="21.61" data-u="V"></span> Puis le courant moyen ⟨i⟩. <span class="chk" data-a="1.80" data-u="A"></span></li>
+        <li>Calculer le courant moyen dans une diode. <span class="chk" data-a="0.90" data-u="A"></span></li>
+        <li>Sur charge résistive, la valeur efficace de u est égale à celle de v. Calculer la puissance reçue par R. <span class="chk" data-a="48" data-u="W"></span></li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>V̂ = V√2. ⟨u⟩ = 2V̂/π. Chaque diode ne conduit qu'une alternance sur deux : son courant moyen est la moitié de ⟨i⟩. Pour la puissance : P = U²/R avec U la valeur <b>efficace</b>.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>V̂ = 24 × √2 ≈ <b>33,9 V</b>.</li>
+          <li>⟨u⟩ = 2 × 33,9 / π ≈ <b>21,6 V</b> ; ⟨i⟩ = 21,6 / 12 ≈ <b>1,80 A</b>.</li>
+          <li>⟨i<sub>D</sub>⟩ = ⟨i⟩/2 ≈ <b>0,90 A</b>.</li>
+          <li>U = 24 V, donc P = 24² / 12 = <b>48 W</b>.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 3 – Tableau de conduction du PD3<span class="tag ana">analyse</span><span class="tag opt">pour aller plus loin</span></h3>
+      <p>Sélectionner « PD3 triphasé ». Compléter le tableau sur votre feuille en vous aidant de l'animation (θ = ωt).</p>
+      <table>
+        <tr><th>Intervalle de θ</th><th>Diode du haut qui conduit</th><th>Diode du bas qui conduit</th><th>Tension u</th></tr>
+        <tr><td>30° → 90°</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><td>90° → 150°</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><td>150° → 210°</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><td>210° → 270°</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><td>270° → 330°</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+        <tr><td>330° → 390°</td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+      </table>
+      <p>Pendant combien de degrés une diode conduit-elle ? <span class="chk" data-a="120" data-u="°"></span></p>
+      <details class="hint"><summary>Coup de pouce</summary><div>Pour chaque intervalle, placer le curseur au milieu (60°, 120°, 180°…) et lire quelle tension simple est la plus haute et laquelle est la plus basse sur le premier graphique.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <table>
+          <tr><th>Intervalle</th><th>Haut</th><th>Bas</th><th>u</th></tr>
+          <tr><td>30° → 90°</td><td>D1</td><td>D'2</td><td>v1 − v2 = u12</td></tr>
+          <tr><td>90° → 150°</td><td>D1</td><td>D'3</td><td>v1 − v3 = u13</td></tr>
+          <tr><td>150° → 210°</td><td>D2</td><td>D'3</td><td>v2 − v3 = u23</td></tr>
+          <tr><td>210° → 270°</td><td>D2</td><td>D'1</td><td>v2 − v1 = u21</td></tr>
+          <tr><td>270° → 330°</td><td>D3</td><td>D'1</td><td>v3 − v1 = u31</td></tr>
+          <tr><td>330° → 390°</td><td>D3</td><td>D'2</td><td>v3 − v2 = u32</td></tr>
+        </table>
+        <p>Chaque diode conduit pendant <b>120°</b> (T/3) ; u change d'expression tous les 60° (T/6).</p>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 4 – Pont PD3 sur le réseau 400 V<span class="tag calc">calcul</span><span class="tag opt">pour aller plus loin</span></h3>
+      <p>Un pont PD3 est alimenté par le réseau 230 V / 400 V – 50 Hz et débite sur R = 20 Ω.</p>
+      <ol class="q">
+        <li>Calculer ⟨u⟩ (avec 1,35 U). <span class="chk" data-a="540" data-u="V"></span> Puis ⟨i⟩. <span class="chk" data-a="27" data-u="A"></span></li>
+        <li>Calculer le courant moyen dans une diode. <span class="chk" data-a="9" data-u="A"></span> Puis la tension inverse maximale. <span class="chk" data-a="566" data-u="V"></span></li>
+        <li>Choisir la tension V<sub>RRM</sub> des diodes parmi 600 V, 800 V, 1 200 V, 1 600 V avec un coefficient de sécurité de 2. <span class="chk" data-a="1200" data-u="V" data-tol="0.001"></span></li>
+        <li>Quelle est la fréquence de l'ondulation de u ? <span class="chk" data-a="300" data-u="Hz"></span> Pourquoi le PD3 est-il préféré au PD2 en forte puissance ?</li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>⟨u⟩ = 3√2·U/π ≈ 1,35 U. Une diode du PD3 conduit un tiers du temps. La tension inverse maximale vaut la valeur maximale d'une tension <b>composée</b>. Pour le choix : prendre la première valeur supérieure à 2 × V<sub>Dmax</sub>.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>⟨u⟩ = 3 × 1,414 × 400 / π ≈ <b>540 V</b> ; ⟨i⟩ = 540 / 20 = <b>27 A</b>.</li>
+          <li>⟨i<sub>D</sub>⟩ = 27 / 3 = <b>9 A</b> ; V<sub>Dmax</sub> = 400√2 ≈ <b>566 V</b>.</li>
+          <li>2 × 566 ≈ 1 130 V : diodes <b>1 200 V</b>, avec I<sub>F(AV)</sub> ≥ 9 A.</li>
+          <li><b>300 Hz</b> (6 × 50 Hz). La tension est beaucoup plus « lisse » (u varie seulement entre 0,87 Û et Û) et la puissance est prélevée de façon équilibrée sur les trois phases.</li>
+        </ol>
+      </div></details>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">F</span>Auto-évaluation <span class="tag must">obligatoire · 5 min</span></h2>
+    <div class="qcm" data-key="f1">
+      <div class="qq" data-ok="b"><p>1. Dans un groupe de diodes à cathodes communes, quelle diode conduit ?</p>
+        <label><input type="radio" name="f1q1" value="a"> Celle dont l'anode est au potentiel le plus bas</label>
+        <label><input type="radio" name="f1q1" value="b"> Celle dont l'anode est au potentiel le plus élevé</label>
+        <label><input type="radio" name="f1q1" value="c"> Toutes, à tour de rôle et en même temps</label>
+        <div class="why">Les cathodes sont reliées entre elles : seule la diode dont l'anode est la plus haute peut avoir v<sub>AK</sub> ≥ 0. Toutes les autres ont v<sub>AK</sub> &lt; 0.</div></div>
+      <div class="qq" data-ok="c"><p>2. Un pont PD2 est alimenté par une tension de 230 V efficace. Que vaut ⟨u⟩ ?</p>
+        <label><input type="radio" name="f1q2" value="a"> 230 V</label>
+        <label><input type="radio" name="f1q2" value="b"> 325 V</label>
+        <label><input type="radio" name="f1q2" value="c"> 207 V</label>
+        <div class="why">⟨u⟩ = 2V̂/π = 0,9 × 230 ≈ 207 V. 325 V est la valeur maximale V̂, 230 V la valeur efficace.</div></div>
+      <div class="qq" data-ok="a"><p>3. Quelle est la fréquence de la tension redressée par un PD3 sur un réseau 50 Hz ?</p>
+        <label><input type="radio" name="f1q3" value="a"> 300 Hz</label>
+        <label><input type="radio" name="f1q3" value="b"> 150 Hz</label>
+        <label><input type="radio" name="f1q3" value="c"> 100 Hz</label>
+        <div class="why">u change d'expression tous les 60°, soit 6 calottes par période : 6 × 50 = 300 Hz.</div></div>
+      <div class="qq" data-ok="b"><p>4. Une diode d'un pont PD3 conduit pendant :</p>
+        <label><input type="radio" name="f1q4" value="a"> T/6</label>
+        <label><input type="radio" name="f1q4" value="b"> T/3</label>
+        <label><input type="radio" name="f1q4" value="c"> T/2</label>
+        <div class="why">Chaque diode conduit 120°, soit T/3 : son courant moyen vaut donc ⟨i⟩/3.</div></div>
+      <div class="qq" data-ok="c"><p>5. Quel appareil utiliser pour mesurer ⟨u⟩ en sortie d'un pont ?</p>
+        <label><input type="radio" name="f1q5" value="a"> Un multimètre en position AC</label>
+        <label><input type="radio" name="f1q5" value="b"> Une pince ampèremétrique</label>
+        <label><input type="radio" name="f1q5" value="c"> Un multimètre en position DC</label>
+        <div class="why">La position DC (=) mesure la valeur moyenne. La position AC+DC d'un appareil TRMS mesure la valeur efficace.</div></div>
+      <div class="score"></div>
+    </div>
+  </div>
+  <footer class="next"><a href="#accueil">← Accueil</a><a href="#commande">Fiche 2 · Redresseurs commandés →</a></footer>
+</section>
+
+<!-- ======================= FICHE 2 : REDRESSEURS COMMANDÉS ======================= -->
+<section class="fiche" id="commande">
+  <header>
+    <div class="kicker">Fiche 2 · Conversion alternatif → continu réglable</div>
+    <h1>Redresseurs commandés à thyristors</h1>
+    <p class="lead">En remplaçant tout ou partie des diodes par des thyristors, on obtient une tension continue de valeur moyenne <b>réglable</b> grâce à l'angle de retard à l'amorçage α.</p>
+  </header>
+
+  <div class="card parcours">
+    <div>
+      <h2>Mon parcours · 35 min <span class="slot">0:35 → 1:10</span></h2>
+      <p class="must-lead"><b>Obligatoire</b> pendant la séance :</p>
+      <ul class="todo" data-key="f2">
+        <li><label><input type="checkbox"> A · Lire l'essentiel (le thyristor) <span class="mins">5 min</span></label></li><li><label><input type="checkbox"> C · Faire les 9 étapes du pas à pas <span class="mins">15 min</span></label></li><li><label><input type="checkbox"> E · Exercice 3 : pont mixte sur charge résistive <span class="mins">10 min</span></label></li><li><label><input type="checkbox"> F · QCM d'auto-évaluation (viser 4/5) <span class="mins">5 min</span></label></li>
+      </ul>
+      <p class="must-lead"><b>Pour aller plus loin</b> (si j'ai terminé en avance, ou à la maison) :</p>
+      <ul class="optlist"><li>B · Fonctionnement détaillé : à relire si besoin</li><li>D · Exemples d'utilisation</li><li>E · Exercices 1, 2 et 4</li></ul>
+    </div>
+    <div>
+      <h2>À la fin de la fiche, je sais…</h2>
+      <ul class="obj">
+        <li>énoncer les conditions d'amorçage et de blocage d'un thyristor ;</li>
+        <li>expliquer l'effet de l'angle α sur la tension de sortie ;</li>
+        <li>distinguer pont mixte et pont tout thyristors ;</li>
+        <li>calculer ⟨u⟩ et choisir α pour obtenir une tension donnée.</li>
+      </ul>
+      <p style="font-size:13px;color:var(--muted)">Prérequis : fiche 1 (règle des groupes). Temps alloué dans la séance de 3 h : 35 min (0:35 → 1:10).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">A</span>L'essentiel <span class="tag must">obligatoire · 5 min</span></h2>
+    <div class="grid2">
+      <div>
+        <h3>Le thyristor : interrupteur commandé à la fermeture</h3>
+        <ul>
+          <li>3 électrodes : anode A, cathode K et gâchette G (commande).</li>
+          <li><b>Amorçage</b> : il faut deux conditions, v<sub>AK</sub> &gt; 0 <b>et</b> une impulsion de courant i<sub>G</sub> dans la gâchette.</li>
+          <li>Une fois amorcé, il reste passant sans courant de gâchette (effet mémoire).</li>
+          <li><b>Blocage</b> : quand le courant i<sub>AK</sub> s'annule (ou devient inférieur au courant de maintien I<sub>H</sub>). La gâchette ne permet pas de le bloquer.</li>
+        </ul>
+        <div class="box violet">Expérience de la lampe : K1 fermé seul → lampe éteinte (Th bloqué). On ferme K2 (gâchette) → lampe allumée. On rouvre K2 → la lampe reste allumée. On ouvre K1 → le courant s'annule, Th se bloque. On referme K1 → la lampe reste éteinte.</div>
+      </div>
+      <div>
+        <table class="formulas">
+          <tr><th>Grandeur</th><th>Expression</th></tr>
+          <tr><td>⟨u⟩ pont mixte (ou tout thyristors sur charge R)</td><td class="f">V̂(1 + cos α)/π</td></tr>
+          <tr><td>⟨u⟩ tout thyristors, conduction continue (charge très inductive)</td><td class="f">2V̂ cos α/π</td></tr>
+          <tr><td>Valeur efficace U sur charge R</td><td class="f">V√(1 − α/π + sin 2α / 2π)</td></tr>
+          <tr><td>Courant moyen dans un thyristor ou une diode</td><td class="f">⟨i⟩/2</td></tr>
+          <tr><td>Tension maximale supportée</td><td class="f">V̂ = V√2</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">B</span>Fonctionnement détaillé <span class="tag help">à consulter si besoin</span></h2>
+    <div class="grid2">
+      <div>
+        <h3>Pont mixte sur charge résistive (α = 60° par exemple)</h3>
+        <table class="phases">
+          <tr><th>Intervalle de θ</th><th>Éléments passants</th><th>u</th><th>Explication</th></tr>
+          <tr><td>0 → α</td><td>aucun</td><td>0</td><td>v &gt; 0 mais T1 n'a pas reçu d'impulsion</td></tr>
+          <tr><td>α → 180°</td><td>T1, D4</td><td>v</td><td>impulsion sur T1 : amorçage</td></tr>
+          <tr><td>180° → 180° + α</td><td>aucun</td><td>0</td><td>le courant s'est annulé à 180° : T1 bloqué</td></tr>
+          <tr><td>180° + α → 360°</td><td>T2, D3</td><td>−v</td><td>impulsion sur T2</td></tr>
+        </table>
+        <h3>Pont mixte sur charge très inductive</h3>
+        <p>L'inductance maintient le courant. Entre 0 et α, il continue de circuler par T2 et D4 (même bras) : la charge est court-circuitée, <b>u = 0</b>. C'est la phase de <b>roue libre</b>. La tension u ne devient jamais négative.</p>
+        <h3>Pont tout thyristors sur charge très inductive</h3>
+        <p>Il n'y a plus de diode pour assurer la roue libre. T1 et T4 restent passants jusqu'à l'amorçage de T2 et T3, même quand v est devenue négative : <b>u peut être négative</b>. Pour 90° &lt; α &lt; 180°, ⟨u⟩ &lt; 0 : le pont renvoie de l'énergie au réseau (<b>onduleur assisté</b>), à condition que la charge contienne une source (machine en génératrice).</p>
+      </div>
+      <div>
+        <h3>Méthode pour analyser un pont commandé</h3>
+        <ol class="method">
+          <li>Repérer les thyristors et les instants où ils reçoivent une impulsion (α, 180° + α).</li>
+          <li>Pour chaque intervalle, vérifier les deux conditions d'amorçage : v<sub>AK</sub> &gt; 0 et impulsion reçue.</li>
+          <li>Se demander si le courant peut s'annuler (charge R) ou s'il est maintenu (charge inductive).</li>
+          <li>Les diodes suivent la règle des groupes de la fiche 1.</li>
+          <li>Écrire u à partir des éléments passants, puis tracer u(t).</li>
+        </ol>
+        <h3>Comparaison</h3>
+        <table>
+          <tr><th></th><th>Pont mixte</th><th>Pont tout thyristors</th></tr>
+          <tr><td>⟨u⟩</td><td>de 2V̂/π à 0</td><td>de 2V̂/π à −2V̂/π</td></tr>
+          <tr><td>Quadrants</td><td>1 (u &gt; 0, i &gt; 0)</td><td>2 (u &gt; 0 ou &lt; 0, i &gt; 0)</td></tr>
+          <tr><td>Renvoi d'énergie au réseau</td><td>Non</td><td>Oui (onduleur assisté)</td></tr>
+          <tr><td>Coût, commande</td><td>Plus simple</td><td>4 gâchettes à piloter</td></tr>
+        </table>
+        <h3>Erreurs fréquentes</h3>
+        <ul class="pitfall">
+          <li>Penser qu'on peut bloquer un thyristor en supprimant l'impulsion : il faut annuler le courant.</li>
+          <li>Oublier qu'une impulsion envoyée quand v<sub>AK</sub> &lt; 0 n'a aucun effet.</li>
+          <li>Utiliser 2V̂ cos α/π pour un pont mixte : cette formule ne vaut que pour le pont tout thyristors en conduction continue.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card anim">
+    <h2><span class="n">C</span>Animation pas à pas <span class="tag must">obligatoire · 15 min</span></h2>
+    <div class="stepper" id="f2-step"></div>
+    <div class="controls">
+      <button class="play" id="f2-play">⏸ Pause</button>
+      <label class="ctl">Instant <input type="range" id="f2-scrub" min="0" max="1000" value="0"></label>
+      <div class="ctl">Vitesse <div class="seg" id="f2-speed"><button data-v="0.5">×0,5</button><button data-v="1" class="on">×1</button><button data-v="2">×2</button></div></div>
+      <label class="ctl">Angle α <input type="range" id="f2-alpha" min="0" max="175" value="60"><output id="f2-alpha-o"></output></label>
+      <div class="ctl">Montage <div class="seg" id="f2-mode"><button data-v="mixte" class="on">Pont mixte</button><button data-v="tout">Tout thyristors</button></div></div>
+      <div class="ctl">Charge <div class="seg" id="f2-load"><button data-v="R" class="on">Résistive</button><button data-v="L">Très inductive</button></div></div>
+    </div>
+    <div class="stage">
+      <svg class="sch" id="f2-sch" viewBox="0 0 470 300"></svg>
+      <div class="live">
+        <span class="badge" id="f2-badge"></span>
+        <div class="vals" id="f2-vals"></div>
+        <div class="msg" id="f2-msg"></div>
+      </div>
+    </div>
+    <canvas class="scope" id="f2-scope"></canvas>
+    <div class="legend"><span><i style="background:#2f6fd6"></i>v(t) réseau</span><span><i style="background:#1d9a52;height:4px"></i>u(t) charge</span><span><i style="background:#7a4cc2"></i>impulsions de gâchette</span><span><i style="background:#df8516"></i>courant dans T1</span><span><i style="background:#d6f2e2;height:10px"></i>charge alimentée par le réseau</span><span><i style="background:#fdf0d8;height:10px"></i>roue libre</span></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">D</span>Exemples d'utilisation <span class="tag opt">pour aller plus loin</span></h2>
+    <div class="examples">
+      <div class="exm"><span class="where">Levage, manutention</span><h4>Variateur pour moteur à courant continu</h4><p>Ponts roulants, laminoirs, anciens ascenseurs : un pont tout thyristors triphasé alimente l'induit du moteur. On règle la vitesse avec α. En descente de charge, le pont fonctionne en onduleur assisté et renvoie l'énergie au réseau.</p><span class="chain">réseau 400 V → pont PD3 tout thyristors → induit MCC</span></div>
+      <div class="exm"><span class="where">Logistique</span><h4>Chargeur de batteries de traction</h4><p>Les chargeurs de chariots élévateurs utilisent un pont mixte : l'angle α règle le courant de charge (forte charge au début, puis réduction en fin de charge).</p><p>Pourquoi le pont mixte : un seul sens de transfert d'énergie suffit, et il est moins cher.</p></div>
+      <div class="exm"><span class="where">Réseau électrique</span><h4>Lignes à courant continu (HVDC)</h4><p>Les grandes liaisons sous-marines (par exemple entre la France et l'Angleterre) utilisent des ponts à thyristors de plusieurs centaines de mégawatts : redresseur d'un côté, onduleur assisté de l'autre.</p></div>
+      <div class="exm"><span class="where">Industrie</span><h4>Excitation des alternateurs</h4><p>Le courant d'excitation des alternateurs de centrale est fourni par un pont à thyristors : en réglant α, on règle le courant d'excitation et donc la tension produite.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">E</span>TD</h2>
+    <p class="must-lead">Pendant la séance, faire <b>l'exercice 3</b> (obligatoire). Les autres exercices sont pour aller plus loin.</p>
+    <div class="ex">
+      <h3>Exercice 1 – L'expérience de la lampe<span class="tag ana">analyse</span><span class="tag opt">pour aller plus loin</span></h3>
+      <p>Une lampe en série avec un thyristor Th est alimentée en continu par l'interrupteur K1 ; un bouton K2 envoie un courant dans la gâchette.</p>
+      <ol class="q">
+        <li>Pourquoi la lampe reste-t-elle éteinte quand on ferme K1 seul ?</li>
+        <li>Pourquoi reste-t-elle allumée quand on rouvre K2 ?</li>
+        <li>Comment éteindre la lampe ? Que se passe-t-il si on referme ensuite K1 ?</li>
+        <li>Expliquer pourquoi, sur le réseau alternatif, le thyristor se bloque tout seul à chaque période.</li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Relire les deux conditions d'amorçage et la condition de blocage dans « L'essentiel ». Pour la question 4 : que devient le courant à la fin de chaque alternance sur une charge résistive ?</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>v<sub>AK</sub> &gt; 0 mais il n'y a pas de courant de gâchette : une seule des deux conditions d'amorçage est remplie.</li>
+          <li>Une fois amorcé, le thyristor reste passant tant que le courant est supérieur au courant de maintien : la gâchette n'est plus utile.</li>
+          <li>Il faut annuler le courant : ouvrir K1. En refermant K1, il n'y a pas d'impulsion de gâchette, donc le thyristor reste bloqué.</li>
+          <li>En alternatif, la tension s'inverse à chaque demi-période : le courant s'annule naturellement et le thyristor se bloque (commutation naturelle). Il faut donc envoyer une impulsion à chaque période.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 2 – Observer le pont mixte<span class="tag obs">observation</span><span class="tag opt">pour aller plus loin</span></h3>
+      <p>Choisir « Pont mixte », charge « Résistive », α = 60°.</p>
+      <ol class="q">
+        <li>Entre 0 et α, quels composants conduisent ? Que vaut u ?</li>
+        <li>Entre α et 180°, quels composants conduisent ? Même question entre 180° + α et 360°.</li>
+        <li>Faire varier α de 0 à 175°. Comment évolue ⟨u⟩ ? Pour quelle valeur de α retrouve-t-on le pont à diodes ? <span class="chk" data-a="0" data-u="°"></span></li>
+        <li>Passer en charge « Très inductive ». Quels composants conduisent maintenant entre 0 et α ? Comment appelle-t-on cette phase ?</li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Le badge au-dessus des valeurs indique les éléments passants. Les étapes 1 à 7 du pas à pas correspondent exactement à cet exercice.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>Aucun : aucun thyristor n'a reçu d'impulsion, i = 0 et u = 0.</li>
+          <li>Entre α et 180° : T1 et D4. Entre 180° + α et 360° : T2 et D3.</li>
+          <li>⟨u⟩ diminue quand α augmente : V̂(1 + cos α)/π passe de 2V̂/π (α = <b>0°</b>, comme le pont à diodes) à 0 (α = 180°).</li>
+          <li>Entre 0 et α, le courant continue de circuler dans la charge à travers T2 et D4 : u = 0. C'est la phase de <b>roue libre</b>.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 3 – Pont mixte sur charge résistive<span class="tag calc">calcul</span><span class="tag must">obligatoire · 10 min</span></h3>
+      <p>Un pont mixte est alimenté sous V = 230 V – 50 Hz et débite sur R = 50 Ω.</p>
+      <ol class="q">
+        <li>Pour α = 60°, calculer ⟨u⟩. <span class="chk" data-a="155.3" data-u="V"></span> Puis ⟨i⟩. <span class="chk" data-a="3.11" data-u="A"></span> Puis le courant moyen dans un thyristor. <span class="chk" data-a="1.55" data-u="A"></span></li>
+        <li>Calculer la valeur efficace U pour α = 60°. <span class="chk" data-a="206.3" data-u="V"></span> Puis la puissance reçue par R. <span class="chk" data-a="851" data-u="W"></span></li>
+        <li>Quel angle α faut-il pour obtenir ⟨u⟩ = 100 V ? <span class="chk" data-a="92" data-u="°"></span></li>
+        <li>Quelle tension maximale doivent supporter les thyristors ? <span class="chk" data-a="325" data-u="V"></span></li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>V̂ = 230√2 ≈ 325 V. Pour U, calculer d'abord α/π et sin(2α)/(2π) avec α = 60° = π/3 rad. Pour la question 3, isoler cos α : cos α = ⟨u⟩π/V̂ − 1, puis utiliser arccos (calculatrice en degrés).</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>⟨u⟩ = 325 × (1 + 0,5)/π ≈ <b>155 V</b> ; ⟨i⟩ = 155/50 ≈ <b>3,11 A</b> ; ⟨i<sub>T</sub>⟩ = ⟨i⟩/2 ≈ <b>1,55 A</b>.</li>
+          <li>U = 230 × √(1 − 1/3 + sin 120°/2π) = 230 × √0,805 ≈ <b>206 V</b> ; P = U²/R = 206²/50 ≈ <b>851 W</b>.</li>
+          <li>1 + cos α = 100π/325 ≈ 0,966 → cos α ≈ −0,034 → <b>α ≈ 92°</b>.</li>
+          <li>V<sub>Tmax</sub> = V̂ ≈ <b>325 V</b>.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 4 – Pont tout thyristors et moteur à courant continu<span class="tag calc">calcul</span><span class="tag opt">pour aller plus loin</span></h3>
+      <p>Un pont tout thyristors, alimenté sous V = 230 V, alimente l'induit d'un moteur à courant continu. L'inductance de lissage assure un courant constant.</p>
+      <ol class="q">
+        <li>Calculer l'angle α qui donne ⟨u⟩ = 150 V. <span class="chk" data-a="43.6" data-u="°"></span></li>
+        <li>Calculer ⟨u⟩ pour α = 120°. <span class="chk" data-a="-103.5" data-u="V"></span> Vérifier sur l'animation (charge « Très inductive »).</li>
+        <li>Dans ce cas, dans quel sens l'énergie circule-t-elle ? À quelle condition sur la machine ce fonctionnement est-il possible ?</li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Formule du pont tout thyristors en conduction continue : ⟨u⟩ = 2V̂ cos α/π. Pour la question 3 : la puissance moyenne reçue par la charge vaut ⟨u⟩ × I. Que signifie une puissance négative ?</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>cos α = 150π / (2 × 325) ≈ 0,725 → <b>α ≈ 43,6°</b>.</li>
+          <li>⟨u⟩ = 2 × 325 × cos 120° / π ≈ <b>−103,5 V</b>.</li>
+          <li>⟨u⟩ &lt; 0 avec un courant toujours positif : la puissance moyenne est négative côté charge, l'énergie est renvoyée au réseau (<b>onduleur assisté</b>). Il faut que la machine fonctionne en génératrice avec une f.é.m. négative (par exemple une charge entraînante en descente).</li>
+        </ol>
+      </div></details>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">F</span>Auto-évaluation <span class="tag must">obligatoire · 5 min</span></h2>
+    <div class="qcm" data-key="f2">
+      <div class="qq" data-ok="c"><p>1. Pour amorcer un thyristor, il faut :</p>
+        <label><input type="radio" name="f2q1" value="a"> une impulsion sur la gâchette, quel que soit v<sub>AK</sub></label>
+        <label><input type="radio" name="f2q1" value="b"> v<sub>AK</sub> &gt; 0 seulement</label>
+        <label><input type="radio" name="f2q1" value="c"> v<sub>AK</sub> &gt; 0 et une impulsion sur la gâchette</label>
+        <div class="why">Les deux conditions doivent être réunies en même temps. Une impulsion avec v<sub>AK</sub> &lt; 0 n'a aucun effet.</div></div>
+      <div class="qq" data-ok="a"><p>2. Comment bloque-t-on un thyristor ?</p>
+        <label><input type="radio" name="f2q2" value="a"> En annulant le courant qui le traverse</label>
+        <label><input type="radio" name="f2q2" value="b"> En supprimant le courant de gâchette</label>
+        <label><input type="radio" name="f2q2" value="c"> En envoyant une impulsion négative sur la gâchette</label>
+        <div class="why">Le thyristor ne se commande qu'à la fermeture. Il se bloque quand son courant devient inférieur au courant de maintien.</div></div>
+      <div class="qq" data-ok="b"><p>3. Pont mixte, V = 230 V, α = 90°. ⟨u⟩ vaut environ :</p>
+        <label><input type="radio" name="f2q3" value="a"> 207 V</label>
+        <label><input type="radio" name="f2q3" value="b"> 104 V</label>
+        <label><input type="radio" name="f2q3" value="c"> 0 V</label>
+        <div class="why">⟨u⟩ = V̂(1 + cos 90°)/π = 325/π ≈ 104 V : la moitié de la valeur obtenue avec des diodes.</div></div>
+      <div class="qq" data-ok="c"><p>4. Quel montage peut renvoyer de l'énergie au réseau ?</p>
+        <label><input type="radio" name="f2q4" value="a"> Le pont à diodes</label>
+        <label><input type="radio" name="f2q4" value="b"> Le pont mixte</label>
+        <label><input type="radio" name="f2q4" value="c"> Le pont tout thyristors avec α &gt; 90°</label>
+        <div class="why">Seul le pont tout thyristors peut donner ⟨u⟩ &lt; 0 avec i &gt; 0 : c'est le fonctionnement en onduleur assisté.</div></div>
+      <div class="qq" data-ok="a"><p>5. Dans un pont mixte sur charge inductive, la phase de roue libre :</p>
+        <label><input type="radio" name="f2q5" value="a"> court-circuite la charge (u = 0)</label>
+        <label><input type="radio" name="f2q5" value="b"> rend u négative</label>
+        <label><input type="radio" name="f2q5" value="c"> coupe le courant dans la charge</label>
+        <div class="why">Le courant de l'inductance se referme par un thyristor et une diode du même bras : u = 0 mais le courant continue.</div></div>
+      <div class="score"></div>
+    </div>
+  </div>
+  <footer class="next"><a href="#redresseur">← Fiche 1</a><a href="#hacheur">Fiche 3 · Hacheur →</a></footer>
+</section>
+
+<!-- ======================= FICHE 3 : HACHEUR ======================= -->
+<section class="fiche" id="hacheur">
+  <header>
+    <div class="kicker">Fiche 3 · Conversion continu → continu</div>
+    <h1>Hacheur série (abaisseur)</h1>
+    <p class="lead">Le hacheur transforme une tension continue fixe V en une tension de valeur moyenne réglable, en « hachant » la tension d'entrée à fréquence fixe. On l'utilise par exemple pour faire varier la vitesse d'un moteur à courant continu.</p>
+  </header>
+
+  <div class="card parcours">
+    <div>
+      <h2>Mon parcours · 30 min <span class="slot">1:20 → 1:50</span></h2>
+      <p class="must-lead"><b>Obligatoire</b> pendant la séance :</p>
+      <ul class="todo" data-key="f3">
+        <li><label><input type="checkbox"> A · Lire l'essentiel <span class="mins">5 min</span></label></li><li><label><input type="checkbox"> C · Faire les 7 étapes du pas à pas <span class="mins">10 min</span></label></li><li><label><input type="checkbox"> E · Exercice 2 : moteur à courant continu <span class="mins">10 min</span></label></li><li><label><input type="checkbox"> F · QCM d'auto-évaluation (viser 4/5) <span class="mins">5 min</span></label></li>
+      </ul>
+      <p class="must-lead"><b>Pour aller plus loin</b> (si j'ai terminé en avance, ou à la maison) :</p>
+      <ul class="optlist"><li>B · Fonctionnement détaillé : à relire si besoin</li><li>D · Exemples d'utilisation</li><li>E · Exercices 1 et 3</li></ul>
+    </div>
+    <div>
+      <h2>À la fin de la fiche, je sais…</h2>
+      <ul class="obj">
+        <li>décrire les deux phases de fonctionnement et le rôle de la diode de roue libre ;</li>
+        <li>calculer ⟨u⟩ à partir du rapport cyclique ;</li>
+        <li>calculer l'ondulation du courant et savoir la réduire ;</li>
+        <li>régler la vitesse d'un moteur à courant continu avec α.</li>
+      </ul>
+      <p style="font-size:13px;color:var(--muted)">Prérequis : loi des mailles, inductance (u<sub>L</sub> = L di/dt). Durée indicative : 2 h.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">A</span>L'essentiel <span class="tag must">obligatoire · 5 min</span></h2>
+    <div class="grid2">
+      <div>
+        <ul>
+          <li>Un interrupteur commandé H (transistor MOSFET ou IGBT) est fermé pendant t<sub>on</sub>, puis ouvert, avec une période T = 1/f.</li>
+          <li><b>Rapport cyclique</b> : α = t<sub>on</sub>/T, compris entre 0 et 1.</li>
+          <li>Une <b>diode de roue libre</b> D assure la continuité du courant dans la charge inductive quand H est ouvert. Sans elle, l'ouverture de H provoquerait une surtension destructrice.</li>
+          <li>0 &lt; t &lt; αT : H fermé, D bloquée, u = V, le courant croît.</li>
+          <li>αT &lt; t &lt; T : H ouvert, D conduit, u = 0, le courant décroît.</li>
+        </ul>
+      </div>
+      <div>
+        <table class="formulas">
+          <tr><th>Grandeur</th><th>Expression</th></tr>
+          <tr><td>Valeur moyenne de u</td><td class="f">⟨u⟩ = αV</td></tr>
+          <tr><td>Ondulation du courant (R négligeable)</td><td class="f">Δi = α(1 − α)V / (L f)</td></tr>
+          <tr><td>Ondulation maximale (α = 0,5)</td><td class="f">Δi<sub>max</sub> = V / (4 L f)</td></tr>
+          <tr><td>Courant moyen dans H</td><td class="f">⟨i<sub>H</sub>⟩ = α⟨i⟩</td></tr>
+          <tr><td>Courant moyen dans D</td><td class="f">⟨i<sub>D</sub>⟩ = (1 − α)⟨i⟩</td></tr>
+          <tr><td>Moteur à courant continu</td><td class="f">αV = E + R⟨i⟩, E = kΩ</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">B</span>Fonctionnement détaillé <span class="tag help">à consulter si besoin</span></h2>
+    <div class="grid2">
+      <div>
+        <h3>Phase 1 : 0 &lt; t &lt; αT, H fermé</h3>
+        <ul>
+          <li>H fermé relie la charge à la source : u = V.</li>
+          <li>La cathode de D est à +V, son anode à 0 : v<sub>D</sub> = −V, la diode est <b>bloquée</b>.</li>
+          <li>Loi des mailles sur la charge : V = R·i + L di/dt. Comme V &gt; R·i, di/dt &gt; 0 : <b>le courant croît</b> de I<sub>min</sub> à I<sub>max</sub>. L'inductance <b>stocke</b> de l'énergie.</li>
+          <li>i<sub>H</sub> = i et i<sub>D</sub> = 0.</li>
+        </ul>
+        <h3>Phase 2 : αT &lt; t &lt; T, H ouvert</h3>
+        <ul>
+          <li>H s'ouvre. L'inductance s'oppose à la variation du courant : elle force le passage du courant dans la diode, qui devient <b>passante</b> (roue libre).</li>
+          <li>u = v<sub>D</sub> ≈ 0. Loi des mailles : 0 = R·i + L di/dt, donc di/dt &lt; 0 : <b>le courant décroît</b>. L'inductance <b>restitue</b> son énergie à la résistance.</li>
+          <li>i<sub>H</sub> = 0 et i<sub>D</sub> = i.</li>
+        </ul>
+        <div class="box">Conduction continue : si L est assez grande, le courant n'a pas le temps de s'annuler avant la fermeture suivante de H. C'est le cas dans l'animation.</div>
+      </div>
+      <div>
+        <h3>D'où vient ⟨u⟩ = αV ?</h3>
+        <p>u vaut V pendant αT et 0 pendant le reste de la période. Sa valeur moyenne est l'aire sous la courbe divisée par T : ⟨u⟩ = (V × αT)/T = αV. En régime permanent, la tension moyenne aux bornes de l'inductance est nulle : ⟨u⟩ = R⟨i⟩ (+ E pour un moteur).</p>
+        <h3>Méthode pour étudier un hacheur</h3>
+        <ol class="method">
+          <li>Identifier l'interrupteur commandé, la diode et la charge.</li>
+          <li>Phase H fermé : remplacer H par un fil, chercher l'état de D, écrire u.</li>
+          <li>Phase H ouvert : remplacer H par un interrupteur ouvert, la diode prend le courant, écrire u.</li>
+          <li>Tracer u(t), puis i(t) (droites croissante et décroissante).</li>
+          <li>Calculer ⟨u⟩ = αV, puis ⟨i⟩ avec la loi des mailles en valeurs moyennes.</li>
+        </ol>
+        <h3>Erreurs fréquentes</h3>
+        <ul class="pitfall">
+          <li>Oublier la diode de roue libre : à l'ouverture de H, L di/dt devient énorme et détruit le transistor.</li>
+          <li>Croire que le courant s'annule quand H s'ouvre : il décroît seulement.</li>
+          <li>Confondre f (fréquence de découpage, en kHz) et la fréquence du réseau.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card anim">
+    <h2><span class="n">C</span>Animation pas à pas <span class="tag must">obligatoire · 10 min</span></h2>
+    <div class="stepper" id="f3-step"></div>
+    <div class="controls">
+      <button class="play" id="f3-play">⏸ Pause</button>
+      <label class="ctl">Instant <input type="range" id="f3-scrub" min="0" max="1000" value="0"></label>
+      <div class="ctl">Vitesse <div class="seg" id="f3-speed"><button data-v="0.5">×0,5</button><button data-v="1" class="on">×1</button><button data-v="2">×2</button></div></div>
+      <label class="ctl">Rapport cyclique α <input type="range" id="f3-alpha" min="0.05" max="0.95" step="0.05" value="0.5"><output id="f3-alpha-o"></output></label>
+      <label class="ctl">Inductance L <input type="range" id="f3-L" min="5" max="60" step="5" value="20"><output id="f3-L-o"></output></label>
+      <label class="ctl">Fréquence f <input type="range" id="f3-f" min="0.5" max="4" step="0.5" value="1"><output id="f3-f-o"></output></label>
+    </div>
+    <div class="stage">
+      <svg class="sch" id="f3-sch" viewBox="0 0 470 300"></svg>
+      <div class="live">
+        <span class="badge" id="f3-badge"></span>
+        <div class="vals" id="f3-vals"></div>
+        <div class="msg" id="f3-msg"></div>
+      </div>
+    </div>
+    <canvas class="scope" id="f3-scope"></canvas>
+    <div class="legend"><span><i style="background:#7a4cc2"></i>commande de H</span><span><i style="background:#1d9a52;height:4px"></i>u(t)</span><span><i style="background:#2f6fd6"></i>i(t) charge</span><span><i style="background:#df8516"></i>i<sub>H</sub> transistor</span><span><i style="background:#d43f3f"></i>i<sub>D</sub> diode</span></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">D</span>Exemples d'utilisation <span class="tag opt">pour aller plus loin</span></h2>
+    <div class="examples">
+      <div class="exm"><span class="where">Mobilité</span><h4>Trottinette, vélo électrique</h4><p>La batterie (36 V par exemple) alimente le moteur à travers un hacheur à MOSFET découpant à environ 16 kHz. La poignée d'accélérateur règle le rapport cyclique, donc la vitesse.</p><span class="chain">batterie 36 V → hacheur → moteur</span></div>
+      <div class="exm"><span class="where">Électronique</span><h4>Alimentation à découpage « buck »</h4><p>Les chargeurs USB et les cartes électroniques transforment 12 V en 5 V ou 3,3 V avec un hacheur série à plusieurs centaines de kHz. Rendement supérieur à 90 %, contre 40 % pour un régulateur linéaire.</p></div>
+      <div class="exm"><span class="where">Énergie</span><h4>Panneaux photovoltaïques (MPPT)</h4><p>Un hacheur (souvent élévateur, « boost ») ajuste en permanence son rapport cyclique pour faire travailler les panneaux à leur point de puissance maximale, avant l'onduleur.</p></div>
+      <div class="exm"><span class="where">Manutention</span><h4>Chariot élévateur électrique</h4><p>Le moteur de traction à courant continu est alimenté par un hacheur à IGBT depuis la batterie 48 V ou 80 V. Un hacheur réversible permet de récupérer l'énergie au freinage.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">E</span>TD</h2>
+    <p class="must-lead">Pendant la séance, faire <b>l'exercice 2</b> (obligatoire). Les autres exercices sont pour aller plus loin.</p>
+    <div class="ex">
+      <h3>Exercice 1 – Observer les deux phases<span class="tag obs">observation</span><span class="tag opt">pour aller plus loin</span></h3>
+      <ol class="q">
+        <li>Quel composant conduit quand H est fermé ? quand H est ouvert ?</li>
+        <li>Comment évolue le courant pendant chaque phase ? Pourquoi ne s'annule-t-il pas ?</li>
+        <li>Placer α à 0,25, relever ⟨u⟩. <span class="chk" data-a="50" data-u="V"></span> Puis α = 0,75. <span class="chk" data-a="150" data-u="V"></span></li>
+        <li>Pour α = 0,5, L = 20 mH, f = 1 kHz, relever Δi. <span class="chk" data-a="2.5" data-u="A" data-tol="0.04"></span> Doubler L, puis doubler f : quel est l'effet sur Δi ?</li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Les valeurs ⟨u⟩ et Δi sont affichées à droite du schéma. Les étapes 1 à 4 du pas à pas montrent les deux phases.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>H fermé : le transistor H (la diode est bloquée, polarisée en inverse par V). H ouvert : la diode de roue libre D.</li>
+          <li>Il croît quand H est fermé (u = V) et décroît quand H est ouvert (u = 0). L'inductance s'oppose aux variations du courant : elle restitue son énergie à travers la diode.</li>
+          <li>V = 200 V : α = 0,25 → <b>50 V</b> ; α = 0,75 → <b>150 V</b>.</li>
+          <li>Δi ≈ <b>2,5 A</b>. Doubler L ou doubler f divise Δi par deux.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 2 – Variation de vitesse d'un moteur à courant continu<span class="tag calc">calcul</span><span class="tag must">obligatoire · 10 min</span></h3>
+      <p>Un hacheur série alimenté sous V = 200 V alimente un moteur à courant continu à excitation indépendante : R = 1 Ω, E = kΩ avec k = 0,8 V·s/rad. Le courant moyen absorbé est ⟨i⟩ = 10 A et α = 0,7.</p>
+      <ol class="q">
+        <li>Calculer ⟨u⟩. <span class="chk" data-a="140" data-u="V"></span></li>
+        <li>Calculer la f.é.m. E. <span class="chk" data-a="130" data-u="V"></span> Puis la vitesse en rad/s. <span class="chk" data-a="162.5" data-u="rad/s"></span> Puis en tr/min. <span class="chk" data-a="1552" data-u="tr/min"></span></li>
+        <li>Calculer les courants moyens dans le transistor. <span class="chk" data-a="7" data-u="A"></span> Et dans la diode. <span class="chk" data-a="3" data-u="A"></span></li>
+        <li>Quel rapport cyclique faut-il pour faire tourner le moteur à 1 000 tr/min avec le même courant ? <span class="chk" data-a="0.469" data-u=""></span></li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Loi des mailles en valeurs moyennes : ⟨u⟩ = E + R⟨i⟩. Passage de rad/s à tr/min : n = Ω × 60 / 2π. Pour la question 4, faire le chemin inverse : n → Ω → E → ⟨u⟩ → α = ⟨u⟩/V.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>⟨u⟩ = 0,7 × 200 = <b>140 V</b>.</li>
+          <li>E = 140 − 1 × 10 = <b>130 V</b> ; Ω = 130/0,8 = <b>162,5 rad/s</b> ; n = 162,5 × 60 / 2π ≈ <b>1 552 tr/min</b>.</li>
+          <li>⟨i<sub>H</sub>⟩ = 0,7 × 10 = <b>7 A</b> ; ⟨i<sub>D</sub>⟩ = 0,3 × 10 = <b>3 A</b>.</li>
+          <li>Ω = 1 000 × 2π/60 ≈ 104,7 rad/s → E ≈ 83,8 V → ⟨u⟩ = 93,8 V → <b>α ≈ 0,47</b>.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 3 – Ondulation du courant<span class="tag calc">calcul</span><span class="tag opt">pour aller plus loin</span></h3>
+      <p>V = 200 V, L = 20 mH, f = 1 kHz (résistance négligée).</p>
+      <ol class="q">
+        <li>Calculer Δi pour α = 0,2. <span class="chk" data-a="1.6" data-u="A"></span> Pour α = 0,5. <span class="chk" data-a="2.5" data-u="A"></span> Pour quelle valeur de α l'ondulation est-elle maximale ?</li>
+        <li>On veut Δi<sub>max</sub> ≤ 1 A. Quelle fréquence minimale faut-il choisir ? <span class="chk" data-a="2.5" data-u="kHz"></span> Quelle inductance minimale à 1 kHz ? <span class="chk" data-a="50" data-u="mH"></span></li>
+        <li>Quel inconvénient présente une fréquence de découpage élevée ?</li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Attention aux unités : L en henrys (20 mH = 0,02 H), f en hertz (1 kHz = 1 000 Hz). Pour la question 2, partir de Δi<sub>max</sub> = V/(4Lf) ≤ 1 et isoler f, puis L.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>Δi = α(1 − α) × 200 / (0,02 × 1 000) = 10·α(1 − α) : <b>1,6 A</b> pour α = 0,2 ; <b>2,5 A</b> pour α = 0,5. Maximum pour <b>α = 0,5</b>.</li>
+          <li>f ≥ 200/(4 × 0,02 × 1) = <b>2 500 Hz = 2,5 kHz</b> ; à 1 kHz : L ≥ 200/(4 × 1 000 × 1) = 0,05 H = <b>50 mH</b>.</li>
+          <li>Les pertes par commutation dans le transistor augmentent avec f (échauffement), ainsi que les perturbations électromagnétiques.</li>
+        </ol>
+      </div></details>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">F</span>Auto-évaluation <span class="tag must">obligatoire · 5 min</span></h2>
+    <div class="qcm" data-key="f3">
+      <div class="qq" data-ok="b"><p>1. Un hacheur série alimenté sous 48 V fonctionne avec α = 0,25. ⟨u⟩ vaut :</p>
+        <label><input type="radio" name="f3q1" value="a"> 36 V</label>
+        <label><input type="radio" name="f3q1" value="b"> 12 V</label>
+        <label><input type="radio" name="f3q1" value="c"> 48 V</label>
+        <div class="why">⟨u⟩ = αV = 0,25 × 48 = 12 V.</div></div>
+      <div class="qq" data-ok="c"><p>2. Quand H est ouvert, le courant dans la charge :</p>
+        <label><input type="radio" name="f3q2" value="a"> s'annule immédiatement</label>
+        <label><input type="radio" name="f3q2" value="b"> continue de croître</label>
+        <label><input type="radio" name="f3q2" value="c"> décroît en passant par la diode de roue libre</label>
+        <div class="why">L'inductance s'oppose à la variation du courant : il se referme par la diode et décroît progressivement.</div></div>
+      <div class="qq" data-ok="a"><p>3. Pour réduire l'ondulation du courant, on peut :</p>
+        <label><input type="radio" name="f3q3" value="a"> augmenter la fréquence de découpage</label>
+        <label><input type="radio" name="f3q3" value="b"> diminuer l'inductance</label>
+        <label><input type="radio" name="f3q3" value="c"> supprimer la diode</label>
+        <div class="why">Δi = α(1 − α)V/(Lf) : augmenter f ou L réduit Δi.</div></div>
+      <div class="qq" data-ok="b"><p>4. L'ondulation du courant est maximale pour :</p>
+        <label><input type="radio" name="f3q4" value="a"> α = 0,1</label>
+        <label><input type="radio" name="f3q4" value="b"> α = 0,5</label>
+        <label><input type="radio" name="f3q4" value="c"> α = 0,9</label>
+        <div class="why">Le produit α(1 − α) est maximal pour α = 0,5 (il vaut alors 0,25).</div></div>
+      <div class="qq" data-ok="c"><p>5. Avec α = 0,6 et ⟨i⟩ = 10 A, le courant moyen dans la diode vaut :</p>
+        <label><input type="radio" name="f3q5" value="a"> 6 A</label>
+        <label><input type="radio" name="f3q5" value="b"> 10 A</label>
+        <label><input type="radio" name="f3q5" value="c"> 4 A</label>
+        <div class="why">La diode conduit pendant (1 − α)T : ⟨i<sub>D</sub>⟩ = 0,4 × 10 = 4 A. Le transistor conduit les 6 A restants.</div></div>
+      <div class="score"></div>
+    </div>
+  </div>
+  <footer class="next"><a href="#commande">← Fiche 2</a><a href="#onduleur">Fiche 4 · Onduleur →</a></footer>
+</section>
+
+<!-- ======================= FICHE 4 : ONDULEUR ======================= -->
+<section class="fiche" id="onduleur">
+  <header>
+    <div class="kicker">Fiche 4 · Conversion continu → alternatif</div>
+    <h1>Onduleur autonome monophasé</h1>
+    <p class="lead">Un onduleur transforme une tension continue en tension alternative. Il est <b>autonome</b> quand il impose lui-même la fréquence à la charge. La commande peut être symétrique, décalée ou en MLI.</p>
+  </header>
+
+  <div class="card parcours">
+    <div>
+      <h2>Mon parcours · 35 min <span class="slot">1:50 → 2:25</span></h2>
+      <p class="must-lead"><b>Obligatoire</b> pendant la séance :</p>
+      <ul class="todo" data-key="f4">
+        <li><label><input type="checkbox"> A · Lire l'essentiel <span class="mins">5 min</span></label></li><li><label><input type="checkbox"> C · Faire les 9 étapes du pas à pas <span class="mins">15 min</span></label></li><li><label><input type="checkbox"> E · Exercice 1 : commande symétrique <span class="mins">10 min</span></label></li><li><label><input type="checkbox"> F · QCM d'auto-évaluation (viser 4/5) <span class="mins">5 min</span></label></li>
+      </ul>
+      <p class="must-lead"><b>Pour aller plus loin</b> (si j'ai terminé en avance, ou à la maison) :</p>
+      <ul class="optlist"><li>B · Fonctionnement détaillé : à relire si besoin</li><li>D · Exemples d'utilisation</li><li>E · Exercices 2, 3, 4 et 5</li></ul>
+    </div>
+    <div>
+      <h2>À la fin de la fiche, je sais…</h2>
+      <ul class="obj">
+        <li>dire quels interrupteurs fermer pour obtenir +V, −V ou 0 ;</li>
+        <li>expliquer le rôle des diodes antiparallèles sur charge inductive ;</li>
+        <li>comparer les commandes symétrique, décalée et MLI ;</li>
+        <li>calculer la valeur efficace de u et de son fondamental.</li>
+      </ul>
+      <p style="font-size:13px;color:var(--muted)">Prérequis : fiche 3 (rôle de l'inductance). Temps alloué dans la séance de 3 h : 35 min (1:50 → 2:25).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">A</span>L'essentiel <span class="tag must">obligatoire · 5 min</span></h2>
+    <div class="grid2">
+      <div>
+        <ul>
+          <li>Les interrupteurs doivent être commandés à la fermeture <b>et</b> à l'ouverture : transistors (IGBT, MOSFET), ou thyristors en très forte puissance.</li>
+          <li>Sur charge inductive, chaque interrupteur K comporte une <b>diode en antiparallèle</b> qui laisse passer le courant quand il est de sens opposé à la tension.</li>
+          <li>Les deux interrupteurs d'un même bras (K1-K3 ou K2-K4) ne doivent <b>jamais être fermés en même temps</b> : court-circuit de la source.</li>
+          <li>K1 et K4 fermés : u = +V. K2 et K3 fermés : u = −V. K1 et K2 (ou K3 et K4) fermés : u = 0.</li>
+        </ul>
+      </div>
+      <div>
+        <table class="formulas">
+          <tr><th>Commande</th><th>Forme de u et grandeurs</th></tr>
+          <tr><td>Symétrique</td><td>Créneau ±V ; U = V ; fondamental U<sub>1</sub> = 4V/(π√2) ≈ 0,9 V ; harmoniques impairs d'amplitude U<sub>1</sub>/n</td></tr>
+          <tr><td>Décalée (palier à 0 de durée τ par demi-période)</td><td>U = V√(1 − 2τ/T) ; τ = T/6 supprime l'harmonique 3</td></tr>
+          <tr><td>MLI</td><td>Modulante sinusoïdale comparée à une porteuse triangulaire. Fondamental U<sub>1</sub> ≈ r·V/√2, harmoniques rejetés autour de la fréquence de découpage</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">B</span>Fonctionnement détaillé <span class="tag help">à consulter si besoin</span></h2>
+    <div class="grid2">
+      <div>
+        <h3>Commande symétrique : 4 phases par période sur charge R-L</h3>
+        <table class="phases">
+          <tr><th>Phase</th><th>Commandés</th><th>u</th><th>i</th><th>Conduisent</th><th>Énergie</th></tr>
+          <tr><td>①</td><td>K1, K4</td><td>+V</td><td>&lt; 0</td><td>D1, D4</td><td>charge → source</td></tr>
+          <tr><td>②</td><td>K1, K4</td><td>+V</td><td>&gt; 0</td><td>T1, T4</td><td>source → charge</td></tr>
+          <tr><td>③</td><td>K2, K3</td><td>−V</td><td>&gt; 0</td><td>D2, D3</td><td>charge → source</td></tr>
+          <tr><td>④</td><td>K2, K3</td><td>−V</td><td>&lt; 0</td><td>T2, T3</td><td>source → charge</td></tr>
+        </table>
+        <p>Pourquoi les diodes ? Au moment où la commande inverse u, l'inductance impose encore l'ancien sens du courant. Un transistor ne conduit que dans un sens : le courant passe donc par la diode en parallèle jusqu'à ce qu'il s'annule et change de signe. Pendant ce temps, p = u·i &lt; 0 : l'énergie stockée dans la bobine retourne au condensateur ou à la batterie.</p>
+        <h3>Commande décalée</h3>
+        <p>On ajoute au début de chaque demi-période un palier à u = 0 de durée τ (K1-K2 ou K3-K4 fermés). Le courant circule alors en roue libre dans la charge. On règle ainsi la valeur efficace et on supprime certains harmoniques.</p>
+      </div>
+      <div>
+        <h3>Commande MLI pas à pas</h3>
+        <ol class="method">
+          <li>Le circuit de commande génère une <b>modulante</b> sinusoïdale à la fréquence voulue (50 Hz) et d'amplitude r.</li>
+          <li>Il la compare à une <b>porteuse</b> triangulaire de fréquence beaucoup plus élevée (m fois plus).</li>
+          <li>Modulante &gt; porteuse : K1 et K4 fermés, u = +V. Sinon : K2 et K3 fermés, u = −V.</li>
+          <li>Les créneaux sont larges quand la sinusoïde est haute, étroits quand elle est basse : la <b>valeur moyenne glissante</b> de u suit la sinusoïde.</li>
+          <li>L'inductance du moteur filtre les hautes fréquences : le courant est presque sinusoïdal.</li>
+          <li>r règle l'amplitude du fondamental, la fréquence de la modulante règle sa fréquence : c'est ainsi qu'un variateur règle U et f.</li>
+        </ol>
+        <h3>Erreurs fréquentes</h3>
+        <ul class="pitfall">
+          <li>Fermer K1 et K3 (ou K2 et K4) en même temps : court-circuit. Les variateurs insèrent un <b>temps mort</b> de quelques µs entre l'ouverture de l'un et la fermeture de l'autre.</li>
+          <li>Croire que « interrupteur commandé » veut dire « transistor qui conduit » : sur charge inductive, c'est parfois la diode qui conduit.</li>
+          <li>Confondre la valeur efficace de u (créneaux) et celle de son fondamental.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card anim">
+    <h2><span class="n">C</span>Animation pas à pas <span class="tag must">obligatoire · 15 min</span></h2>
+    <div class="stepper" id="f4-step"></div>
+    <div class="controls">
+      <button class="play" id="f4-play">⏸ Pause</button>
+      <label class="ctl">Instant <input type="range" id="f4-scrub" min="0" max="1000" value="0"></label>
+      <div class="ctl">Vitesse <div class="seg" id="f4-speed"><button data-v="0.5">×0,5</button><button data-v="1" class="on">×1</button><button data-v="2">×2</button></div></div>
+      <div class="ctl">Commande <div class="seg" id="f4-mode"><button data-v="sym" class="on">Symétrique</button><button data-v="dec">Décalée</button><button data-v="mli">MLI</button></div></div>
+      <label class="ctl" id="f4-tau-c">Palier τ <input type="range" id="f4-tau" min="0" max="0.4" step="0.01" value="0.17"><output id="f4-tau-o"></output></label>
+      <label class="ctl" id="f4-m-c">Indice m = f<sub>p</sub>/f <input type="range" id="f4-m" min="5" max="31" step="2" value="15"><output id="f4-m-o"></output></label>
+      <label class="ctl" id="f4-r-c">Coefficient r <input type="range" id="f4-r" min="0.2" max="1" step="0.05" value="0.8"><output id="f4-r-o"></output></label>
+    </div>
+    <div class="stage">
+      <svg class="sch" id="f4-sch" viewBox="0 0 470 300"></svg>
+      <div class="live">
+        <span class="badge" id="f4-badge"></span>
+        <div class="vals" id="f4-vals"></div>
+        <div class="msg" id="f4-msg"></div>
+      </div>
+    </div>
+    <canvas class="scope" id="f4-scope"></canvas>
+    <div class="legend"><span><i style="background:#1d9a52;height:4px"></i>u(t)</span><span><i style="background:#8fd0aa"></i>fondamental u<sub>1</sub>(t)</span><span><i style="background:#2f6fd6"></i>i(t) charge R-L</span><span><i style="background:#7a4cc2"></i>modulante</span><span><i style="background:#df8516"></i>porteuse</span><span><i style="background:#fde8d3;height:10px"></i>diodes en conduction (énergie renvoyée à la source)</span></div>
+    <canvas class="scope" id="f4-spec"></canvas>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">D</span>Exemples d'utilisation <span class="tag opt">pour aller plus loin</span></h2>
+    <div class="examples">
+      <div class="exm"><span class="where">Industrie</span><h4>Variateur de vitesse pour moteur asynchrone</h4><p>Pompes, ventilateurs, convoyeurs : l'onduleur triphasé MLI fait varier la fréquence (donc la vitesse) en gardant U/f constant. Fréquence de découpage typique : 4 à 16 kHz.</p><span class="chain">réseau → PD3 → bus DC → onduleur MLI → moteur</span></div>
+      <div class="exm"><span class="where">Énergie</span><h4>Onduleur photovoltaïque</h4><p>Il convertit la tension continue des panneaux en 230 V – 50 Hz synchronisé sur le réseau, avec une commande MLI pour un courant sinusoïdal (faible taux d'harmoniques imposé par le distributeur).</p></div>
+      <div class="exm"><span class="where">Bâtiment, informatique</span><h4>Alimentation sans interruption (ASI)</h4><p>En cas de coupure, l'onduleur fabrique le 230 V à partir de la batterie. En « double conversion », il fonctionne en permanence : redresseur → batterie → onduleur.</p></div>
+      <div class="exm"><span class="where">Cuisine, industrie</span><h4>Plaque et four à induction</h4><p>Un onduleur à haute fréquence (20 à 100 kHz) alimente une bobine qui crée des courants induits dans la casserole ou la pièce à chauffer.</p></div>
+      <div class="exm"><span class="where">Mobilité</span><h4>Véhicule électrique</h4><p>La batterie (400 ou 800 V continu) alimente le moteur synchrone ou asynchrone par un onduleur triphasé. Au freinage, l'onduleur renvoie l'énergie à la batterie.</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">E</span>TD</h2>
+    <p class="must-lead">Pendant la séance, faire <b>l'exercice 1</b> (obligatoire). Les autres exercices sont pour aller plus loin.</p>
+    <div class="ex">
+      <h3>Exercice 1 – Commande symétrique<span class="tag calc">calcul</span><span class="tag must">obligatoire · 10 min</span></h3>
+      <p>Un onduleur en pont est alimenté sous V = 48 V et commandé en symétrique à f = 50 Hz.</p>
+      <ol class="q">
+        <li>Quels interrupteurs sont fermés entre 0 et T/2 ? entre T/2 et T ? Écrire la loi des mailles dans chaque cas.</li>
+        <li>Calculer la valeur efficace U de u. <span class="chk" data-a="48" data-u="V"></span> Puis la valeur efficace U<sub>1</sub> de son fondamental. <span class="chk" data-a="43.2" data-u="V"></span></li>
+        <li>Calculer la valeur efficace de l'harmonique 3. <span class="chk" data-a="14.4" data-u="V"></span> Et de l'harmonique 5. <span class="chk" data-a="8.64" data-u="V"></span> Vérifier sur le spectre.</li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>u vaut +V ou −V : u² = V² en permanence, donc U = V. Fondamental : U<sub>1</sub> = 4V/(π√2). L'harmonique de rang n a pour valeur U<sub>1</sub>/n.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>0 → T/2 : K1 et K4, u − V = 0 donc u = +V. T/2 → T : K2 et K3, u + V = 0 donc u = −V.</li>
+          <li>U = V = <b>48 V</b> ; U<sub>1</sub> = 4 × 48/(π√2) ≈ <b>43,2 V</b>.</li>
+          <li>U<sub>3</sub> = 43,2/3 ≈ <b>14,4 V</b> ; U<sub>5</sub> = 43,2/5 ≈ <b>8,6 V</b>. Ces harmoniques provoquent pertes Joule et couples pulsatoires dans les moteurs.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 2 – Le rôle des diodes<span class="tag obs">observation</span><span class="tag opt">pour aller plus loin</span></h3>
+      <p>Commande symétrique, charge R-L. Arrêter l'animation juste après l'instant T/2 (par exemple à 10,5 ms).</p>
+      <ol class="q">
+        <li>Quels interrupteurs sont commandés ? Quel est le signe de u ? le signe de i ?</li>
+        <li>Quels éléments conduisent réellement (transistors ou diodes) ? Pourquoi ?</li>
+        <li>Pendant cette phase, la charge reçoit-elle ou fournit-elle de l'énergie ?</li>
+        <li>Combien de temps dure environ cette phase dans l'animation (en ms) ? <span class="chk" data-a="2" data-u="ms" data-tol="0.2"></span></li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Regarder les zones orangées sur les courbes : elles indiquent quand les diodes conduisent. Le badge vert/orange en haut à droite nomme les éléments qui conduisent. Étapes 3 et 4 du pas à pas.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>K2 et K3 sont commandés : u = −V, mais i est encore positif (l'inductance retarde le courant).</li>
+          <li>Ce sont les diodes D2 et D3 : les transistors ne peuvent pas conduire un courant dans ce sens. Quand i change de signe, T2 et T3 prennent le relais.</li>
+          <li>p = u·i &lt; 0 : la charge restitue l'énergie stockée dans l'inductance à la source continue.</li>
+          <li>Environ <b>2 ms</b> (de 10 ms à 12 ms), le temps que le courant s'annule.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 3 – Commande décalée<span class="tag calc">calcul</span><span class="tag opt">pour aller plus loin</span></h3>
+      <p>Même onduleur (V = 48 V), commande décalée avec un palier à 0 de durée τ = T/6 au début de chaque demi-période.</p>
+      <ol class="q">
+        <li>Compléter la séquence : 0 → τ : K1 et K2, u = … ; τ → T/2 : … ; T/2 → T/2 + τ : … ; T/2 + τ → T : …</li>
+        <li>Calculer la valeur efficace U. <span class="chk" data-a="39.2" data-u="V"></span></li>
+        <li>Régler τ = 0,17 T sur l'animation et observer le spectre. Quel est le rang de l'harmonique qui a disparu ? <span class="chk" data-a="3" data-u="" data-tol="0.001"></span></li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Chaque bras ne doit commuter qu'une fois par demi-période. U = V√(1 − 2τ/T) avec τ/T = 1/6. Comparer les barres du spectre avec celles de la commande symétrique.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>0 → τ : K1, K2, u = 0 ; τ → T/2 : K1, K4, u = +V ; T/2 → T/2 + τ : K3, K4, u = 0 ; T/2 + τ → T : K2, K3, u = −V.</li>
+          <li>U = 48 × √(1 − 2/6) ≈ <b>39,2 V</b>.</li>
+          <li>L'harmonique de rang <b>3</b> disparaît : le créneau dure 120° par demi-période, et sin(3 × 60°) = 0.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 4 – Commande MLI<span class="tag ana">analyse</span><span class="tag opt">pour aller plus loin</span></h3>
+      <ol class="q">
+        <li>Expliquer comment est obtenu chaque front de u à partir de la modulante et de la porteuse.</li>
+        <li>Augmenter l'indice m. Que deviennent les harmoniques sur le spectre ? Pourquoi le courant devient-il presque sinusoïdal ?</li>
+        <li>Un variateur fournit 300 V continus ; estimer la valeur efficace du fondamental pour r = 0,8 (U<sub>1</sub> ≈ r·V/√2). <span class="chk" data-a="169.7" data-u="V"></span></li>
+        <li>La porteuse est à 8 kHz et la modulante à 50 Hz : calculer m. <span class="chk" data-a="160" data-u=""></span></li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Étapes 7 à 9 du pas à pas. Pour m : c'est le rapport des deux fréquences, sans unité.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>Modulante au-dessus de la porteuse : K1 et K4 fermés (u = +V) ; en dessous : K2 et K3 (u = −V). Chaque croisement provoque une commutation.</li>
+          <li>Les harmoniques se déplacent vers les rangs proches de m (hautes fréquences). L'inductance filtre facilement ces hautes fréquences : il ne reste que le fondamental dans le courant.</li>
+          <li>U<sub>1</sub> ≈ 0,8 × 300/√2 ≈ <b>170 V</b>.</li>
+          <li>m = 8 000/50 = <b>160</b>.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 5 – Variateur pour moteur asynchrone<span class="tag calc">calcul</span><span class="tag opt">pour aller plus loin</span></h3>
+      <p>Un moteur asynchrone 400 V – 50 Hz à 4 pôles (p = 2 paires de pôles) est alimenté par un variateur à loi U/f constante.</p>
+      <ol class="q">
+        <li>Calculer le rapport U/f nominal. <span class="chk" data-a="8" data-u="V/Hz"></span></li>
+        <li>On veut une vitesse de synchronisme de 900 tr/min. Calculer la fréquence à fournir (n<sub>s</sub> = 60f/p). <span class="chk" data-a="30" data-u="Hz"></span></li>
+        <li>Calculer la tension que doit fournir l'onduleur. <span class="chk" data-a="240" data-u="V"></span></li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Isoler f dans n<sub>s</sub> = 60f/p : f = n<sub>s</sub>·p/60. Puis U = (U/f) × f.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>U/f = 400/50 = <b>8 V/Hz</b>.</li>
+          <li>f = 900 × 2 / 60 = <b>30 Hz</b>.</li>
+          <li>U = 8 × 30 = <b>240 V</b>. Le flux reste constant, donc le couple disponible aussi.</li>
+        </ol>
+      </div></details>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">F</span>Auto-évaluation <span class="tag must">obligatoire · 5 min</span></h2>
+    <div class="qcm" data-key="f4">
+      <div class="qq" data-ok="a"><p>1. Pour obtenir u = −V, on ferme :</p>
+        <label><input type="radio" name="f4q1" value="a"> K2 et K3</label>
+        <label><input type="radio" name="f4q1" value="b"> K1 et K3</label>
+        <label><input type="radio" name="f4q1" value="c"> K1 et K4</label>
+        <div class="why">K2 et K3 relient la borne gauche de la charge au − et la borne droite au + : u = −V. K1 et K3 court-circuiteraient la source.</div></div>
+      <div class="qq" data-ok="c"><p>2. Juste après l'inversion de u sur une charge R-L, ce qui conduit est :</p>
+        <label><input type="radio" name="f4q2" value="a"> les transistors commandés</label>
+        <label><input type="radio" name="f4q2" value="b"> rien, le courant est nul</label>
+        <label><input type="radio" name="f4q2" value="c"> les diodes antiparallèles</label>
+        <div class="why">Le courant garde son ancien sens à cause de l'inductance : il passe par les diodes jusqu'à s'annuler.</div></div>
+      <div class="qq" data-ok="b"><p>3. En commande symétrique sous 100 V, la valeur efficace du fondamental vaut environ :</p>
+        <label><input type="radio" name="f4q3" value="a"> 100 V</label>
+        <label><input type="radio" name="f4q3" value="b"> 90 V</label>
+        <label><input type="radio" name="f4q3" value="c"> 71 V</label>
+        <div class="why">U<sub>1</sub> = 4V/(π√2) ≈ 0,9 V = 90 V. 100 V est la valeur efficace du créneau complet.</div></div>
+      <div class="qq" data-ok="a"><p>4. Quel est l'intérêt principal de la MLI ?</p>
+        <label><input type="radio" name="f4q4" value="a"> Rejeter les harmoniques vers les hautes fréquences, faciles à filtrer</label>
+        <label><input type="radio" name="f4q4" value="b"> Supprimer les pertes dans les transistors</label>
+        <label><input type="radio" name="f4q4" value="c"> Augmenter la tension au-delà de V</label>
+        <div class="why">La MLI donne un courant presque sinusoïdal. Elle augmente au contraire les pertes par commutation, et u ne dépasse jamais V.</div></div>
+      <div class="qq" data-ok="b"><p>5. Pourquoi insère-t-on un temps mort dans la commande d'un bras ?</p>
+        <label><input type="radio" name="f4q5" value="a"> Pour réduire la fréquence</label>
+        <label><input type="radio" name="f4q5" value="b"> Pour éviter que les deux interrupteurs du bras soient fermés en même temps</label>
+        <label><input type="radio" name="f4q5" value="c"> Pour laisser refroidir les diodes</label>
+        <div class="why">Un transistor met un certain temps à s'ouvrir : sans temps mort, les deux interrupteurs du bras seraient brièvement fermés ensemble, ce qui court-circuiterait la source.</div></div>
+      <div class="score"></div>
+    </div>
+  </div>
+  <footer class="next"><a href="#hacheur">← Fiche 3</a><a href="#gradateur">Fiche 5 · Gradateur →</a></footer>
+</section>
+
+<!-- ======================= FICHE 5 : GRADATEUR ======================= -->
+<section class="fiche" id="gradateur">
+  <header>
+    <div class="kicker">Fiche 5 · Conversion alternatif → alternatif</div>
+    <h1>Gradateur monophasé</h1>
+    <p class="lead">Le gradateur fait varier la valeur efficace d'une tension alternative <b>sans en modifier la fréquence</b>. Il est formé de deux thyristors montés tête-bêche, ou d'un triac en faible puissance.</p>
+  </header>
+
+  <div class="card parcours">
+    <div>
+      <h2>Mon parcours · 25 min <span class="slot">2:25 → 2:50</span></h2>
+      <p class="must-lead"><b>Obligatoire</b> pendant la séance :</p>
+      <ul class="todo" data-key="f5">
+        <li><label><input type="checkbox"> A · Lire l'essentiel <span class="mins">5 min</span></label></li><li><label><input type="checkbox"> C · Faire les 8 étapes du pas à pas <span class="mins">8 min</span></label></li><li><label><input type="checkbox"> E · Exercice 2 : variateur de puissance <span class="mins">7 min</span></label></li><li><label><input type="checkbox"> F · QCM d'auto-évaluation (viser 4/5) <span class="mins">5 min</span></label></li>
+      </ul>
+      <p class="must-lead"><b>Pour aller plus loin</b> (si j'ai terminé en avance, ou à la maison) :</p>
+      <ul class="optlist"><li>B · Fonctionnement détaillé : à relire si besoin</li><li>D · Exemples d'utilisation</li><li>E · Exercices 1, 3 et 4</li></ul>
+    </div>
+    <div>
+      <h2>À la fin de la fiche, je sais…</h2>
+      <ul class="obj">
+        <li>expliquer le rôle des deux thyristors tête-bêche ;</li>
+        <li>décrire la commande par la phase et la commande par trains d'ondes ;</li>
+        <li>calculer U<sub>c</sub> et P dans les deux cas ;</li>
+        <li>choisir le mode de commande adapté à une application.</li>
+      </ul>
+      <p style="font-size:13px;color:var(--muted)">Prérequis : fiche 2 (le thyristor). Temps alloué dans la séance de 3 h : 25 min (2:25 → 2:50).</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">A</span>L'essentiel <span class="tag must">obligatoire · 5 min</span></h2>
+    <div class="grid2">
+      <div>
+        <h3>Commande par la phase (angle α)</h3>
+        <ul>
+          <li>Alternance positive : T1 est amorcé avec un retard α après le passage par zéro de v.</li>
+          <li>Alternance négative : T2 est amorcé avec le même retard α.</li>
+          <li>Chaque thyristor se bloque au passage par zéro du courant.</li>
+        </ul>
+        <table class="formulas">
+          <tr><td>Valeur moyenne</td><td class="f">⟨u<sub>c</sub>⟩ = 0</td></tr>
+          <tr><td>Valeur efficace (charge R)</td><td class="f">U<sub>c</sub> = V√(1 − α/π + sin 2α / 2π)</td></tr>
+          <tr><td>Puissance</td><td class="f">P = U<sub>c</sub>²/R</td></tr>
+        </table>
+      </div>
+      <div>
+        <h3>Commande par trains d'ondes</h3>
+        <ul>
+          <li>Signal de commande tout ou rien de période T<sub>C</sub> (beaucoup plus longue que T).</li>
+          <li>Les thyristors conduisent pendant T<sub>ON</sub> = nT (n périodes entières), puis restent bloqués jusqu'à la fin de T<sub>C</sub>.</li>
+        </ul>
+        <table class="formulas">
+          <tr><td>Rapport cyclique</td><td class="f">α = T<sub>ON</sub>/T<sub>C</sub></td></tr>
+          <tr><td>Valeur efficace</td><td class="f">U<sub>c</sub> = V√α</td></tr>
+          <tr><td>Puissance</td><td class="f">P = α·P<sub>max</sub></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">B</span>Fonctionnement détaillé <span class="tag help">à consulter si besoin</span></h2>
+    <div class="grid2">
+      <div>
+        <h3>Pourquoi deux thyristors tête-bêche ?</h3>
+        <p>Un thyristor ne laisse passer le courant que dans un sens. Pour alimenter une charge en alternatif, il en faut un pour chaque alternance : T1 (anode côté réseau) pour l'alternance positive, T2 (monté à l'envers) pour l'alternance négative. Un <b>triac</b> réunit les deux dans un seul boîtier avec une seule gâchette.</p>
+        <h3>Commande par la phase sur charge R : les 4 phases</h3>
+        <table class="phases">
+          <tr><th>Intervalle de θ</th><th>Passant</th><th>u<sub>c</sub></th><th>v<sub>T1</sub></th></tr>
+          <tr><td>0 → α</td><td>aucun</td><td>0</td><td>v</td></tr>
+          <tr><td>α → 180°</td><td>T1</td><td>v</td><td>0</td></tr>
+          <tr><td>180° → 180° + α</td><td>aucun</td><td>0</td><td>v</td></tr>
+          <tr><td>180° + α → 360°</td><td>T2</td><td>v</td><td>0</td></tr>
+        </table>
+        <p>Plus α est grand, plus la partie de sinusoïde « découpée » est grande : la valeur efficace et la puissance diminuent. Pour α = 90°, la charge reçoit exactement la moitié de la puissance maximale.</p>
+      </div>
+      <div>
+        <h3>Commande par trains d'ondes</h3>
+        <ol class="method">
+          <li>Un régulateur (par exemple de température) fournit un signal tout ou rien de période T<sub>C</sub> (souvent 1 à 10 s).</li>
+          <li>Pendant T<sub>ON</sub>, les thyristors sont amorcés en permanence, <b>au passage par zéro</b> de la tension : la charge reçoit des périodes complètes.</li>
+          <li>Pendant T<sub>C</sub> − T<sub>ON</sub>, plus aucune impulsion : la charge n'est pas alimentée.</li>
+          <li>La puissance moyenne est proportionnelle à T<sub>ON</sub>/T<sub>C</sub>.</li>
+        </ol>
+        <h3>Erreurs fréquentes</h3>
+        <ul class="pitfall">
+          <li>Croire que le gradateur change la fréquence : u<sub>c</sub> reste à 50 Hz.</li>
+          <li>Calculer P avec une valeur moyenne : ⟨u<sub>c</sub>⟩ = 0, il faut utiliser la valeur <b>efficace</b>.</li>
+          <li>Oublier que, en commande par la phase, la relation entre α et P n'est pas linéaire.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="card anim">
+    <h2><span class="n">C</span>Animation pas à pas <span class="tag must">obligatoire · 8 min</span></h2>
+    <div class="stepper" id="f5-step"></div>
+    <div class="controls">
+      <button class="play" id="f5-play">⏸ Pause</button>
+      <label class="ctl">Instant <input type="range" id="f5-scrub" min="0" max="1000" value="0"></label>
+      <div class="ctl">Vitesse <div class="seg" id="f5-speed"><button data-v="0.5">×0,5</button><button data-v="1" class="on">×1</button><button data-v="2">×2</button></div></div>
+      <div class="ctl">Commande <div class="seg" id="f5-mode"><button data-v="phase" class="on">Par la phase</button><button data-v="train">Trains d'ondes</button></div></div>
+      <label class="ctl" id="f5-alpha-c">Angle α <input type="range" id="f5-alpha" min="0" max="175" value="90"><output id="f5-alpha-o"></output></label>
+      <label class="ctl" id="f5-n-c">Périodes ON (sur 10) <input type="range" id="f5-n" min="1" max="9" value="4"><output id="f5-n-o"></output></label>
+    </div>
+    <div class="stage">
+      <svg class="sch" id="f5-sch" viewBox="0 0 470 300"></svg>
+      <div class="live">
+        <span class="badge" id="f5-badge"></span>
+        <div class="vals" id="f5-vals"></div>
+        <div class="msg" id="f5-msg"></div>
+      </div>
+    </div>
+    <canvas class="scope" id="f5-scope"></canvas>
+    <div class="legend"><span><i style="background:#2f6fd6"></i>v(t) réseau</span><span><i style="background:#1d9a52;height:4px"></i>u<sub>c</sub>(t) charge</span><span><i style="background:#7a4cc2"></i>commande de T1</span><span><i style="background:#df8516"></i>commande de T2</span></div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">D</span>Exemples d'utilisation <span class="tag opt">pour aller plus loin</span></h2>
+    <div class="examples">
+      <div class="exm"><span class="where">Bâtiment</span><h4>Variateur de lumière</h4><p>Un triac commandé par la phase règle l'éclairement d'une lampe. Réglage rapide et continu, mais le courant non sinusoïdal crée des harmoniques et des parasites (filtre nécessaire).</p></div>
+      <div class="exm"><span class="where">Industrie</span><h4>Démarreur progressif de moteur asynchrone</h4><p>Trois paires de thyristors (une par phase) augmentent progressivement la tension au démarrage d'une pompe ou d'un convoyeur : courant d'appel réduit, pas d'à-coup mécanique. Un contacteur de « bypass » prend le relais en fin de démarrage.</p><span class="chain">réseau 400 V → gradateur triphasé → moteur</span></div>
+      <div class="exm"><span class="where">Industrie</span><h4>Four et étuve régulés en température</h4><p>Un régulateur PID pilote un gradateur à trains d'ondes (relais statique) : plus la température est loin de la consigne, plus T<sub>ON</sub> est long. L'inertie thermique lisse les variations.</p><span class="chain">régulateur PID → relais statique → résistances</span></div>
+      <div class="exm"><span class="where">Maintenance</span><h4>Relais statique (SSR)</h4><p>Un relais statique est un gradateur tout ou rien à fermeture au zéro de tension. Il remplace un contacteur pour des commutations fréquentes : pas d'usure, silencieux, mais il chauffe (prévoir un dissipateur).</p></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">E</span>TD</h2>
+    <p class="must-lead">Pendant la séance, faire <b>l'exercice 2</b> (obligatoire). Les autres exercices sont pour aller plus loin.</p>
+    <div class="ex">
+      <h3>Exercice 1 – Observer la commande par la phase<span class="tag obs">observation</span><span class="tag opt">pour aller plus loin</span></h3>
+      <ol class="q">
+        <li>Quel thyristor conduit pendant l'alternance positive ? pendant l'alternance négative ?</li>
+        <li>Que vaut u<sub>c</sub> entre 0 et α ? Quelle tension supportent alors les thyristors ?</li>
+        <li>Pourquoi la valeur moyenne de u<sub>c</sub> est-elle nulle ?</li>
+        <li>Faire varier α de 0 à 175°. Pour quel angle la puissance vaut-elle la moitié de la puissance maximale ? <span class="chk" data-a="90" data-u="°"></span></li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Étapes 1 à 5 du pas à pas. La puissance s'affiche à droite du schéma ; la puissance maximale (α = 0) vaut 2 000 W.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>T1 pendant l'alternance positive, T2 pendant l'alternance négative.</li>
+          <li>u<sub>c</sub> = 0 : les thyristors sont bloqués et supportent toute la tension v.</li>
+          <li>Les deux alternances sont symétriques (même retard α) : les aires positive et négative se compensent.</li>
+          <li>Pour <b>α = 90°</b> : P = 1 000 W.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 2 – Variateur de puissance<span class="tag calc">calcul</span><span class="tag must">obligatoire · 7 min</span></h3>
+      <p>Un gradateur, alimenté sous V = 230 V – 50 Hz, commande une résistance de chauffage R = 26,45 Ω (P<sub>max</sub> = 2 000 W).</p>
+      <ol class="q">
+        <li>Calculer U<sub>c</sub> pour α = 90°. <span class="chk" data-a="162.6" data-u="V"></span> Puis P. <span class="chk" data-a="1000" data-u="W"></span></li>
+        <li>Calculer U<sub>c</sub> pour α = 45°. <span class="chk" data-a="219.3" data-u="V"></span> Puis P. <span class="chk" data-a="1818" data-u="W"></span></li>
+        <li>Vérifier les valeurs sur l'animation.</li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>Convertir α en radians pour le terme α/π : 90° → α/π = 0,5 ; 45° → α/π = 0,25. sin(2 × 45°) = sin 90° = 1.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>U<sub>c</sub> = 230 × √(1 − 0,5 + 0) = 230/√2 ≈ <b>163 V</b> ; P = 163²/26,45 ≈ <b>1 000 W</b>.</li>
+          <li>U<sub>c</sub> = 230 × √(1 − 0,25 + 1/2π) = 230 × √0,909 ≈ <b>219 V</b> ; P ≈ 219²/26,45 ≈ <b>1 820 W</b>.</li>
+          <li>Les valeurs affichées par l'animation correspondent.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 3 – Four commandé par trains d'ondes<span class="tag calc">calcul</span><span class="tag opt">pour aller plus loin</span></h3>
+      <p>Un four 230 V / 3 kW est commandé par trains d'ondes. Période de commande T<sub>C</sub> = 1 s, durée de conduction T<sub>ON</sub> = 0,4 s.</p>
+      <ol class="q">
+        <li>Calculer la puissance moyenne. <span class="chk" data-a="1200" data-u="W"></span> Puis la valeur efficace U<sub>c</sub>. <span class="chk" data-a="145.5" data-u="V"></span></li>
+        <li>Combien de périodes du réseau passent pendant T<sub>ON</sub> ? <span class="chk" data-a="20" data-u=""></span></li>
+        <li>Quelle durée T<sub>ON</sub> faut-il pour obtenir 2 100 W ? <span class="chk" data-a="0.7" data-u="s"></span></li>
+        <li>Pourquoi ce mode de commande convient-il au chauffage mais pas à l'éclairage ?</li>
+      </ol>
+      <details class="hint"><summary>Coup de pouce</summary><div>α = T<sub>ON</sub>/T<sub>C</sub>, P = α·P<sub>max</sub>, U<sub>c</sub> = V√α. Une période du réseau dure 20 ms.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <ol>
+          <li>α = 0,4 ; P = 0,4 × 3 000 = <b>1 200 W</b> ; U<sub>c</sub> = 230 × √0,4 ≈ <b>145 V</b>.</li>
+          <li>0,4 s / 20 ms = <b>20 périodes</b>.</li>
+          <li>α = 2 100/3 000 = 0,7 → T<sub>ON</sub> = <b>0,7 s</b>.</li>
+          <li>Le four a une forte inertie thermique : il « lisse » les variations de puissance. Une lampe clignoterait au rythme de T<sub>C</sub>.</li>
+        </ol>
+      </div></details>
+    </div>
+    <div class="ex">
+      <h3>Exercice 4 – Choisir le mode de commande<span class="tag ana">analyse</span><span class="tag opt">pour aller plus loin</span></h3>
+      <p>Comparer les deux modes de commande : forme du courant, perturbations du réseau, rapidité de réglage, applications. Puis choisir le mode adapté pour : a) un variateur de lumière de salle de réunion ; b) une étuve de séchage de peinture ; c) le démarrage d'une pompe.</p>
+      <details class="hint"><summary>Coup de pouce</summary><div>Comparer les deux courbes de u<sub>c</sub> dans l'animation. Relire la partie D : exemples d'utilisation.</div></details>
+      <details class="corr"><summary>Voir le corrigé détaillé</summary><div>
+        <table>
+          <tr><th></th><th>Par la phase</th><th>Par trains d'ondes</th></tr>
+          <tr><td>Courant</td><td>Non sinusoïdal, riche en harmoniques</td><td>Sinusoïdal pendant la conduction</td></tr>
+          <tr><td>Perturbations</td><td>Fronts raides, parasites, puissance réactive</td><td>Très faibles (fermeture au zéro de tension), mais variations lentes de puissance (papillotement)</td></tr>
+          <tr><td>Réglage</td><td>Rapide, à chaque demi-période</td><td>Lent (période T<sub>C</sub>)</td></tr>
+          <tr><td>Applications</td><td>Éclairage, démarreurs progressifs</td><td>Chauffage</td></tr>
+        </table>
+        <p>a) Commande par la phase. b) Trains d'ondes. c) Commande par la phase (démarreur progressif triphasé).</p>
+      </div></details>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2><span class="n">F</span>Auto-évaluation <span class="tag must">obligatoire · 5 min</span></h2>
+    <div class="qcm" data-key="f5">
+      <div class="qq" data-ok="b"><p>1. Un gradateur modifie :</p>
+        <label><input type="radio" name="f5q1" value="a"> la fréquence de la tension</label>
+        <label><input type="radio" name="f5q1" value="b"> la valeur efficace de la tension</label>
+        <label><input type="radio" name="f5q1" value="c"> la valeur moyenne de la tension</label>
+        <div class="why">La fréquence reste celle du réseau et ⟨u<sub>c</sub>⟩ = 0 : seule la valeur efficace varie.</div></div>
+      <div class="qq" data-ok="a"><p>2. Pourquoi monter deux thyristors tête-bêche ?</p>
+        <label><input type="radio" name="f5q2" value="a"> Pour alimenter la charge pendant les deux alternances</label>
+        <label><input type="radio" name="f5q2" value="b"> Pour doubler la tension</label>
+        <label><input type="radio" name="f5q2" value="c"> Pour supprimer les harmoniques</label>
+        <div class="why">Chaque thyristor ne conduit que dans un sens : il en faut un par alternance.</div></div>
+      <div class="qq" data-ok="c"><p>3. Commande par la phase, α = 90°, P<sub>max</sub> = 1 000 W. P vaut :</p>
+        <label><input type="radio" name="f5q3" value="a"> 250 W</label>
+        <label><input type="radio" name="f5q3" value="b"> 707 W</label>
+        <label><input type="radio" name="f5q3" value="c"> 500 W</label>
+        <div class="why">U<sub>c</sub> = V/√2, donc P = P<sub>max</sub>/2 = 500 W.</div></div>
+      <div class="qq" data-ok="b"><p>4. En trains d'ondes, 3 périodes ON sur 10 avec P<sub>max</sub> = 2 kW donnent :</p>
+        <label><input type="radio" name="f5q4" value="a"> 1 400 W</label>
+        <label><input type="radio" name="f5q4" value="b"> 600 W</label>
+        <label><input type="radio" name="f5q4" value="c"> 300 W</label>
+        <div class="why">P = (3/10) × 2 000 = 600 W.</div></div>
+      <div class="qq" data-ok="a"><p>5. Quel mode de commande perturbe le moins le réseau ?</p>
+        <label><input type="radio" name="f5q5" value="a"> Les trains d'ondes</label>
+        <label><input type="radio" name="f5q5" value="b"> La commande par la phase</label>
+        <label><input type="radio" name="f5q5" value="c"> Les deux sont équivalents</label>
+        <div class="why">La fermeture au passage par zéro évite les fronts raides : pas d'harmoniques de découpage.</div></div>
+      <div class="score"></div>
+    </div>
+  </div>
+  <footer class="next"><a href="#onduleur">← Fiche 4</a><a href="#accueil">Accueil</a></footer>
+</section>
+
+
+<!-- ======================= BILAN ======================= -->
+<section class="fiche" id="bilan">
+  <header>
+    <div class="kicker">Fin de séance · 2:50 → 3:00</div>
+    <h1>Bilan de la séance</h1>
+    <p class="lead">Dix minutes pour fixer l'essentiel : compléter le tableau de synthèse sur sa feuille, sans regarder les fiches, puis vérifier avec le corrigé.</p>
+  </header>
+  <div class="card">
+    <h2>Tableau de synthèse <span class="tag must">obligatoire · 7 min</span></h2>
+    <table>
+      <tr><th>Convertisseur</th><th>Entrée → sortie</th><th>Composants</th><th>Grandeur de réglage</th><th>Formule clé</th><th>Une application</th></tr>
+      <tr><td>Redresseur à diodes</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+      <tr><td>Redresseur commandé</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+      <tr><td>Hacheur série</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+      <tr><td>Onduleur</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+      <tr><td>Gradateur</td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td><td class="blank"></td></tr>
+    </table>
+    <details class="corr"><summary>Voir le corrigé</summary><div>
+      <table>
+        <tr><th>Convertisseur</th><th>Entrée → sortie</th><th>Composants</th><th>Réglage</th><th>Formule clé</th><th>Application</th></tr>
+        <tr><td>Redresseur à diodes</td><td>AC → DC fixe</td><td>Diodes (PD2 : 4, PD3 : 6)</td><td>Aucun</td><td>PD2 : ⟨u⟩ = 2V̂/π ; PD3 : ⟨u⟩ ≈ 1,35 U</td><td>Bus continu de variateur</td></tr>
+        <tr><td>Redresseur commandé</td><td>AC → DC réglable</td><td>Thyristors (+ diodes pour le pont mixte)</td><td>Angle α</td><td>Mixte : ⟨u⟩ = V̂(1 + cos α)/π</td><td>Variateur de moteur à courant continu</td></tr>
+        <tr><td>Hacheur série</td><td>DC → DC réglable</td><td>Transistor + diode de roue libre</td><td>Rapport cyclique α</td><td>⟨u⟩ = αV</td><td>Trottinette, alimentation à découpage</td></tr>
+        <tr><td>Onduleur</td><td>DC → AC</td><td>4 transistors + 4 diodes antiparallèles</td><td>Commande (symétrique, décalée, MLI), r, f</td><td>Symétrique : U<sub>1</sub> ≈ 0,9 V</td><td>Variateur de moteur asynchrone, onduleur PV</td></tr>
+        <tr><td>Gradateur</td><td>AC → AC même fréquence</td><td>2 thyristors tête-bêche ou triac</td><td>Angle α ou rapport T<sub>ON</sub>/T<sub>C</sub></td><td>Trains d'ondes : P = α·P<sub>max</sub></td><td>Four, variateur de lumière, démarreur progressif</td></tr>
+      </table>
+    </div></details>
+  </div>
+  <div class="grid2">
+    <div class="card">
+      <h2>Mes résultats <span class="tag must">obligatoire · 1 min</span></h2>
+      <p>Recopier sur sa feuille les scores aux QCM et le nombre d'étapes faites (voir « Ma progression » sur l'accueil).</p>
+      <div id="progress2"></div>
+    </div>
+    <div class="card">
+      <h2>Mes questions pour le formateur <span class="tag must">obligatoire · 2 min</span></h2>
+      <p>Noter sur sa feuille :</p>
+      <ul>
+        <li>la notion la moins claire de la séance ;</li>
+        <li>une question de QCM ratée et ce qui a été compris en lisant l'explication ;</li>
+        <li>les exercices « pour aller plus loin » à faire à la maison.</li>
+      </ul>
+    </div>
+  </div>
+  <footer class="next"><a href="#gradateur">← Fiche 5</a><a href="#accueil">Accueil</a></footer>
+</section>
+<script src="common.js"></script>
+<script src="learn.js"></script>
+<script src="f1.js"></script>
+<script src="f2.js"></script>
+<script src="f3.js"></script>
+<script src="f4.js"></script>
+<script src="f5.js"></script>
+</body>
+</html>
