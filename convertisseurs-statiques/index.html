@@ -2,9 +2,188 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<meta name="color-scheme" content="light only">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Convertisseurs statiques – Fiches de cours et TD animés (BTS Électrotechnique) (Copy)</title>
-<link rel="stylesheet" href="style.css">
+<style>
+:root{
+  --bg:#f5f6f8;--card:#fff;--ink:#1c2230;--muted:#5c6577;--line:#dde1e8;
+  --blue:#2f6fd6;--green:#1d9a52;--red:#d43f3f;--orange:#df8516;--violet:#7a4cc2;--teal:#138a8a;
+  --accent:#1c2230;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
+nav .in{max-width:1220px;margin:0 auto;padding:8px 20px;display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+nav .brand{font-weight:750;font-size:14px;margin-right:10px;white-space:nowrap}
+nav a{font-size:13.5px;text-decoration:none;color:var(--ink);padding:6px 11px;border-radius:8px;border:1px solid transparent;white-space:nowrap}
+nav a:hover{background:#f0f2f5}
+nav a.on{background:var(--ink);color:#fff}
+nav .sp{flex:1}
+nav label{font-size:12.5px;color:var(--muted);display:flex;align-items:center;gap:6px;cursor:pointer;white-space:nowrap}
+.fiche{display:none;max-width:1220px;margin:0 auto;padding:18px 20px 40px}
+.fiche.on{display:block}
+.fiche > header{margin-bottom:14px}
+.kicker{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:650}
+h1{font-size:25px;margin:2px 0 6px;letter-spacing:-.01em}
+.lead{color:var(--muted);font-size:15px;margin:0;max-width:900px}
+h2{font-size:17px;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+h2 .n{display:inline-grid;place-items:center;width:26px;height:26px;border-radius:7px;background:var(--ink);color:#fff;font-size:13px}
+h3{font-size:15px;margin:16px 0 6px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-bottom:16px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:900px){.grid2{grid-template-columns:1fr}}
+p{margin:6px 0}
+ul{margin:6px 0;padding-left:20px}
+li{margin:3px 0}
+.f{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:16.5px;white-space:nowrap}
+.box{border-left:4px solid var(--ink);background:#f7f8fa;padding:8px 12px;border-radius:0 8px 8px 0;margin:8px 0}
+.box.green{border-color:var(--green);background:#eef8f2}
+.box.red{border-color:var(--red);background:#fdf0f0}
+.box.violet{border-color:var(--violet);background:#f4effb}
+table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
+th,td{border:1px solid var(--line);padding:6px 9px;text-align:left;vertical-align:top}
+th{background:#f3f4f7;font-weight:650}
+td.blank{background:#fffdf3;min-width:90px}
+.formulas td:first-child{color:var(--muted);width:42%}
+/* animation */
+.anim .controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:12px}
+button.play{font:inherit;font-weight:600;font-size:13.5px;border:0;border-radius:8px;background:var(--ink);color:#fff;padding:8px 14px;cursor:pointer;min-width:100px}
+.ctl{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.ctl input[type=range]{width:150px;accent-color:var(--ink)}
+.ctl output{font-weight:700;color:var(--violet);min-width:52px;font-variant-numeric:tabular-nums}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.seg button{font:inherit;font-size:12.5px;border:0;background:#fff;color:var(--ink);padding:6px 10px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button.on{background:var(--ink);color:#fff}
+.stage{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:900px){.stage{grid-template-columns:1fr}}
+svg.sch{display:block;width:100%;height:auto;background:#fcfcfd;border:1px solid var(--line);border-radius:10px}
+canvas.scope{display:block;width:100%;margin-top:12px}
+.live .badge{display:inline-block;font-weight:700;font-size:14px;padding:6px 12px;border-radius:8px;color:#fff;background:var(--ink)}
+.live .vals{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin:12px 0}
+.live .vals div{background:#f7f8fa;border-radius:8px;padding:6px 10px}
+.live .vals span{display:block;color:var(--muted);font-size:11.5px}
+.live .vals b{font-size:16px;font-variant-numeric:tabular-nums}
+.live .msg{font-size:14px;line-height:1.5}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--muted);margin-top:6px}
+.legend i{display:inline-block;width:16px;height:3px;border-radius:2px;vertical-align:middle;margin-right:5px}
+/* TD */
+.ex{border-top:1px solid var(--line);padding-top:12px;margin-top:14px}
+.ex:first-of-type{border-top:0;margin-top:0;padding-top:0}
+.ex h3{margin-top:0}
+.ex h3 .tag{font-size:11px;font-weight:650;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:999px;margin-left:8px;vertical-align:2px}
+.tag.obs{background:#e8f0fd;color:#1f4f9e}
+.tag.calc{background:#fdf1e2;color:#8a520c}
+.tag.ana{background:#efe8fa;color:#5a3596}
+ol.q{padding-left:22px}
+ol.q li{margin:5px 0}
+details.corr{margin-top:10px;border:1px dashed #9fd8b7;border-radius:8px;background:#f3fbf6}
+details.corr summary{cursor:pointer;padding:7px 12px;font-weight:650;font-size:13.5px;color:#11643a}
+details.corr > div{padding:2px 14px 10px}
+.home-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.home-grid a{display:block;text-decoration:none;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.home-grid a:hover{border-color:var(--ink)}
+.home-grid b{display:block;font-size:15.5px;margin-bottom:4px}
+.home-grid span{font-size:13px;color:var(--muted)}
+.home-grid .io{font-size:12px;font-weight:650;color:var(--violet);margin-bottom:6px;display:block}
+footer.next{display:flex;justify-content:space-between;gap:10px;margin-top:8px}
+footer.next a{font-size:14px;color:var(--ink)}
+@media print{
+  nav,.anim .controls,details.corr summary{display:none!important}
+  body{background:#fff}
+  .fiche{display:none!important}
+  .fiche.on{display:block!important}
+  .card{break-inside:avoid;border-color:#bbb}
+  details.corr:not([open]){display:none}
+}
+/* ---------- Autonomie ---------- */
+.parcours{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+@media (max-width:900px){.parcours{grid-template-columns:1fr}}
+ul.todo{list-style:none;padding:0;margin:4px 0}
+ul.todo li{margin:4px 0}
+ul.todo label{display:flex;gap:8px;align-items:flex-start;cursor:pointer;font-size:14px}
+ul.todo input{margin-top:4px;accent-color:var(--green)}
+ul.obj li{font-size:14px}
+.pbar{display:inline-block;width:90px;height:8px;border-radius:4px;background:#e6e8ee;vertical-align:middle;margin-right:6px;overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--green)}
+/* pas à pas */
+.stepper{border:1.5px solid var(--violet);border-radius:12px;background:#faf8fe;padding:12px 14px;margin-bottom:14px}
+.st-head{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px}
+.st-head b{font-size:14px;color:var(--violet)}
+.st-count{font-size:12.5px;color:var(--muted)}
+.st-head .sp{flex:1}
+.dots{display:flex;gap:4px;flex-wrap:wrap}
+.dot{width:26px;height:26px;border-radius:50%;border:1px solid #cdbfe9;background:#fff;font:inherit;font-size:12px;cursor:pointer;color:var(--violet)}
+.dot.done{background:#e6dcf6}
+.dot.on{background:var(--violet);color:#fff;border-color:var(--violet)}
+.st-btn{font:inherit;font-size:13px;border:1px solid var(--violet);background:#fff;color:var(--violet);border-radius:8px;padding:6px 12px;cursor:pointer}
+.st-btn.main{background:var(--violet);color:#fff}
+.st-btn:disabled{opacity:.4;cursor:default}
+.stepper h4{margin:12px 0 4px;font-size:15.5px}
+.st-text{font-size:14.5px;line-height:1.55}
+.st-text p{margin:4px 0}
+.st-intro{font-size:14px;margin:10px 0 2px;color:var(--ink)}
+.st-obs{margin-top:10px;background:#fff;border:1px solid #e2d8f3;border-radius:8px;padding:8px 12px;font-size:14px}
+.st-obs details{margin-top:6px}
+.st-obs summary{cursor:pointer;color:var(--violet);font-weight:600;font-size:13px}
+.st-obs details div{padding:6px 0 2px}
+/* coups de pouce et vérifications */
+details.hint{margin:6px 0;border:1px dashed #f0c58a;border-radius:8px;background:#fffaf1}
+details.hint summary{cursor:pointer;padding:6px 12px;font-weight:600;font-size:13px;color:#8a520c}
+details.hint > div{padding:2px 14px 8px;font-size:14px}
+.chk{display:inline-flex;align-items:center;gap:6px;margin-left:6px;flex-wrap:wrap}
+.chk input{width:78px;font:inherit;font-size:13.5px;padding:3px 6px;border:1px solid #c9ced8;border-radius:6px}
+.chk .unit{font-size:13px;color:var(--muted)}
+.chk button{font:inherit;font-size:12px;padding:3px 9px;border-radius:6px;border:1px solid var(--ink);background:#fff;cursor:pointer}
+.chk .res{font-size:12.5px;font-weight:600}
+.chk .res.ok{color:var(--green)}
+.chk .res.no{color:#b3511b}
+/* QCM */
+.qq{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.qq p{margin:0 0 6px;font-weight:600}
+.qq label{display:block;padding:4px 8px;border-radius:6px;cursor:pointer;font-size:14px}
+.qq label:hover{background:#f4f5f8}
+.qq label.good{background:#dcf3e5}
+.qq label.bad{background:#fbe0e0}
+.qq .why{display:none;margin-top:6px;font-size:13.5px;color:var(--ink);border-left:3px solid var(--violet);padding-left:10px}
+.qq.ok .why,.qq.no .why{display:block}
+.score{font-size:14.5px;margin-top:6px}
+.score button{font:inherit;font-size:12.5px;margin-left:8px;border:1px solid var(--ink);background:#fff;border-radius:6px;padding:3px 10px;cursor:pointer}
+/* exemples */
+.examples{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.exm{border:1px solid var(--line);border-radius:10px;padding:12px 14px;background:#fcfcfd}
+.exm h4{margin:0 0 4px;font-size:15px}
+.exm .where{font-size:12px;font-weight:650;color:var(--teal);text-transform:uppercase;letter-spacing:.04em}
+.exm p{font-size:13.5px;margin:5px 0}
+.exm .chain{font-size:12.5px;background:#eef1f6;border-radius:6px;padding:4px 8px;display:inline-block;margin:4px 0}
+.phases th:first-child,.phases td:first-child{white-space:nowrap}
+.method li{margin:5px 0}
+.pitfall li{margin:4px 0}
+/* ---------- Séance de 3 h ---------- */
+.tag.must{background:#dcf3e5;color:#11643a}
+.tag.opt{background:#eef0f4;color:#5c6577}
+.tag.help{background:#fff1dc;color:#8a520c}
+h2 .tag{font-size:11px;font-weight:650;text-transform:uppercase;letter-spacing:.05em;padding:2px 8px;border-radius:999px;margin-left:4px}
+p .tag{font-size:11px;font-weight:650;padding:1px 7px;border-radius:999px}
+.mins{font-size:12px;color:#11643a;background:#eaf6ef;border-radius:999px;padding:0 7px;margin-left:4px;white-space:nowrap}
+.slot{font-size:12.5px;font-weight:600;color:var(--violet);background:#f1ebfb;border-radius:999px;padding:2px 9px;margin-left:4px}
+.must-lead{font-size:14px;margin:8px 0 2px}
+ul.optlist{font-size:13.5px;color:var(--muted);margin:2px 0}
+.seance-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:start}
+@media (max-width:900px){.seance-grid{grid-template-columns:1fr}}
+table.plan td:first-child{white-space:nowrap;font-variant-numeric:tabular-nums;font-weight:600}
+table.plan tr.pause td{background:#f6f7f9;color:var(--muted)}
+table.plan tr.now td{background:#efe8fa}
+.timer-btns{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap}
+nav a.timer{font-variant-numeric:tabular-nums;font-weight:600;border:1px solid var(--line);font-size:12.5px}
+nav a.timer.ok{border-color:#9fd8b7;background:#eef8f2;color:#11643a}
+nav a.timer.late{border-color:#f0b37a;background:#fff3e6;color:#8a3b0c}
+nav a.timer.pause{border-color:#cdbfe9;background:#f4effb;color:var(--violet)}
+table.plan td:last-child{white-space:nowrap}
+
+</style>
 </head>
 <body>
 <nav><div class="in">
@@ -1363,12 +1542,946 @@
   </div>
   <footer class="next"><a href="#gradateur">← Fiche 5</a><a href="#accueil">Accueil</a></footer>
 </section>
-<script src="common.js"></script>
-<script src="learn.js"></script>
-<script src="f1.js"></script>
-<script src="f2.js"></script>
-<script src="f3.js"></script>
-<script src="f4.js"></script>
-<script src="f5.js"></script>
+<script>
+/* Outils partagés : formatage, oscilloscope, symboles, animation, navigation */
+const TD = (() => {
+const C = { blue:'#2f6fd6', green:'#1d9a52', red:'#d43f3f', orange:'#df8516', violet:'#7a4cc2', teal:'#138a8a', ink:'#1c2230', muted:'#5c6577', grid:'#eceef2', axis:'#9aa3b2', off:'#b9bfca' };
+const NS = 'http://www.w3.org/2000/svg';
+const $ = id => document.getElementById(id);
+const fmt = (x, d = 2) => (Math.abs(x) < 0.5 * Math.pow(10, -d) ? 0 : x).toFixed(d).replace('.', ',').replace('-', '−');
+const TWO_PI = Math.PI * 2;
+
+/* ---------- Oscilloscope multi-voies ----------
+ cfg = { h, span, ticks:[[t,label]], cursor, panels:[{ w, min, max, yticks, label, traces:[{f,c,w,dash,label}], shade:[[t0,t1,color]] }] } */
+function scope(cv, cfg) {
+  const dpr = window.devicePixelRatio || 1, W = cv.clientWidth || 600, H = cfg.h || 320;
+  if (cv.width !== Math.round(W * dpr) || cv.height !== Math.round(H * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); cv.style.height = H + 'px'; }
+  const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+  const l = 50, r = 12, top = 6, bot = 24, gap = 12;
+  const totW = cfg.panels.reduce((s, p) => s + (p.w || 1), 0), avail = H - top - bot - gap * (cfg.panels.length - 1);
+  const X = t => l + t / cfg.span * (W - l - r);
+  const N = cfg.N || 700;
+  let y0 = top;
+  ctx.font = '11px system-ui';
+  for (const p of cfg.panels) {
+    const ph = avail * (p.w || 1) / totW, Y = v => y0 + (p.max - v) / (p.max - p.min) * ph;
+    ctx.fillStyle = '#fff'; ctx.fillRect(l, y0, W - l - r, ph);
+    for (const [a, b, col] of (p.shade || [])) { ctx.fillStyle = col || '#d6f2e2'; ctx.fillRect(X(a), y0, X(b) - X(a), ph); }
+    ctx.strokeStyle = C.grid; ctx.lineWidth = 1; ctx.fillStyle = C.muted; ctx.textAlign = 'right';
+    for (const v of (p.yticks || [])) { ctx.beginPath(); ctx.moveTo(l, Y(v)); ctx.lineTo(W - r, Y(v)); ctx.stroke(); ctx.fillText(typeof v === 'number' ? fmt(v, Math.abs(v) < 10 && v % 1 ? 1 : 0) : v, l - 5, Y(v) + 4); }
+    for (const [t] of cfg.ticks) { ctx.beginPath(); ctx.moveTo(X(t), y0); ctx.lineTo(X(t), y0 + ph); ctx.stroke(); }
+    if (p.min < 0 && p.max > 0) { ctx.strokeStyle = C.axis; ctx.beginPath(); ctx.moveTo(l, Y(0)); ctx.lineTo(W - r, Y(0)); ctx.stroke(); }
+    ctx.strokeStyle = '#d0d4dc'; ctx.strokeRect(l + .5, y0 + .5, W - l - r - 1, ph - 1);
+    // traces : fantôme puis tracé jusqu'au curseur
+    ctx.save(); ctx.beginPath(); ctx.rect(l, y0, W - l - r, ph); ctx.clip();
+    for (const pass of [0, 1]) for (const tr of p.traces) {
+      const end = pass ? cfg.cursor : cfg.span; if (end <= 0) continue;
+      ctx.strokeStyle = tr.c; ctx.lineWidth = tr.w || 2; ctx.globalAlpha = pass ? 1 : 0.16; ctx.setLineDash(tr.dash || []);
+      ctx.beginPath(); const n = Math.max(2, Math.ceil(end / cfg.span * N));
+      for (let k = 0; k <= n; k++) { const t = k / n * end, x = X(t), y = Y(tr.f(t)); k ? ctx.lineTo(x, y) : ctx.moveTo(x, y); }
+      ctx.stroke(); ctx.setLineDash([]);
+    }
+    ctx.globalAlpha = 1; ctx.restore();
+    if (p.label) { ctx.fillStyle = C.muted; ctx.textAlign = 'left'; ctx.font = '600 11px system-ui'; ctx.fillText(p.label, l + 6, y0 + 13); ctx.font = '11px system-ui'; }
+    // curseur
+    const xc = X(cfg.cursor); ctx.strokeStyle = C.ink; ctx.lineWidth = 1; ctx.setLineDash([4, 3]); ctx.beginPath(); ctx.moveTo(xc, y0); ctx.lineTo(xc, y0 + ph); ctx.stroke(); ctx.setLineDash([]);
+    for (const tr of p.traces) if (!tr.nodot) { const v = tr.f(cfg.cursor); if (v >= p.min && v <= p.max) { ctx.fillStyle = tr.c; ctx.beginPath(); ctx.arc(xc, Y(v), 4, 0, TWO_PI); ctx.fill(); } }
+    y0 += ph + gap;
+  }
+  ctx.fillStyle = C.muted; ctx.textAlign = 'center';
+  for (const [t, lab] of cfg.ticks) ctx.fillText(lab, X(t), H - 7);
+}
+
+/* ---------- Diagramme en barres (spectre) ---------- */
+function bars(cv, cfg) {
+  const dpr = window.devicePixelRatio || 1, W = cv.clientWidth || 600, H = cfg.h || 170;
+  if (cv.width !== Math.round(W * dpr) || cv.height !== Math.round(H * dpr)) { cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr); cv.style.height = H + 'px'; }
+  const ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+  const l = 50, r = 12, top = 22, bot = 26, pw = W - l - r, ph = H - top - bot, n = cfg.values.length, bw = pw / n;
+  ctx.font = '11px system-ui'; ctx.fillStyle = C.muted; ctx.textAlign = 'left'; ctx.font = '600 11px system-ui'; ctx.fillText(cfg.title, l, 13); ctx.font = '11px system-ui';
+  ctx.strokeStyle = C.grid; ctx.textAlign = 'right';
+  for (const v of cfg.yticks) { const y = top + ph - v / cfg.max * ph; ctx.beginPath(); ctx.moveTo(l, y); ctx.lineTo(W - r, y); ctx.stroke(); ctx.fillText(fmt(v, 0) + (cfg.unit || ''), l - 5, y + 4); }
+  cfg.values.forEach((v, k) => {
+    const h = Math.min(1, v / cfg.max) * ph, x = l + k * bw;
+    ctx.fillStyle = k === 0 ? C.green : C.orange; ctx.fillRect(x + bw * 0.18, top + ph - h, bw * 0.64, h);
+    if (cfg.labelEvery && (k + 1) % cfg.labelEvery === 0 || k === 0) { ctx.fillStyle = C.muted; ctx.textAlign = 'center'; ctx.fillText(String(k + 1), x + bw / 2, H - 9); }
+  });
+  ctx.textAlign = 'right'; ctx.fillStyle = C.muted; ctx.fillText(cfg.xlabel || 'rang', W - r, H - 9);
+}
+
+/* ---------- Petits symboles SVG ---------- */
+function el(tag, attrs, parent) { const e = document.createElementNS(NS, tag); for (const k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+function txt(parent, x, y, s, o = {}) { const t = el('text', Object.assign({ x, y, 'font-size': 13, fill: C.ink, 'text-anchor': 'middle' }, o), parent); t.innerHTML = s; return t; }
+/* diode ou thyristor vertical, anode en bas, cathode en haut (dir = 'up') ou l'inverse */
+function vdevice(parent, x, cy, label, kind = 'diode', dir = 'up', labelSide = 'left') {
+  const g = el('g', {}, parent), s = dir === 'up' ? 1 : -1;
+  const tri = el('polygon', { points: `${x - 12},${cy + 10 * s} ${x + 12},${cy + 10 * s} ${x},${cy - 10 * s}`, 'stroke-width': 2, fill: '#fff', stroke: C.ink }, g);
+  const bar = el('line', { x1: x - 13, y1: cy - 10 * s, x2: x + 13, y2: cy - 10 * s, 'stroke-width': 3, stroke: C.ink }, g);
+  let gate = null;
+  if (kind === 'thyr') gate = el('path', { d: `M${x + 6} ${cy - 4 * s} L${x + 20} ${cy - 16 * s}`, 'stroke-width': 2, stroke: C.violet, fill: 'none' }, g);
+  const lx = labelSide === 'left' ? x - 20 : x + 20;
+  txt(g, lx, cy + 5, label, { 'text-anchor': labelSide === 'left' ? 'end' : 'start', 'font-weight': 600, 'font-size': 13.5 });
+  return { g, tri, bar, gate, set(state) { // state: 'on' | 'off' | 'idle'
+    const col = state === 'on' ? C.green : state === 'off' ? C.red : C.ink;
+    tri.setAttribute('stroke', col); bar.setAttribute('stroke', col); tri.setAttribute('fill', state === 'on' ? '#d6f2e2' : state === 'off' ? '#fbe6e6' : '#fff'); } };
+}
+function resistor(parent, x, y0, y1, label) {
+  const cy = (y0 + y1) / 2, g = el('g', {}, parent);
+  el('rect', { x: x - 12, y: cy - 38, width: 24, height: 76, rx: 3, fill: '#fff', stroke: C.ink, 'stroke-width': 2 }, g);
+  if (label) txt(g, x + 20, cy + 5, label, { 'text-anchor': 'start', 'font-size': 13, fill: C.muted });
+  return g;
+}
+function acSource(parent, x, y, label) {
+  const g = el('g', {}, parent);
+  el('circle', { cx: x, cy: y, r: 22, fill: '#fff', stroke: C.ink, 'stroke-width': 2 }, g);
+  el('path', { d: `M${x - 13} ${y} q6.5 -12 13 0 t13 0`, fill: 'none', stroke: C.ink, 'stroke-width': 2 }, g);
+  if (label) txt(g, x, y - 30, label, { fill: C.blue, 'font-weight': 600 });
+  return g;
+}
+
+/* ---------- Boucle d'animation ---------- */
+const sims = {};
+let active = null, last = null;
+function register(id, sim) { sims[id] = sim; }
+function loop(ts) {
+  const dt = last === null ? 0 : Math.min(0.05, (ts - last) / 1000); last = ts;
+  const s = sims[active]; if (s) s.tick(dt);
+  requestAnimationFrame(loop);
+}
+/* commande standard : lecture, vitesse, curseur de temps */
+function transport(prefix, sim) {
+  const play = $(prefix + '-play'), scrub = $(prefix + '-scrub');
+  sim.playing = true; sim.speed = 1; sim.t = sim.t || 0;
+  const setP = p => { sim.playing = p; play.textContent = p ? '⏸ Pause' : '▶ Lecture'; };
+  sim.setPlaying = setP;
+  play.onclick = () => setP(!sim.playing);
+  scrub.addEventListener('input', () => { setP(false); sim.t = scrub.value / 1000 * sim.span(); sim.draw(); });
+  seg(prefix + '-speed', v => sim.speed = parseFloat(v));
+  sim.tick = dt => {
+    if (sim.playing) { sim.t = (sim.t + dt * sim.speed * sim.span() / sim.dur) % sim.span(); scrub.value = Math.round(sim.t / sim.span() * 1000); }
+    sim.draw(dt);
+  };
+}
+function seg(id, cb) { const g = $(id); if (!g) return; g.querySelectorAll('button').forEach(b => b.onclick = () => { g.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); cb(b.dataset.v); }); }
+function slider(id, cb, show) { const s = $(id), o = $(id + '-o'); const f = () => { const v = parseFloat(s.value); if (o) o.textContent = show ? show(v) : v; cb(v); }; s.addEventListener('input', f); f(); }
+
+/* ---------- Navigation par onglets ---------- */
+function route() {
+  const id = (location.hash || '#accueil').slice(1);
+  const target = document.querySelector('.fiche#' + CSS.escape(id)) ? id : 'accueil';
+  document.querySelectorAll('.fiche').forEach(f => f.classList.toggle('on', f.id === target));
+  document.querySelectorAll('nav a').forEach(a => a.classList.toggle('on', a.getAttribute('href') === '#' + target));
+  active = target; window.scrollTo(0, 0);
+  const s = sims[active]; if (s) s.draw(0);
+}
+window.addEventListener('hashchange', route);
+window.addEventListener('resize', () => { const s = sims[active]; if (s) s.draw(0); });
+document.addEventListener('DOMContentLoaded', () => {
+  route(); requestAnimationFrame(loop);
+  const cb = $('showcorr');
+  cb.addEventListener('change', () => document.querySelectorAll('details.corr').forEach(d => d.open = cb.checked));
+});
+return { C, NS, $, fmt, TWO_PI, scope, bars, el, txt, vdevice, resistor, acSource, register, transport, seg, slider };
+})();
+
+</script>
+<script>
+/* Outils d'autonomie : pas à pas, vérification des réponses, QCM, parcours, progression */
+(() => {
+const { $ } = TD;
+const store = {
+  get(k, d) { try { const v = localStorage.getItem('cs-td-' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem('cs-td-' + k, JSON.stringify(v)); } catch (e) {} }
+};
+TD.store = store;
+
+/* sélection programmée d'un bouton de segment ou d'un curseur */
+TD.pick = (segId, v) => { const b = document.querySelector(`#${segId} button[data-v="${v}"]`); if (b && !b.classList.contains('on')) b.click(); };
+TD.setSlider = (id, v) => { const s = $(id); if (!s) return; s.value = v; s.dispatchEvent(new Event('input')); };
+
+/* ---------- Pas à pas ----------
+ steps = [{ title, setup(sim), t, text, obs, ans }] */
+TD.stepper = (prefix, sim, steps) => {
+  const box = $(prefix + '-step'); if (!box) return;
+  let k = -1;
+  const render = () => {
+    const dots = steps.map((s, i) => `<button class="dot${i === k ? ' on' : ''}${i < k ? ' done' : ''}" data-i="${i}" title="Étape ${i + 1} : ${s.title.replace(/"/g, '')}">${i + 1}</button>`).join('');
+    const head = `<div class="st-head"><b>Mode pas à pas</b><span class="st-count">${k < 0 ? steps.length + ' étapes' : 'Étape ' + (k + 1) + ' / ' + steps.length}</span><div class="dots">${dots}</div><span class="sp"></span><button class="st-btn" data-go="prev" ${k <= 0 ? 'disabled' : ''}>◀ Précédente</button><button class="st-btn main" data-go="next" ${k >= steps.length - 1 ? 'disabled' : ''}>${k < 0 ? 'Commencer ▶' : 'Suivante ▶'}</button></div>`;
+    let body;
+    if (k < 0) body = `<p class="st-intro">Le pas à pas fige l'animation aux <b>instants clés</b> du fonctionnement. À chaque étape : lire l'explication, regarder le schéma et les courbes, puis répondre à la question « À observer » avant de vérifier. On peut à tout moment relancer l'animation avec le bouton Lecture.</p>`;
+    else { const s = steps[k]; body = `<h4>${s.title}</h4><div class="st-text">${s.text}</div>` + (s.obs ? `<div class="st-obs"><b>À observer :</b> ${s.obs}<details><summary>Vérifier ma réponse</summary><div>${s.ans}</div></details></div>` : ''); }
+    box.innerHTML = head + body;
+    box.querySelectorAll('[data-go]').forEach(b => b.onclick = () => go(b.dataset.go === 'next' ? k + 1 : k - 1));
+    box.querySelectorAll('.dot').forEach(b => b.onclick = () => go(+b.dataset.i));
+  };
+  const go = i => {
+    k = Math.max(0, Math.min(steps.length - 1, i)); const s = steps[k];
+    if (s.setup) s.setup(sim);
+    sim.setPlaying(false); sim.t = s.t; const sc = $(prefix + '-scrub'); if (sc) sc.value = Math.round(s.t / sim.span() * 1000);
+    sim.draw(0); render();
+  };
+  render();
+};
+
+/* ---------- Vérification des résultats numériques ---------- */
+function initChecks() {
+  document.querySelectorAll('.chk').forEach(c => {
+    const a = parseFloat(c.dataset.a), tol = parseFloat(c.dataset.tol || '0.03'), unit = c.dataset.u || '';
+    c.innerHTML = `<input type="text" inputmode="decimal" placeholder="?" aria-label="ma réponse"><span class="unit">${unit}</span><button type="button">Vérifier</button><span class="res"></span>`;
+    const inp = c.querySelector('input'), res = c.querySelector('.res');
+    const check = () => {
+      const x = parseFloat(inp.value.replace(/\s/g, '').replace(',', '.').replace('−', '-'));
+      if (isNaN(x)) { res.textContent = 'Écrire un nombre'; res.className = 'res'; return; }
+      const ok = Math.abs(x - a) <= Math.max(tol * Math.abs(a), 0.011);
+      res.textContent = ok ? '✓ Juste' : (Math.abs(x - a) <= 0.15 * Math.abs(a) ? '≈ Presque : vérifier les arrondis' : '✗ Pas encore : relire le coup de pouce');
+      res.className = 'res ' + (ok ? 'ok' : 'no');
+    };
+    c.querySelector('button').onclick = check; inp.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
+  });
+}
+
+/* ---------- QCM ---------- */
+function initQcm() {
+  document.querySelectorAll('.qcm').forEach(q => {
+    const key = 'qcm-' + q.dataset.key, items = [...q.querySelectorAll('.qq')], score = q.querySelector('.score');
+    const answered = {};
+    const upd = () => {
+      const n = Object.keys(answered).length, good = Object.values(answered).filter(Boolean).length;
+      score.innerHTML = n < items.length ? `Réponses : ${n} / ${items.length}` : `<b>Score : ${good} / ${items.length}</b> — ${good === items.length ? 'Bravo, la fiche est maîtrisée.' : good >= items.length - 1 ? 'Très bien. Relire l’explication de la question manquée.' : 'Revoir le pas à pas et la partie « Fonctionnement détaillé », puis recommencer.'} <button type="button" class="redo">Recommencer</button>`;
+      if (n === items.length) { store.set(key, good + '/' + items.length); const r = score.querySelector('.redo'); if (r) r.onclick = reset; }
+    };
+    const reset = () => { for (const k in answered) delete answered[k]; items.forEach(it => { it.classList.remove('ok', 'no'); it.querySelectorAll('input').forEach(i => { i.checked = false; i.disabled = false; }); it.querySelectorAll('label').forEach(l => l.classList.remove('good', 'bad')); }); upd(); };
+    items.forEach((it, idx) => {
+      it.querySelectorAll('input').forEach(inp => inp.addEventListener('change', () => {
+        const ok = inp.value === it.dataset.ok; answered[idx] = ok;
+        it.classList.toggle('ok', ok); it.classList.toggle('no', !ok);
+        it.querySelectorAll('input').forEach(i => { i.disabled = true; const l = i.closest('label'); if (i.value === it.dataset.ok) l.classList.add('good'); else if (i === inp) l.classList.add('bad'); });
+        upd();
+      }));
+    });
+    upd();
+  });
+}
+
+/* ---------- Parcours à cocher ---------- */
+function initTodo() {
+  document.querySelectorAll('ul.todo').forEach(ul => {
+    const key = 'todo-' + ul.dataset.key, saved = store.get(key, []), boxes = [...ul.querySelectorAll('input')];
+    boxes.forEach((b, i) => { b.checked = !!saved[i]; b.addEventListener('change', () => store.set(key, boxes.map(x => x.checked))); });
+  });
+}
+/* ---------- Progression sur l'accueil ---------- */
+TD.progress = () => {
+  const el = $('progress'); if (!el) return;
+  const names = [['f1', 'redresseur', '1 · Redresseurs à diodes'], ['f2', 'commande', '2 · Redresseurs commandés'], ['f3', 'hacheur', '3 · Hacheur'], ['f4', 'onduleur', '4 · Onduleur'], ['f5', 'gradateur', '5 · Gradateur']];
+  el.innerHTML = '<table><tr><th>Fiche</th><th>Parcours</th><th>QCM</th></tr>' + names.map(([k, id, n]) => {
+    const t = store.get('todo-' + k, []), done = t.filter(Boolean).length, total = document.querySelectorAll(`ul.todo[data-key="${k}"] input`).length;
+    const q = store.get('qcm-' + k, '—');
+    return `<tr><td><a href="#${id}">${n}</a></td><td><span class="pbar"><i style="width:${total ? done / total * 100 : 0}%"></i></span> ${done} / ${total}</td><td>${q}</td></tr>`;
+  }).join('') + '</table><p class="note">La progression est enregistrée dans ce navigateur uniquement.</p>';
+};
+/* ---------- Chronomètre de séance (3 h) ---------- */
+const SCHED = [
+  { id: 'accueil', name: 'Accueil', a: 0, b: 5 },
+  { id: 'redresseur', name: 'Fiche 1 · Redresseurs à diodes', a: 5, b: 35 },
+  { id: 'commande', name: 'Fiche 2 · Redresseurs commandés', a: 35, b: 70 },
+  { id: 'pause', name: 'Pause', a: 70, b: 80 },
+  { id: 'hacheur', name: 'Fiche 3 · Hacheur', a: 80, b: 110 },
+  { id: 'onduleur', name: 'Fiche 4 · Onduleur', a: 110, b: 145 },
+  { id: 'gradateur', name: 'Fiche 5 · Gradateur', a: 145, b: 170 },
+  { id: 'bilan', name: 'Bilan', a: 170, b: 180 }
+];
+const ORDER = ['accueil', 'redresseur', 'commande', 'hacheur', 'onduleur', 'gradateur', 'bilan'];
+const hm = m => Math.floor(m / 60) + ':' + String(Math.floor(m % 60)).padStart(2, '0');
+function tickTimer() {
+  const el = $('timer'); if (!el) return;
+  const start = store.get('start', null);
+  document.querySelectorAll('table.plan tr').forEach(r => r.classList.remove('now'));
+  if (!start) { el.textContent = '⏱ Séance non démarrée'; el.className = 'timer'; el.href = '#accueil'; return; }
+  const m = (Date.now() - start) / 60000;
+  if (m >= 180) { el.textContent = '⏱ 3:00 · Séance terminée'; el.className = 'timer'; el.href = '#bilan'; return; }
+  const k = SCHED.findIndex(s => m >= s.a && m < s.b), cur = SCHED[k];
+  const row = document.querySelectorAll('table.plan tr')[k + 1]; if (row) row.classList.add('now');
+  const here = (location.hash || '#accueil').slice(1);
+  if (cur.id === 'pause') { el.textContent = `⏱ ${hm(m)} · Pause jusqu'à 1:20`; el.className = 'timer pause'; el.href = '#hacheur'; return; }
+  const late = ORDER.indexOf(here) < ORDER.indexOf(cur.id);
+  el.href = '#' + cur.id;
+  el.textContent = late ? `⏱ ${hm(m)} · En retard : passer à ${cur.name}` : `⏱ ${hm(m)} · ${cur.name} jusqu'à ${hm(cur.b)}`;
+  el.className = 'timer ' + (late ? 'late' : 'ok');
+}
+function initTimer() {
+  const st = $('t-start'), rs = $('t-reset');
+  if (st) st.onclick = () => { if (!store.get('start', null)) store.set('start', Date.now()); st.textContent = '▶ Séance en cours'; tickTimer(); };
+  if (rs) rs.onclick = () => { store.set('start', null); if (st) st.textContent = '▶ Démarrer la séance'; tickTimer(); };
+  if (st && store.get('start', null)) st.textContent = '▶ Séance en cours';
+  tickTimer(); setInterval(tickTimer, 5000); window.addEventListener('hashchange', tickTimer);
+}
+const progressAll = () => { TD.progress(); const p2 = $('progress2'), p = $('progress'); if (p2 && p) p2.innerHTML = p.innerHTML; };
+document.addEventListener('DOMContentLoaded', () => { initChecks(); initQcm(); initTodo(); progressAll(); initTimer(); window.addEventListener('hashchange', progressAll); });
+})();
+
+</script>
+<script>
+/* Pont redresseur générique (utilisé par les fiches 1 et 2) */
+TD.bridge = function (svg, o) {
+  // o = { xs:[...], top:[labels], bot:[labels], topKind, botKind, inputs:'source'|'phases', loadLabel }
+  const { C, el, txt, vdevice, resistor, acSource } = TD;
+  svg.innerHTML = '';
+  const yP = 40, yN = 262, yM = 150, xL = 400, xs = o.xs;
+  const wires = el('g', { fill: 'none', stroke: C.ink, 'stroke-width': 2 }, svg);
+  el('path', { d: `M${xs[0]} ${yP} H${xL} V112 M${xL} 188 V${yN} H${xs[0]}` }, wires);
+  xs.forEach(x => el('path', { d: `M${x} ${yP} V85 M${x} 105 V195 M${x} 215 V${yN}` }, wires));
+  xs.forEach(x => { el('circle', { cx: x, cy: yP, r: 3, fill: C.ink }, svg); el('circle', { cx: x, cy: yN, r: 3, fill: C.ink }, svg); el('circle', { cx: x, cy: yM, r: 3.2, fill: C.ink }, svg); });
+  resistor(svg, xL, 112, 188, '');
+  txt(svg, xL + 22, 150, 'R', { 'text-anchor': 'start', 'font-weight': 600 });
+  txt(svg, xL + 22, 168, 'charge', { 'text-anchor': 'start', 'font-size': 11, fill: C.muted });
+  // flèche de tension u
+  el('path', { d: `M${xL - 30} 186 V118`, stroke: C.green, 'stroke-width': 2, fill: 'none' }, svg);
+  el('path', { d: `M${xL - 35} 122 L${xL - 30} 112 L${xL - 25} 122 Z`, fill: C.green }, svg);
+  txt(svg, xL - 42, 155, 'u', { fill: C.green, 'font-weight': 700, 'font-size': 15 });
+  txt(svg, xs[0] - 4, yP - 14, '+', { 'font-weight': 700, fill: C.muted });
+  txt(svg, xs[0] - 4, yN + 22, '−', { 'font-weight': 700, fill: C.muted });
+  const top = xs.map((x, k) => vdevice(svg, x, 95, o.top[k], o.topKind, 'up', 'left'));
+  const bot = xs.map((x, k) => vdevice(svg, x, 205, o.bot[k], Array.isArray(o.botKind) ? o.botKind[k] : o.botKind, 'up', 'left'));
+  if (o.inputs === 'source') {
+    el('path', { d: `M${xs[0]} ${yM} H${(xs[0] + xs[1]) / 2 - 22} M${(xs[0] + xs[1]) / 2 + 22} ${yM} H${xs[1]}`, stroke: C.ink, 'stroke-width': 2 }, svg);
+    acSource(svg, (xs[0] + xs[1]) / 2, yM, 'v');
+    txt(svg, xs[0] + 14, yM - 6, 'A', { 'font-size': 11, fill: C.muted, 'text-anchor': 'start' });
+    txt(svg, xs[1] - 14, yM - 6, 'B', { 'font-size': 11, fill: C.muted, 'text-anchor': 'end' });
+  } else {
+    xs.forEach((x, k) => {
+      el('path', { d: `M${x} ${yM} H${x + 30}`, stroke: C.ink, 'stroke-width': 2 }, svg);
+      el('circle', { cx: x + 34, cy: yM, r: 4.5, fill: '#fff', stroke: C.blue, 'stroke-width': 2 }, svg);
+      txt(svg, x + 34, yM + 20, 'v' + (k + 1), { fill: C.blue, 'font-weight': 600, 'font-size': 12 });
+    });
+  }
+  const dotsG = el('g', {}, svg), dots = [];
+  for (let k = 0; k < 26; k++) dots.push(el('circle', { r: 3.6, fill: C.green, opacity: 0 }, dotsG));
+  let off = 0;
+  return {
+    top, bot,
+    flow(xTop, xBot, rate, dt) { // points de courant sur le chemin continu
+      if (xTop == null || xBot == null || rate <= 0) { dots.forEach(d => d.setAttribute('opacity', 0)); return; }
+      const pts = [[xTop, yM], [xTop, yP], [xL, yP], [xL, yN], [xBot, yN], [xBot, yM]];
+      const seg = []; let L = 0; for (let k = 0; k < pts.length - 1; k++) { const a = pts[k], b = pts[k + 1], l = Math.hypot(b[0] - a[0], b[1] - a[1]); seg.push([a, b, l, L]); L += l; }
+      off = (off + dt * 140 * rate) % 40;
+      dots.forEach((d, k) => {
+        const s = k * 40 + off; if (s > L) { d.setAttribute('opacity', 0); return; }
+        const [a, b, l, s0] = seg.find(g => s <= g[3] + g[2]) || seg[seg.length - 1], u = (s - s0) / l;
+        d.setAttribute('cx', a[0] + (b[0] - a[0]) * u); d.setAttribute('cy', a[1] + (b[1] - a[1]) * u); d.setAttribute('opacity', 0.85);
+      });
+    }
+  };
+};
+
+/* ======================= Fiche 1 : redresseurs à diodes ======================= */
+(() => {
+const { C, $, fmt, scope, transport, seg } = TD;
+const sim = { mode: 'pd2', dur: 9 };
+// PD2 : V = 24 V, R = 12 ohms, temps en ms ; PD3 : V = 230 V (U = 400 V), R = 20 ohms, temps en degrés
+const P2 = { V: 24, R: 12 }, P3 = { V: 230, R: 20 };
+let br = null;
+sim.span = () => sim.mode === 'pd2' ? 40 : 360;
+
+function build() {
+  const svg = $('f1-sch');
+  br = sim.mode === 'pd2'
+    ? TD.bridge(svg, { xs: [130, 250], top: ['D1', 'D2'], bot: ['D3', 'D4'], topKind: 'diode', botKind: 'diode', inputs: 'source' })
+    : TD.bridge(svg, { xs: [100, 190, 280], top: ['D1', 'D2', 'D3'], bot: ["D'1", "D'2", "D'3"], topKind: 'diode', botKind: 'diode', inputs: 'phases' });
+  $('f1-legend').innerHTML = sim.mode === 'pd2'
+    ? '<span><i style="background:#2f6fd6"></i>v(t) secondaire</span><span><i style="background:#1d9a52;height:4px"></i>u(t) charge</span><span><i style="background:#df8516"></i>v<sub>D1</sub>(t)</span><span><i style="background:#7a4cc2"></i>i<sub>D1</sub>(t)</span><span><i style="background:#d6f2e2;height:10px"></i>D1 passante</span>'
+    : '<span><i style="background:#2f6fd6"></i>v1</span><span><i style="background:#138a8a"></i>v2</span><span><i style="background:#7a4cc2"></i>v3</span><span><i style="background:#1d9a52;height:4px"></i>u(t)</span><span><i style="background:#df8516"></i>v<sub>D1</sub>(t)</span><span><i style="background:#d6f2e2;height:10px"></i>D1 passante</span>';
+}
+
+/* ---- PD2 ---- */
+const w2 = 2 * Math.PI / 20; // rad/ms
+const pd2 = t => { const Vh = P2.V * Math.SQRT2, v = Vh * Math.sin(w2 * t), u = Math.abs(v), i = u / P2.R, pos = v >= 0; return { v, u, i, pos, vD1: pos ? 0 : v, iD1: pos ? i : 0 }; };
+/* ---- PD3 ---- */
+const pd3 = t => {
+  const Vh = P3.V * Math.SQRT2, th = t * Math.PI / 180;
+  const v = [0, 1, 2].map(k => Vh * Math.sin(th - k * 2 * Math.PI / 3));
+  const hi = v.indexOf(Math.max(...v)), lo = v.indexOf(Math.min(...v)), u = v[hi] - v[lo], i = u / P3.R;
+  return { v, hi, lo, u, i, vD1: v[0] - v[hi], iD1: hi === 0 ? i : 0 };
+};
+
+function shadeOf(fn, test, span) { const out = []; let s = null; for (let k = 0; k <= 720; k++) { const t = k / 720 * span, on = test(fn(t)); if (on && s === null) s = t; if ((!on || k === 720) && s !== null) { out.push([s, t, '#d6f2e2']); s = null; } } return out; }
+
+sim.draw = (dt = 0) => {
+  if (sim.mode === 'pd2') {
+    const s = pd2(sim.t), Vh = P2.V * Math.SQRT2;
+    br.top[0].set(s.pos ? 'on' : 'off'); br.bot[1].set(s.pos ? 'on' : 'off');
+    br.top[1].set(s.pos ? 'off' : 'on'); br.bot[0].set(s.pos ? 'off' : 'on');
+    br.flow(s.pos ? 130 : 250, s.pos ? 250 : 130, s.i / (Vh / P2.R), dt);
+    $('f1-badge').textContent = s.pos ? 'D1 et D4 passantes' : 'D2 et D3 passantes';
+    $('f1-vals').innerHTML = `<div><span>v(t)</span><b>${fmt(s.v, 1)} V</b></div><div><span>u(t)</span><b>${fmt(s.u, 1)} V</b></div><div><span>i(t)</span><b>${fmt(s.i, 2)} A</b></div><div><span>v<sub>D1</sub></span><b>${fmt(s.vD1, 1)} V</b></div><div><span>⟨u⟩ = 2V̂/π</span><b>${fmt(2 * Vh / Math.PI, 1)} V</b></div>`;
+    $('f1-msg').innerHTML = s.pos
+      ? 'Alternance positive : le point A est au potentiel le plus élevé. D1 (cathodes communes) et D4 (anodes communes) conduisent ; D2 et D3 sont bloquées. u = v.'
+      : 'Alternance négative : le point B est au potentiel le plus élevé. D2 et D3 conduisent ; D1 et D4 sont bloquées et supportent la tension inverse. u = −v : le courant traverse la charge <b>dans le même sens</b>.';
+    const sh = shadeOf(pd2, x => x.iD1 > 0, 40);
+    scope($('f1-scope'), { h: 380, span: 40, cursor: sim.t, ticks: [[0, '0'], [10, '10 ms'], [20, '20 ms (T)'], [30, '30 ms'], [40, '40 ms']], panels: [
+      { w: 1.4, min: -38, max: 38, yticks: [-30, -15, 0, 15, 30], label: 'tensions (V)', shade: sh, traces: [{ f: t => pd2(t).v, c: C.blue }, { f: t => pd2(t).u, c: C.green, w: 3.5 }] },
+      { w: 0.8, min: -38, max: 6, yticks: [-30, -15, 0], label: 'v_D1 (V)', shade: sh, traces: [{ f: t => pd2(t).vD1, c: C.orange }] },
+      { w: 0.7, min: -0.2, max: 3.2, yticks: [0, 1, 2, 3], label: 'i_D1 (A)', shade: sh, traces: [{ f: t => pd2(t).iD1, c: C.violet }] }
+    ] });
+  } else {
+    const s = pd3(sim.t), Vh = P3.V * Math.SQRT2, names = ['D1', 'D2', 'D3'], bnames = ["D'1", "D'2", "D'3"], xs = [100, 190, 280];
+    br.top.forEach((d, k) => d.set(k === s.hi ? 'on' : 'off')); br.bot.forEach((d, k) => d.set(k === s.lo ? 'on' : 'off'));
+    br.flow(xs[s.hi], xs[s.lo], s.i / (Vh * Math.sqrt(3) / P3.R), dt);
+    $('f1-badge').textContent = `${names[s.hi]} et ${bnames[s.lo]} passantes`;
+    $('f1-vals').innerHTML = `<div><span>θ = ωt</span><b>${Math.round(sim.t)}°</b></div><div><span>u = v${s.hi + 1} − v${s.lo + 1}</span><b>${fmt(s.u, 0)} V</b></div><div><span>i(t)</span><b>${fmt(s.i, 1)} A</b></div><div><span>v<sub>D1</sub></span><b>${fmt(s.vD1, 0)} V</b></div><div><span>⟨u⟩ ≈ 1,35 U</span><b>${fmt(3 * Math.sqrt(3) * Vh / Math.PI, 0)} V</b></div>`;
+    $('f1-msg').innerHTML = `Groupe à cathodes communes : conduit la diode reliée à la tension la <b>plus haute</b> (v${s.hi + 1}). Groupe à anodes communes : conduit la diode reliée à la tension la <b>plus basse</b> (v${s.lo + 1}). Donc u = v${s.hi + 1} − v${s.lo + 1} = u${s.hi + 1}${s.lo + 1}.`;
+    const sh = shadeOf(pd3, x => x.iD1 > 0, 360);
+    const ticks = [[0, '0°'], [30, '30°'], [90, '90°'], [150, '150°'], [210, '210°'], [270, '270°'], [330, '330°'], [360, '360°']];
+    scope($('f1-scope'), { h: 440, span: 360, cursor: sim.t, ticks, panels: [
+      { w: 1.2, min: -360, max: 360, yticks: [-300, 0, 300], label: 'tensions simples (V)', shade: sh, traces: [{ f: t => pd3(t).v[0], c: C.blue }, { f: t => pd3(t).v[1], c: C.teal }, { f: t => pd3(t).v[2], c: C.violet }] },
+      { w: 1, min: 0, max: 620, yticks: [0, 200, 400, 540, 600], label: 'u (V)  — ⟨u⟩ = 540 V', shade: sh, traces: [{ f: () => 540, c: C.green, w: 1, dash: [5, 4], nodot: true }, { f: t => pd3(t).u, c: C.green, w: 3.5 }] },
+      { w: 0.8, min: -600, max: 30, yticks: [-500, -250, 0], label: 'v_D1 (V)', shade: sh, traces: [{ f: t => pd3(t).vD1, c: C.orange }] }
+    ] });
+  }
+};
+
+transport('f1', sim);
+seg('f1-mode', v => { sim.mode = v; sim.t = 0; build(); sim.draw(); });
+build();
+TD.register('redresseur', sim);
+const S2 = () => TD.pick('f1-mode', 'pd2'), S3 = () => TD.pick('f1-mode', 'pd3');
+TD.stepper('f1', sim, [
+  { title: 'PD2 · Le montage au repos (t = 0)', setup: S2, t: 0.01,
+    text: '<p>À t = 0, la tension du secondaire v est nulle. Le pont comporte deux groupes : <b>D1 et D2 à cathodes communes</b> (reliées à la borne + de la charge) et <b>D3 et D4 à anodes communes</b> (reliées à la borne −).</p><p>La source est branchée entre les points A et B. v = v<sub>A</sub> − v<sub>B</sub>.</p>',
+    obs: 'Repérer sur le schéma les deux groupes de diodes et les points A et B.', ans: 'D1 et D2 en haut (cathodes vers le +), D3 et D4 en bas (anodes vers le −). A est à gauche entre D1 et D3, B à droite entre D2 et D4.' },
+  { title: 'PD2 · Alternance positive : D1 et D4 conduisent', setup: S2, t: 2.5,
+    text: '<p>v &gt; 0 : le point A est au potentiel le plus haut, le point B au plus bas.</p><p>Groupe du haut : l’anode de D1 est reliée à A (le plus haut) → <b>D1 passante</b>. Groupe du bas : la cathode de D4 est reliée à B (le plus bas) → <b>D4 passante</b>.</p><p>Chemin du courant : A → D1 → R → D4 → B. Loi des mailles : v − v<sub>D1</sub> − u − v<sub>D4</sub> = 0 avec v<sub>D</sub> = 0, donc <b>u = v</b>.</p>',
+    obs: 'Quelle est la tension aux bornes de D2 à cet instant ?', ans: 'D2 a son anode en B et sa cathode au + (relié à A par D1) : v<sub>D2</sub> = v<sub>B</sub> − v<sub>A</sub> = −v &lt; 0. D2 est bloquée, de même que D3.' },
+  { title: 'PD2 · Maximum de la tension (t = T/4)', setup: S2, t: 5,
+    text: '<p>À t = 5 ms (T/4), v atteint sa valeur maximale V̂ = 24√2 ≈ 33,9 V. Le courant dans la charge est maximal : i = V̂/R ≈ 2,8 A.</p><p>Le courant dans D1 est égal au courant de la charge : i<sub>D1</sub> = i.</p>',
+    obs: 'Lire i<sub>D1</sub> sur le troisième graphique à cet instant.', ans: 'i<sub>D1</sub> ≈ 2,8 A, égal à i : D1 et D4 portent tout le courant de la charge.' },
+  { title: 'PD2 · Changement d’alternance (t = T/2)', setup: S2, t: 10,
+    text: '<p>À t = 10 ms, v s’annule puis devient négative. Le courant s’annule dans D1 et D4, qui se bloquent : c’est une <b>commutation naturelle</b>, aucune commande n’est nécessaire.</p>',
+    obs: 'Pourquoi parle-t-on de commutation « naturelle » ?', ans: 'Parce que ce sont les tensions du réseau qui provoquent le changement d’état des diodes, sans aucun circuit de commande.' },
+  { title: 'PD2 · Alternance négative : D2 et D3 conduisent', setup: S2, t: 15,
+    text: '<p>v &lt; 0 : c’est maintenant B qui est le plus haut et A le plus bas. <b>D2 et D3 conduisent</b>, D1 et D4 sont bloquées.</p><p>Chemin : B → D2 → R → D3 → A. Le courant traverse R <b>dans le même sens</b> qu’à l’alternance précédente : u = −v &gt; 0.</p><p>D1 bloquée supporte v<sub>D1</sub> = v, qui vaut ici −V̂ ≈ −33,9 V : c’est sa <b>tension inverse maximale</b>.</p>',
+    obs: 'Quelle est la valeur de v<sub>D1</sub> affichée ?', ans: 'v<sub>D1</sub> ≈ −33,9 V = −V̂. C’est la tension inverse que la diode doit supporter (V<sub>RRM</sub> à choisir au-dessus).' },
+  { title: 'PD2 · Bilan : u = |v|', setup: S2, t: 39.9,
+    text: '<p>u(t) est formée de « bosses » toutes positives : <b>u = |v|</b>. Sa période est T/2 = 10 ms (100 Hz).</p><p>Valeur moyenne : ⟨u⟩ = 2V̂/π ≈ 21,6 V. Chaque diode conduit une demi-période : ⟨i<sub>D</sub>⟩ = ⟨i⟩/2.</p>',
+    obs: 'Compter les bosses de u sur 40 ms.', ans: '4 bosses en 40 ms, soit une toutes les 10 ms : fréquence 100 Hz.' },
+  { title: 'PD3 · Le pont triphasé : D1 et D’2 conduisent', setup: S3, t: 60,
+    text: '<p>Le pont PD3 a 3 diodes à cathodes communes (D1, D2, D3) et 3 à anodes communes (D’1, D’2, D’3), une par phase.</p><p>À θ = 60°, v1 est la tension la plus haute et v2 la plus basse : <b>D1 et D’2 conduisent</b>, u = v1 − v2 = <b>u12</b>.</p>',
+    obs: 'À l’aide du premier graphique, vérifier que v1 est la plus haute et v2 la plus basse.', ans: 'La courbe bleue (v1) est en haut, la courbe verte (v2) est en bas : u = u12 ≈ 560 V.' },
+  { title: 'PD3 · Commutation dans le groupe du bas (θ = 90°)', setup: S3, t: 92,
+    text: '<p>À θ = 90°, v3 devient plus basse que v2. Dans le groupe à anodes communes, le courant passe de D’2 à <b>D’3</b>. D1 continue de conduire.</p><p>u = v1 − v3 = <b>u13</b>.</p>',
+    obs: 'Toutes les combien de degrés une commutation a-t-elle lieu ?', ans: 'Tous les 60° : alternativement dans le groupe du haut et dans celui du bas. u a donc une période de T/6.' },
+  { title: 'PD3 · Bilan : chaque diode conduit 120°', setup: S3, t: 153,
+    text: '<p>À θ = 150°, v2 devient plus haute que v1 : le courant passe de D1 à <b>D2</b>. D1 a conduit de 30° à 150°, soit <b>120° = T/3</b>.</p><p>u suit l’enveloppe des tensions composées, entre 0,87 Û et Û. ⟨u⟩ ≈ 1,35 U ≈ 540 V. Quand D1 est bloquée, v<sub>D1</sub> = v1 − v<sub>max</sub> peut atteindre −Û = −U√2 ≈ −566 V.</p>',
+    obs: 'Sur le dernier graphique, quelle est la valeur la plus négative de v<sub>D1</sub> ?', ans: 'Environ −565 V, soit la valeur maximale d’une tension composée U√2.' }
+]);
+})();
+
+</script>
+<script>
+/* ======================= Fiche 2 : redresseurs commandés ======================= */
+(() => {
+const { C, $, fmt, scope, transport, seg, slider } = TD;
+const V = 230, Vh = V * Math.SQRT2, R = 50, I_L = 5, D2R = Math.PI / 180, PW = 8 * D2R;
+const sim = { mode: 'mixte', load: 'R', alpha: 60 * D2R, dur: 9 };
+sim.span = () => 720;
+let br = null;
+
+function build() {
+  br = TD.bridge($('f2-sch'), sim.mode === 'mixte'
+    ? { xs: [130, 250], top: ['T1', 'T2'], bot: ['D3', 'D4'], topKind: 'thyr', botKind: 'diode', inputs: 'source' }
+    : { xs: [130, 250], top: ['T1', 'T2'], bot: ['T3', 'T4'], topKind: 'thyr', botKind: 'thyr', inputs: 'source' });
+}
+
+/* état à l'angle th (degrés) */
+function st(tdeg) {
+  const th = tdeg * D2R, pm = ((th % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI), a = sim.alpha, v = Vh * Math.sin(th);
+  let top = null, bot = null, u = 0, fw = false; // top/bot : 0 = gauche, 1 = droite
+  if (sim.load === 'R') {
+    if (pm < Math.PI && pm >= a) { top = 0; bot = 1; u = v; }
+    else if (pm >= Math.PI && pm - Math.PI >= a) { top = 1; bot = 0; u = -v; }
+  } else if (sim.mode === 'mixte') {
+    if (pm >= a && pm < Math.PI) { top = 0; bot = 1; u = v; }
+    else if (pm >= Math.PI && pm < Math.PI + a) { top = 0; bot = 0; u = 0; fw = true; }
+    else if (pm >= Math.PI + a) { top = 1; bot = 0; u = -v; }
+    else { top = 1; bot = 1; u = 0; fw = true; }
+  } else {
+    const x = ((pm - a) % (2 * Math.PI) + 2 * Math.PI) % (2 * Math.PI);
+    if (x < Math.PI) { top = 0; bot = 1; u = v; } else { top = 1; bot = 0; u = -v; }
+  }
+  const on = top !== null, i = !on ? 0 : sim.load === 'R' ? u / R : I_L;
+  const g1 = pm >= a && pm < a + PW, g2 = pm >= Math.PI + a && pm < Math.PI + a + PW;
+  return { v, u, i, top, bot, fw, on, pm, iT1: top === 0 ? i : 0, g1, g2 };
+}
+const avg = () => (sim.mode === 'tout' && sim.load === 'L') ? 2 * Vh * Math.cos(sim.alpha) / Math.PI : Vh * (1 + Math.cos(sim.alpha)) / Math.PI;
+
+sim.draw = (dt = 0) => {
+  const s = st(sim.t), names = sim.mode === 'mixte' ? [['T1', 'T2'], ['D3', 'D4']] : [['T1', 'T2'], ['T3', 'T4']];
+  br.top.forEach((d, k) => d.set(s.top === k ? 'on' : 'off')); br.bot.forEach((d, k) => d.set(s.bot === k ? 'on' : 'off'));
+  br.top.forEach((d, k) => d.gate.setAttribute('stroke-width', (k === 0 ? s.g1 : s.g2) ? 5 : 2));
+  if (sim.mode === 'tout') br.bot.forEach((d, k) => d.gate.setAttribute('stroke-width', (k === 1 ? s.g1 : s.g2) ? 5 : 2));
+  br.flow(s.on ? [130, 250][s.top] : null, s.on ? [130, 250][s.bot] : null, sim.load === 'R' ? s.i / (Vh / R) : 0.7, dt);
+  const cond = s.on ? `${names[0][s.top]} et ${names[1][s.bot]} passants` : 'Tout est bloqué';
+  $('f2-badge').textContent = cond; $('f2-badge').style.background = s.on ? (s.fw ? C.orange : C.green) : C.red;
+  const Ueff = V * Math.sqrt(Math.max(0, 1 - sim.alpha / Math.PI + Math.sin(2 * sim.alpha) / (2 * Math.PI)));
+  $('f2-vals').innerHTML = `<div><span>θ = ωt</span><b>${Math.round(sim.t % 360)}°</b></div><div><span>v(t)</span><b>${fmt(s.v, 0)} V</b></div><div><span>u(t)</span><b>${fmt(s.u, 0)} V</b></div><div><span>i(t)</span><b>${fmt(s.i, 2)} A</b></div><div><span>⟨u⟩ théorique</span><b>${fmt(avg(), 1)} V</b></div>` + (sim.load === 'R' ? `<div><span>U efficace</span><b>${fmt(Ueff, 0)} V</b></div>` : '');
+  const deg = Math.round(sim.alpha / D2R), pmd = s.pm / D2R;
+  let m;
+  if (!s.on) m = `Aucun thyristor n'a encore reçu d'impulsion dans cette alternance (θ &lt; α = ${deg}°) : i = 0 et u = 0. Les thyristors supportent la tension du réseau.`;
+  else if (s.fw) m = `<b>Roue libre</b> : l'inductance maintient le courant, qui se referme par ${names[0][s.top]} et ${names[1][s.bot]} (même bras). La charge est court-circuitée : u = 0, aucun échange d'énergie avec le réseau.`;
+  else if (s.g1 || s.g2) m = `Impulsion de gâchette à θ = ${s.g1 ? deg : 180 + deg}° : v<sub>AK</sub> &gt; 0 et i<sub>G</sub> présent, le thyristor s'amorce. La charge est reliée au réseau.`;
+  else if (s.u < 0) m = `La tension v a changé de signe mais le courant, imposé par l'inductance, continue de passer dans ${names[0][s.top]} et ${names[1][s.bot]} : u devient <b>négative</b>. C'est ce qui permet au pont tout thyristors de renvoyer de l'énergie au réseau.`;
+  else m = `${names[0][s.top]} et ${names[1][s.bot]} conduisent : la charge reçoit u = ${pmd < 180 ? 'v' : '−v'}. Le thyristor reste passant sans courant de gâchette jusqu'à l'annulation du courant${sim.load === 'L' ? ' ou l’amorçage du thyristor suivant' : ''}.`;
+  $('f2-msg').innerHTML = m;
+  // zones
+  const sh = []; let s0 = null, kind = null;
+  for (let k = 0; k <= 1440; k++) { const t = k / 2, x = st(t), kk = !x.on ? null : x.fw ? 'fw' : 'net'; if (kk !== kind || k === 1440) { if (kind) sh.push([s0, t, kind === 'fw' ? '#fdf0d8' : '#d6f2e2']); s0 = t; kind = kk; } }
+  const ticks = [0, 90, 180, 270, 360, 450, 540, 630, 720].map(t => [t, t + '°']);
+  const imax = sim.load === 'R' ? 7 : 6;
+  TD.scope($('f2-scope'), { h: 400, span: 720, cursor: sim.t, ticks, N: 900, panels: [
+    { w: 1.5, min: -350, max: 350, yticks: [-300, 0, 300], label: 'tensions (V)', shade: sh, traces: [{ f: t => avg(), c: C.green, w: 1, dash: [5, 4], nodot: true }, { f: t => st(t).v, c: C.blue }, { f: t => st(t).u, c: C.green, w: 3.5 }] },
+    { w: 0.45, min: -0.2, max: 1.7, yticks: [], label: 'i_G', traces: [{ f: t => st(t).g1 ? 1 : 0, c: C.violet, w: 2 }, { f: t => st(t).g2 ? 1 : 0, c: '#b59be0', w: 2 }] },
+    { w: 0.8, min: -0.3, max: imax, yticks: [0, sim.load === 'R' ? 3 : 2.5, sim.load === 'R' ? 6 : 5], label: 'i_T1 (A)', shade: sh, traces: [{ f: t => st(t).iT1, c: C.orange }] }
+  ] });
+};
+
+transport('f2', sim);
+slider('f2-alpha', v => { sim.alpha = v * D2R; if (br) sim.draw(); }, v => v + '°');
+seg('f2-mode', v => { sim.mode = v; build(); sim.draw(); });
+seg('f2-load', v => { sim.load = v; sim.draw(); });
+build();
+TD.register('commande', sim);
+const cfg = (mode, load, a) => () => { TD.pick('f2-mode', mode); TD.pick('f2-load', load); TD.setSlider('f2-alpha', a); };
+TD.stepper('f2', sim, [
+  { title: 'Avant l’impulsion : tout est bloqué', setup: cfg('mixte', 'R', 60), t: 30,
+    text: '<p>Pont mixte (T1, T2 en haut ; D3, D4 en bas), charge résistive, α = 60°.</p><p>À θ = 30°, v &gt; 0 donc v<sub>AK</sub> de T1 est positive : la <b>première condition</b> d’amorçage est remplie. Mais aucune impulsion n’a encore été envoyée sur la gâchette : T1 reste <b>bloqué</b>. Aucun courant ne circule : <b>u = 0</b>.</p>',
+    obs: 'Quelle tension supporte T1 à cet instant ?', ans: 'Toute la tension du réseau : v<sub>T1</sub> = v ≈ 160 V (positive). Le thyristor « attend » son impulsion.' },
+  { title: 'θ = α : impulsion sur T1, amorçage', setup: cfg('mixte', 'R', 60), t: 62,
+    text: '<p>À θ = α = 60°, le circuit de commande envoie une impulsion i<sub>G1</sub> (graphique du milieu). Les <b>deux conditions</b> sont réunies : T1 s’amorce.</p><p>D4 conduit aussi (sa cathode est reliée à B, le point le plus bas). Chemin : A → T1 → R → D4 → B, et <b>u = v</b>.</p>',
+    obs: 'Que devient u brusquement à cet instant ?', ans: 'u passe de 0 à v ≈ 280 V : on voit un front vertical sur la courbe verte.' },
+  { title: 'Conduction sans courant de gâchette', setup: cfg('mixte', 'R', 60), t: 120,
+    text: '<p>L’impulsion est terminée (i<sub>G1</sub> = 0), mais T1 reste passant : c’est l’<b>effet mémoire</b>. Il suffit que le courant reste supérieur au courant de maintien I<sub>H</sub>.</p>',
+    obs: 'Le courant dans T1 est-il nul ?', ans: 'Non : i<sub>T1</sub> = u/R ≈ 5,6 A. Le thyristor conduit sans aucun courant de gâchette.' },
+  { title: 'θ = 180° : blocage naturel', setup: cfg('mixte', 'R', 60), t: 200,
+    text: '<p>À θ = 180°, v s’annule : sur une charge résistive le courant s’annule aussi, T1 se <b>bloque</b> tout seul (commutation naturelle).</p><p>Entre 180° et 180° + α, v &lt; 0 et T2 n’a pas encore reçu d’impulsion : tout est bloqué, u = 0.</p>',
+    obs: 'Si on envoyait maintenant une impulsion sur T1, que se passerait-il ?', ans: 'Rien : v<sub>AK</sub> de T1 est négative, la première condition n’est pas remplie.' },
+  { title: 'θ = 180° + α : T2 et D3 conduisent', setup: cfg('mixte', 'R', 60), t: 245,
+    text: '<p>Impulsion sur T2 à 240°. B est maintenant le point le plus haut : T2 et D3 conduisent. Chemin : B → T2 → R → D3 → A, <b>u = −v &gt; 0</b>.</p><p>Le courant dans la charge garde le même sens : c’est toujours du redressement.</p>',
+    obs: 'Combien d’impulsions de gâchette y a-t-il par période ?', ans: 'Deux : une pour T1 à α, une pour T2 à 180° + α.' },
+  { title: 'Effet de l’angle α sur ⟨u⟩', setup: cfg('mixte', 'R', 120), t: 150,
+    text: '<p>Avec α = 120°, le thyristor est amorcé plus tard : la partie de sinusoïde transmise à la charge est plus petite.</p><p>⟨u⟩ = V̂(1 + cos α)/π passe de 155 V (α = 60°) à environ 52 V (α = 120°). <b>On règle la tension continue avec α</b>.</p>',
+    obs: 'Lire la valeur de ⟨u⟩ théorique affichée.', ans: '⟨u⟩ ≈ 51,8 V. Pour α = 0 on retrouverait 207 V (pont à diodes), pour α = 180° on aurait 0 V.' },
+  { title: 'Charge inductive : la roue libre', setup: cfg('mixte', 'L', 60), t: 30,
+    text: '<p>Charge très inductive (moteur avec inductance de lissage) : le courant ne peut pas s’annuler brusquement. Entre 0 et α, il continue de circuler par <b>T2 et D4</b> (même bras droit).</p><p>La charge est court-circuitée : <b>u = 0</b>, sans échange d’énergie avec le réseau. C’est la <b>roue libre</b> (zone orangée).</p>',
+    obs: 'Quelle est la valeur du courant dans la charge ?', ans: 'i = 5 A : le courant ne s’annule jamais avec une charge très inductive (conduction continue).' },
+  { title: 'Pont tout thyristors : u devient négative', setup: cfg('tout', 'L', 60), t: 205,
+    text: '<p>Pont tout thyristors (T1 à T4), charge inductive. Il n’y a plus de diode pour faire la roue libre : T1 et T4 restent passants après 180°, jusqu’à l’amorçage de T2 et T3 à 240°.</p><p>Entre 180° et 240°, v &lt; 0 mais T1-T4 conduisent : <b>u = v &lt; 0</b>.</p>',
+    obs: 'Quel est le signe de u et de i à cet instant ? Que dire de la puissance reçue par la charge ?', ans: 'u &lt; 0 et i &gt; 0 : p = u·i &lt; 0 pendant ce court instant, la charge rend de l’énergie au réseau.' },
+  { title: 'α > 90° : fonctionnement en onduleur assisté', setup: cfg('tout', 'L', 120), t: 340,
+    text: '<p>Avec α = 120°, ⟨u⟩ = 2V̂ cos α/π ≈ −104 V : la valeur moyenne est <b>négative</b> alors que le courant reste positif.</p><p>La puissance moyenne va de la charge vers le réseau : le pont fonctionne en <b>onduleur assisté</b>. Il faut que la charge soit une machine en génératrice (par exemple un moteur de levage qui retient une charge en descente).</p>',
+    obs: 'Pourquoi ne peut-on pas obtenir ce fonctionnement avec un pont mixte ?', ans: 'Les diodes du pont mixte assurent la roue libre dès que u voudrait devenir négative : u ≥ 0, donc ⟨u⟩ ≥ 0.' }
+]);
+})();
+
+</script>
+<script>
+/* ======================= Fiche 3 : hacheur série ======================= */
+(() => {
+const { C, $, fmt, el, txt, vdevice, resistor, transport, slider } = TD;
+const V = 200, R = 10;
+const sim = { alpha: 0.5, L: 20, f: 1, dur: 9 };
+sim.span = () => 3 / sim.f; // ms (f en kHz)
+
+/* ---- schéma ---- */
+const svg = $('f3-sch');
+const yT = 60, yB = 240, xS = 60, xD = 230, xR = 400;
+const w = el('g', { fill: 'none', stroke: C.ink, 'stroke-width': 2 }, svg);
+el('path', { d: `M${xS} 138 V${yT} H150 M200 ${yT} H262 M326 ${yT} H${xR} V112 M${xR} 188 V${yB} H${xS} V162` }, w);
+el('path', { d: `M${xD} ${yT} V140 M${xD} 160 V${yB}` }, w);
+el('path', { d: 'M262 60 a8 8 0 0 1 16 0 a8 8 0 0 1 16 0 a8 8 0 0 1 16 0 a8 8 0 0 1 16 0', 'stroke-width': 2.2 }, w);
+txt(svg, 294, 42, 'L', { 'font-weight': 700 });
+el('line', { x1: xS - 18, y1: 140, x2: xS + 18, y2: 140, stroke: C.ink, 'stroke-width': 2 }, svg);
+el('line', { x1: xS - 9, y1: 152, x2: xS + 9, y2: 152, stroke: C.ink, 'stroke-width': 5 }, svg);
+el('rect', { x: xS - 18, y: 153, width: 36, height: 7, fill: '#fcfcfd' }, svg);
+el('line', { x1: xS, y1: 155, x2: xS, y2: 162, stroke: C.ink, 'stroke-width': 2 }, svg);
+txt(svg, xS - 26, 136, '+', { 'font-weight': 700, fill: C.muted });
+txt(svg, xS - 22, 190, 'V', { 'font-weight': 700, fill: C.blue, 'text-anchor': 'end' });
+txt(svg, xS - 22, 206, '200 V', { 'font-size': 11, fill: C.muted, 'text-anchor': 'end' });
+el('circle', { cx: 150, cy: yT, r: 3.5, fill: C.ink }, svg); el('circle', { cx: 200, cy: yT, r: 3.5, fill: C.ink }, svg);
+const lever = el('line', { x1: 150, y1: yT, x2: 198, y2: yT, stroke: C.ink, 'stroke-width': 3, 'stroke-linecap': 'round' }, svg);
+txt(svg, 175, 22, 'H', { 'font-weight': 700, fill: C.violet });
+txt(svg, 175, 84, 'interrupteur', { 'font-size': 10.5, fill: C.muted });
+txt(svg, 175, 97, 'commandé', { 'font-size': 10.5, fill: C.muted });
+const diode = vdevice(svg, xD, 150, 'D', 'diode', 'up', 'left');
+el('circle', { cx: xD, cy: yT, r: 3, fill: C.ink }, svg); el('circle', { cx: xD, cy: yB, r: 3, fill: C.ink }, svg);
+resistor(svg, xR, 112, 188, '');
+txt(svg, xR + 22, 155, 'R', { 'text-anchor': 'start', 'font-weight': 700 });
+el('path', { d: `M${xD + 28} 226 V82`, stroke: C.green, 'stroke-width': 2, fill: 'none' }, svg);
+el('path', { d: `M${xD + 23} 86 L${xD + 28} 76 L${xD + 33} 86 Z`, fill: C.green }, svg);
+txt(svg, xD + 40, 158, 'u', { fill: C.green, 'font-weight': 700, 'font-size': 15, 'text-anchor': 'start' });
+const iArrow = el('g', {}, svg);
+el('path', { d: `M340 48 H372`, stroke: C.blue, 'stroke-width': 2 }, iArrow);
+el('path', { d: `M370 43 L380 48 L370 53 Z`, fill: C.blue }, iArrow);
+txt(iArrow, 356, 40, 'i', { fill: C.blue, 'font-weight': 700 });
+const msg2 = txt(svg, 235, 282, '', { 'font-size': 13, 'font-weight': 600 });
+const dotsG = el('g', {}, svg), dots = []; for (let k = 0; k < 30; k++) dots.push(el('circle', { r: 3.6, opacity: 0 }, dotsG));
+let off = 0;
+function flow(pts, rate, col, dt) {
+  const seg = []; let L = 0; for (let k = 0; k < pts.length - 1; k++) { const a = pts[k], b = pts[k + 1], l = Math.hypot(b[0] - a[0], b[1] - a[1]); seg.push([a, b, l, L]); L += l; }
+  off = (off + dt * 150 * rate) % 40;
+  dots.forEach((d, k) => { const s = (k * 40 + off) % L; if (k * 40 > L) { d.setAttribute('opacity', 0); return; } const [a, b, l, s0] = seg.find(g => s <= g[3] + g[2]) || seg[seg.length - 1], u = (s - s0) / l; d.setAttribute('cx', a[0] + (b[0] - a[0]) * u); d.setAttribute('cy', a[1] + (b[1] - a[1]) * u); d.setAttribute('opacity', .85); d.setAttribute('fill', col); });
+}
+
+/* ---- modèle R-L exact en régime permanent ---- */
+function model() {
+  const T = 1 / sim.f, tau = sim.L / R, a = sim.alpha; // ms
+  const Imax = V / R * (1 - Math.exp(-a * T / tau)) / (1 - Math.exp(-T / tau)), Imin = Imax * Math.exp(-(1 - a) * T / tau);
+  return { T, tau, a, Imax, Imin };
+}
+let M = model();
+function at(t) {
+  const tp = ((t % M.T) + M.T) % M.T, on = tp < M.a * M.T;
+  const i = on ? V / R + (M.Imin - V / R) * Math.exp(-tp / M.tau) : M.Imax * Math.exp(-(tp - M.a * M.T) / M.tau);
+  return { on, u: on ? V : 0, i, iH: on ? i : 0, iD: on ? 0 : i };
+}
+
+sim.draw = (dt = 0) => {
+  M = model();
+  const s = at(sim.t);
+  lever.setAttribute('x2', s.on ? 198 : 192); lever.setAttribute('y2', s.on ? yT : 34); lever.setAttribute('stroke', s.on ? C.green : C.red);
+  diode.set(s.on ? 'off' : 'on');
+  const rate = s.i / 20 + 0.15;
+  flow(s.on ? [[xS, 162], [xS, yB], [xR, yB], [xR, yT], [xS, yT], [xS, 138]].reverse() : [[xD, yB], [xD, yT], [xR, yT], [xR, yB], [xD, yB]], rate, s.on ? C.green : C.orange, dt);
+  msg2.textContent = s.on ? 'H fermé : la source alimente la charge' : 'H ouvert : roue libre par la diode D';
+  msg2.setAttribute('fill', s.on ? C.green : C.orange);
+  $('f3-badge').textContent = s.on ? 'Phase 1 : H fermé, D bloquée' : 'Phase 2 : H ouvert, D conduit';
+  $('f3-badge').style.background = s.on ? C.green : C.orange;
+  const di = M.Imax - M.Imin, diTh = sim.alpha * (1 - sim.alpha) * V / (sim.L * sim.f);
+  $('f3-vals').innerHTML = `<div><span>u(t)</span><b>${fmt(s.u, 0)} V</b></div><div><span>i(t)</span><b>${fmt(s.i, 2)} A</b></div><div><span>⟨u⟩ = αV</span><b>${fmt(sim.alpha * V, 0)} V</b></div><div><span>⟨i⟩ = ⟨u⟩/R</span><b>${fmt(sim.alpha * V / R, 1)} A</b></div><div><span>Δi relevée</span><b>${fmt(di, 2)} A</b></div><div><span>Δi ≈ α(1−α)V/(Lf)</span><b>${fmt(diTh, 2)} A</b></div>`;
+  $('f3-msg').innerHTML = s.on
+    ? 'H est fermé : u = V = 200 V. La diode est polarisée en inverse. L’inductance stocke de l’énergie, <b>le courant croît</b>.'
+    : 'H est ouvert : l’inductance s’oppose à l’annulation du courant et le fait passer par la diode de roue libre. u = 0, <b>le courant décroît</b> sans s’annuler.';
+  const span = sim.span(), ticks = [0, 1, 2, 3].map(k => [k * M.T, k === 0 ? '0' : (k === 1 ? 'T' : k + 'T') + ` = ${fmt(k * M.T, k * M.T < 10 ? 1 : 0)} ms`]);
+  const sh = []; for (let k = 0; k < 3; k++) sh.push([k * M.T, (k + sim.alpha) * M.T, '#e6f4ec']);
+  TD.scope($('f3-scope'), { h: 430, span, cursor: sim.t, ticks, N: 900, panels: [
+    { w: 0.4, min: -0.2, max: 1.7, yticks: [], label: 'commande de H', shade: sh, traces: [{ f: t => at(t).on ? 1 : 0, c: C.violet }] },
+    { w: 0.9, min: -15, max: 250, yticks: [0, 100, 200], label: 'u (V)', shade: sh, traces: [{ f: () => sim.alpha * V, c: C.green, w: 1, dash: [5, 4], nodot: true }, { f: t => at(t).u, c: C.green, w: 3 }] },
+    { w: 1, min: 0, max: 21, yticks: [0, 5, 10, 15, 20], label: 'i (A)', shade: sh, traces: [{ f: () => sim.alpha * V / R, c: C.blue, w: 1, dash: [5, 4], nodot: true }, { f: t => at(t).i, c: C.blue, w: 2.5 }] },
+    { w: 0.9, min: -0.5, max: 21, yticks: [0, 10, 20], label: 'i_H et i_D (A)', shade: sh, traces: [{ f: t => at(t).iH, c: C.orange }, { f: t => at(t).iD, c: C.red }] }
+  ] });
+};
+
+transport('f3', sim);
+slider('f3-alpha', v => { sim.alpha = v; }, v => v.toFixed(2).replace('.', ','));
+slider('f3-L', v => { sim.L = v; }, v => v + ' mH');
+slider('f3-f', v => { sim.f = v; sim.t = sim.t % sim.span(); }, v => fmt(v, 1) + ' kHz');
+TD.register('hacheur', sim);
+const cfg = (a, L, f) => () => { TD.setSlider('f3-alpha', a); TD.setSlider('f3-L', L); TD.setSlider('f3-f', f); };
+TD.stepper('f3', sim, [
+  { title: 'Phase 1 : H fermé, la source alimente la charge', setup: cfg(0.5, 20, 1), t: 0.1,
+    text: '<p>V = 200 V, charge R = 10 Ω en série avec L = 20 mH, f = 1 kHz (T = 1 ms), α = 0,5.</p><p>H est fermé : la charge est reliée directement à la source, <b>u = V = 200 V</b>. La cathode de la diode est à +200 V et son anode à 0 : v<sub>D</sub> = −200 V, <b>D est bloquée</b>.</p><p>Loi des mailles : V = R·i + L·di/dt. Comme V &gt; R·i, di/dt &gt; 0 : <b>le courant croît</b>.</p>',
+    obs: 'Dans quel composant passe le courant de la charge ?', ans: 'Dans le transistor H : i<sub>H</sub> = i, i<sub>D</sub> = 0 (dernier graphique).' },
+  { title: 'Fin de la phase 1 : le courant est maximal', setup: cfg(0.5, 20, 1), t: 0.49,
+    text: '<p>Juste avant l’ouverture de H (t = αT = 0,5 ms), le courant atteint sa valeur maximale I<sub>max</sub> ≈ 11,2 A. L’inductance a stocké l’énergie ½·L·I².</p>',
+    obs: 'Lire la valeur de i à cet instant.', ans: 'i ≈ 11,2 A : c’est I<sub>max</sub>.' },
+  { title: 'Phase 2 : H ouvert, roue libre par la diode', setup: cfg(0.5, 20, 1), t: 0.6,
+    text: '<p>H s’ouvre. Le courant dans l’inductance ne peut pas s’annuler brusquement : il force le passage par la diode D, qui devient <b>passante</b>. C’est la <b>roue libre</b>.</p><p>u = 0. Loi des mailles : 0 = R·i + L·di/dt, donc di/dt &lt; 0 : <b>le courant décroît</b>. L’inductance rend son énergie à la résistance.</p>',
+    obs: 'Que se passerait-il si la diode n’était pas là ?', ans: 'Le courant devrait s’annuler instantanément : L·di/dt deviendrait énorme et créerait une surtension qui détruirait le transistor.' },
+  { title: 'Fin de la phase 2 : le courant est minimal', setup: cfg(0.5, 20, 1), t: 0.99,
+    text: '<p>Juste avant la fermeture suivante de H, le courant atteint I<sub>min</sub> ≈ 8,8 A. Il ne s’est pas annulé : la <b>conduction est continue</b>.</p><p>Ondulation : Δi = I<sub>max</sub> − I<sub>min</sub> ≈ 2,5 A. La formule approchée α(1 − α)V/(Lf) donne aussi 2,5 A.</p>',
+    obs: 'Calculer la valeur moyenne approchée du courant (I<sub>max</sub> + I<sub>min</sub>)/2.', ans: '(11,2 + 8,8)/2 = 10 A = ⟨u⟩/R = 100/10.' },
+  { title: 'Augmenter α : la tension moyenne augmente', setup: cfg(0.8, 20, 1), t: 0.4,
+    text: '<p>Avec α = 0,8, H est fermé 80 % du temps : <b>⟨u⟩ = αV = 160 V</b> et ⟨i⟩ = 16 A.</p><p>C’est ainsi qu’on règle la vitesse d’un moteur à courant continu : la vitesse est presque proportionnelle à ⟨u⟩.</p>',
+    obs: 'Le transistor conduit-il plus ou moins longtemps que la diode ?', ans: 'Plus longtemps : 80 % de la période pour H, 20 % pour D. ⟨i<sub>H</sub>⟩ = 0,8 × 16 = 12,8 A.' },
+  { title: 'Augmenter L : moins d’ondulation', setup: cfg(0.5, 60, 1), t: 0.3,
+    text: '<p>Avec L = 60 mH (trois fois plus), l’ondulation est divisée par environ 3 : Δi ≈ 0,8 A. Le courant est mieux « lissé », le couple du moteur est plus régulier.</p>',
+    obs: 'Comparer Δi relevée et Δi calculée.', ans: 'Environ 0,83 A dans les deux cas : la formule Δi = α(1 − α)V/(Lf) est vérifiée.' },
+  { title: 'Augmenter f : moins d’ondulation', setup: cfg(0.5, 20, 4), t: 0.1,
+    text: '<p>Avec f = 4 kHz (T = 0,25 ms), les phases sont 4 fois plus courtes : le courant a moins le temps de varier, Δi ≈ 0,6 A.</p><p>Inconvénient : le transistor commute 4 fois plus souvent, ses <b>pertes par commutation</b> augmentent.</p>',
+    obs: 'Combien vaut maintenant ⟨u⟩ ? Pourquoi ?', ans: 'Toujours 100 V : ⟨u⟩ = αV ne dépend pas de la fréquence.' }
+]);
+})();
+
+</script>
+<script>
+/* ======================= Fiche 4 : onduleur monophasé ======================= */
+(() => {
+const { C, $, fmt, el, txt, vdevice, transport, seg, slider } = TD;
+const V = 48, R = 10, L = 30, T = 20; // V, ohms, mH, ms
+const sim = { mode: 'sym', tau: 1 / 6, m: 15, r: 0.8, dur: 10 };
+sim.span = () => 2 * T;
+
+/* ---- schéma ---- */
+const svg = $('f4-sch');
+const yP = 40, yN = 262, yM = 150, xA = 170, xB = 330, xS = 52;
+const w = el('g', { fill: 'none', stroke: C.ink, 'stroke-width': 2 }, svg);
+el('path', { d: `M${xS} 138 V${yP} H${xB} M${xS} 162 V${yN} H${xB}` }, w);
+el('line', { x1: xS - 16, y1: 140, x2: xS + 16, y2: 140, stroke: C.ink, 'stroke-width': 2 }, svg);
+el('line', { x1: xS - 8, y1: 152, x2: xS + 8, y2: 152, stroke: C.ink, 'stroke-width': 5 }, svg);
+el('rect', { x: xS - 18, y: 153, width: 36, height: 8, fill: '#fcfcfd' }, svg);
+el('line', { x1: xS, y1: 155, x2: xS, y2: 162, stroke: C.ink, 'stroke-width': 2 }, svg);
+txt(svg, xS + 14, 132, '+', { 'font-weight': 700, fill: C.muted });
+txt(svg, xS + 26, 182, 'V = 48 V', { 'font-size': 11.5, fill: C.blue, 'font-weight': 600, 'text-anchor': 'start' });
+// interrupteurs K = transistor (levier) + diode antiparallèle
+function K(x, cy, name) {
+  const g = el('g', {}, svg), y0 = cy - 24, y1 = cy + 24;
+  el('path', { d: `M${x} ${cy < yM ? yP : yM} V${y0} M${x} ${y1} V${cy < yM ? yM : yN} M${x} ${y0} H${x + 30} V${cy - 7} M${x} ${y1} H${x + 30} V${cy + 7}`, stroke: C.ink, 'stroke-width': 2, fill: 'none' }, g);
+  el('circle', { cx: x, cy: y0, r: 3, fill: C.ink }, g); el('circle', { cx: x, cy: y1, r: 3, fill: C.ink }, g);
+  const lever = el('line', { x1: x, y1: y1, x2: x, y2: y0, stroke: C.ink, 'stroke-width': 3, 'stroke-linecap': 'round' }, g);
+  const d = vdevice(g, x + 30, cy, '', 'diode', 'up', 'right');
+  d.tri.setAttribute('transform', `translate(${x + 30} ${cy}) scale(.7) translate(${-(x + 30)} ${-cy})`);
+  d.bar.setAttribute('transform', `translate(${x + 30} ${cy}) scale(.7) translate(${-(x + 30)} ${-cy})`);
+  txt(g, x - 14, cy + 5, name, { 'text-anchor': 'end', 'font-weight': 700 });
+  txt(g, x + 44, cy + 4, 'D' + name.slice(1), { 'text-anchor': 'start', 'font-size': 11, fill: C.muted });
+  return { set(closed, tOn, dOn) {
+    lever.setAttribute('x2', closed ? x : x - 16); lever.setAttribute('y2', closed ? y0 : y0 + 8);
+    lever.setAttribute('stroke', tOn ? C.green : closed ? C.ink : '#c3c8d1');
+    d.set(dOn ? 'on' : 'idle');
+  } };
+}
+const Ks = { 1: K(xA, 95, 'K1'), 2: K(xB, 95, 'K2'), 3: K(xA, 205, 'K3'), 4: K(xB, 205, 'K4') };
+[xA, xB].forEach(x => el('circle', { cx: x, cy: yM, r: 3.5, fill: C.ink }, svg));
+el('path', { d: `M${xA} ${yM} H200 M240 ${yM} H254 M318 ${yM} H${xB}`, stroke: C.ink, 'stroke-width': 2, fill: 'none' }, svg);
+el('rect', { x: 200, y: yM - 9, width: 40, height: 18, rx: 2, fill: '#fff', stroke: C.ink, 'stroke-width': 2 }, svg);
+el('path', { d: `M254 ${yM} a8 8 0 0 1 16 0 a8 8 0 0 1 16 0 a8 8 0 0 1 16 0 a8 8 0 0 1 16 0`, stroke: C.ink, 'stroke-width': 2.2, fill: 'none' }, svg);
+txt(svg, 220, yM + 4, 'R', { 'font-weight': 700, 'font-size': 11 }); txt(svg, 286, yM - 13, 'L', { 'font-weight': 700, 'font-size': 12 });
+el('path', { d: `M302 ${yM - 26} H186`, stroke: C.green, 'stroke-width': 2, fill: 'none' }, svg);
+el('path', { d: `M190 ${yM - 31} L180 ${yM - 26} L190 ${yM - 21} Z`, fill: C.green }, svg);
+txt(svg, 245, yM - 32, 'u', { fill: C.green, 'font-weight': 700, 'font-size': 15 });
+const iArr = el('g', {}, svg);
+const msg2 = txt(svg, 250, 290, '', { 'font-size': 12.5, 'font-weight': 600 });
+txt(svg, 410, 60, 'charge', { 'font-size': 11, fill: C.muted }); txt(svg, 410, 74, 'R-L', { 'font-size': 11, fill: C.muted });
+
+/* ---- commande ---- */
+const tri = x => 4 * Math.abs(x - Math.floor(x + 0.5)) - 1;
+function cmd(t) {
+  const ph = ((t % T) + T) % T / T;
+  if (sim.mode === 'sym') return ph < 0.5 ? { u: V, k: [1, 4] } : { u: -V, k: [2, 3] };
+  if (sim.mode === 'dec') { const a = sim.tau; if (ph < a) return { u: 0, k: [1, 2] }; if (ph < 0.5) return { u: V, k: [1, 4] }; if (ph < 0.5 + a) return { u: 0, k: [3, 4] }; return { u: -V, k: [2, 3] }; }
+  const mod = sim.r * Math.sin(2 * Math.PI * ph), car = tri(sim.m * ph);
+  return mod >= car ? { u: V, k: [1, 4], mod, car } : { u: -V, k: [2, 3], mod, car };
+}
+/* ---- simulation du courant R-L et analyse harmonique ---- */
+let S = null;
+function compute() {
+  const N = 4000, dt = T / N, tau = L / R, e = Math.exp(-dt / tau);
+  const u = new Float64Array(N), cur = new Float64Array(2 * N);
+  for (let k = 0; k < N; k++) u[k] = cmd(k * dt).u;
+  let i = 0;
+  for (let p = 0; p < 8; p++) for (let k = 0; k < N; k++) { i = u[k] / R + (i - u[k] / R) * e; if (p >= 6) cur[(p - 6) * N + k] = i; }
+  const H = sim.mode === 'mli' ? Math.min(2 * sim.m + 7, 70) : 25, harm = [];
+  let a1 = 0, b1 = 0, sq = 0;
+  for (let n = 1; n <= H; n++) {
+    let a = 0, b = 0; for (let k = 0; k < N; k++) { const th = 2 * Math.PI * n * k / N; a += u[k] * Math.cos(th); b += u[k] * Math.sin(th); }
+    a *= 2 / N; b *= 2 / N; harm.push(Math.hypot(a, b) / Math.SQRT2); if (n === 1) { a1 = a; b1 = b; }
+  }
+  for (let k = 0; k < N; k++) sq += u[k] * u[k];
+  S = { N, dt, u, cur, harm, a1, b1, Ueff: Math.sqrt(sq / N), U1: Math.hypot(a1, b1) / Math.SQRT2 };
+}
+const iAt = t => { const k = Math.min(2 * S.N - 1, Math.max(0, Math.floor(t / S.dt))); return S.cur[k]; };
+const u1At = t => { const th = 2 * Math.PI * t / T; return S.a1 * Math.cos(th) + S.b1 * Math.sin(th); };
+
+sim.draw = (dt = 0) => {
+  if (!S) compute();
+  const c = cmd(sim.t), i = iAt(sim.t), cl = new Set(c.k), pos = i >= 0;
+  const elems = [];
+  // élément qui conduit dans chaque interrupteur fermé, selon le signe du courant
+  const cond = { 1: pos ? 'T' : 'D', 3: pos ? 'D' : 'T', 2: pos ? 'D' : 'T', 4: pos ? 'T' : 'D' };
+  for (const n of [1, 2, 3, 4]) { const on = cl.has(n); Ks[n].set(on, on && cond[n] === 'T', on && cond[n] === 'D'); if (on) elems.push(cond[n] + n); }
+  iArr.innerHTML = '';
+  if (Math.abs(i) > 0.05) {
+    const x0 = pos ? 205 : 295, x1 = pos ? 295 : 205, y = yM + 20;
+    el('path', { d: `M${x0} ${y} H${x1}`, stroke: C.blue, 'stroke-width': 2 }, iArr);
+    el('path', { d: pos ? `M${x1 - 10} ${y - 5} L${x1} ${y} L${x1 - 10} ${y + 5} Z` : `M${x1 + 10} ${y - 5} L${x1} ${y} L${x1 + 10} ${y + 5} Z`, fill: C.blue }, iArr);
+    txt(iArr, 250, y + 16, `i ${pos ? '> 0' : '< 0'}`, { fill: C.blue, 'font-size': 12, 'font-weight': 600 });
+  }
+  const back = c.u * i < 0;
+  msg2.textContent = c.u === 0 ? 'u = 0 : la charge est court-circuitée' : back ? 'Diodes : la charge renvoie de l’énergie à la source' : 'Transistors : la source alimente la charge';
+  msg2.setAttribute('fill', back ? C.orange : c.u === 0 ? C.muted : C.green);
+  $('f4-badge').textContent = `K${c.k[0]} et K${c.k[1]} commandés · conduisent : ${elems.join(', ')}`;
+  $('f4-badge').style.background = back ? C.orange : C.green;
+  $('f4-vals').innerHTML = `<div><span>u(t)</span><b>${fmt(c.u, 0)} V</b></div><div><span>i(t)</span><b>${fmt(i, 2)} A</b></div><div><span>p = u·i</span><b>${fmt(c.u * i, 0)} W</b></div><div><span>U efficace</span><b>${fmt(S.Ueff, 1)} V</b></div><div><span>U<sub>1</sub> fondamental</span><b>${fmt(S.U1, 1)} V</b></div>`;
+  let m;
+  if (c.u === 0) m = `K${c.k[0]} et K${c.k[1]} sont fermés : la charge est reliée deux fois à la même borne de la source, u = 0. Le courant continue de circuler par ${elems.join(' et ')} : c'est la « roue libre » de l'onduleur.`;
+  else if (back) m = `K${c.k[0]} et K${c.k[1]} sont commandés (u = ${c.u > 0 ? '+V' : '−V'}), mais le courant, retardé par l'inductance, est encore de signe opposé. Les transistors ne peuvent pas le conduire : ce sont les <b>diodes</b> ${elems.join(' et ')} qui conduisent. p = u·i &lt; 0 : l'énergie de la bobine retourne à la source.`;
+  else m = `K${c.k[0]} et K${c.k[1]} sont fermés et le courant est dans le sens de leurs <b>transistors</b> (${elems.join(', ')}) : la source fournit de l'énergie à la charge, u = ${c.u > 0 ? '+V' : '−V'}.`;
+  $('f4-msg').innerHTML = m;
+  const sh = []; let s0 = null, inB = false;
+  for (let k = 0; k <= 1600; k++) { const t = k / 1600 * 2 * T, b = cmd(t).u * iAt(t) < 0; if (b !== inB || k === 1600) { if (inB) sh.push([s0, t, '#fde8d3']); s0 = t; inB = b; } }
+  const ticks = [[0, '0'], [5, 'T/4'], [10, 'T/2'], [15, '3T/4'], [20, 'T = 20 ms'], [25, ''], [30, '3T/2'], [35, ''], [40, '2T']];
+  const panels = [];
+  if (sim.mode === 'mli') panels.push({ w: 0.8, min: -1.15, max: 1.15, yticks: [-1, 0, 1], label: 'modulante et porteuse', traces: [{ f: t => tri(sim.m * (((t % T) + T) % T) / T), c: C.orange, w: 1.2 }, { f: t => sim.r * Math.sin(2 * Math.PI * t / T), c: C.violet, w: 2.2 }] });
+  panels.push({ w: 1, min: -66, max: 66, yticks: [-48, 0, 48], label: 'u (V)', shade: sh, traces: [{ f: u1At, c: '#8fd0aa', w: 2, nodot: true }, { f: t => cmd(t).u, c: C.green, w: 2.5 }] });
+  panels.push({ w: 0.8, min: -5.5, max: 5.5, yticks: [-4, 0, 4], label: 'i (A)', shade: sh, traces: [{ f: iAt, c: C.blue, w: 2.5 }] });
+  TD.scope($('f4-scope'), { h: sim.mode === 'mli' ? 440 : 330, span: 40, cursor: sim.t, ticks, N: sim.mode === 'mli' ? 2400 : 900, panels });
+  TD.bars($('f4-spec'), { h: 170, values: S.harm, max: 45, yticks: [0, 15, 30, 45], unit: ' V', title: 'Spectre de u : valeur efficace de chaque harmonique (vert : fondamental)', labelEvery: sim.mode === 'mli' ? 5 : 2 });
+};
+
+transport('f4', sim);
+const vis = () => { $('f4-tau-c').style.display = sim.mode === 'dec' ? '' : 'none'; $('f4-m-c').style.display = sim.mode === 'mli' ? '' : 'none'; $('f4-r-c').style.display = sim.mode === 'mli' ? '' : 'none'; };
+seg('f4-mode', v => { sim.mode = v; vis(); S = null; sim.draw(); });
+slider('f4-tau', v => { sim.tau = v; S = null; }, v => 'T × ' + v.toFixed(2).replace('.', ','));
+slider('f4-m', v => { sim.m = v; S = null; }, v => v);
+slider('f4-r', v => { sim.r = v; S = null; }, v => v.toFixed(2).replace('.', ','));
+vis();
+TD.register('onduleur', sim);
+const cfg = (mode, o = {}) => () => { TD.pick('f4-mode', mode); if (o.tau != null) TD.setSlider('f4-tau', o.tau); if (o.m != null) TD.setSlider('f4-m', o.m); if (o.r != null) TD.setSlider('f4-r', o.r); };
+TD.stepper('f4', sim, [
+  { title: 'Commande symétrique · K1 et K4 commandés, mais les diodes conduisent', setup: cfg('sym'), t: 1,
+    text: '<p>Source V = 48 V, charge R-L (10 Ω, 30 mH), f = 50 Hz. À t = 0, la commande ferme <b>K1 et K4</b> : la charge reçoit <b>u = +V</b>.</p><p>Mais le courant, retardé par l’inductance, est encore <b>négatif</b> (il vient de la demi-période précédente). Un transistor ne conduit que dans un sens : ce sont les <b>diodes D1 et D4</b> qui conduisent (zone orangée).</p><p>p = u·i &lt; 0 : la bobine rend son énergie à la source.</p>',
+    obs: 'Quel est le signe de p = u·i affiché ?', ans: 'p est négative : la charge fournit de l’énergie à la source pendant cette courte phase.' },
+  { title: 'Les transistors T1 et T4 prennent le relais', setup: cfg('sym'), t: 5,
+    text: '<p>Le courant s’est annulé vers t ≈ 2 ms puis est devenu positif. Il passe maintenant dans le sens des transistors : <b>T1 et T4 conduisent</b>.</p><p>p = u·i &gt; 0 : la source alimente la charge. Loi des mailles : u − V = 0, donc u = +V.</p>',
+    obs: 'Quel trajet suit le courant ?', ans: '+ de la source → K1 (T1) → R → L → K4 (T4) → − de la source.' },
+  { title: 'T/2 : inversion, D2 et D3 conduisent', setup: cfg('sym'), t: 10.8,
+    text: '<p>À t = T/2 = 10 ms, la commande ouvre K1 et K4 et ferme <b>K2 et K3</b> : u = −V.</p><p>Le courant est encore positif : il passe par les <b>diodes D2 et D3</b> et diminue rapidement. L’énergie de la bobine retourne à la source.</p>',
+    obs: 'Pourquoi ne faut-il jamais fermer K1 et K3 en même temps ?', ans: 'K1 et K3 sont sur le même bras : la source serait court-circuitée. On laisse un temps mort entre l’ouverture de K1 et la fermeture de K3.' },
+  { title: 'T2 et T3 conduisent', setup: cfg('sym'), t: 15,
+    text: '<p>Le courant est devenu négatif : <b>T2 et T3</b> conduisent, la source alimente la charge avec u = −V. Le cycle recommence à t = T.</p><p>Bilan : u est un <b>créneau ±V</b> de valeur efficace U = V = 48 V. Le courant est presque triangulaire (exponentielles).</p>',
+    obs: 'Combien de phases différentes compte-t-on par période ?', ans: 'Quatre : D1-D4, T1-T4, D2-D3, T2-T3.' },
+  { title: 'Les harmoniques de la commande symétrique', setup: cfg('sym'), t: 19.5,
+    text: '<p>Le spectre (en bas) décompose u en sinusoïdes : le <b>fondamental</b> à 50 Hz (U<sub>1</sub> ≈ 43,2 V, en vert) et des <b>harmoniques</b> impairs 3, 5, 7… d’amplitude U<sub>1</sub>/n.</p><p>Ces harmoniques à basse fréquence (150, 250 Hz…) traversent facilement l’inductance et déforment le courant : pertes et couples parasites dans un moteur.</p>',
+    obs: 'Lire la valeur de l’harmonique 3 sur le spectre.', ans: 'Environ 14,4 V = 43,2/3.' },
+  { title: 'Commande décalée · palier à u = 0', setup: cfg('dec', { tau: 0.17 }), t: 1.5,
+    text: '<p>Commande décalée avec τ = 0,17 T ≈ 3,4 ms. Au début de la demi-période, la commande ferme <b>K1 et K2</b> (les deux du haut) : la charge est reliée deux fois à la borne +, <b>u = 0</b>.</p><p>Le courant circule en roue libre dans la charge, à travers un transistor et une diode (voir le badge).</p>',
+    obs: 'K1 et K2 fermés ensemble provoquent-ils un court-circuit ?', ans: 'Non : ils ne sont pas sur le même bras. Ils relient simplement les deux bornes de la charge au même potentiel.' },
+  { title: 'Commande décalée · créneau +V et spectre', setup: cfg('dec', { tau: 0.17 }), t: 7,
+    text: '<p>Après τ, K2 s’ouvre et K4 se ferme : <b>K1 et K4</b>, u = +V. Puis T/2 → T/2 + τ : K3-K4 (u = 0) ; et enfin K2-K3 (u = −V).</p><p>Avec τ ≈ T/6, la barre de l’<b>harmonique 3 disparaît presque</b> du spectre. U = V√(1 − 2τ/T) ≈ 39 V.</p>',
+    obs: 'Comparer le spectre avec celui de la commande symétrique.', ans: 'Le fondamental baisse un peu (≈ 37 V) mais l’harmonique 3 a quasiment disparu : le courant est plus proche d’une sinusoïde.' },
+  { title: 'MLI · comparaison modulante / porteuse', setup: cfg('mli', { m: 15, r: 0.8 }), t: 2.3,
+    text: '<p>Le premier graphique montre la <b>modulante</b> (sinusoïde violette à 50 Hz, amplitude r = 0,8) et la <b>porteuse</b> (triangle orange, m = 15 fois plus rapide).</p><p>Modulante &gt; porteuse : K1-K4 fermés, u = +V. Modulante &lt; porteuse : K2-K3, u = −V. Les créneaux sont <b>larges</b> quand la sinusoïde est haute, <b>étroits</b> quand elle est basse.</p>',
+    obs: 'Au sommet de la sinusoïde (t = 5 ms), les créneaux positifs sont-ils larges ou étroits ?', ans: 'Larges : u reste presque tout le temps à +V. La moyenne glissante de u suit la sinusoïde.' },
+  { title: 'MLI · un courant presque sinusoïdal', setup: cfg('mli', { m: 31, r: 0.8 }), t: 5,
+    text: '<p>Avec m = 31, les harmoniques sont rejetés autour du rang 31 (1 550 Hz) sur le spectre. L’inductance de la charge les filtre facilement : le <b>courant est presque sinusoïdal</b>.</p><p>Le fondamental vaut U<sub>1</sub> ≈ r·V/√2 ≈ 27 V. En changeant r on règle la tension, en changeant la fréquence de la modulante on règle la fréquence : c’est le principe du <b>variateur de vitesse</b>.</p>',
+    obs: 'Diminuer r à 0,4 : que devient U<sub>1</sub> ?', ans: 'Il est divisé par deux, environ 13,6 V.' }
+]);
+})();
+
+</script>
+<script>
+/* ======================= Fiche 5 : gradateur ======================= */
+(() => {
+const { C, $, fmt, el, txt, acSource, resistor, transport, seg, slider } = TD;
+const V = 230, Vh = V * Math.SQRT2, R = 26.45, D2R = Math.PI / 180, PW = 8, NTOT = 10;
+const sim = { mode: 'phase', alpha: 90, n: 4, dur: 10 };
+sim.span = () => sim.mode === 'phase' ? 720 : 2 * NTOT * 360; // degrés
+
+/* ---- schéma ---- */
+const svg = $('f5-sch');
+const yT = 70, yB = 250, xS = 70, xR = 400, xa = 150, xb = 290;
+const w = el('g', { fill: 'none', stroke: C.ink, 'stroke-width': 2 }, svg);
+el('path', { d: `M${xS} 138 V${yT} H${xa} M${xb} ${yT} H${xR} V122 M${xR} 198 V${yB} H${xS} V182` }, w);
+el('path', { d: `M${xa} ${yT} V40 H196 M244 40 H${xb} V${yT} M${xa} ${yT} V100 H196 M244 100 H${xb} V${yT}` }, w);
+acSource(svg, xS, 160, '');
+txt(svg, xS - 30, 165, 'v', { fill: C.blue, 'font-weight': 700, 'font-size': 15 });
+el('circle', { cx: xa, cy: yT, r: 3, fill: C.ink }, svg); el('circle', { cx: xb, cy: yT, r: 3, fill: C.ink }, svg);
+function hthyr(cx, cy, dir, name, gUp) {
+  const g = el('g', {}, svg), s = dir === 'right' ? 1 : -1;
+  const tri = el('polygon', { points: `${cx - 12 * s},${cy - 12} ${cx - 12 * s},${cy + 12} ${cx + 10 * s},${cy}`, fill: '#fff', stroke: C.ink, 'stroke-width': 2 }, g);
+  const bar = el('line', { x1: cx + 11 * s, y1: cy - 13, x2: cx + 11 * s, y2: cy + 13, stroke: C.ink, 'stroke-width': 3 }, g);
+  const gate = el('path', { d: `M${cx + 5 * s} ${cy + (gUp ? -4 : 4)} L${cx + 16 * s} ${cy + (gUp ? -18 : 18)}`, stroke: C.violet, 'stroke-width': 2, fill: 'none' }, g);
+  el('path', { d: `M${cx - 24} ${cy} H${cx - 12} M${cx + 12} ${cy} H${cx + 24}`, stroke: C.ink, 'stroke-width': 2 }, g);
+  txt(g, cx - 34 * s, cy + (gUp ? -8 : 20), name, { 'font-weight': 700 });
+  return { set(on, pulse) { const col = on ? C.green : C.red; tri.setAttribute('stroke', col); bar.setAttribute('stroke', col); tri.setAttribute('fill', on ? '#d6f2e2' : '#fbe6e6'); gate.setAttribute('stroke-width', pulse ? 5 : 2); } };
+}
+const T1 = hthyr(220, 40, 'right', 'T1', true), T2 = hthyr(220, 100, 'left', 'T2', false);
+resistor(svg, xR, 122, 198, '');
+txt(svg, xR + 22, 165, 'R', { 'text-anchor': 'start', 'font-weight': 700 });
+el('path', { d: `M${xR - 30} 196 V128`, stroke: C.green, 'stroke-width': 2, fill: 'none' }, svg);
+el('path', { d: `M${xR - 35} 132 L${xR - 30} 122 L${xR - 25} 132 Z`, fill: C.green }, svg);
+txt(svg, xR - 44, 166, 'u<tspan baseline-shift="sub" font-size="10">c</tspan>', { fill: C.green, 'font-weight': 700, 'font-size': 15 });
+const msg2 = txt(svg, 235, 288, '', { 'font-size': 13, 'font-weight': 600 });
+const dotsG = el('g', {}, svg), dots = []; for (let k = 0; k < 30; k++) dots.push(el('circle', { r: 3.6, opacity: 0 }, dotsG));
+let off = 0;
+function flow(pts, rate, dt) {
+  if (!pts) { dots.forEach(d => d.setAttribute('opacity', 0)); return; }
+  const seg = []; let L = 0; for (let k = 0; k < pts.length - 1; k++) { const a = pts[k], b = pts[k + 1], l = Math.hypot(b[0] - a[0], b[1] - a[1]); seg.push([a, b, l, L]); L += l; }
+  off = (off + dt * 150 * rate) % 40;
+  dots.forEach((d, k) => { if (k * 40 > L) { d.setAttribute('opacity', 0); return; } const s = (k * 40 + off) % L, [a, b, l, s0] = seg.find(g => s <= g[3] + g[2]) || seg[seg.length - 1], u = (s - s0) / l; d.setAttribute('cx', a[0] + (b[0] - a[0]) * u); d.setAttribute('cy', a[1] + (b[1] - a[1]) * u); d.setAttribute('opacity', .85); d.setAttribute('fill', C.green); });
+}
+const loop1 = [[xS, 138], [xS, yT], [xa, yT], [xa, 40], [xb, 40], [xb, yT], [xR, yT], [xR, yB], [xS, yB], [xS, 182]];
+const loop2 = [[xS, 182], [xS, yB], [xR, yB], [xR, yT], [xb, yT], [xb, 100], [xa, 100], [xa, yT], [xS, yT], [xS, 138]];
+
+/* ---- état ---- */
+function st(t) {
+  const th = t * D2R, v = Vh * Math.sin(th), pm = ((t % 360) + 360) % 360, per = Math.floor(t / 360);
+  if (sim.mode === 'phase') {
+    const a = sim.alpha, t1 = pm >= a && pm < 180, t2 = pm >= 180 + a;
+    return { v, u: t1 || t2 ? v : 0, t1, t2, g1: pm >= a && pm < a + PW, g2: pm >= 180 + a && pm < 180 + a + PW, pm };
+  }
+  const win = (per % NTOT) < sim.n, t1 = win && pm < 180, t2 = win && pm >= 180;
+  return { v, u: win ? v : 0, t1, t2, win, pm, per };
+}
+const Ueff = () => sim.mode === 'phase' ? V * Math.sqrt(Math.max(0, 1 - sim.alpha / 180 + Math.sin(2 * sim.alpha * D2R) / (2 * Math.PI))) : V * Math.sqrt(sim.n / NTOT);
+
+sim.draw = (dt = 0) => {
+  const s = st(sim.t), on = s.t1 || s.t2;
+  T1.set(s.t1, s.g1 || (sim.mode === 'train' && s.win)); T2.set(s.t2, s.g2 || (sim.mode === 'train' && s.win));
+  flow(s.t1 ? loop1 : s.t2 ? loop2 : null, Math.abs(s.u) / Vh + 0.2, dt);
+  msg2.textContent = s.t1 ? 'T1 conduit (alternance positive)' : s.t2 ? 'T2 conduit (alternance négative)' : 'T1 et T2 bloqués : u_c = 0';
+  msg2.setAttribute('fill', on ? C.green : C.red);
+  $('f5-badge').textContent = s.t1 ? 'T1 passant' : s.t2 ? 'T2 passant' : 'Thyristors bloqués';
+  $('f5-badge').style.background = on ? C.green : C.red;
+  const U = Ueff();
+  $('f5-vals').innerHTML = `<div><span>v(t)</span><b>${fmt(s.v, 0)} V</b></div><div><span>u<sub>c</sub>(t)</span><b>${fmt(s.u, 0)} V</b></div><div><span>U<sub>c</sub> efficace</span><b>${fmt(U, 0)} V</b></div><div><span>P = U<sub>c</sub>²/R</span><b>${fmt(U * U / R, 0)} W</b></div>` + (sim.mode === 'train' ? `<div><span>α = T<sub>ON</sub>/T<sub>C</sub></span><b>${fmt(sim.n / NTOT, 1)}</b></div>` : `<div><span>⟨u<sub>c</sub>⟩</span><b>0 V</b></div>`);
+  if (sim.mode === 'phase') {
+    $('f5-msg').innerHTML = s.g1 || s.g2
+      ? `Impulsion sur la gâchette de ${s.g1 ? 'T1' : 'T2'} à ${s.g1 ? sim.alpha : 180 + sim.alpha}° : le thyristor s'amorce et la charge reçoit la tension du réseau.`
+      : on ? `${s.t1 ? 'T1' : 'T2'} conduit jusqu'au passage par zéro du courant (fin de l'alternance), où il se bloque naturellement. u<sub>c</sub> = v.`
+      : `Aucun thyristor amorcé dans cette alternance (retard α = ${sim.alpha}°) : u<sub>c</sub> = 0, les thyristors supportent la tension du réseau. Plus α est grand, plus la valeur efficace U<sub>c</sub> est faible.`;
+  } else {
+    $('f5-msg').innerHTML = s.win
+      ? `Période ${s.per % NTOT + 1} sur ${NTOT} du cycle de commande : signal de commande à 1, les thyristors conduisent pendant des <b>périodes entières</b> (fermeture au passage par zéro).`
+      : `Période ${s.per % NTOT + 1} sur ${NTOT} : signal de commande à 0, la charge n'est plus alimentée jusqu'à la fin de T<sub>C</sub>.`;
+  }
+  const sh = []; let s0 = null, inO = false;
+  const span = sim.span(), NS = sim.mode === 'phase' ? 1440 : 4000;
+  for (let k = 0; k <= NS; k++) { const t = k / NS * span, o = st(t).u !== 0; if (o !== inO || k === NS) { if (inO) sh.push([s0, t, '#d6f2e2']); s0 = t; inO = o; } }
+  const ticks = sim.mode === 'phase' ? [0, 90, 180, 270, 360, 450, 540, 630, 720].map(t => [t, t + '°']) : Array.from({ length: 11 }, (_, k) => [k * 720, k === 0 ? '0' : k === 5 ? 'T_C = 10T' : k === 10 ? '2T_C' : (2 * k) + 'T']);
+  const g = sim.mode === 'phase'
+    ? { w: 0.45, min: -0.2, max: 1.7, yticks: [], label: 'impulsions i_G1 et i_G2', traces: [{ f: t => st(t).g1 ? 1 : 0, c: C.violet }, { f: t => st(t).g2 ? 1 : 0, c: C.orange }] }
+    : { w: 0.45, min: -0.2, max: 1.7, yticks: [], label: 'signal de commande (tout ou rien)', traces: [{ f: t => st(t).win ? 1 : 0, c: C.violet }] };
+  TD.scope($('f5-scope'), { h: 340, span, cursor: sim.t, ticks, N: sim.mode === 'phase' ? 900 : 5000, panels: [
+    { w: 1.5, min: -350, max: 350, yticks: [-325, 0, 325], label: 'tensions (V)', shade: sh, traces: [{ f: t => st(t).v, c: C.blue, w: 1.5 }, { f: t => st(t).u, c: C.green, w: 3 }] }, g
+  ] });
+};
+
+transport('f5', sim);
+const vis = () => { $('f5-alpha-c').style.display = sim.mode === 'phase' ? '' : 'none'; $('f5-n-c').style.display = sim.mode === 'train' ? '' : 'none'; };
+seg('f5-mode', v => { sim.mode = v; sim.t = 0; sim.dur = v === 'phase' ? 10 : 16; vis(); sim.draw(); });
+slider('f5-alpha', v => { sim.alpha = v; }, v => v + '°');
+slider('f5-n', v => { sim.n = v; }, v => v + ' / 10');
+vis();
+TD.register('gradateur', sim);
+const ph = a => () => { TD.pick('f5-mode', 'phase'); TD.setSlider('f5-alpha', a); };
+const tr = n => () => { TD.pick('f5-mode', 'train'); TD.setSlider('f5-n', n); };
+TD.stepper('f5', sim, [
+  { title: 'Avant α : les deux thyristors sont bloqués', setup: ph(90), t: 45,
+    text: '<p>Gradateur : T1 (en haut, vers la droite) et T2 (en bas, vers la gauche) sont montés <b>tête-bêche</b>. Charge R = 26,45 Ω (2 000 W sous 230 V), α = 90°.</p><p>À θ = 45°, v &gt; 0 mais T1 n’a pas reçu d’impulsion : il est bloqué. T2 a v<sub>AK</sub> &lt; 0 : bloqué. <b>u<sub>c</sub> = 0</b>.</p>',
+    obs: 'Quelle tension supportent les thyristors ?', ans: 'Toute la tension du réseau : v ≈ 230 V à cet instant.' },
+  { title: 'θ = α : amorçage de T1', setup: ph(90), t: 93,
+    text: '<p>Impulsion sur la gâchette de T1 à 90° (graphique du bas, en violet). v<sub>AK</sub> &gt; 0 et i<sub>G</sub> présent : <b>T1 s’amorce</b>. La charge reçoit u<sub>c</sub> = v.</p>',
+    obs: 'Quelle est la valeur de u<sub>c</sub> juste après l’amorçage ?', ans: 'u<sub>c</sub> ≈ V̂ ≈ 325 V : avec α = 90°, l’amorçage a lieu au sommet de la sinusoïde, d’où un front très raide.' },
+  { title: 'T1 conduit jusqu’au zéro de courant', setup: ph(90), t: 150,
+    text: '<p>L’impulsion est terminée mais T1 reste passant (effet mémoire). Le courant suit la tension : i = u<sub>c</sub>/R.</p>',
+    obs: 'Quel trajet suit le courant ?', ans: 'Borne haute de la source → T1 → R → retour à la borne basse de la source.' },
+  { title: 'θ = 180° : blocage naturel de T1', setup: ph(90), t: 200,
+    text: '<p>À 180°, v et donc i s’annulent : T1 se bloque. v devient négative : T2 a maintenant v<sub>AK</sub> &gt; 0 mais n’a pas encore reçu d’impulsion. u<sub>c</sub> = 0 jusqu’à 180° + α = 270°.</p>',
+    obs: 'Combien de degrés dure ce « trou » sans tension ?', ans: 'α = 90°, de 180° à 270°.' },
+  { title: 'θ = 180° + α : T2 conduit l’alternance négative', setup: ph(90), t: 300,
+    text: '<p>Impulsion sur T2 à 270° (en orange) : T2 s’amorce et conduit le courant dans l’autre sens. u<sub>c</sub> = v &lt; 0.</p><p>Les deux alternances sont identiques au signe près : <b>⟨u<sub>c</sub>⟩ = 0</b> et la fréquence reste 50 Hz. Avec α = 90°, U<sub>c</sub> = V/√2 ≈ 163 V et P = 1 000 W.</p>',
+    obs: 'Quel est le sens du courant dans R par rapport à l’alternance positive ?', ans: 'Opposé : contrairement au redresseur, le gradateur fournit un courant alternatif.' },
+  { title: 'Petit angle α : forte puissance', setup: ph(30), t: 100,
+    text: '<p>Avec α = 30°, presque toute la sinusoïde est transmise : U<sub>c</sub> ≈ 226 V et P ≈ 1 940 W.</p><p>Attention : la relation entre α et P n’est pas linéaire. Il faut utiliser la formule U<sub>c</sub> = V√(1 − α/π + sin 2α / 2π).</p>',
+    obs: 'Faire varier α : pour quelle valeur approximative obtient-on 500 W (le quart de P<sub>max</sub>) ?', ans: 'Vers α ≈ 114°.' },
+  { title: 'Trains d’ondes : conduction pendant n périodes', setup: tr(4), t: 200,
+    text: '<p>Autre commande : le signal de commande (en bas) vaut 1 pendant T<sub>ON</sub> = 4 périodes, puis 0 pendant 6 périodes (T<sub>C</sub> = 10 T).</p><p>Pendant T<sub>ON</sub>, T1 et T2 sont amorcés en permanence, <b>au passage par zéro</b> : la charge reçoit des sinusoïdes complètes.</p>',
+    obs: 'u<sub>c</sub> présente-t-elle des fronts raides comme en commande par la phase ?', ans: 'Non : la conduction commence et s’arrête au zéro de tension, d’où très peu de parasites.' },
+  { title: 'Trains d’ondes : arrêt jusqu’à la fin de T<sub>C</sub>', setup: tr(4), t: 2200,
+    text: '<p>Pendant les 6 périodes suivantes, aucune impulsion : la charge n’est plus alimentée.</p><p>Rapport cyclique α = 4/10 = 0,4 : <b>P = 0,4 × 2 000 = 800 W</b> et U<sub>c</sub> = 230√0,4 ≈ 145 V. Adapté au chauffage (forte inertie), pas à l’éclairage (la lampe clignoterait).</p>',
+    obs: 'Régler 7 périodes ON : quelle puissance obtient-on ?', ans: 'P = 0,7 × 2 000 = 1 400 W.' }
+]);
+})();
+
+</script>
 </body>
 </html>

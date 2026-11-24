@@ -1,4 +1,166 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cours L3 pro BIM</title><link rel="stylesheet" href="electricite/style.css"></head><body><main style="max-width:860px;margin:0 auto;padding:16px"><h1>Licence 3 pro BIM : mes cours</h1><div class="cards">
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<meta name="color-scheme" content="light only"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cours L3 pro BIM</title><style>
+:root{
+  --bg:#f5f6f8;--card:#fff;--ink:#1c2230;--muted:#5c6577;--line:#dde1e8;
+  --blue:#2f6fd6;--green:#1d9a52;--red:#d43f3f;--orange:#df8516;--violet:#7a4cc2;--teal:#138a8a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;font-size:16px}
+nav{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line)}
+nav .in{max-width:1180px;margin:0 auto;padding:8px 20px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+nav .brand{font-weight:750;font-size:14px;margin-right:10px;white-space:nowrap}
+nav a{font-size:13px;text-decoration:none;color:var(--ink);padding:5px 9px;border-radius:8px;white-space:nowrap}
+nav a:hover{background:#f0f2f5}
+main{max-width:1180px;margin:0 auto;padding:18px 20px 60px}
+section{margin-bottom:34px}
+.kicker{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:650}
+h1{font-size:30px;margin:2px 0 8px;letter-spacing:-.01em;line-height:1.2}
+h2{font-size:22px;margin:0 0 10px;display:flex;align-items:center;gap:10px}
+h2 .n{display:inline-grid;place-items:center;min-width:30px;height:30px;border-radius:8px;background:var(--ink);color:#fff;font-size:15px}
+h3{font-size:16.5px;margin:18px 0 6px}
+.lead{color:var(--muted);font-size:17px;margin:0 0 12px;max-width:860px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin-bottom:16px}
+p{margin:8px 0}
+ul,ol{margin:6px 0;padding-left:22px}
+li{margin:4px 0}
+.f{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.05em}
+abbr{text-decoration:underline dotted;cursor:help}
+.box{border-left:4px solid var(--ink);background:#f7f8fa;padding:10px 14px;border-radius:0 10px 10px 0;margin:12px 0}
+.box.green{border-color:var(--green);background:#eef8f2}
+.box.orange{border-color:var(--orange);background:#fff7ec}
+.box.violet{border-color:var(--violet);background:#f4effb}
+.box.blue{border-color:var(--blue);background:#eef3fd}
+.box b.t{display:block;margin-bottom:2px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;margin:10px 0}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#f3f4f7;font-weight:650}
+.scroll{overflow-x:auto}
+svg.symb{width:100%;max-width:560px;height:auto;display:block;margin:8px 0}
+.watch{counter-reset:w;list-style:none;padding:0}
+.watch li{counter-increment:w;position:relative;padding:6px 10px 6px 42px;background:#faf8fe;border:1px solid #e6dcf6;border-radius:10px;margin:6px 0}
+.watch li:before{content:counter(w);position:absolute;left:10px;top:6px;width:24px;height:24px;border-radius:50%;background:var(--violet);color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center}
+/* QCM */
+.qq{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0}
+.qq p{margin:0 0 6px;font-weight:600}
+.qq label{display:block;padding:5px 8px;border-radius:6px;cursor:pointer;font-size:14.5px}
+.qq label:hover{background:#f4f5f8}
+.qq label.good{background:#dcf3e5}
+.qq label.bad{background:#fbe0e0}
+.qq .why{display:none;margin-top:6px;font-size:14px;border-left:3px solid var(--violet);padding-left:10px}
+.qq.ok .why,.qq.no .why{display:block}
+.score{font-size:14.5px;margin-top:6px}
+.score button{font:inherit;font-size:12.5px;margin-left:8px;border:1px solid var(--ink);background:#fff;border-radius:6px;padding:3px 10px;cursor:pointer}
+.grid3{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+.mini{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:#fcfcfd}
+.mini h4{margin:0 0 4px;font-size:15.5px}
+.mini .tag{font-size:12px;font-weight:650;color:var(--violet)}
+details.more{border:1px dashed #cdbfe9;border-radius:10px;background:#faf8fe;margin:12px 0}
+details.more summary{cursor:pointer;padding:8px 14px;font-weight:650;color:var(--violet)}
+details.more > div{padding:0 14px 10px}
+footer{color:var(--muted);font-size:13px;text-align:center;margin-top:30px}
+@media print{nav,.controls{display:none!important}}
+
+/* ===== Ajouts section Électricité ===== */
+.frac{display:inline-flex;flex-direction:column;vertical-align:middle;text-align:center;line-height:1.15;margin:0 3px;font-size:.95em}
+.frac>span:first-child{border-bottom:1.5px solid currentColor;padding:0 4px 1px}
+.frac>span:last-child{padding:1px 4px 0}
+.formula{font-family:"Cambria Math","STIX Two Math","Times New Roman",serif;font-size:1.18em;text-align:center;padding:10px 12px;margin:10px 0;background:#f4f7fd;border:1px solid #d9e3f7;border-radius:10px;overflow-x:auto}
+.formula small{display:block;font-family:system-ui,sans-serif;font-size:.68em;color:var(--muted);margin-top:3px}
+.src{display:inline-block;font-size:11.5px;font-weight:700;letter-spacing:.02em;padding:1px 8px;border-radius:99px;vertical-align:middle;margin-left:6px;white-space:nowrap}
+.src.n{background:#e4edfc;color:#1f55b0}
+.src.a{background:#e0f4e8;color:#14753d}
+.src.c{background:#fde7e7;color:#b02a2a}
+.keys{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:13.5px;color:var(--muted);margin:6px 0 14px}
+.keys .src{margin:0 6px 0 0}
+.box.red{border-color:var(--red);background:#fdeeee}
+.box.teal{border-color:var(--teal);background:#eaf6f6}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:14px}
+a.ch{display:block;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;transition:transform .12s,box-shadow .12s}
+a.ch:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(30,40,70,.09)}
+a.ch .num{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:8px;background:var(--ink);color:#fff;font-weight:700;margin-bottom:6px}
+a.ch h3{margin:0 0 4px;font-size:17px}
+a.ch p{margin:0;color:var(--muted);font-size:14px}
+a.ch .from{display:block;margin-top:8px;font-size:12px;color:var(--violet);font-weight:600}
+.pn{display:flex;justify-content:space-between;gap:12px;margin:30px 0 0;flex-wrap:wrap}
+.pn a{background:#fff;border:1px solid var(--line);border-radius:10px;padding:9px 14px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14.5px}
+.pn a:hover{background:#f0f2f5}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 18px}
+.toc a{font-size:13px;background:#fff;border:1px solid var(--line);border-radius:99px;padding:3px 11px;text-decoration:none;color:var(--ink)}
+.toc a:hover{background:#f0f2f5}
+.calc{border:1.5px solid var(--line);border-radius:14px;padding:14px 16px;background:#fff;margin:14px 0}
+.calc h4{margin:0 0 8px;font-size:16px}
+.calc .in{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px 14px;margin-bottom:10px}
+.calc label{font-size:12.5px;color:var(--muted);display:block}
+.calc input,.calc select{width:100%;font:inherit;font-size:15px;padding:6px 8px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}
+.calc .out{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.calc .out div{background:#f7f8fa;border-radius:8px;padding:6px 10px}
+.calc .out span{display:block;color:var(--muted);font-size:11.5px}
+.calc .out b{font-size:16.5px;font-variant-numeric:tabular-nums}
+.calc .note{font-size:13.5px;margin-top:8px;color:var(--muted)}
+.calc .note.bad{color:var(--red);font-weight:600}
+.calc .note.ok{color:var(--green);font-weight:600}
+.calc button{font:inherit;font-size:13px;border:1px solid var(--ink);background:#fff;border-radius:8px;padding:5px 12px;cursor:pointer}
+.calc button.go{background:var(--ink);color:#fff}
+.calc table input{padding:4px 6px;font-size:14px}
+figure{margin:12px 0}
+figure svg{width:100%;height:auto;max-width:640px;display:block;background:#fcfcfd;border:1px solid var(--line);border-radius:10px}
+figure.wide svg{max-width:760px}
+figcaption{font-size:13px;color:var(--muted);margin-top:4px}
+.steps{counter-reset:s;list-style:none;padding:0}
+.steps>li{counter-increment:s;position:relative;padding:8px 12px 8px 46px;background:#fff;border:1px solid var(--line);border-radius:10px;margin:8px 0}
+.steps>li:before{content:counter(s);position:absolute;left:12px;top:8px;width:24px;height:24px;border-radius:50%;background:var(--blue);color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center}
+.sol{border-left:4px solid var(--green);background:#f3faf6;border-radius:0 10px 10px 0;padding:8px 14px;margin:10px 0}
+.sol .t{font-weight:700;color:#14753d;display:block;margin-bottom:2px}
+.ex{border:1px solid var(--line);border-radius:14px;padding:4px 18px 10px;background:#fff;margin:16px 0}
+.ex>h3{margin-top:12px}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+.small{font-size:13.5px;color:var(--muted)}
+
+[hidden]{display:none!important}
+.calc td input{width:100%}
+
+/* ===== Lisibilité et version téléphone ===== */
+nav a.cur{background:var(--ink);color:#fff}
+a.ch b{display:block;font-size:16px}
+a.ch span{display:block;color:var(--muted);font-size:14px;margin-top:3px}
+.grid2{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin:10px 0}
+main img,main svg{max-width:100%}
+main{overflow-wrap:break-word}
+@media (max-width:700px){
+  body{font-size:15.5px;line-height:1.55}
+  nav .in{flex-wrap:nowrap;overflow-x:auto;padding:6px 8px;gap:2px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  nav .in::-webkit-scrollbar{display:none}
+  nav .brand{font-size:13.5px;margin-right:4px}
+  nav a{font-size:13px;padding:6px 8px}
+  html{scroll-padding-top:52px}
+  main{padding:12px 12px 40px}
+  h1{font-size:23px}
+  h2{display:block;font-size:19px;line-height:1.35}
+  h2 .n{min-width:26px;height:26px;font-size:13.5px;margin-right:6px;vertical-align:2px;display:inline-grid}
+  h2 .src{margin-left:4px}
+  h3{font-size:16px}
+  .lead{font-size:15.5px}
+  .card,.calc{padding:12px;border-radius:12px}
+  .ex{padding:2px 12px 8px;border-radius:12px}
+  .mini{padding:10px 12px}
+  .box,.sol{padding:8px 11px}
+  .formula{font-size:1.02em;padding:8px 6px}
+  .toc{flex-wrap:nowrap;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+  .toc::-webkit-scrollbar{display:none}
+  .toc a{white-space:nowrap}
+  table{display:block;overflow-x:auto;font-size:13.5px}
+  th,td{padding:5px 7px}
+  .cards,.grid3,.grid2{grid-template-columns:1fr;gap:10px}
+  .calc .in,.calc .out{grid-template-columns:1fr 1fr;gap:8px}
+  .steps>li{padding:8px 10px 8px 40px}
+  .steps>li:before{left:9px}
+  .pn a{flex:1 1 45%;text-align:center;font-size:13.5px}
+  figure svg{border-radius:8px}
+}
+.grid3>*,.grid2>*,.cards>*{min-width:0}
+
+</style></head><body><main style="max-width:860px;margin:0 auto;padding:16px"><h1>Licence 3 pro BIM : mes cours</h1><div class="cards">
 <a class="ch" href="electricite/index.html"><b>Électricité</b><span>7 chapitres, calculateurs, QCM</span></a>
 <a class="ch" href="qee-cem/index.html"><b>QEE & CEM (US2.2)</b><span>Fourier, harmoniques, surtensions, CEM, TD corrigés</span></a>
 <a class="ch" href="normes-reglementation/index.html"><b>Normes et réglementation</b><span>projet de branchement, section, chute de tension</span></a>
